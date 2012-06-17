@@ -1,0 +1,6 @@
+; $Id: $
+name = "Image CAPTCHA Refresh"
+description = "Provides refresh link for Image CAPTCHA."
+package = "Spam control"
+dependencies[] = captcha
+core = 6.x
