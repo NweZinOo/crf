@@ -132,7 +132,7 @@ tr.merge-up, tr.merge-up td, tr.merge-up th {
   border: 2px solid red;
 }
 .form-item .description {
-  font-size: 0.85em;
+  font-size: 12px;
 }
 .form-item label {
   display: block;

@@ -218,7 +218,8 @@ function profile_user($type, &$edit, &$user, $category = NULL) {
     case 'validate':
       return profile_validate_profile($edit, $category);
     case 'categories':
-      return profile_categories();
+//      Modify by XDN
+//      return profile_categories();
     case 'delete':
       db_query('DELETE FROM {profile_values} WHERE uid = %d', $user->uid);
   }
