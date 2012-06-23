@@ -1,0 +1,168 @@
+<?php
+
+/**
+* Implementation of hook_menu
+*/
+function crf_work_menu()
+{
+  $items = array();
+  $items['crf_add'] = array(
+    'title' => '随机申请表',
+    'page callback' => 'crf_work_add',
+    'access callback' => 'crf_work_perm',
+    'type' => MENU_CALLBACK
+  );
+  $items['crf_list'] = array(
+    'title' => '随机列表',
+    'page callback' => 'crf_work_list',
+    'access callback' => 'crf_work_perm',
+    'type' => MENU_CALLBACK
+  );
+  return $items;  
+}
+
+function crf_work_init() {
+  global $user;
+  $profile =  profile_load_profile($user);  
+}
+
+function crf_work_perm() {
+  global $user;
+  if (isset($user->roles[3]) || $user->uid == 1) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function crf_work_add() {
+  return drupal_get_form(crf_work_add_form);
+}
+
+function crf_work_add_form(&$form_state) {
+  global $user;
+  $form = array();
+  $form['hospital_no'] = array(
+    '#type' => 'item',
+    '#title' => '试验中心编号（自动生成）',
+    '#value' => $user->profile_hospital_no,
+  );
+  $form['hospital_name'] = array(
+    '#type' => 'item',
+    '#title' => '试验中心名称（自动生成）',
+    '#value' => $user->profile_hospital_name,
+  );
+  $form['sift'] = array(
+    '#type' => 'textfield',
+    '#title' => '筛选号',
+    '#default_value' => ''
+  );
+  $form['p_name'] = array(
+    '#type' => 'textfield',
+    '#title' => '受试者姓名缩写',
+    '#default_value' => ''
+  );
+  $form['p_birthday'] = array(
+    '#type' => 'date_popup',
+    '#date_format' => 'Y-m-d',
+    '#date_year_range' => '-90:+0',
+    '#title' => '受试者出生日期',
+  );
+  $form['approved'] = array(
+    '#type' => 'radios',
+    '#title' => '受试者是否获得知情同意书',
+    '#options' => array('否','是'),
+  );
+  $form['approved_time'] = array(
+    '#type' => 'date_popup',
+    '#date_format' => 'Y-m-d',
+    '#date_year_range' => '-90:+0',
+    '#title' => '知情同意日期',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value'=> '确定'
+  );
+
+  return $form;
+}
+
+function crf_work_add_form_validate($form, &$form_state) {
+  if (empty($form_state['values']['sift'])) {
+    form_set_error('sift', '筛选号不能为空!');
+  }
+  if (empty($form_state['values']['p_name'])) {
+    form_set_error('p_name', '受试者姓名缩写不能为空!');
+  }
+  if (empty($form_state['values']['p_birthday'])) {
+    form_set_error('p_birthday', '受试者出生日期不能为空!');
+  }
+  if ($form_state['values']['approved'] == '') {
+    form_set_error('approved', '受试者是否获得知情同意书需要选择一项!');
+  }
+//  if (empty($form_state['values']['approved_time'])) {
+//    form_set_error('approved_time', '知情同意日期不能为空!');
+//  }
+}
+
+function crf_work_add_form_submit($form, &$form_state) {
+  global $user;
+  $obj->hospital_no = $user->profile_hospital_no;
+  $obj->hospital_name = $user->profile_hospital_name;
+  $obj->sift = $form_state['values']['sift'];
+  $obj->p_name = $form_state['values']['p_name'];
+  $obj->p_birthday = substr($form_state['values']['p_birthday'], 0, 10);
+  $obj->approved = $form_state['values']['approved'];
+  $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
+  $obj->team = get_rand();
+  $obj->apply_time = date("Y-m-d H:i:s");
+  
+  $table = 'apply';
+  $r = crf_work_write_record($table, $obj);
+  if ($r != FALSE) {
+    drupal_set_message('添加成功！');
+  }
+}
+
+function crf_work_write_record($table, $obj) {
+  $query = 'INSERT INTO '. $table .' (hospital_no, hospital_name, sift, p_name, p_birthday, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
+  $arr = (array)$obj;
+  db_query($query, $arr);
+}
+
+function get_rand() {
+  srand((double)microtime()*1000000);
+  $rand_number= rand(1,2);
+  return $rand_number;
+}
+
+function crf_work_list() {
+  global $user;
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+  $approved_arr = array('否', '是');
+  $header = array('序号', '中心编号', '中心名称', '筛选号', '姓名缩写', '出生日期', '是否知情', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $rows = array();
+
+  $results = db_query("SELECT * FROM apply WHERE hospital_no = '%s'", $user->profile_hospital_no);
+
+  while ($r = db_fetch_object($results)) {
+    $terms = array();
+    $rows[] = array($r->p_uid,
+              $r->hospital_no,
+              $r->hospital_name,
+              $r->sift,
+              $r->p_name,
+              $r->p_birthday,
+              $approved_arr[$r->approved],
+              $r->approved_time,
+              $term_arr[$r->team],
+              $r->apply_time,
+              l('进入', 'crf_bingli_add/' .$r->p_uid)
+    );
+   }
+  return theme('table', $header, $rows);
+}
