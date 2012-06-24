@@ -1,5 +1,9 @@
 <?php
 
+function crf_common_init() {
+  global $user;
+  $profile =  profile_load_profile($user);  
+}
 /**
 * Implementation of hook_menu
 */
@@ -28,4 +32,14 @@ function crf_common_front() {
     $output = drupal_get_form('user_login_block');    
   }
   return $output;
+}
+
+function crf_common_session($key, $value = null) {  
+  if (isset($value)) {    
+    unset($_SESSION['crf'][$key]);    
+    $_SESSION['crf'][$key] = $value;  
+  }    
+  if (isset($_SESSION['crf'][$key])) {    
+    return $_SESSION['crf'][$key];  
+  }
 }

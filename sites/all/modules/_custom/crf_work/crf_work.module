@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Implementation of hook_menu
 */
@@ -21,14 +20,9 @@ function crf_work_menu()
   return $items;  
 }
 
-function crf_work_init() {
-  global $user;
-  $profile =  profile_load_profile($user);  
-}
-
 function crf_work_perm() {
   global $user;
-  if ((isset($user->roles[3]) || $user->uid == 1) && arg(0) == 'crf_list') {
+  if ((isset($user->roles[3]) || $user->uid == 1)) {
     return true;
   }
   else {
@@ -69,10 +63,15 @@ function crf_work_add_form(&$form_state) {
     '#date_year_range' => '-90:+0',
     '#title' => '受试者出生日期',
   );
+  $form['case_history_no'] = array(
+    '#type' => 'textfield',
+    '#title' => '病历号',
+    '#default_value' => ''
+  );
   $form['approved'] = array(
     '#type' => 'radios',
     '#title' => '受试者是否获得知情同意书',
-    '#options' => array('否','是'),
+    '#options' => array('1'=>'是','0'=>'否'),
   );
   $form['approved_time'] = array(
     '#type' => 'date_popup',
@@ -98,6 +97,9 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['p_birthday'])) {
     form_set_error('p_birthday', '受试者出生日期不能为空!');
   }
+  if (empty($form_state['values']['case_history_no'])) {
+    form_set_error('p_name', '病历号不能为空!');
+  }
   if ($form_state['values']['approved'] == '') {
     form_set_error('approved', '受试者是否获得知情同意书需要选择一项!');
   }
@@ -113,6 +115,7 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->sift = $form_state['values']['sift'];
   $obj->p_name = $form_state['values']['p_name'];
   $obj->p_birthday = substr($form_state['values']['p_birthday'], 0, 10);
+  $obj->case_history_no = $form_state['values']['case_history_no'];
   $obj->approved = $form_state['values']['approved'];
   $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
   $obj->team = get_rand();
@@ -127,7 +130,7 @@ function crf_work_add_form_submit($form, &$form_state) {
 }
 
 function crf_work_write_record($table, $obj) {
-  $query = 'INSERT INTO '. $table .' (hospital_no, hospital_name, sift, p_name, p_birthday, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
+  $query = 'INSERT INTO '. $table .' (hospital_no, hospital_name, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
@@ -146,8 +149,8 @@ function crf_work_list() {
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
   }
-  $approved_arr = array('否', '是');
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '中心编号', '中心名称', '筛选号', '姓名缩写', '出生日期', '是否知情', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $approved_arr = array('1'=>'是','0'=>'否');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '中心编号', '中心名称', '筛选号', '姓名缩写', '出生日期', '病历号', array('data'=>'是否知情', 'field'=>'approved'), '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
   $rows = array();
 
   if ($user->uid == 1) {
@@ -159,17 +162,19 @@ function crf_work_list() {
 
   while ($r = db_fetch_object($results)) {
     $terms = array();
-    $rows[] = array($r->p_uid,
-              $r->hospital_no,
-              $r->hospital_name,
-              $r->sift,
-              $r->p_name,
-              $r->p_birthday,
-              $approved_arr[$r->approved],
-              $r->approved_time,
-              $term_arr[$r->team],
-              $r->apply_time,
-              l('进入', 'crf_bingli_add/' .$r->p_uid)
+    $rows[] = array(
+      $r->p_uid,
+      $r->hospital_no,
+      $r->hospital_name,
+      $r->sift,
+      $r->p_name,
+      $r->p_birthday,
+      $r->case_history_no,
+      $approved_arr[$r->approved],
+      $r->approved_time,
+      $term_arr[$r->team],
+      $r->apply_time,
+      l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
   $output = theme('table', $header, $rows);
