@@ -28,7 +28,7 @@ function crf_work_init() {
 
 function crf_work_perm() {
   global $user;
-  if (isset($user->roles[3]) || $user->uid == 1) {
+  if ((isset($user->roles[3]) || $user->uid == 1) && arg(0) == 'crf_list') {
     return true;
   }
   else {
@@ -122,13 +122,15 @@ function crf_work_add_form_submit($form, &$form_state) {
   $r = crf_work_write_record($table, $obj);
   if ($r != FALSE) {
     drupal_set_message('添加成功！');
+    drupal_goto('crf_list');
   }
 }
 
 function crf_work_write_record($table, $obj) {
   $query = 'INSERT INTO '. $table .' (hospital_no, hospital_name, sift, p_name, p_birthday, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
   $arr = (array)$obj;
-  db_query($query, $arr);
+  $r = db_query($query, $arr);
+  return $r;
 }
 
 function get_rand() {
@@ -139,15 +141,21 @@ function get_rand() {
 
 function crf_work_list() {
   global $user;
+
   $terms = taxonomy_get_tree(1);
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
   }
   $approved_arr = array('否', '是');
-  $header = array('序号', '中心编号', '中心名称', '筛选号', '姓名缩写', '出生日期', '是否知情', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '中心编号', '中心名称', '筛选号', '姓名缩写', '出生日期', '是否知情', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
   $rows = array();
 
-  $results = db_query("SELECT * FROM apply WHERE hospital_no = '%s'", $user->profile_hospital_no);
+  if ($user->uid == 1) {
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no != ''" . tablesort_sql($header), $limit = 30);
+  }
+  else {
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no = {$user->profile_hospital_no}" . tablesort_sql($header), $limit = 30);
+  }
 
   while ($r = db_fetch_object($results)) {
     $terms = array();
@@ -164,5 +172,7 @@ function crf_work_list() {
               l('进入', 'crf_bingli_add/' .$r->p_uid)
     );
    }
-  return theme('table', $header, $rows);
+  $output = theme('table', $header, $rows);
+  $output.= theme('pager');
+  return $output;
 }
