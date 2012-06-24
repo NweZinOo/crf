@@ -35,7 +35,9 @@ function get_form_elements_arr($no) {
     1 => array(1 => type_date_popup(),2 => type_radios('gender')),
   );
   $form_elements_arr[5] = array(
-    1 => array(1 => type_date_popup(),2 => type_radios('gender')),
+    1 => array(1 => type_date_popup()),
+    2 => array(1 => type_date_popup()),
+    3 => array(1 => type_checkboxs(array('T','N','M'))),
   );
   if (empty($form_elements_arr[$no])) {
     drupal_set_message('未建立的数组元素,请联系管理员！');
@@ -44,16 +46,19 @@ function get_form_elements_arr($no) {
   return $form_elements_arr[$no];
 }
 
-function type_date_popup() {
-  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5');
+function type_date_popup($default_value = NULL) {
+  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5', '#default_value' => $default_value);
 }
 
-function type_radios($type = NULL) {
+function type_radios($type = NULL, $default_value = NULL) {
   if ($type == 'gender') {
-    $options = array('1'=>'男','0'=>'女');
+    $options_arr = array('1'=>'男','0'=>'女');
   }
   else {
-    $options = array('1'=>'是','0'=>'否');
+    $options_arr = array('1'=>'是','0'=>'否');
   }
-  return array('#type'=>'radios', '#options' => $options,);
+  return array('#type'=>'radios', '#options' => $options_arr, '#default_value' => $default_value);
+}
+function type_checkboxs($options, $default_value = array()) {
+  return array('#type'=>'checkboxes', '#options' => $options, '#default_value' => $default_value);
 }
