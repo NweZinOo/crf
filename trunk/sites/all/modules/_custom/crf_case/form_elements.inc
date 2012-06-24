@@ -32,7 +32,10 @@ function get_form_elements_arr($no) {
     5 => array(1 => type_radios(),2 => type_radios()),
   );
   $form_elements_arr[4] = array(
-    1 => array(1 => type_radios(),2 => type_radios()),
+    1 => array(1 => type_date_popup(),2 => type_radios('gender')),
+  );
+  $form_elements_arr[5] = array(
+    1 => array(1 => type_date_popup(),2 => type_radios('gender')),
   );
   if (empty($form_elements_arr[$no])) {
     drupal_set_message('未建立的数组元素,请联系管理员！');
@@ -45,6 +48,12 @@ function type_date_popup() {
   return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5');
 }
 
-function type_radios() {
-  return array('#type'=>'radios', '#options' => array('1'=>'是','0'=>'否'),);
+function type_radios($type = NULL) {
+  if ($type == 'gender') {
+    $options = array('1'=>'男','0'=>'女');
+  }
+  else {
+    $options = array('1'=>'是','0'=>'否');
+  }
+  return array('#type'=>'radios', '#options' => $options,);
 }
