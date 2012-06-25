@@ -1,5 +1,10 @@
 <?php
 
+include_once dirname(__FILE__) . '/form_elements.inc';
+
+include_once dirname(__FILE__) . '/crf_case.conf.inc';
+
+
 /**
 * Implementation of hook_menu
 */
@@ -46,32 +51,54 @@ function crf_case($p_uid, $type) {
     drupal_goto('crf_case');
   }
 }
+
 /**
  * 参数eg:
- * crf_case_edit/no
+ * crf_case_edit/zqtys
  * crf_case_edit/第几页
  */
 function crf_case_edit() {
   $no = arg(1);
   if (empty($no)) {
-    drupal_goto('crf_case_edit/1');
+    $no = 'zhiqing_tys';
   }
+  
+  if (FALSE === get_form_elements_arr($no)) {
+    drupal_set_message('未建立的数组元素,请联系管理员！');
+    return drupal_not_found();
+  }
+  
   return drupal_get_form("crf_case_form", $no);
 }
 
 function crf_case_form(&$form_state, $arg = NULL) {
   $no = $arg;
-  module_load_include('inc', 'crf_case', 'form_elements'); 
   $form_elements_arr = get_form_elements_arr($no);
+  
   foreach($form_elements_arr as $row => $group) {
-    foreach($group as $element_no => $element) {
-//      print "e_{$no}_{$row}_{$element_no}";
-      $form["e_{$no}_{$row}_{$element_no}"] = $element;
+    if (stristr($row, '#') === FALSE) {//skip #
+      foreach($group as $element_no => $element) {
+  //      print "e_{$no}_{$row}_{$element_no}";
+        $form["e_{$no}_{$row}_{$element_no}"] = $element;
+      }
     }
   }
+  
   $form['submit'] = array(
     '#type' => 'submit',
     '#value'=> '确定'
   );
   return $form;
+}
+
+
+function crf_case_form_submit($form, $form_state) {
+  $no = arg(1);
+  if (empty($no)) {
+    $no = 'zhiqing_tys';
+  }
+  
+  $table = "crf_$no";
+  $data  = $form_state['values'];
+  
 }
