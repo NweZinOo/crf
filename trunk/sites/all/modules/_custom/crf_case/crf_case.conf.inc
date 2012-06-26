@@ -15,18 +15,18 @@ $crf_el['zhiqing_tys'] = array(
 
 $crf_el['ruxuan_bz'] = array(
   '#name' => '入选标准',
-  1 => array(1 => type_radios(),2 => type_radios()),
-  2 => array(1 => type_radios(),2 => type_radios()),
-  3 => array(1 => type_radios(),2 => type_radios()),
-  4 => array(1 => type_radios(),2 => type_radios()),
-  5 => array(1 => type_radios(),2 => type_radios()),
-  6 => array(1 => type_radios(),2 => type_radios()),
-  7 => array(1 => type_radios(),2 => type_radios()),
-  8 => array(1 => type_radios(),2 => type_radios()),
-  9 => array(1 => type_radios(),2 => type_radios()),
-  10 => array(1 => type_radios(),2 => type_radios()),
-  11 => array(1 => type_radios(),2 => type_radios()),
-  12 => array(1 => type_radios(),2 => type_radios()),
+  1 => array(1 => type_radios()),
+  2 => array(1 => type_radios()),
+  3 => array(1 => type_radios()),
+  4 => array(1 => type_radios()),
+  5 => array(1 => type_radios()),
+  6 => array(1 => type_radios()),
+  7 => array(1 => type_radios()),
+  8 => array(1 => type_radios()),
+  9 => array(1 => type_radios()),
+  10 => array(1 => type_radios()),
+  11 => array(1 => type_radios()),
+  12 => array(1 => type_radios()),
 );
 
 $crf_el['paichu_bz'] = array(

@@ -83,7 +83,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
       }
     }
   }
-  
+  $form['#theme'] = 'crf_case_form_'. $no;
   $form['submit'] = array(
     '#type' => 'submit',
     '#value'=> '确定'
@@ -101,4 +101,20 @@ function crf_case_form_submit($form, $form_state) {
   $table = "crf_$no";
   $data  = $form_state['values'];
   
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function crf_case_theme() {
+  return array(
+    'crf_case_form_zhiqing_tys' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zhiqing_tys'),
+      'template' => 'templates/zhiqing-tys',
+    ),
+    'crf_case_form_ruxuan_bz' => array(
+      'arguments' => array('form' => NULL, 'class' => 'ruxuan-bz'),
+      'template' => 'templates/ruxuan-bz',
+    ),
+  );
 }
