@@ -18,14 +18,14 @@ function type_textfield($default_value = NULL) {
 }
 
 function type_date_popup($default_value = NULL) {
-  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5', '#default_value' => $default_value);
+  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5', '#title' => $title, '#default_value' => $default_value);
 }
 
 function type_radios($options = NULL, $default_value = NULL) {
   if (empty($options)) {
     $options = array('1'=>'是','0'=>'否');
   }
-  return array('#type'=>'radios', '#options' => $options, '#default_value' => $default_value);
+  return array('#type'=>'radios', '#options' => $options, '#title' => $title, '#default_value' => $default_value);
 }
 function type_checkboxs($options, $default_value = array()) {
   return array('#type'=>'checkboxes', '#options' => $options, '#default_value' => $default_value);
