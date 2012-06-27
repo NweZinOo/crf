@@ -107,7 +107,7 @@ function crf_case_form_submit($form, $form_state) {
   
 
   $values  = $form_state['values'];
-  $dataset = crf_ds_parse_data($no, $values);
+  $dataset = crf_ds_parse($no, $values);
 
   /**
    * $dataset
