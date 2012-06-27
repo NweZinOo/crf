@@ -21,19 +21,19 @@ function crf_case_menu()
   $items['crf_case/%/%'] = array(
     'page callback' => 'crf_case',
     'page arguments' => array(1,2),
-    'access callback' => 'crf_case_perm',
+    'access callback' => 'crf_case_checkperm',
     'access arguments' => array(1),
     'type' => MENU_CALLBACK
   );
   $items['crf_case_edit'] = array(
     'page callback' => 'crf_case_edit',
-    'access callback' => 'crf_case_perm',
+    'access callback' => 'crf_case_checkperm',
     'type' => MENU_CALLBACK
   );
   return $items;  
 }
 
-function crf_case_perm() {
+function crf_case_checkperm() {
   global $user;
   if ((isset($user->roles[3]) || $user->uid == 1)) {
     return true;
@@ -46,9 +46,8 @@ function crf_case_perm() {
 function crf_case($p_uid, $type) {
   global $user;
   $hospital_no = $user->profile_hospital_no;
-  $hospital_name = $user->profile_hospital_name;
-  $query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s' AND hospital_name = '%s'";
-  $result = db_query($query, $p_uid, $hospital_no, $hospital_name);
+  $query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s'";
+  $result = db_query($query, $p_uid, $hospital_no);
   $p_arr = db_fetch_array($result);
 //  print_r($p_arr);exit;
   if ($p_arr != NULL) {

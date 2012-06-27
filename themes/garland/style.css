@@ -8,6 +8,9 @@
  * modifying this file.
  */
 
+ .clear {
+   clear: both;
+ }
 /**
  * Generic elements
  */
@@ -1098,11 +1101,20 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   padding: 5px 0 6px 15px;
   font-size: 15px;
 }
- 
+
+#crf-case-form td.center {
+  padding: 0;
+  text-align: center;
+}
+
 #crf-case-form .form-text {
  border-color: -moz-use-text-color;
  border-style: none none solid;
  border-width: 0 0 1px;
+}
+
+#crf-case-form .f-left {
+  float: left;
 }
 
 #crf-case-form h2 {
