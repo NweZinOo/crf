@@ -1,5 +1,5 @@
 <?php
-global $crf_el;
+global $hospital_name;
 
 $hospital_name['01'] = '中山大学肿瘤防治中心';
 $hospital_name['02'] = '中山大学第一附属医院';
