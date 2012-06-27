@@ -116,6 +116,11 @@ ol.task-list li.active {
 #crf-case-form .form-item {
   margin: 0;
 }
+#crf-case-form .form-item {
+  display: inline-block;
+}
+
+#crf-case-form .paichu-bz .form-item,
 #crf-case-form .ruxuan-bz .form-item {
   display: inline-block;
 }

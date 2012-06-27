@@ -1,5 +1,7 @@
 <?php
 
+include_once dirname(__FILE__) . '/include/crf_common.conf.inc';
+
 function crf_common_init() {
   global $user;
   $profile =  profile_load_profile($user);  
@@ -43,3 +45,4 @@ function crf_common_session($key, $value = null) {
     return $_SESSION['crf'][$key];  
   }
 }
+
