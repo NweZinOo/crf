@@ -1085,33 +1085,37 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 /**
  * Add by XDN
  */
-#crf-case-form tbody {
-  border-top: none;   
-}
+ #crf-case-form .form-item {
+   margin: 0;
+ }
+ 
+ #crf-case-form tbody {
+   border-top: none;   
+ }
 
-#crf-case-form tr.title {
-  background: #CCC;
-}
+ #crf-case-form tr.title {
+   background: #CCC;
+ }
 
-#crf-case-form tr.title td {
-  background: #CCC;
-}
+ #crf-case-form tr.title td {
+   background: #CCC;
+ }
 
-#crf-case-form td {
-  padding: 5px 0 6px 15px;
-  font-size: 15px;
-}
+ #crf-case-form td {
+   padding: 10px 0 8px 15px;
+   font-size: 15px;
+ }
 
 #crf-case-form td.center {
   padding: 0;
   text-align: center;
 }
 
-#crf-case-form .form-text {
- border-color: -moz-use-text-color;
- border-style: none none solid;
- border-width: 0 0 1px;
-}
+ #crf-case-form .form-text {
+   border-color: -moz-use-text-color;
+   border-style: none none solid;
+   border-width: 0 0 1px;
+ }
 
 #crf-case-form .f-left {
   float: left;
@@ -1122,12 +1126,58 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   line-height: none;
 }
 
-#crf-case-form h4 {
-  font-size: 15px;
-}
+ #crf-case-form h4 {
+   font-size: 15px;
+ }
 /**
  * Hidden
  */
-#crf-case-form table .description {
-  display: none;
+ #crf-case-form table .description {
+   display: none;
+ }
+ 
+/**
+* front
+*/
+.background {
+  background: url(images/front_back.jpg) no-repeat;
+  width: 900px;
+  height:650px;
+  margin: 50px auto;
+}
+.background #edit-captcha-response-wrapper #edit-captcha-response,
+.background #edit-captcha-response-wrapper label,
+.background #edit-pass-wrapper #edit-pass,
+.background #edit-pass-wrapper label,
+.background #edit-name-wrapper #edit-name,
+.background #edit-name-wrapper label {
+  display: inline-block;
+}
+
+.background .content {
+  padding-top: 315px;
+}
+
+.background #edit-captcha-response-wrapper {
+  margin-right: 12px;
+}
+
+.background #user-login-form {
+  position: relative;
+}
+
+.background .captcha #image-captcha-image {
+  bottom: 70px;
+  display: block;
+  position: absolute;
+  right: 300px;
+}
+
+.background #image_captcha_refresh {
+  position: absolute;
+  right: 210px;
+}
+
+.background #image_captcha_refresh a {
+  color: #494949;
 }

@@ -676,19 +676,19 @@ function user_login_block() {
     '#submit' => array('user_login_submit'),
   );
   $form['name'] = array('#type' => 'textfield',
-    '#title' => t('Username'),
+    '#title' => '用户',
     '#maxlength' => USERNAME_MAX_LENGTH,
     '#size' => 15,
     '#required' => TRUE,
   );
   $form['pass'] = array('#type' => 'password',
-    '#title' => t('Password'),
+    '#title' => '密码',
     '#maxlength' => 60,
     '#size' => 15,
     '#required' => TRUE,
   );
   $form['submit'] = array('#type' => 'submit',
-    '#value' => t('Log in'),
+    '#value' => t('登陆'),
   );
 //  Modify by XDN
 //  $items = array();
