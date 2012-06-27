@@ -82,14 +82,19 @@ function crf_case_form(&$form_state, $arg = NULL) {
   $no = $arg;
   $form_elements_arr = get_form_elements_arr($no);
   
+  $dataset = crf_ds_load($no);
+  $dataset = json_to_array($dataset);
+  
   foreach($form_elements_arr as $row => $group) {
     if (stristr($row, '#') === FALSE) {//skip #
       foreach($group as $element_no => $element) {
   //      print "e_{$no}_{$row}_{$element_no}";
+        crf_set_element_default_value($element, $dataset, $row, $element_no);
         $form["e_{$no}_{$row}_{$element_no}"] = $element;
       }
     }
   }
+  
   $form['#theme'] = 'crf_case_form_'. $no;
   $form['submit'] = array(
     '#type' => 'submit',
@@ -105,10 +110,10 @@ function crf_case_form_submit($form, $form_state) {
     $no = 'zhiqing_tys';
   }
   
-
   $values  = $form_state['values'];
-  $dataset = crf_ds_parse($no, $values);
-
+  $dataset = crf_ds_parse($no, $values, $form);
+  
+  //var_dump($dataset);
   /**
    * $dataset
    *  array
@@ -123,10 +128,15 @@ function crf_case_form_submit($form, $form_state) {
      $dataset = call_user_func_array($hook, array($no, $dataset));
    }
    
-   crf_ds_save($no, $dataset);
+   crf_ds_save($dataset, $no);
 }
 
 
+function crf_set_element_default_value(&$element, $dataset, $row, $col) {
+  if (isset($dataset[$row]) && isset($dataset[$row][$col])) {
+    $element['#default_value'] = $dataset[$row][$col];
+  }
+} 
 
 
 /**
@@ -143,4 +153,19 @@ function crf_case_theme() {
       'template' => 'templates/ruxuan-bz',
     ),
   );
+}
+
+function json_to_array($web){
+  $arr=array();
+  
+  foreach($web as $k=>$w){
+    if(is_object($w)) {
+      $arr[$k]=json_to_array($w); //判断类型是不是object
+    }
+    else {
+      $arr[$k]=$w;
+    }
+  }
+  
+  return $arr;
 }
