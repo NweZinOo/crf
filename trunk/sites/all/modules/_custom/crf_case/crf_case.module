@@ -4,6 +4,13 @@ include_once dirname(__FILE__) . '/form_elements.inc';
 
 include_once dirname(__FILE__) . '/crf_case.conf.inc';
 
+include_once dirname(__FILE__) . '/crf_dataset.inc';
+
+/**
+ * CRF Dataset Table Name
+ */
+define('CRF_DS_TABLE', 'crf_case_data');
+
 
 /**
 * Implementation of hook_menu
@@ -98,10 +105,29 @@ function crf_case_form_submit($form, $form_state) {
     $no = 'zhiqing_tys';
   }
   
-  $table = "crf_$no";
-  $data  = $form_state['values'];
-  
+
+  $values  = $form_state['values'];
+  $dataset = crf_ds_parse_data($no, $values);
+
+  /**
+   * $dataset
+   *  array
+       1 => array (
+          1 => string '2012-06-05 00:00:00' (length=19)
+          2 => string '2012-06-05 00:00:00' (length=19)
+       )
+  */
+   
+   $hook = "crf_ds_update_$no";
+   if (is_callable($hook)) {
+     $dataset = call_user_func_array($hook, array($no, $dataset));
+   }
+   
+   crf_ds_save($no, $dataset);
 }
+
+
+
 
 /**
  * Implementation of hook_theme().
