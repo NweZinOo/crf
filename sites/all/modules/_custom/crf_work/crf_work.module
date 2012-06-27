@@ -1,4 +1,5 @@
 <?php
+module_load_include('inc', 'crf_common', 'include/crf_common.conf');
 /**
 * Implementation of hook_menu
 */
@@ -36,6 +37,7 @@ function crf_work_add() {
 
 function crf_work_add_form(&$form_state) {
   global $user;
+  global $hospital_name_arr;
   $form = array();
   $form['hospital_no'] = array(
     '#type' => 'item',
@@ -45,7 +47,7 @@ function crf_work_add_form(&$form_state) {
   $form['hospital_name'] = array(
     '#type' => 'item',
     '#title' => '试验中心名称（自动生成）',
-    '#value' => $user->profile_hospital_name,
+    '#value' => $hospital_name_arr[$user->profile_hospital_no],
   );
   $form['sift'] = array(
     '#type' => 'textfield',
@@ -111,7 +113,6 @@ function crf_work_add_form_validate($form, &$form_state) {
 function crf_work_add_form_submit($form, &$form_state) {
   global $user;
   $obj->hospital_no = $user->profile_hospital_no;
-  $obj->hospital_name = $user->profile_hospital_name;
   $obj->sift = $form_state['values']['sift'];
   $obj->p_name = $form_state['values']['p_name'];
   $obj->p_birthday = substr($form_state['values']['p_birthday'], 0, 10);
@@ -130,7 +131,7 @@ function crf_work_add_form_submit($form, &$form_state) {
 }
 
 function crf_work_write_record($table, $obj) {
-  $query = 'INSERT INTO '. $table .' (hospital_no, hospital_name, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
+  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
@@ -144,7 +145,7 @@ function get_rand() {
 
 function crf_work_list() {
   global $user;
-
+  global $hospital_name_arr;
   $terms = taxonomy_get_tree(1);
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
@@ -165,7 +166,7 @@ function crf_work_list() {
     $rows[] = array(
       $r->p_uid,
       $r->hospital_no,
-      $r->hospital_name,
+      $hospital_name_arr[$r->hospital_no],
       $r->sift,
       $r->p_name,
       $r->p_birthday,
