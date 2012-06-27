@@ -49,10 +49,9 @@ $crf_el['weiai_ssyzdqk'] = array(
     2 => array(1 => type_date_popup()),
     3 => array(1 => type_checkboxs(array('T','N','M')),2 => type_checkboxs(array('II','ⅢA','ⅢB','ⅢC'))),
     4 => array(1 => type_checkboxs(array('腺癌','高分化','中分化','低分化','未知','印戒细胞癌','黏液腺癌','其它')),2 => type_textfield()),
-    5 => array(1 => type_checkboxs(array('胃窦','胃小弯','中分化','低分化','未知','印戒细胞癌','黏液腺癌','其它')),2 => type_textfield()),
-    6 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield(),4 => type_textfield(),5 => type_textfield(),6 => type_textfield()),
-    7 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield(),4 => type_textfield(),5 => type_textfield(),6 => type_textfield()),
-    8 => array(1 => type_radios(array('－、＋、＋/－','＋＋','＋＋＋')), 2 =>type_textfield(), 3=>type_radios(array('阳性','阴性'))),
+    5 => array(1 => type_checkboxs(array('胃窦','胃小弯','贲门','胃体','其它')),2 => type_textfield()),
+    6 => array(1 => type_textfield('', 5),2 => type_textfield('', 5),3 => type_textfield('', 5),4 => type_textfield('', 5),5 => type_textfield('', 5),6 => type_textfield('', 5)),
+    7 => array(1 => type_radios(array('－、＋、＋/－','＋＋','＋＋＋')), 2=>type_radios(array('阳性','阴性')), 3=>type_textfield(), 4=>type_radios(array('阳性','阴性'))),
 );
 
 $crf_el['jiwang_hxhjb'] = array(
