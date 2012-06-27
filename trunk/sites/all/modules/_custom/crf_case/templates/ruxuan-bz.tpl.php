@@ -3,7 +3,7 @@
 ?>
 <table border="1" class="<?php print $class?>">
   <tr class="title">
-    <td><h2>入选标准</h2></td>
+    <td><h2><?php print $table_name?></h2></td>
 	<td>是/否</td>
   </tr>
   <tr>

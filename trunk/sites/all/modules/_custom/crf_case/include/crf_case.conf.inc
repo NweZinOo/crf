@@ -31,17 +31,16 @@ $crf_el['ruxuan_bz'] = array(
 
 $crf_el['paichu_bz'] = array(
   '#name' => '排除标准',
-  1 => array(1 => type_radios(),2 => type_radios()),
-  2 => array(1 => type_radios(),2 => type_radios()),
-  3 => array(1 => type_radios(),2 => type_radios()),
-  4 => array(1 => type_radios(),2 => type_radios()),
-  5 => array(1 => type_radios(),2 => type_radios()),
+  1 => array(1 => type_radios()),
+  2 => array(1 => type_radios()),
+  3 => array(1 => type_radios()),
+  4 => array(1 => type_radios()),
+  5 => array(1 => type_radios()),
 );
 
 $crf_el['renkou_tjx'] = array(
   '#name' => '人口统计学',
-  1 => array(1 => type_date_popup()),
-  2 => array(1 => type_radios(array('1'=>'男','0'=>'女'))),
+  1 => array(1 => type_date_popup(), 2 => type_radios(array('1'=>'男','0'=>'女'))),
 );
 
 $crf_el['weiai_ssyzdqk'] = array(

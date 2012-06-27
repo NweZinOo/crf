@@ -47,9 +47,12 @@ function crf_case($p_uid, $type) {
   global $user;
   $hospital_no = $user->profile_hospital_no;
   $hospital_name = $user->profile_hospital_name;
-  $query = "SELECT p_uid FROM apply WHERE p_uid = %d AND hospital_no = '%s' AND hospital_name = '%s'";
-  if (db_result(db_query($query, $p_uid, $hospital_no, $hospital_name))) {
-    crf_common_session('p_uid', $p_uid);
+  $query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s' AND hospital_name = '%s'";
+  $result = db_query($query, $p_uid, $hospital_no, $hospital_name);
+  $p_arr = db_fetch_array($result);
+//  print_r($p_arr);exit;
+  if ($p_arr != NULL) {
+    crf_common_session('p_arr', $p_arr);
     crf_common_session('type', $type); //1代表可编辑 2代表不可编辑
     drupal_goto('crf_case_edit');
   }
@@ -145,12 +148,24 @@ function crf_set_element_default_value(&$element, $dataset, $row, $col) {
 function crf_case_theme() {
   return array(
     'crf_case_form_zhiqing_tys' => array(
-      'arguments' => array('form' => NULL, 'class' => 'zhiqing_tys'),
+      'arguments' => array('form' => NULL, 'class' => 'zhiqing_tys', 'table_name' => '知情同意书'),
       'template' => 'templates/zhiqing-tys',
     ),
     'crf_case_form_ruxuan_bz' => array(
-      'arguments' => array('form' => NULL, 'class' => 'ruxuan-bz'),
+      'arguments' => array('form' => NULL, 'class' => 'ruxuan-bz', 'table_name' => '入选标准'),
       'template' => 'templates/ruxuan-bz',
+    ),
+    'crf_case_form_paichu_bz' => array(
+      'arguments' => array('form' => NULL, 'class' => 'paichu-bz', 'table_name' => '排除标准'),
+      'template' => 'templates/paichu-bz',
+    ),
+    'crf_case_form_renkou_tjx' => array(
+      'arguments' => array('form' => NULL, 'class' => 'renkou-tjx', 'table_name' => '人口统计学'),
+      'template' => 'templates/renkou-tjx',
+    ),
+    'crf_case_form_weiai_ssyzdqk' => array(
+      'arguments' => array('form' => NULL, 'class' => 'weiai-ssyzdqk', 'table_name' => '胃癌手术与诊断情况'),
+      'template' => 'templates/weiai-ssyzdqk',
     ),
   );
 }
