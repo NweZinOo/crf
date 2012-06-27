@@ -1,6 +1,6 @@
 <?php
 
-function crf_ds_parse($name, $values) {
+function crf_ds_parse($name, $values, $form) {
   $pattern = "/e_{$name}_(\d+)_(\d+)/i";
 
   $dataset = array();
@@ -8,10 +8,23 @@ function crf_ds_parse($name, $values) {
     if(preg_match($pattern, $key, $matches)) {
       $row = $matches[1];
       $col = $matches[2];
-      $dataset[$row][$col] = $val;
+      
+      $element_key = "e_{$name}_{$row}_{$col}";
+      
+      switch ($form[$element_key]['#type']) {
+        case 'radios':
+          if(strlen($val) == 0) {
+            $val = FALSE;
+          }
+          break;
+      }
+      
+      if ($val !== FALSE) {
+        $dataset[$row][$col] = $val;
+      }
+      
     }
   }
-  
   return $dataset;
 }
 
