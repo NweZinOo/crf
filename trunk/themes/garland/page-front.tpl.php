@@ -15,10 +15,10 @@
 
 <!-- Layout -->
   <div class="background">
-          <?php if ($show_messages && $messages): print $messages; endif; ?>
-            <div class="content">
-            <?php print $content ?>
-          </div>
+    <div class="content">
+      <?php print $content ?>
+    </div>
+    <?php if ($show_messages && $messages): print $messages; endif; ?>
   </div>
 
   <?php print $closure ?>
