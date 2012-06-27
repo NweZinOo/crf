@@ -1,10 +1,10 @@
 <?php
 
-include_once dirname(__FILE__) . '/form_elements.inc';
+include_once dirname(__FILE__) . '/include/form_elements.inc';
 
-include_once dirname(__FILE__) . '/crf_case.conf.inc';
+include_once dirname(__FILE__) . '/include/crf_case.conf.inc';
 
-include_once dirname(__FILE__) . '/crf_dataset.inc';
+include_once dirname(__FILE__) . '/include/crf_dataset.inc';
 
 /**
  * CRF Dataset Table Name
