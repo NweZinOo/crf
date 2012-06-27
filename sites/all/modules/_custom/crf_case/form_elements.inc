@@ -17,11 +17,11 @@ function type_textfield($default_value = NULL) {
   return array('#type'=>'textfield', '#default_value' => $default_value);
 }
 
-function type_date_popup($default_value = NULL) {
+function type_date_popup($default_value = NULL, $title = NULL) {
   return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5', '#title' => $title, '#default_value' => $default_value);
 }
 
-function type_radios($options = NULL, $default_value = NULL) {
+function type_radios($options = NULL, $default_value = NULL, $title = NULL) {
   if (empty($options)) {
     $options = array('1'=>'是','0'=>'否');
   }
