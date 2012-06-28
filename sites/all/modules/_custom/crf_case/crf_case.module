@@ -170,10 +170,17 @@ function crf_case_theme() {
   );
 }
 
-function json_to_array($web){
+function json_to_array($data){
   $arr=array();
+  if (empty ($data)) {
+    return $arr;
+  }
   
-  foreach($web as $k=>$w){
+  if (is_object($data)) {
+    $data = (array)$data;
+  }
+  
+  foreach($data as $k=>$w){
     if(is_object($w)) {
       $arr[$k]=json_to_array($w); //判断类型是不是object
     }
