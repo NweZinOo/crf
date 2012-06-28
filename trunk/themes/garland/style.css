@@ -1184,12 +1184,12 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   bottom: 70px;
   display: block;
   position: absolute;
-  right: 300px;
+  right: 285px;
 }
 
 .background #image_captcha_refresh {
   position: absolute;
-  right: 210px;
+  right: 192px;
 }
 
 .background #image_captcha_refresh a {
