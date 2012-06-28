@@ -318,7 +318,12 @@ function profile_view_profile(&$user) {
           '#title' => $field->category,
         );
       }
-
+      //Changed by XDN
+      //On user/* page, only show "试验中心名称"
+      module_load_include('inc', 'crf_common', 'include/crf_common.conf');
+      global $hospital_name_arr;
+      $title = "试验中心名称";
+      $value = $hospital_name_arr[$value];
       $user->content[$field->category][$field->name] = array(
         '#type' => 'user_profile_item',
         '#title' => $title,
