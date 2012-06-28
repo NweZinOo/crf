@@ -1138,6 +1138,11 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
  #crf-case-form h4 {
    font-size: 15px;
  }
+ 
+ #crf-case-form .jiwang-hxhjb .title h2,
+ #crf-case-form .jiwang-hxhjb .title .form-checkboxes {
+   display: inline-block;
+ }
 /**
  * Hidden
  */
@@ -1190,3 +1195,4 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 .background #image_captcha_refresh a {
   color: #494949;
 }
+
