@@ -693,7 +693,7 @@ function _form_validate($elements, &$form_state, $form_id = NULL) {
       // checkboxes, can return a valid value of '0'. Instead, check the
       // length if it's a string, and the item count if it's an array.
       if ($elements['#required'] && (!count($elements['#value']) || (is_string($elements['#value']) && strlen(trim($elements['#value'])) == 0))) {
-        form_error($elements, $t('!name field is required.', array('!name' => $elements['#title'])));
+        form_error($elements, $t('!name 是必要填写的.', array('!name' => $elements['#title'])));
       }
 
       // Verify that the value is not longer than #maxlength.

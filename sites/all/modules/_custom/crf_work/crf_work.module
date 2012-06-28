@@ -32,6 +32,7 @@ function crf_work_checkperm() {
 }
 
 function crf_work_add() {
+  drupal_set_breadcrumb(array(l('首页', ''),'新病人录入'));
   return drupal_get_form(crf_work_add_form);
 }
 
@@ -144,6 +145,7 @@ function get_rand() {
 }
 
 function crf_work_list() {
+  drupal_set_breadcrumb(array(l('首页', ''),'随机列表'));
   global $user;
   global $hospital_name_arr;
   $terms = taxonomy_get_tree(1);

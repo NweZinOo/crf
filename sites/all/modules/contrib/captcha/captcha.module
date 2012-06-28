@@ -583,7 +583,7 @@ function captcha_validate($element, &$form_state) {
       // Wrong answer.
       db_query("UPDATE {captcha_sessions} SET attempts=attempts+1 WHERE csid=%d", $csid);
       // set form error
-      form_set_error('captcha_response', t('The answer you entered for the CAPTCHA was not correct.'));
+      form_set_error('captcha_response', '验证码输入错误,请重新输入.');
       // update wrong response counter
       variable_set('captcha_wrong_response_counter', variable_get('captcha_wrong_response_counter', 0) + 1);
       // log to watchdog if needed

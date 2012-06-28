@@ -533,6 +533,7 @@ body.sidebars #footer {
 
 #wrapper #container .breadcrumb, #wrapper #container .breadcrumb a {
   color: #529ad6;
+  font-size: 12px;
 }
 
 #mission {
@@ -1019,6 +1020,7 @@ div.status {
 div.error, tr.error {
   color: #a30000;
   background-color: #FFCCCC;
+  font-size: 12px;
 }
 
 .form-item input.error, .form-item textarea.error {
