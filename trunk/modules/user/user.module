@@ -642,11 +642,11 @@ function user_user($type, &$edit, &$account, $category = NULL) {
       '#type' => 'user_profile_category',
       '#attributes' => array('class' => 'user-member'),
       '#weight' => 5,
-      '#title' => t('History'),
+      '#title' => t('历史'),
     );
     $account->content['summary']['member_for'] = array(
       '#type' => 'user_profile_item',
-      '#title' => t('Member for'),
+      '#title' => t('登录总时长'),
       '#value' => format_interval(time() - $account->created),
     );
   }
@@ -1082,7 +1082,7 @@ function user_menu() {
   );
 
   $items['user/%user/view'] = array(
-    'title' => 'View',
+    'title' => '查看',
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => -10,
   );
@@ -1098,7 +1098,7 @@ function user_menu() {
   );
 
   $items['user/%user_category/edit'] = array(
-    'title' => 'Edit',
+    'title' => '修改密码',
     'page callback' => 'user_edit',
     'page arguments' => array(1),
     'access callback' => 'user_edit_access',
@@ -1490,7 +1490,7 @@ function user_edit_form(&$form_state, $uid, $edit, $register = FALSE) {
 
   // Account information:
   $form['account'] = array('#type' => 'fieldset',
-    '#title' => t('Account information'),
+    '#title' => t('用户信息'),
     '#weight' => -10,
   );
   // Only show name field when: registration page; or user is editing own account and can change username; or an admin user.
@@ -1503,16 +1503,24 @@ function user_edit_form(&$form_state, $uid, $edit, $register = FALSE) {
       '#required' => TRUE,
     );
   }
+  if (arg(0) == 'user' && is_numeric(arg(1)) && arg(2) == 'edit') {
+    $disabled = TRUE;
+  }
+  else {
+    $disabled = FALSE;
+  }
   $form['account']['mail'] = array('#type' => 'textfield',
-    '#title' => t('E-mail address'),
+    '#title' => '邮件地址',
     '#default_value' => $edit['mail'],
     '#maxlength' => EMAIL_MAX_LENGTH,
-    '#description' => t('A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail.'),
+//    '#description' => t('A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail.'),
+    '#description' => t('邮箱地址不可更改，如需更改，请联系管理员.'),
     '#required' => TRUE,
+    '#disabled'=> $disabled,
   );
   if (!$register) {
     $form['account']['pass'] = array('#type' => 'password_confirm',
-      '#description' => t('To change the current user password, enter the new password in both fields.'),
+      '#description' => t('请输入新的密码.'),
       '#size' => 25,
     );
   }
