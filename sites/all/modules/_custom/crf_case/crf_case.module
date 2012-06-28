@@ -133,6 +133,7 @@ function crf_case_form_submit($form, $form_state) {
    }
    
    crf_ds_save($dataset, $no);
+   crf_progress_save($no);
    drupal_set_message('保存成功！');
 }
 
@@ -143,6 +144,38 @@ function crf_set_element_default_value(&$element, $dataset, $row, $col) {
   }
 } 
 
+
+function crf_progress_save($name) {
+ 
+  $p_uid = crf_common_session('p_uid');
+  $row   = crf_progress_load();
+  
+  if (!$row) {
+    db_query("INSERT INTO crf_case_user_profile (uid, data, updated) VALUES (%d, '%s', %d)",  $p_uid, json_encode(array($name)), time());
+  }
+  else {
+    $keys = json_decode($row['data']);
+    
+    if (!in_array($name, $keys)) {
+      $keys[] = $name;
+      db_query("UPDATE crf_case_user_profile SET data = '%s', updated = %d WHERE uid = %d", json_encode($keys), time(), $p_uid);
+    }
+  }
+}
+
+function crf_progress_load($p_uid = NULL) {
+  static $p;
+  if (!$p_uid) {
+    $p_uid = crf_common_session('p_uid');
+  }
+  
+  if (!isset($p[$p_uid])) {
+    $row = db_fetch_array(db_query('SELECT * FROM crf_case_user_profile WHERE uid = %d', $p_uid));
+    $p[$p_uid] = $row;
+  }
+  
+  return $p[$p_uid];
+}
 
 /**
  * Implementation of hook_theme().
@@ -192,4 +225,20 @@ function json_to_array($data){
   }
   
   return $arr;
+}
+
+function crf_case_init() {
+  if (arg(0) == 'crf_case_edit') {
+    $row = crf_progress_load();
+    if ($row) {
+      $progress = json_decode($row['data']);
+    }
+    else {
+      $progress = array();
+    }
+    drupal_add_js(array('progress' => $progress), 'setting');
+  }
+  
+  $path = drupal_get_path('module', 'crf_case');
+  drupal_add_js($path . '/js/crf_common.js', 'module');
 }
