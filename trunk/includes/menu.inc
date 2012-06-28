@@ -1535,7 +1535,7 @@ function menu_set_active_trail($new_trail = NULL) {
   }
   elseif (!isset($trail)) {
     $trail = array();
-    $trail[] = array('title' => t('Home'), 'href' => '<front>', 'localized_options' => array(), 'type' => 0);
+    $trail[] = array('title' => '首页', 'href' => '<front>', 'localized_options' => array(), 'type' => 0);
     $item = menu_get_item();
 
     // Check whether the current item is a local task (displayed as a tab).
