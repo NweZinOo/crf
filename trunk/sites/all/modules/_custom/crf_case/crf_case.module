@@ -202,6 +202,10 @@ function crf_case_theme() {
       'arguments' => array('form' => NULL, 'class' => 'weiai-ssyzdqk', 'table' => 'weiai_ssyzdqk', 'table_name' => '胃癌手术与诊断情况'),
       'template' => 'templates/weiai-ssyzdqk',
     ),
+    'crf_case_form_jiwang_hxhjb' => array(
+      'arguments' => array('form' => NULL, 'class' => 'jiwang-hxhjb', 'table' => 'jiwang_hxhjb', 'table_name' => '既往或现患疾病'),
+      'template' => 'templates/jiwang-hxhjb',
+    ),
   );
 }
 
