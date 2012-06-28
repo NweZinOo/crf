@@ -52,6 +52,7 @@ function crf_case($p_uid, $type) {
 //  print_r($p_arr);exit;
   if ($p_arr != NULL) {
     crf_common_session('p_arr', $p_arr);
+    crf_common_session('p_uid', $p_uid);
     crf_common_session('type', $type); //1代表可编辑 2代表不可编辑
     drupal_goto('crf_case_edit');
   }
