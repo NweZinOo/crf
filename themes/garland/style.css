@@ -1143,6 +1143,20 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
  #crf-case-form .jiwang-hxhjb .title .form-checkboxes {
    display: inline-block;
  }
+ 
+#crf-case-form .title h2,
+#crf-case-form .title div,
+#crf-case-form .teshu-jc .form-checkboxes,
+#crf-case-form .teshu-jc .container-inline-date,
+#crf-case-form .form-item,
+#crf-case-form .form-checkboxes,
+#crf-case-form .form-radios,
+#crf-case-form .i-block,
+#crf-case-form .title h2,
+#crf-case-form .title div {
+   display: inline-block;
+}
+ 
 /**
  * Hidden
  */
