@@ -206,6 +206,30 @@ function crf_case_theme() {
       'arguments' => array('form' => NULL, 'class' => 'jiwang-hxhjb', 'table' => 'jiwang_hxhjb', 'table_name' => '既往或现患疾病'),
       'template' => 'templates/jiwang-hxhjb',
     ),
+    'crf_case_form_huaiyun_knx' => array(
+      'arguments' => array('form' => NULL, 'class' => 'huaiyun-knx', 'table' => 'huaiyun_knx', 'table_name' => '怀孕可能性'),
+      'template' => 'templates/huaiyun-knx',
+    ),
+    'crf_case_form_teshu_jc' => array(
+      'arguments' => array('form' => NULL, 'class' => 'teshu-jc', 'table' => 'teshu_jc', 'table_name' => '特殊检查'),
+      'template' => 'templates/teshu-jc',
+    ),
+    'crf_case_form_xindian_tjc' => array(
+      'arguments' => array('form' => NULL, 'class' => 'xindian-tjc', 'table' => 'xindian_tjc', 'table_name' => '心电图检查'),
+      'template' => 'templates/xindian-tjc',
+    ),      
+    'crf_case_form_quanshen_tgjc' => array(
+      'arguments' => array('form' => NULL, 'class' => 'quanshen-tgjc', 'table' => 'quanshen_tgjc', 'table_name' => '全身体格检查'),
+      'template' => 'templates/quanshen-tgjc',
+    ),   
+    'crf_case_form_xueqing_zlbzwjc' => array(
+      'arguments' => array('form' => NULL, 'class' => 'xueqing-zlbzwjc', 'table' => 'xueqing_zlbzwjc', 'table_name' => '血清肿瘤标志物检测'),
+      'template' => 'templates/xueqing-zlbzwjc',
+    ),   
+    'crf_case_form_shiyan_sjc' => array(
+      'arguments' => array('form' => NULL, 'class' => 'shiyan-sjc', 'table' => 'shiyan_sjc', 'table_name' => '实验室检查'),
+      'template' => 'templates/shiyan-sjc',
+    ),
   );
 }
 
