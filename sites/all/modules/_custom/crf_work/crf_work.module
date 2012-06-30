@@ -152,8 +152,10 @@ function crf_work_list() {
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
   }
+  
   $approved_arr = array('是','否');
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '中心编号', '中心名称', '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', array('data'=>'是否知情', 'field'=>'approved'), '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '筛选号', '姓名缩写', '出生日期', '病历号', array('data'=>'是否知情', 'field'=>'approved'), '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+
   $rows = array();
 
   if ($user->uid == 1) {
@@ -166,9 +168,9 @@ function crf_work_list() {
   while ($r = db_fetch_object($results)) {
     $terms = array();
     $rows[] = array(
-      $r->p_uid,
-      $r->hospital_no,
-      $hospital_name_arr[$r->hospital_no],
+      sprintf('%03s', $r->p_uid),
+      /*$r->hospital_no,
+      $hospital_name_arr[$r->hospital_no],*/
       $r->sift,
       _add_rand($r->p_uid),
       $r->p_name,
@@ -181,8 +183,9 @@ function crf_work_list() {
       l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
-  $output = theme('table', $header, $rows);
-  $output.= theme('pager');
+  $output  = "[<b>中心编号：</b> <i>{$user->profile_hospital_no}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$user->profile_hospital_no]}</i>]";
+  $output .= theme('table', $header, $rows);
+  $output .= theme('pager');
   return $output;
 }
 
