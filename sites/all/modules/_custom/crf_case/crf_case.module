@@ -184,52 +184,336 @@ function crf_case_theme() {
   return array(
     'crf_case_form_zhiqing_tys' => array(
       'arguments' => array('form' => NULL, 'class' => 'zhiqing-tys', 'table' => 'zhiqing_tys', 'table_name' => '知情同意书'),
-      'template' => 'templates/zhiqing-tys',
+      'template' => 'templates/zhiqing_tys',
     ),
     'crf_case_form_ruxuan_bz' => array(
       'arguments' => array('form' => NULL, 'class' => 'ruxuan-bz', 'table' => 'ruxuan_bz', 'table_name' => '入选标准'),
-      'template' => 'templates/ruxuan-bz',
+      'template' => 'templates/ruxuan_bz',
     ),
     'crf_case_form_paichu_bz' => array(
       'arguments' => array('form' => NULL, 'class' => 'paichu-bz', 'table' => 'paichu_bz', 'table_name' => '排除标准'),
-      'template' => 'templates/paichu-bz',
+      'template' => 'templates/paichu_bz',
     ),
     'crf_case_form_renkou_tjx' => array(
       'arguments' => array('form' => NULL, 'class' => 'renkou-tjx', 'table' => 'renkou_tjx', 'table_name' => '人口统计学'),
-      'template' => 'templates/renkou-tjx',
+      'template' => 'templates/renkou_tjx',
     ),
     'crf_case_form_weiai_ssyzdqk' => array(
       'arguments' => array('form' => NULL, 'class' => 'weiai-ssyzdqk', 'table' => 'weiai_ssyzdqk', 'table_name' => '胃癌手术与诊断情况'),
-      'template' => 'templates/weiai-ssyzdqk',
+      'template' => 'templates/weiai_ssyzdqk',
     ),
     'crf_case_form_jiwang_hxhjb' => array(
       'arguments' => array('form' => NULL, 'class' => 'jiwang-hxhjb', 'table' => 'jiwang_hxhjb', 'table_name' => '既往或现患疾病'),
-      'template' => 'templates/jiwang-hxhjb',
+      'template' => 'templates/jiwang_hxhjb',
     ),
     'crf_case_form_huaiyun_knx' => array(
       'arguments' => array('form' => NULL, 'class' => 'huaiyun-knx', 'table' => 'huaiyun_knx', 'table_name' => '怀孕可能性'),
-      'template' => 'templates/huaiyun-knx',
+      'template' => 'templates/huaiyun_knx',
     ),
     'crf_case_form_teshu_jc' => array(
       'arguments' => array('form' => NULL, 'class' => 'teshu-jc', 'table' => 'teshu_jc', 'table_name' => '特殊检查'),
-      'template' => 'templates/teshu-jc',
+      'template' => 'templates/teshu_jc',
     ),
     'crf_case_form_xindian_tjc' => array(
       'arguments' => array('form' => NULL, 'class' => 'xindian-tjc', 'table' => 'xindian_tjc', 'table_name' => '心电图检查'),
-      'template' => 'templates/xindian-tjc',
+      'template' => 'templates/xindian_tjc',
     ),      
     'crf_case_form_quanshen_tgjc' => array(
       'arguments' => array('form' => NULL, 'class' => 'quanshen-tgjc', 'table' => 'quanshen_tgjc', 'table_name' => '全身体格检查'),
-      'template' => 'templates/quanshen-tgjc',
+      'template' => 'templates/quanshen_tgjc',
     ),   
     'crf_case_form_xueqing_zlbzwjc' => array(
       'arguments' => array('form' => NULL, 'class' => 'xueqing-zlbzwjc', 'table' => 'xueqing_zlbzwjc', 'table_name' => '血清肿瘤标志物检测'),
-      'template' => 'templates/xueqing-zlbzwjc',
+      'template' => 'templates/xueqing_zlbzwjc',
     ),   
     'crf_case_form_shiyan_sjc' => array(
       'arguments' => array('form' => NULL, 'class' => 'shiyan-sjc', 'table' => 'shiyan_sjc', 'table_name' => '实验室检查'),
-      'template' => 'templates/shiyan-sjc',
+      'template' => 'templates/shiyan_sjc',
     ),
+    'crf_case_form_zq1_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq1-1', 'table' => 'zq1_1', 'table_name' => '研究给药'),
+      'template' => 'templates/zq1_1',
+    ),
+    'crf_case_form_zq1_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq1-2', 'table' => 'zq1_2', 'table_name' => '伴随治疗'),
+      'template' => 'templates/zq1_2',
+    ),
+    'crf_case_form_zq2_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第一周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq2_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第一周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq2_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第二周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq2_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq2_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '二'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq3_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第二周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq3_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第二周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq3_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第三周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq3_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq3_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '三'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq4_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第三周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq4_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第三周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq4_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第四周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq4_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq4_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '四'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq5_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第四周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq5_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第四周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq5_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第五周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq5_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq5_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '五'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq6_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第五周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq6_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第五周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq6_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第六周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq6_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq6_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '六'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq7_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第六周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq7_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第六周期研究治疗是否发生减量/或延迟用药？'),
+      'template' => 'templates/zq_2',
+    ),
+    'crf_case_form_zq7_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '第七周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3',
+    ),
+    'crf_case_form_zq7_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '研究给药'),
+      'template' => 'templates/zq_4',
+    ),
+    'crf_case_form_zq7_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-5', 'table' => 'zq_5', 'table_name' => '伴随治疗', 'no_1' => '七'),
+      'template' => 'templates/zq_5',
+    ),
+    'crf_case_form_zq8_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第七周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq8_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第八周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq8_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '七', 'no_2' => '八'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq8_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '八'),
+      'template' => 'templates/zq_n_4',
+    ),
+    'crf_case_form_zq9_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第八周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq9_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第九周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq9_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '八', 'no_2' => '九'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq9_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '九'),
+      'template' => 'templates/zq_n_4',
+    ),
+    'crf_case_form_zq10_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第九周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq10_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq10_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '九', 'no_2' => '十'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq10_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十'),
+      'template' => 'templates/zq_n_4',
+    ),
+    'crf_case_form_zq11_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq11_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十一周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq11_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十', 'no_2' => '十一'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq11_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十一'),
+      'template' => 'templates/zq_n_4',
+    ),
+   'crf_case_form_zq12_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十一周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq12_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十二周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq12_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十一', 'no_2' => '十二'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq12_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十二'),
+      'template' => 'templates/zq_n_4',
+    ),
+   'crf_case_form_zq13_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十二周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq13_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十三周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq13_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十二', 'no_2' => '十三'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq13_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十三'),
+      'template' => 'templates/zq_n_4',
+    ),
+   'crf_case_form_zq14_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十三周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq14_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十四周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq14_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十三', 'no_2' => '十四'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq14_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十四'),
+      'template' => 'templates/zq_n_4',
+    ),
+   'crf_case_form_zq15_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十四周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq15_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十五周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq15_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十四', 'no_2' => '十五'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq15_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十五'),
+      'template' => 'templates/zq_n_4',
+    ),
+   'crf_case_form_zq16_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-1', 'table' => 'zq_1', 'table_name' => '第十五周期化疗不良事件'),
+      'template' => 'templates/zq_1',
+    ),
+    'crf_case_form_zq16_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-2', 'table' => 'zq_2', 'table_name' => '第十六周期化疗前主要实验室检查结果'),
+      'template' => 'templates/zq_3', //special
+    ),
+    'crf_case_form_zq16_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-3', 'table' => 'zq_3', 'table_name' => '研究给药', 'no_1' => '十五', 'no_2' => '十六'),
+      'template' => 'templates/zq_n_3',
+    ),
+    'crf_case_form_zq16_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zq-4', 'table' => 'zq_4', 'table_name' => '伴随治疗', 'no_1' => '十六'),
+      'template' => 'templates/zq_n_4',
+    ),
+    'crf_case_form_zhiliao_js' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zhiliao-js', 'table' => 'zhiliao_js', 'table_name' => '治疗结束'),
+      'template' => 'templates/zhiliao_js',
+    ),
+    'crf_case_form_xueye_zlbjwjcjghzb' => array(
+      'arguments' => array('form' => NULL, 'class' => 'xueye-zlbjwjcjghzb', 'table' => 'xueye_zlbjwjcjghzb', 'table_name' => '血液肿瘤标记物检测结果汇总表'),
+      'template' => 'templates/xueye_zlbjwjcjghzb',
+    ),        
+    'crf_case_form_yanzhong_blsjjl' => array(
+      'arguments' => array('form' => NULL, 'class' => 'yanzhong-blsjjl', 'table' => 'yanzhong_blsjjl', 'table_name' => '严重不良事件记录'),
+      'template' => 'templates/yanzhong_blsjjl',
+    ),  
   );
 }
 
