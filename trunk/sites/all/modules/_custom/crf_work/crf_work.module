@@ -148,6 +148,11 @@ function crf_work_list() {
   drupal_set_breadcrumb(array(l('首页', ''),'随机列表'));
   global $user;
   global $hospital_name_arr;
+  global $pager_page_array;
+
+  $limit  = 10;
+
+    
   $terms = taxonomy_get_tree(1);
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
@@ -160,16 +165,14 @@ function crf_work_list() {
   $rows = array();
 
   if ($user->uid == 1) {
-    $results = pager_query("SELECT * FROM apply WHERE hospital_no != ''" . tablesort_sql($header), $limit = 30);
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no != ''" . tablesort_sql($header), $limit);
   }
   else {
-    $results = pager_query("SELECT * FROM apply WHERE hospital_no = {$user->profile_hospital_no}" . tablesort_sql($header), $limit = 30);
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no = {$user->profile_hospital_no}" . tablesort_sql($header), $limit);
   }
   
-  global $pager_page_array;
 
   $pager_current = $pager_page_array[0] + 1;
-  $limit  = 10;
   
   $start = ($pager_current - 1) * $limit ;
   
