@@ -152,11 +152,8 @@ function crf_work_list() {
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
   }
-  
   $approved_arr = array('是','否');
-
   $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', array('data'=>'是否知情', 'field'=>'approved'), '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
-
   $rows = array();
 
   if ($user->uid == 1) {
@@ -165,20 +162,13 @@ function crf_work_list() {
   else {
     $results = pager_query("SELECT * FROM apply WHERE hospital_no = {$user->profile_hospital_no}" . tablesort_sql($header), $limit = 30);
   }
-  
-  global $pager_page_array;
 
-  $pager_current = $pager_page_array[0] + 1;
-  $limit  = 10;
-  
-  $start = ($pager_current - 1) * $limit ;
-  
   while ($r = db_fetch_object($results)) {
     $terms = array();
     $rows[] = array(
-      sprintf('%03s', ++$start),
-      /*$r->hospital_no,
-      $hospital_name_arr[$r->hospital_no],*/
+      $r->p_uid,
+      //$r->hospital_no,
+      //$hospital_name_arr[$r->hospital_no],
       $r->sift,
       _add_rand($r->p_uid),
       $r->p_name,
@@ -191,15 +181,10 @@ function crf_work_list() {
       l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
-
-  $output  = "[<b>中心编号：</b> <i>{$user->profile_hospital_no}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$user->profile_hospital_no]}</i>]";
+  $output  = $user->profile_hospital_no . '-' . $hospital_name_arr[$user->profile_hospital_no] . '<br/>' ;
   $output .= theme('table', $header, $rows);
-  $output .= theme('pager', $limit);
+  $output .= theme('pager');
   return $output;
-}
-
-function _add_serial_no($id) {
-  
 }
 
 function _add_rand($str) {
