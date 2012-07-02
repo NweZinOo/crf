@@ -1156,7 +1156,16 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 #crf-case-form .title div {
    display: inline-block;
 }
- 
+
+#crf-case-form .l-block .form-checkboxes div.form-item {
+  display: block;
+}
+
+.big-title {
+  text-align:center;
+  font-size: 20px;
+}
+
 /**
  * Hidden
  */
@@ -1164,6 +1173,9 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
    display: none;
  }
  
+ #crf-case-form .form-item .description {
+   display: none;
+ }
 /**
 * front
 */

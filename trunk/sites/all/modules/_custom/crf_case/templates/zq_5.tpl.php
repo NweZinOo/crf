@@ -4,7 +4,7 @@
 <table class="<?php print $class?>" border="1">
   <tr class="title">
     <td class="title" colspan="8"><h2><?php print $table_name?></h2> <div><?php print drupal_render($form[$key_pre ."_1_1"]);?></div>
-      <br/><div>仅记录该周期中针对化疗过程采取的预防措施和针对不良反应采用的所有治疗</div>
+      <br/><div>仅记录第<?php print $no_1;?>周期中针对化疗过程采取的预防措施和针对不良反应采用的所有治疗</div>
     </td>
   </tr>
   <tr>
