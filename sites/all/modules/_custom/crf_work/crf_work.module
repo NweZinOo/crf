@@ -150,7 +150,7 @@ function crf_work_list() {
   global $hospital_name_arr;
   global $pager_page_array;
 
-  $limit  = 10;
+  $limit  = 20;
 
     
   $terms = taxonomy_get_tree(1);
