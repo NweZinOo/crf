@@ -24,7 +24,7 @@ function crf_common_menu()
 function crf_common_front() {
   global $user;
   if ($user->uid) {
-    drupal_goto('user');
+    drupal_goto('crf_list');
   }
   else {
     drupal_set_title('');
@@ -44,8 +44,10 @@ function crf_common_session($key, $value = null) {
 }
 
 function crf_common_user($op, &$edit, &$account, $category = NULL) {
+  
   switch ($op) {
     case 'login': 
+      $_GET['destination'] = 'crf_list';
       drupal_goto('crf_list');
       break;
   }

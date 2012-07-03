@@ -32,7 +32,7 @@
               global $user, $hospital_name_arr;
               $hospital = $hospital_name_arr[$user->profile_hospital_no];
               
-              echo $hospital, ' ：', $user->name, ' 您好！ ', l('修改密码', '/user');
+              echo $hospital, ' ', $user->name, ' 您好！ ', l('修改密码', '/user');
               
               ?>
             </span>

@@ -23,7 +23,7 @@
       <label style="text-align: right">（日期）</label> <span> <?php echo $row['approved_time'] ?></span>
   </div>
 
-  <div>--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
+  <div style="clear: both;">--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
 
   <div>
     <label>受试者分组：</label> <span><?php echo $row['team'] ?></span>
