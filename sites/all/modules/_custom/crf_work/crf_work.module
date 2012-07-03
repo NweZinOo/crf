@@ -215,7 +215,7 @@ function _add_serial_no($id) {
 function crf_work_theme() {
   return array(
     'patient' => array(
-      'arguments' => array('row' => NULL, '$team_arr' => array()),
+      'arguments' => array('row' => NULL, 'team_arr' => array()),
       'template' => 'patient',
     )
   );
