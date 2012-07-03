@@ -31,5 +31,17 @@ function type_radios($options = NULL, $default_value = NULL, $title = NULL) {
   return array('#type'=>'radios', '#options' => $options, '#title' => $title, '#default_value' => $default_value);
 }
 function type_checkboxs($options, $default_value = array()) {
-  return array('#type'=>'checkboxes', '#options' => $options, '#default_value' => $default_value);
+  if ($options[0]) {
+    //start with 0, we need start with 1
+    
+    $new_opt = array();
+    $i = 1;
+    foreach ($options as $v) {
+      $new_opt[$i++] = $v;
+    }
+  }
+  else {
+    $new_opt = $options;
+  }
+  return array('#type'=>'checkboxes', '#options' => $new_opt, '#default_value' => $default_value);
 }
