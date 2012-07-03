@@ -19,11 +19,11 @@
     <label>受试者是否获得知情同意书：</label> <span><?php echo $row['approved'] ?></span>
   </div>
 
-  <div style="margin-left: 130px;">
-      <label>日期：</label> <span><?php echo $row['approved_time'] ?></span>
+  <div>
+      <label style="text-align: right">（日期）</label> <span> <?php echo $row['approved_time'] ?></span>
   </div>
 
-  <div>---------------- <span style="color: red; font-size: 1.2em;">随机结果</span> -------------------- </div>
+  <div>--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
 
   <div>
     <label>受试者分组：</label> <span><?php echo $row['team'] ?></span>
@@ -45,8 +45,14 @@
   }
   #patient {
     margin: 20px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     width: 500px;
+  }
+  #patient label {
+    font-weight: bold;
+    width: 165px;
+    display: block;
+    float: left;
   }
 </style>
