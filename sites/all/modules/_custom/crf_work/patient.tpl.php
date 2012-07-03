@@ -26,7 +26,7 @@
   <div style="clear: both;">--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
 
   <div>
-    <label>受试者分组：</label> <span><?php global $term_arr; echo $team_arr[$row['team']] ?></span>
+    <label>受试者分组：</label> <span><?php echo $team_arr[$row['team']] ?></span>
   </div>
   <div>
     <label>随机号：</label> <span><?php echo $row['sift'] ?></span>

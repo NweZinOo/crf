@@ -229,5 +229,11 @@ function _add_rand($str) {
 function crf_patient() {
   $pid = arg(1);
   $row = db_fetch_array(db_query('SELECT * FROM apply WHERE p_uid = %d', $pid));
-  return theme('patient', $row);
+  
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+  
+  return theme('patient', $row, array('term_arr' => $term_arr));
 }
