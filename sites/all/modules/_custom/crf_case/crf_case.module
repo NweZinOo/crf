@@ -518,6 +518,11 @@ function crf_case_theme() {
       'arguments' => array('form' => NULL, 'class' => 'yanzhong-blsjjl', 'table' => 'yanzhong_blsjjl_1', 'table_name' => '严重不良事件记录'),
       'template' => 'templates/yanzhong_blsjjl',
     ), 
+    'crf_case_form_pg1_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-1', 'table' => 'pg1_1', 'table_name' => '第一次临床评估'),
+      'template' => 'templates/pg_1',
+    ), 
+        
   );
 }
 
