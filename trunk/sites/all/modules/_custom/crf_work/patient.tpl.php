@@ -1,3 +1,7 @@
+<?php
+//  print_r($team_arr);
+//  print_r($row);
+?>
 <div id="patient">
   <div>
     <label>实验中心编号：</label> <span><?php echo $row['hospital_no'] ?></span>
@@ -16,12 +20,18 @@
   </div>
 
   <div>
-    <label>受试者是否获得知情同意书：</label> <span><?php echo $row['approved'] ?></span>
+    <label>受试者是否获得知情同意书：</label> <span><?php echo $approved_arr[$row['approved']] ?></span>
   </div>
 
+  <?php 
+    if ($row['approved'] == 0) {
+  ?>
   <div>
-      <label style="text-align: right">（日期）</label> <span> <?php echo $row['approved_time'] ?></span>
+    <label>知情同意日期：</label> <span><?php echo $row['approved_time'] ?></span>
   </div>
+  <?php    
+    }
+  ?>
 
   <div style="clear: both;">--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
 
@@ -29,7 +39,7 @@
     <label>受试者分组：</label> <span><?php echo $team_arr[$row['team']] ?></span>
   </div>
   <div>
-    <label>随机号：</label> <span><?php echo $row['sift'] ?></span>
+    <label>随机号：</label> <span><?php echo _add_rand($row['p_uid']) ?></span>
   </div>
   <div>
     <label>随机时间：</label> <span><?php echo $row['apply_time'] ?></span>
