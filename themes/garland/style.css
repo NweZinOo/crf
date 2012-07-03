@@ -365,6 +365,7 @@ table .form-button, table .form-submit {
 
 #wrapper #container #header #logo-floater {
   position: absolute;
+  top: 0;
 }
 
 #wrapper #container #header h1, #wrapper #container #header h1 a:link, #wrapper #container #header h1 a:visited {
@@ -524,7 +525,7 @@ body.sidebars #footer {
   float: left;
 }
 #slagon-floater {
-  margin-top: 36px;
+  margin-top: 42px;
   margin-left: 200px;
   color: ivory;
 }
