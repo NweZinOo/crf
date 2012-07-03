@@ -37,7 +37,7 @@
 </div>
 
 <div style="margin-left: 20px;">
-  <input type="submit" value="进入列表" onclick="location.href = '<?php echo url("crf_list");?>'"/><input type="submit" value="打印" onclick="window.print();"/>
+  <input type="submit" value="进入列表" onclick="location.href = '<?php echo url("crf_list");?>'"/>  <input type="submit" value="打印" onclick="window.print();"/>
 </div>
 <style type="text/css">
   #patient div {
@@ -51,7 +51,7 @@
   }
   #patient label {
     font-weight: bold;
-    width: 165px;
+    width: 185px;
     display: block;
     float: left;
   }
