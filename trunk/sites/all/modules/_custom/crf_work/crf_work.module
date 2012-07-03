@@ -164,10 +164,8 @@ function crf_work_list() {
   foreach($terms as $k => $v) {
     $term_arr[$v->tid] = $v->name;
   }
-  
-  $approved_arr = array('是','否');
 
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', array('data'=>'是否知情', 'field'=>'approved'), '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
 
   $rows = array();
 
@@ -194,7 +192,6 @@ function crf_work_list() {
       $r->p_name,
       $r->p_birthday,
       $r->case_history_no,
-      $approved_arr[$r->approved],
       $r->approved_time,
       $term_arr[$r->team],
       $r->apply_time,
