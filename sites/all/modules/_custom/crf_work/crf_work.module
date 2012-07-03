@@ -18,6 +18,12 @@ function crf_work_menu()
     'access callback' => 'crf_work_checkperm',
     'type' => MENU_CALLBACK
   );
+  $items['patient'] = array(
+    'title' => '随机操作结果',
+    'page callback' => 'crf_patient',
+    'access callback' => 'crf_work_checkperm',
+    'type' => MENU_CALLBACK
+  );
   return $items;  
 }
 
@@ -33,7 +39,7 @@ function crf_work_checkperm() {
 
 function crf_work_add() {
   drupal_set_breadcrumb(array(l('首页', ''),'新病人录入'));
-  return drupal_get_form(crf_work_add_form);
+  return drupal_get_form('crf_work_add_form');
 }
 
 function crf_work_add_form(&$form_state) {
@@ -126,8 +132,9 @@ function crf_work_add_form_submit($form, &$form_state) {
   $table = 'apply';
   $r = crf_work_write_record($table, $obj);
   if ($r != FALSE) {
+    $p_uid = db_last_insert_id($table, 'p_uid');
     drupal_set_message('添加成功！');
-    drupal_goto('crf_list');
+    drupal_goto('patient/' . $p_uid);
   }
 }
 
@@ -205,7 +212,22 @@ function _add_serial_no($id) {
   
 }
 
+function crf_work_theme() {
+  return array(
+    'patient' => array(
+      'arguments' => array('row' => NULL,),
+      'template' => 'patient',
+    )
+  );
+}
+
 function _add_rand($str) {
   $str = '000'.$str;
   return 'R' . substr($str, -3);
+}
+
+function crf_patient() {
+  $pid = arg(1);
+  $row = db_fetch_array(db_query('SELECT * FROM apply WHERE p_uid = %d', $pid));
+  return theme('patient', $row);
 }
