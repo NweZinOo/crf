@@ -43,3 +43,10 @@ function crf_common_session($key, $value = null) {
   }
 }
 
+function crf_common_user($op, &$edit, &$account, $category = NULL) {
+  switch ($op) {
+    case 'login': 
+      drupal_goto('crf_list');
+      break;
+  }
+}

@@ -520,7 +520,17 @@ body.sidebars #footer {
   color: #fff;
   font-weight: normal;
   text-shadow: #1659ac 0px 1px 3px;
-  font-size: 1.5em;
+  font-size: 1.99em;
+  float: left;
+}
+#slagon-floater {
+  margin-top: 44px;
+  margin-left: 200px;
+  color: ivory;
+}
+#slagon-floater a {
+  color:  #ddd;
+  text-decoration: underline;
 }
 
 #wrapper #container #header h1 a:hover {

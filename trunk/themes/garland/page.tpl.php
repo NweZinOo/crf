@@ -20,32 +20,24 @@
     <div id="container" class="clear-block">
 
       <div id="header">
-        <div id="logo-floater">
-        <?php
-          // Prepare header
-          $site_fields = array();
-          if ($site_name) {
-            $site_fields[] = check_plain($site_name);
-          }
-          if ($site_slogan) {
-            $site_fields[] = check_plain($site_slogan);
-          }
-          $site_title = implode(' ', $site_fields);
-          if ($site_fields) {
-            $site_fields[0] = '<span>'. $site_fields[0] .'</span>';
-          }
-          $site_html = implode(' ', $site_fields);
-
-          if ($logo || $site_title) {
-            print '<h1><a href="'. check_url($front_page) .'" title="'. $site_title .'">';
-            if ($logo) {
-              print '<img src="'. check_url($logo) .'" alt="'. $site_title .'" id="logo" />';
-            }
-            print $site_html .'</a></h1>';
-          }
-        ?>
+       <div id="logo-floater">
+          <h1>
+             <?php echo l('临床研究', '<front>'); ?>
+          </h1>
+          <div id="slagon-floater">
+            <span>
+              <?php echo date('M d, Y'); ?>
+              <br/>
+              <?php 
+              global $user, $hospital_name_arr;
+              $hospital = $hospital_name_arr[$user->profile_hospital_no];
+              
+              echo $hospital, ' ：', $user->name, ' 您好！ ', l('修改密码', '/user');
+              
+              ?>
+            </span>
+          </div>
         </div>
-
         <?php if (isset($primary_links)) : ?>
           <?php print theme('links', $primary_links, array('class' => 'links primary-links')) ?>
         <?php endif; ?>
