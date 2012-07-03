@@ -190,7 +190,7 @@ function crf_work_list() {
       /*$r->hospital_no,
       $hospital_name_arr[$r->hospital_no],*/
       $r->sift,
-      _add_rand($r->p_uid),
+      l(_add_rand($r->p_uid), 'patient/' . $r->p_uid),
       $r->p_name,
       $r->p_birthday,
       $r->case_history_no,
