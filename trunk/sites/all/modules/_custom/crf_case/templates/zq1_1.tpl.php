@@ -9,7 +9,7 @@
   <tr>
     <td>研究药物</td>
     <td>给药日期</td>
-    <td>计划剂量<br/>(mg/m2)</td>
+    <td>计划剂量<br/>(mg)</td>
     <td>总给药剂量(mg)</td>
   </tr>
   <tr>

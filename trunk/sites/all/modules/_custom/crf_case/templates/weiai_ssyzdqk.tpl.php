@@ -15,7 +15,9 @@
   </tr>
   <tr>
     <td>术后肿瘤分期</td>
-    <td><div class="f-left">TNM：</div><?php print drupal_render($form[$key_pre ."_3_1"]);?><div class="f-left">AJCC：</div><?php print drupal_render($form[$key_pre ."_3_2"]);?></td>
+    <td>TNM：T<?php print drupal_render($form[$key_pre ."_3_1"]);?> N<?php print drupal_render($form[$key_pre ."_3_2"]);?> M<?php print drupal_render($form[$key_pre ."_3_3"]);?> <br/>
+      AJCC：II<?php print drupal_render($form[$key_pre ."_3_4"]);?> IIIA<?php print drupal_render($form[$key_pre ."_3_5"]);?> IIIB<?php print drupal_render($form[$key_pre ."_3_6"]);?> IIIC<?php print drupal_render($form[$key_pre ."_3_7"]);?>
+    </td>
   </tr>
   <tr>
     <td>肿瘤的组织学分类</td>

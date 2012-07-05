@@ -47,7 +47,7 @@ $crf_el['weiai_ssyzdqk'] = array(
   '#name' => '胃癌手术与诊断情况',
     1 => array(1 => type_date_popup()),
     2 => array(1 => type_date_popup()),
-    3 => array(1 => type_checkboxs(array('T','N','M')),2 => type_checkboxs(array('II','ⅢA','ⅢB','ⅢC'))),
+    3 => array(1 => type_textfield('',1), 2 => type_textfield('',1), 3 => type_textfield('',1), 4 => type_textfield('',1), 5 => type_textfield('',1), 6 => type_textfield('',1), 7 => type_textfield('',1)),
     4 => array(1 => type_checkboxs(array('腺癌','高分化','中分化','低分化','未知','印戒细胞癌','黏液腺癌','其它')),2 => type_textfield()),
     5 => array(1 => type_checkboxs(array('胃窦','胃小弯','贲门','胃体','其它')),2 => type_textfield()),
     6 => array(1 => type_textfield('', 5),2 => type_textfield('', 5),3 => type_textfield('', 5),4 => type_textfield('', 5),5 => type_textfield('', 5),6 => type_textfield('', 5)),
@@ -152,7 +152,7 @@ $crf_el['shiyan_sjc'] = array(
 
 $crf_el['zq1_1'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_textfield(), 4 => type_textfield()),
+    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_checkboxs(array('40mg','50mg','60mg')), 4 => type_textfield()),
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_date_popup(), 3 => type_textfield(), 4 => type_textfield()),
 );
 
@@ -223,8 +223,8 @@ $crf_el['zq2_3'] = array(
 
 $crf_el['zq2_4'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_textfield(), 6 => type_textfield()),
-    2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield(), 6 => type_textfield()),
+    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_checkboxs(array('40mg','50mg','60mg')), 6 => type_textfield()),
+    2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield('',8), 6 => type_textfield()),
 );
 
 $crf_el['zq2_5'] = $crf_el['zq1_2'];

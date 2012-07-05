@@ -11,7 +11,7 @@
     <td>实际总量<br/>（mg）</td>
     <td>剂量<br/>强度</td>
     <td>给药日期</td>
-    <td>计划剂量<br/>(mg/m<sup>2</sup>)</td>
+    <td width="10%">计划剂量<br/>(mg)</td>
     <td>计划总量<br/>(mg)</td>
   </tr>
   <tr>
