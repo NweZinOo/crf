@@ -519,10 +519,241 @@ function crf_case_theme() {
       'template' => 'templates/yanzhong_blsjjl',
     ), 
     'crf_case_form_pg1_1' => array(
-      'arguments' => array('form' => NULL, 'class' => 'pg1-1', 'table' => 'pg1_1', 'table_name' => '第一次临床评估'),
+      'arguments' => array('form' => NULL, 'class' => 'pg1-1', 'table' => 'pg1_1', 'table_name' => '体格检查'),
       'template' => 'templates/pg_1',
     ), 
-        
+    'crf_case_form_pg1_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-2', 'table' => 'pg1_2', 'table_name' => '心电图检查'),
+      'template' => 'templates/pg_2',
+    ),    
+    'crf_case_form_pg1_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-3', 'table' => 'pg1_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/pg_3',
+    ),
+    'crf_case_form_pg1_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-4', 'table' => 'pg1_4', 'table_name' => '血液肿瘤标记物检测'),
+      'template' => 'templates/pg_4',
+    ), 
+    'crf_case_form_pg1_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-5', 'table' => 'pg1_5', 'table_name' => '肿瘤是否进展/复发/转移？'),
+      'template' => 'templates/pg_5',
+    ),    
+    'crf_case_form_pg1_6' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg1-6', 'table' => 'pg1_6', 'table_name' => '实验室检查'),
+      'template' => 'templates/pg_6',
+    ),
+    'crf_case_form_pg2_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-1', 'table' => 'pg2_1', 'table_name' => '体格检查'),
+      'template' => 'templates/pg_1',
+    ), 
+    'crf_case_form_pg2_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-2', 'table' => 'pg2_2', 'table_name' => '心电图检查'),
+      'template' => 'templates/pg_2',
+    ),    
+    'crf_case_form_pg2_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-3', 'table' => 'pg2_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/pg_3',
+    ),
+    'crf_case_form_pg2_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-4', 'table' => 'pg2_4', 'table_name' => '血液肿瘤标记物检测'),
+      'template' => 'templates/pg_4',
+    ), 
+    'crf_case_form_pg2_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-5', 'table' => 'pg2_5', 'table_name' => '肿瘤是否进展/复发/转移？'),
+      'template' => 'templates/pg_5',
+    ),    
+    'crf_case_form_pg2_6' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg2-6', 'table' => 'pg2_6', 'table_name' => '实验室检查'),
+      'template' => 'templates/pg_6',
+    ),
+    'crf_case_form_pg3_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-1', 'table' => 'pg3_1', 'table_name' => '体格检查'),
+      'template' => 'templates/pg_1',
+    ), 
+    'crf_case_form_pg3_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-2', 'table' => 'pg3_2', 'table_name' => '心电图检查'),
+      'template' => 'templates/pg_2',
+    ),    
+    'crf_case_form_pg3_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-3', 'table' => 'pg3_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/pg_3',
+    ),
+    'crf_case_form_pg3_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-4', 'table' => 'pg3_4', 'table_name' => '血液肿瘤标记物检测'),
+      'template' => 'templates/pg_4',
+    ), 
+    'crf_case_form_pg3_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-5', 'table' => 'pg3_5', 'table_name' => '肿瘤是否进展/复发/转移？'),
+      'template' => 'templates/pg_5',
+    ),    
+    'crf_case_form_pg3_6' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg3-6', 'table' => 'pg3_6', 'table_name' => '实验室检查'),
+      'template' => 'templates/pg_6',
+    ),
+    'crf_case_form_pg4_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-1', 'table' => 'pg4_1', 'table_name' => '体格检查'),
+      'template' => 'templates/pg_1',
+    ), 
+    'crf_case_form_pg4_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-2', 'table' => 'pg4_2', 'table_name' => '心电图检查'),
+      'template' => 'templates/pg_2',
+    ),    
+    'crf_case_form_pg4_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-3', 'table' => 'pg4_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/pg_3',
+    ),
+    'crf_case_form_pg4_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-4', 'table' => 'pg4_4', 'table_name' => '血液肿瘤标记物检测'),
+      'template' => 'templates/pg_4',
+    ), 
+    'crf_case_form_pg4_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-5', 'table' => 'pg4_5', 'table_name' => '肿瘤是否进展/复发/转移？'),
+      'template' => 'templates/pg_5',
+    ),    
+    'crf_case_form_pg4_6' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg4-6', 'table' => 'pg4_6', 'table_name' => '实验室检查'),
+      'template' => 'templates/pg_6',
+    ),
+    'crf_case_form_pg5_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-1', 'table' => 'pg5_1', 'table_name' => '体格检查'),
+      'template' => 'templates/pg_1',
+    ), 
+    'crf_case_form_pg5_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-2', 'table' => 'pg5_2', 'table_name' => '心电图检查'),
+      'template' => 'templates/pg_2',
+    ),    
+    'crf_case_form_pg5_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-3', 'table' => 'pg5_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/pg_3',
+    ),
+    'crf_case_form_pg5_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-4', 'table' => 'pg5_4', 'table_name' => '血液肿瘤标记物检测'),
+      'template' => 'templates/pg_4',
+    ), 
+    'crf_case_form_pg5_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-5', 'table' => 'pg5_5', 'table_name' => '肿瘤是否进展/复发/转移？'),
+      'template' => 'templates/pg_5',
+    ),    
+    'crf_case_form_pg5_6' => array(
+      'arguments' => array('form' => NULL, 'class' => 'pg5-6', 'table' => 'pg5_6', 'table_name' => '实验室检查'),
+      'template' => 'templates/pg_6',
+    ),
+    'crf_case_form_sf1_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf1-1', 'table' => 'sf1_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf1_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf1-2', 'table' => 'sf1_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf1_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf1-3', 'table' => 'sf1_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf2_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf2-1', 'table' => 'sf2_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf2_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf2-2', 'table' => 'sf2_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf2_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf2-3', 'table' => 'sf2_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf3_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf3-1', 'table' => 'sf3_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf3_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf3-2', 'table' => 'sf3_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf3_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf3-3', 'table' => 'sf3_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf4_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf4-1', 'table' => 'sf4_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf4_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf4-2', 'table' => 'sf4_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf4_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf4-3', 'table' => 'sf4_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf5_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf5-1', 'table' => 'sf5_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf5_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf5-2', 'table' => 'sf5_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf5_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf5-3', 'table' => 'sf5_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf6_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf6-1', 'table' => 'sf6_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf6_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf6-2', 'table' => 'sf6_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf6_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf6-3', 'table' => 'sf6_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf7_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf7-1', 'table' => 'sf7_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf7_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf7-2', 'table' => 'sf7_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf7_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf7-3', 'table' => 'sf7_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf8_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf8-1', 'table' => 'sf8_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf8_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf8-2', 'table' => 'sf8_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf8_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf8-3', 'table' => 'sf8_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_sf9_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf9-1', 'table' => 'sf9_1', 'table_name' => '患者状态'),
+      'template' => 'templates/sf_1',
+    ), 
+    'crf_case_form_sf9_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf9-2', 'table' => 'sf9_2', 'table_name' => '疾病状况'),
+      'template' => 'templates/sf_2',
+    ), 
+    'crf_case_form_sf9_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf9-3', 'table' => 'sf9_3', 'table_name' => '肿瘤评估'),
+      'template' => 'templates/sf_3',
+    ), 
+    'crf_case_form_siwang_jl' => array(
+      'arguments' => array('form' => NULL, 'class' => 'siwang-jl', 'table' => 'siwang_jl', 'table_name' => '死亡记录'),
+      'template' => 'templates/siwang_jl',
+    ), 
+    'crf_case_form_yangjiu_js' => array(
+      'arguments' => array('form' => NULL, 'class' => 'yangjiu-js', 'table' => 'yangjiu_js', 'table_name' => '研究结束'),
+      'template' => 'templates/yangjiu_js',
+    ), 
   );
 }
 
