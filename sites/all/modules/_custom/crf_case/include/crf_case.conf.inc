@@ -309,7 +309,7 @@ $crf_el['yanzhong_blsjjl'] = array(
 $crf_el['yanzhong_blsjjl_1'] = $crf_el['yanzhong_blsjjl'];
 
 // the second file
-$crf_el['pg_1'] = array(
+$crf_el['pg1_1'] = $crf_el['pg2_1'] = $crf_el['pg3_1'] = $crf_el['pg4_1'] = $crf_el['pg5_1'] = array(
   '#name' => '体格检查',
     1 => array(1 => type_date_popup()),
     2 => array(1 => type_textfield(), 2 => type_textfield()),
@@ -320,14 +320,14 @@ $crf_el['pg_1'] = array(
     7 => array(1 => type_radios(array('未做','正常','异常无临床意义','异常有临床意义')), 2 => type_textfield()),
 );
 
-$crf_el['pg_2'] = array(
+$crf_el['pg1_2'] = $crf_el['pg2_2'] = $crf_el['pg3_2'] = $crf_el['pg4_2'] = $crf_el['pg5_2'] = array(
   '#name' => '心电图检查',
     1 => array(1 => type_checkboxs(array('未做，则跳过本表'))),
     2 => array(1 => type_date_popup()),
     3 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()),
 );
 
-$crf_el['pg_3'] = array(
+$crf_el['pg1_3'] = $crf_el['pg2_3'] = $crf_el['pg3_3'] = $crf_el['pg4_3'] = $crf_el['pg5_3'] = array(
   '#name' => '肿瘤评估',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
     2 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
@@ -341,34 +341,34 @@ $crf_el['pg_3'] = array(
     10 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
 );
 
-$crf_el['pg_4'] = array(
+$crf_el['pg1_4'] = $crf_el['pg2_4'] = $crf_el['pg3_4'] = $crf_el['pg4_4'] = $crf_el['pg5_4'] = array(
   '#name' => '血液肿瘤标记物检测',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
-    2 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield(), 5 => type_textfield()),
-    3 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
-    4 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
+    2 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield(), 5 => type_date_popup()),
+    3 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+    4 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
 );
 
-$crf_el['pg_5'] = array(
+$crf_el['pg1_5'] = $crf_el['pg2_5'] = $crf_el['pg3_5'] = $crf_el['pg4_5'] = $crf_el['pg5_5'] = array(
   '#name' => '肿瘤是否进展/复发/转移？',
     1 => array(1 =>  type_radios(array('否','是，请确认已将诊断肿瘤进展的相关检查填入上述表中。'))),
 );
 
-$crf_el['pg_6'] = $crf_el['shiyan_sjc'];
+$crf_el['pg1_6'] = $crf_el['pg2_6'] = $crf_el['pg3_6'] = $crf_el['pg4_6'] = $crf_el['pg5_6'] = $crf_el['shiyan_sjc'];
 
-$crf_el['sf_1'] = array(
+$crf_el['sf1_1'] = $crf_el['sf2_1'] = $crf_el['sf3_1'] = $crf_el['sf4_1'] = $crf_el['sf5_1'] = $crf_el['sf6_1'] = $crf_el['sf7_1'] = $crf_el['sf8_1'] = $crf_el['sf9_1'] = array(
   '#name' => '患者状态',
     1 => array(1 => type_date_popup()),
     2 => array(1 =>  type_radios(array('办公室/医院随访','电话/写信或其它联系方式'))),
-    3 => array(1 =>  type_radios(array('存活','死亡，<b>请填写死亡报告表</b>','失访'))),
+    3 => array(1 =>  type_radios(array('存活','死亡，请填写<b>死亡报告表</b>','失访'))),
 );
 
-$crf_el['sf_2'] = array(
+$crf_el['sf1_2'] = $crf_el['sf2_2'] = $crf_el['sf3_2'] = $crf_el['sf4_2'] = $crf_el['sf5_2'] = $crf_el['sf6_2'] = $crf_el['sf7_2'] = $crf_el['sf8_2'] = $crf_el['sf9_2'] = array(
   '#name' => '疾病状况',
-    1 => array(1 => type_checkboxs('已报告疾病进展','本次随访时发现疾病进展（请填写下<b>述肿瘤评估表</b>）','没有进展','未知/不适用')),
+    1 => array(1 => type_checkboxs(array('已报告疾病进展','本次随访时发现疾病进展（请填写下<b>述肿瘤评估表</b>）','没有进展','未知/不适用'))),
 );
 
-$crf_el['sf_3'] = array(
+$crf_el['sf1_3'] = $crf_el['sf2_3'] = $crf_el['sf3_3'] = $crf_el['sf4_3'] = $crf_el['sf5_3'] = $crf_el['sf6_3'] = $crf_el['sf7_3'] = $crf_el['sf8_3'] = $crf_el['sf9_3'] = array(
   '#name' => '肿瘤评估',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
     2 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
@@ -384,20 +384,20 @@ $crf_el['sf_3'] = array(
 $crf_el['siwang_jl'] = array(
   '#name' => '死亡记录',
     1 => array(1 => type_date_popup()),
-    2 => array(1 => type_checkboxs('原发肿瘤')),
-    3 => array(1 => type_checkboxs('其它疾病'), 2 => type_textfield()),
-    4 => array(1 => type_checkboxs('其它原因'), 2 => type_textfield()),
-    5 => array(1 => type_checkboxs('原因不明'), 2 => type_textfield()),
+    2 => array(1 => type_checkboxs(array('原发肿瘤'))),
+    3 => array(1 => type_checkboxs(array('其它疾病')), 2 => type_textfield()),
+    4 => array(1 => type_checkboxs(array('其它原因')), 2 => type_textfield()),
+    5 => array(1 => type_checkboxs(array('原因不明')), 2 => type_textfield()),
 );
 
 $crf_el['yanjiu_js'] = array(
   '#name' => '研究结束',
     1 => array(1 => type_date_popup()),
-    2 => array(1 => type_checkboxs('完成研究随访')),
-    3 => array(1 => type_checkboxs('撤回知情同意')),
-    4 => array(1 => type_checkboxs('由于搬迁、转院、繁忙等原因难以继续进行研究')),
-    5 => array(1 => type_checkboxs('死亡')),
-    6 => array(1 => type_checkboxs('其它'), 2 => type_textfield()),
+    2 => array(1 => type_checkboxs(array('完成研究随访'))),
+    3 => array(1 => type_checkboxs(array('撤回知情同意'))),
+    4 => array(1 => type_checkboxs(array('由于搬迁、转院、繁忙等原因难以继续进行研究'))),
+    5 => array(1 => type_checkboxs(array('死亡'))),
+    6 => array(1 => type_checkboxs(array('其它')), 2 => type_textfield()),
     7 => array(1 => type_textfield()),
     8 => array(1 => type_date_popup()),
 );
