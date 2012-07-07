@@ -750,9 +750,9 @@ function crf_case_theme() {
       'arguments' => array('form' => NULL, 'class' => 'siwang-jl', 'table' => 'siwang_jl', 'table_name' => '死亡记录'),
       'template' => 'templates/siwang_jl',
     ), 
-    'crf_case_form_yangjiu_js' => array(
-      'arguments' => array('form' => NULL, 'class' => 'yangjiu-js', 'table' => 'yangjiu_js', 'table_name' => '研究结束'),
-      'template' => 'templates/yangjiu_js',
+    'crf_case_form_yanjiu_js' => array(
+      'arguments' => array('form' => NULL, 'class' => 'yanjiu-js', 'table' => 'yanjiu_js', 'table_name' => '研究结束'),
+      'template' => 'templates/yanjiu_js',
     ), 
   );
 }
