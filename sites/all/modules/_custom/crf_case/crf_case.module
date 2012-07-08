@@ -29,7 +29,7 @@ function crf_case_menu()
   $items['crf_case_edit'] = array(
     'page callback' => 'crf_case_edit',
     //'access callback' => 'crf_case_checkperm',
-    'access aguments' => array('crf case edit'),
+    'access arguments' => array('crf case edit'),
     'type' => MENU_CALLBACK
   );
   return $items;  
@@ -40,7 +40,7 @@ function crf_case_checkperm() {
   if ((isset($user->roles[3]) || $user->uid == 1)) {
     return true;
   }
-  else if(user_access('crf case view') || user_access('crf view all')) {
+  else if(user_access('crf case view') || user_access('crf view all') || user_access('crf case edit')) {
     return true;
   }
   else {
