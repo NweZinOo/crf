@@ -157,6 +157,11 @@ function crf_work_list() {
   global $hospital_name_arr;
   global $pager_page_array;
 
+  $hospital_name_current = $user->profile_hospital_no;
+  if (user_access('crf view all') && $hospital_key = crf_common_session('hospital_key')) {
+    $hospital_name_current = $hospital_key;
+  }
+  
   $limit  = 20;
   
   $terms = taxonomy_get_tree(1);
@@ -172,7 +177,7 @@ function crf_work_list() {
     $results = pager_query("SELECT * FROM apply WHERE hospital_no != ''" . tablesort_sql($header), $limit);
   }
   else {
-    $results = pager_query("SELECT * FROM apply WHERE hospital_no = {$user->profile_hospital_no}" . tablesort_sql($header), $limit);
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no = $hospital_name_current " . tablesort_sql($header), $limit);
   }
   
 
@@ -198,7 +203,8 @@ function crf_work_list() {
     );
    }
 
-  $output  = "[<b>中心编号：</b> <i>{$user->profile_hospital_no}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$user->profile_hospital_no]}</i>]";
+  $output .= drupal_get_form('crf_select_hospital_form');
+  $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
   $output .= theme('table', $header, $rows);
   $output .= theme('pager', $limit);
   return $output;
@@ -232,4 +238,25 @@ function crf_patient() {
   }
   $approved_arr = array('是','否');
   return theme('patient', $row, $term_arr, $approved_arr);
+}
+
+function crf_select_hospital_form() {
+  global $hospital_name_arr;
+   $hospital = crf_common_session('hospital_key');
+
+   $form['hospital'] = array(
+    '#type' => 'select',
+    '#title' => '请选择要医院',
+    '#default_value' => $hospital ? $hospital : '01',
+    '#options' => $hospital_name_arr,
+  );
+  $form['submit'] = array(
+   '#type' => 'submit',
+   '#value'=> '确定'
+  );
+  return $form;
+}
+
+function crf_select_hospital_form_submit(&$form, &$form_state) {
+  crf_common_session('hospital_key', $form_state['values']['hospital']);
 }
