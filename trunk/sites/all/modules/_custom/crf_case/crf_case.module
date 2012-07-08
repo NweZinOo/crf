@@ -29,7 +29,7 @@ function crf_case_menu()
   $items['crf_case_edit'] = array(
     'page callback' => 'crf_case_edit',
     //'access callback' => 'crf_case_checkperm',
-    'access arguments' => array('crf case edit'),
+    'access arguments' => array('crf case view'),
     'type' => MENU_CALLBACK
   );
   return $items;  
