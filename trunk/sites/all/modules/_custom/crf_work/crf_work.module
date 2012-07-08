@@ -204,7 +204,10 @@ function crf_work_list() {
     );
    }
 
-  $output .= drupal_get_form('crf_select_hospital_form');
+  if (user_access('crf view all')) {
+    $output .= drupal_get_form('crf_select_hospital_form');
+  }
+  
   $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
   $output .= theme('table', $header, $rows);
   $output .= theme('pager', $limit);
