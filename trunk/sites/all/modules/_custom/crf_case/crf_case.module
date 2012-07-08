@@ -21,9 +21,9 @@ function crf_case_menu()
   $items['crf_case/%/%'] = array(
     'page callback' => 'crf_case',
     'page arguments' => array(1,2),
-    //'access callback' => 'crf_case_checkperm',
+    'access callback' => 'crf_case_checkperm',
     //'access arguments' => array(1),    
-    'access aguments' => array('crf case view'),
+    //'access aguments' => array('crf case view'),
     'type' => MENU_CALLBACK
   );
   $items['crf_case_edit'] = array(
@@ -40,7 +40,7 @@ function crf_case_checkperm() {
   if ((isset($user->roles[3]) || $user->uid == 1)) {
     return true;
   }
-  else if(user_access('crf view list') || user_access('crf view all')) {
+  else if(user_access('crf case view') || user_access('crf view all')) {
     return true;
   }
   else {
