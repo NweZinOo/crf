@@ -52,7 +52,7 @@ function crf_case($p_uid, $type) {
   global $user;
   //$hospital_no = $user->profile_hospital_no;
   //$query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s'";
-  $query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s'";
+  $query = "SELECT * FROM apply WHERE p_uid = %d";
   $result = db_query($query, $p_uid/*, $hospital_no*/);
   $p_arr = db_fetch_array($result);
 //  print_r($p_arr);exit;
