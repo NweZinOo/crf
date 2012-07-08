@@ -100,10 +100,20 @@ function crf_case_form(&$form_state, $arg = NULL) {
   }
   
   $form['#theme'] = 'crf_case_form_'. $no;
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value'=> '确定'
-  );
+  
+  if (user_access('crf case edit')) {
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value'=> '确定'
+    );
+  }
+  else {
+    drupal_add_js('
+     $(function(){
+       $("input").attr("disabled", "disabled");
+     });
+    ', 'inline');
+  }
   return $form;
 }
 
