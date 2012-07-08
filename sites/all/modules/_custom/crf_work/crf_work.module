@@ -15,7 +15,8 @@ function crf_work_menu()
   $items['crf_list'] = array(
     'title' => '随机列表',
     'page callback' => 'crf_work_list',
-    'access callback' => 'crf_work_checkperm',
+    //'access callback' => 'crf_work_checkperm',
+    'access arguments' => array('crf view list'),
     'type' => MENU_CALLBACK
   );
   $items['patient'] = array(
