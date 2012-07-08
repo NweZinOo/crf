@@ -110,7 +110,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
   if (user_access('crf case edit')) {
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value'=> '确定'
+      '#value'=> '保存&继续'
     );
   }
   else {
@@ -151,6 +151,14 @@ function crf_case_form_submit($form, $form_state) {
    crf_ds_save($dataset, $no);
    crf_progress_save($no);
    drupal_set_message('保存成功！');
+   
+   global $crf_el;
+   $keys  = array_keys($crf_el);
+   $index = array_search($no, $keys);
+   
+   if ($index !== FALSE && $keys[$index+1]) {
+     drupal_goto('crf_case_edit/' . $keys[$index+1]);
+   }
 }
 
 
