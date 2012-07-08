@@ -54,5 +54,5 @@ function crf_common_user($op, &$edit, &$account, $category = NULL) {
 }
 
 function crf_common_perm() {
-  return array('crf view all', 'crf view list'. 'crf case edit',);
+  return array('crf view all', 'crf view list', 'crf case edit',);
 }
