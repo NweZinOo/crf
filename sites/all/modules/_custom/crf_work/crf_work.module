@@ -113,9 +113,12 @@ function crf_work_add_form_validate($form, &$form_state) {
   if ($form_state['values']['approved'] == '') {
     form_set_error('approved', '受试者是否获得知情同意书需要选择一项!');
   }
-//  if (empty($form_state['values']['approved_time'])) {
-//    form_set_error('approved_time', '知情同意日期不能为空!');
-//  }
+  if ($form_state['values']['approved'] == 1) {
+    form_set_error('approved', '受试者必须获得知情同意书!');
+  }
+  if (empty($form_state['values']['approved_time'])) {
+    form_set_error('approved_time', '知情同意日期不能为空!');
+  }
 }
 
 function crf_work_add_form_submit($form, &$form_state) {
@@ -129,6 +132,7 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
   $obj->team = get_rand();
   $obj->apply_time = date("Y-m-d H:i:s");
+  $obj->editor = $user->uid;
   
   $table = 'apply';
   $r = crf_work_write_record($table, $obj);
@@ -140,7 +144,7 @@ function crf_work_add_form_submit($form, &$form_state) {
 }
 
 function crf_work_write_record($table, $obj) {
-  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s")';
+  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", %d)';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
@@ -170,7 +174,7 @@ function crf_work_list() {
     $term_arr[$v->tid] = $v->name;
   }
 
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '输入病历');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '研究人员', '输入病历');
 
   $rows = array();
 
@@ -186,6 +190,7 @@ function crf_work_list() {
   
   $start = ($pager_current - 1) * $limit ;
   
+  $user_arr = _get_user_arr();
   while ($r = db_fetch_object($results)) {
     $terms = array();
     $rows[] = array(
@@ -200,6 +205,7 @@ function crf_work_list() {
       $r->approved_time,
       $term_arr[$r->team],
       $r->apply_time,
+      $user_arr[$r->editor],  
       l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
@@ -263,4 +269,13 @@ function crf_select_hospital_form() {
 
 function crf_select_hospital_form_submit(&$form, &$form_state) {
   crf_common_session('hospital_key', $form_state['values']['hospital']);
+}
+
+function _get_user_arr() {
+  $query = "SELECT uid, name FROM users";
+  $result = db_query($query);
+  while ($row = db_fetch_object($result)) {
+    $arr[$row->uid] = $row->name;
+  }
+  return $arr;
 }
