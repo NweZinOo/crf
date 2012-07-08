@@ -130,7 +130,7 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->case_history_no = $form_state['values']['case_history_no'];
   $obj->approved = $form_state['values']['approved'];
   $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
-  $obj->team = get_rand();
+  $obj->team = '';
   $obj->apply_time = date("Y-m-d H:i:s");
   $obj->editor = $user->uid;
   
@@ -138,6 +138,9 @@ function crf_work_add_form_submit($form, &$form_state) {
   $r = crf_work_write_record($table, $obj);
   if ($r != FALSE) {
     $p_uid = db_last_insert_id($table, 'p_uid');
+    $team = get_rand_team($p_uid);
+    $query = 'UPDATE ' . $table . ' SET team = %d WHERE p_uid = %d';
+    db_query($query, $team, $p_uid);
     drupal_set_message('添加成功！');
     drupal_goto('patient/' . $p_uid);
   }
@@ -150,10 +153,10 @@ function crf_work_write_record($table, $obj) {
   return $r;
 }
 
-function get_rand() {
-  srand((double)microtime()*1000000);
-  $rand_number= rand(1,2);
-  return $rand_number;
+function get_rand_team($p_uid) {
+  $arr = array('1' => '1', '2' => '2', '3' => '1', '4' => '2', '5' => '2', '6' => '1', '7' => '1', '8' => '2', '9' => '2', '0' => '1');
+  $n = substr($p_uid, -1);
+  return $arr[$n];
 }
 
 function crf_work_list() {
