@@ -38,8 +38,8 @@ function crf_case_checkperm() {
   if ((isset($user->roles[3]) || $user->uid == 1)) {
     return true;
   }
-  else if(user_access('crf view edit') || user_access('crf view all')) {
-    
+  else if(user_access('crf view list') || user_access('crf view all')) {
+    return true;
   }
   else {
     return false;
