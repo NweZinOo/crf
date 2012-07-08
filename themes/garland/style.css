@@ -1233,3 +1233,7 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   color: #494949;
 }
 
+#crf-select-hospital-form #edit-submit {
+  margin: 0;
+}
+
