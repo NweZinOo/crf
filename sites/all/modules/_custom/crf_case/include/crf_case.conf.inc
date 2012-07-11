@@ -227,7 +227,7 @@ $crf_el['zq2_4'] = array(
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield('',8), 6 => type_textfield()),
 );
 
-$crf_el['zq2_5'] = $crf_el['zq1_2'];
+$crf_el['zq2_5'] = array_slice($crf_el['zq1_2'], 0);
 //3 4 5 6 7表 = 2表
 $crf_el['zq3_1'] = $crf_el['zq4_1'] = $crf_el['zq5_1'] = $crf_el['zq6_1'] = $crf_el['zq7_1'] = $crf_el['zq2_1'];
 $crf_el['zq3_2'] = $crf_el['zq4_2'] = $crf_el['zq5_2'] = $crf_el['zq6_2'] = $crf_el['zq7_2'] = $crf_el['zq2_2'];
@@ -236,8 +236,8 @@ $crf_el['zq3_4'] = $crf_el['zq4_4'] = $crf_el['zq5_4'] = $crf_el['zq6_4'] = $crf
 $crf_el['zq3_5'] = $crf_el['zq4_5'] = $crf_el['zq5_5'] = $crf_el['zq6_5'] = $crf_el['zq7_5'] = $crf_el['zq2_5'];
 
 //8为4个表
-$crf_el['zq8_1'] = $crf_el['zq2_1'];
-$crf_el['zq8_2'] = $crf_el['zq2_3'];
+$crf_el['zq8_1'] = array_slice($crf_el['zq2_1'], 0);
+$crf_el['zq8_2'] = array_slice($crf_el['zq2_3'], 0);
 
 $crf_el['zq8_3'] = array(
   '#name' => '研究给药',
@@ -306,7 +306,7 @@ $crf_el['yanzhong_blsjjl'] = array(
     18 => array(1 => type_textfield(), 2 => type_date_popup()),
 );
 
-$crf_el['yanzhong_blsjjl_1'] = $crf_el['yanzhong_blsjjl'];
+$crf_el['yanzhong_blsjjl_1'] = array_slice($crf_el['yanzhong_blsjjl'], 0);
 
 // the second file
 $crf_el['pg1_1'] = $crf_el['pg2_1'] = $crf_el['pg3_1'] = $crf_el['pg4_1'] = $crf_el['pg5_1'] = array(
