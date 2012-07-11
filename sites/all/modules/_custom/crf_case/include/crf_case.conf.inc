@@ -227,17 +227,20 @@ $crf_el['zq2_4'] = array(
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield('',8), 6 => type_textfield()),
 );
 
-$crf_el['zq2_5'] = array_slice($crf_el['zq1_2'], 0);
+$crf_el['zq2_5'] = $crf_el['zq1_2'];
+
 //3 4 5 6 7表 = 2表
-$crf_el['zq3_1'] = $crf_el['zq4_1'] = $crf_el['zq5_1'] = $crf_el['zq6_1'] = $crf_el['zq7_1'] = $crf_el['zq2_1'];
-$crf_el['zq3_2'] = $crf_el['zq4_2'] = $crf_el['zq5_2'] = $crf_el['zq6_2'] = $crf_el['zq7_2'] = $crf_el['zq2_2'];
-$crf_el['zq3_3'] = $crf_el['zq4_3'] = $crf_el['zq5_3'] = $crf_el['zq6_3'] = $crf_el['zq7_3'] = $crf_el['zq2_3'];
-$crf_el['zq3_4'] = $crf_el['zq4_4'] = $crf_el['zq5_4'] = $crf_el['zq6_4'] = $crf_el['zq7_4'] = $crf_el['zq2_4'];
-$crf_el['zq3_5'] = $crf_el['zq4_5'] = $crf_el['zq5_5'] = $crf_el['zq6_5'] = $crf_el['zq7_5'] = $crf_el['zq2_5'];
+for($i=3; $i++; $i<8) {
+  $crf_el["zq{$i}_1"] = $crf_el['zq2_1'];
+  $crf_el["zq{$i}_2"] = $crf_el['zq2_2'];
+  $crf_el["zq{$i}_3"] = $crf_el['zq2_3'];
+  $crf_el["zq{$i}_4"] = $crf_el['zq2_4'];
+  $crf_el["zq{$i}_5"] = $crf_el['zq2_5'];
+}
 
 //8为4个表
-$crf_el['zq8_1'] = array_slice($crf_el['zq2_1'], 0);
-$crf_el['zq8_2'] = array_slice($crf_el['zq2_3'], 0);
+$crf_el['zq8_1'] = $crf_el['zq2_1'];
+$crf_el['zq8_2'] = $crf_el['zq2_3'];
 
 $crf_el['zq8_3'] = array(
   '#name' => '研究给药',
@@ -255,10 +258,15 @@ $crf_el['zq8_4'] = array(
     4 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
 );
 
-$crf_el['zq9_1'] = $crf_el['zq10_1'] = $crf_el['zq11_1'] = $crf_el['zq12_1'] = $crf_el['zq13_1'] = $crf_el['zq14_1'] = $crf_el['zq15_1'] = $crf_el['zq16_1'] = $crf_el['zq8_1'];
-$crf_el['zq9_2'] = $crf_el['zq10_2'] = $crf_el['zq11_2'] = $crf_el['zq12_2'] = $crf_el['zq13_2'] = $crf_el['zq14_2'] = $crf_el['zq15_2'] = $crf_el['zq16_2'] = $crf_el['zq8_2'];
-$crf_el['zq9_3'] = $crf_el['zq10_3'] = $crf_el['zq11_3'] = $crf_el['zq12_3'] = $crf_el['zq13_3'] = $crf_el['zq14_3'] = $crf_el['zq15_3'] = $crf_el['zq16_3'] = $crf_el['zq8_3'];
-$crf_el['zq9_4'] = $crf_el['zq10_4'] = $crf_el['zq11_4'] = $crf_el['zq12_4'] = $crf_el['zq13_4'] = $crf_el['zq14_4'] = $crf_el['zq15_4'] = $crf_el['zq16_4'] = $crf_el['zq8_4'];
+//9-16 table
+//$crf_el['zq9_1'] = $crf_el['zq10_1'] = $crf_el['zq11_1'] = $crf_el['zq12_1'] = $crf_el['zq13_1'] = $crf_el['zq14_1'] = $crf_el['zq15_1'] = $crf_el['zq16_1'] = $crf_el['zq8_1'];
+for($i=9; $i++; $i<17) {
+  $crf_el["zq{$i}_1"] = $crf_el['zq8_1'];
+  $crf_el["zq{$i}_2"] = $crf_el['zq8_2'];
+  $crf_el["zq{$i}_3"] = $crf_el['zq8_3'];
+  $crf_el["zq{$i}_4"] = $crf_el['zq8_4'];
+
+}
 
 $crf_el['zhiliao_js'] = array(
   '#name' => '治疗结束',
@@ -306,7 +314,7 @@ $crf_el['yanzhong_blsjjl'] = array(
     18 => array(1 => type_textfield(), 2 => type_date_popup()),
 );
 
-$crf_el['yanzhong_blsjjl_1'] = array_slice($crf_el['yanzhong_blsjjl'], 0);
+$crf_el['yanzhong_blsjjl_1'] = $crf_el['yanzhong_blsjjl'];
 
 // the second file
 $crf_el['pg1_1'] = $crf_el['pg2_1'] = $crf_el['pg3_1'] = $crf_el['pg4_1'] = $crf_el['pg5_1'] = array(
