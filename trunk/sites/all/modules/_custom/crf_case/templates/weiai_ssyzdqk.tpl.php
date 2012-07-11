@@ -37,8 +37,8 @@
   <tr>
     <td>分子生物学检测（肿瘤组织）</td>
     <td>HER2：<br/>
-        <div class="f-left">IHC方法：</div><?php print drupal_render($form[$key_pre ."_7_1"]);?>
-        <div class="f-left">FISH方法：</div><?php print drupal_render($form[$key_pre ."_7_2"]);?>
+        <div>IHC方法：<?php print drupal_render($form[$key_pre ."_7_1"]);?></div>
+        <div>FISH方法：<?php print drupal_render($form[$key_pre ."_7_2"]);?></div>
         VEGF：<br/>
         <div class="f-left">检测方法：</div><?php print drupal_render($form[$key_pre ."_7_3"]);?>
         <div class="clear"></div>
