@@ -230,7 +230,7 @@ $crf_el['zq2_4'] = array(
 $crf_el['zq2_5'] = $crf_el['zq1_2'];
 
 //3 4 5 6 7表 = 2表
-for($i=3; $i++; $i<8) {
+for($i=3; $i<=7; $i++) {
   $crf_el["zq{$i}_1"] = $crf_el['zq2_1'];
   $crf_el["zq{$i}_2"] = $crf_el['zq2_2'];
   $crf_el["zq{$i}_3"] = $crf_el['zq2_3'];
@@ -260,7 +260,8 @@ $crf_el['zq8_4'] = array(
 
 //9-16 table
 //$crf_el['zq9_1'] = $crf_el['zq10_1'] = $crf_el['zq11_1'] = $crf_el['zq12_1'] = $crf_el['zq13_1'] = $crf_el['zq14_1'] = $crf_el['zq15_1'] = $crf_el['zq16_1'] = $crf_el['zq8_1'];
-for($i=9; $i++; $i<17) {
+
+for($i=9; $i<=16; $i++) {
   $crf_el["zq{$i}_1"] = $crf_el['zq8_1'];
   $crf_el["zq{$i}_2"] = $crf_el['zq8_2'];
   $crf_el["zq{$i}_3"] = $crf_el['zq8_3'];
@@ -317,7 +318,7 @@ $crf_el['yanzhong_blsjjl'] = array(
 $crf_el['yanzhong_blsjjl_1'] = $crf_el['yanzhong_blsjjl'];
 
 // the second file
-$crf_el['pg1_1'] = $crf_el['pg2_1'] = $crf_el['pg3_1'] = $crf_el['pg4_1'] = $crf_el['pg5_1'] = array(
+$crf_el['pg5_1'] = $crf_el['pg4_1'] = $crf_el['pg3_1'] = $crf_el['pg2_1'] = $crf_el['pg1_1'] = array(
   '#name' => '体格检查',
     1 => array(1 => type_date_popup()),
     2 => array(1 => type_textfield(), 2 => type_textfield()),
@@ -328,14 +329,14 @@ $crf_el['pg1_1'] = $crf_el['pg2_1'] = $crf_el['pg3_1'] = $crf_el['pg4_1'] = $crf
     7 => array(1 => type_radios(array('未做','正常','异常无临床意义','异常有临床意义')), 2 => type_textfield()),
 );
 
-$crf_el['pg1_2'] = $crf_el['pg2_2'] = $crf_el['pg3_2'] = $crf_el['pg4_2'] = $crf_el['pg5_2'] = array(
+$crf_el['pg5_2'] = $crf_el['pg4_2'] = $crf_el['pg3_2'] = $crf_el['pg2_2'] = $crf_el['pg1_2'] = array(
   '#name' => '心电图检查',
     1 => array(1 => type_checkboxs(array('未做，则跳过本表'))),
     2 => array(1 => type_date_popup()),
     3 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()),
 );
 
-$crf_el['pg1_3'] = $crf_el['pg2_3'] = $crf_el['pg3_3'] = $crf_el['pg4_3'] = $crf_el['pg5_3'] = array(
+$crf_el['pg5_3'] = $crf_el['pg4_3'] = $crf_el['pg3_3'] = $crf_el['pg2_3'] = $crf_el['pg1_3'] = array(
   '#name' => '肿瘤评估',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
     2 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
@@ -349,7 +350,7 @@ $crf_el['pg1_3'] = $crf_el['pg2_3'] = $crf_el['pg3_3'] = $crf_el['pg4_3'] = $crf
     10 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
 );
 
-$crf_el['pg1_4'] = $crf_el['pg2_4'] = $crf_el['pg3_4'] = $crf_el['pg4_4'] = $crf_el['pg5_4'] = array(
+$crf_el['pg5_4'] = $crf_el['pg4_4'] = $crf_el['pg3_4'] = $crf_el['pg2_4'] = $crf_el['pg1_4'] = array(
   '#name' => '血液肿瘤标记物检测',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
     2 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield(), 5 => type_date_popup()),
@@ -357,12 +358,12 @@ $crf_el['pg1_4'] = $crf_el['pg2_4'] = $crf_el['pg3_4'] = $crf_el['pg4_4'] = $crf
     4 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
 );
 
-$crf_el['pg1_5'] = $crf_el['pg2_5'] = $crf_el['pg3_5'] = $crf_el['pg4_5'] = $crf_el['pg5_5'] = array(
+$crf_el['pg5_5'] = $crf_el['pg4_5'] = $crf_el['pg3_5'] = $crf_el['pg2_5'] = $crf_el['pg1_5'] = array(
   '#name' => '肿瘤是否进展/复发/转移？',
     1 => array(1 =>  type_radios(array('否','是，请确认已将诊断肿瘤进展的相关检查填入上述表中。'))),
 );
 
-$crf_el['pg1_6'] = $crf_el['pg2_6'] = $crf_el['pg3_6'] = $crf_el['pg4_6'] = $crf_el['pg5_6'] = $crf_el['shiyan_sjc'];
+$crf_el['pg5_6'] = $crf_el['pg4_6'] = $crf_el['pg3_6'] = $crf_el['pg2_6'] = $crf_el['pg1_6'] = $crf_el['shiyan_sjc'];
 
 $crf_el['sf1_1'] = $crf_el['sf2_1'] = $crf_el['sf3_1'] = $crf_el['sf4_1'] = $crf_el['sf5_1'] = $crf_el['sf6_1'] = $crf_el['sf7_1'] = $crf_el['sf8_1'] = $crf_el['sf9_1'] = array(
   '#name' => '患者状态',
