@@ -101,9 +101,17 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['sift'])) {
     form_set_error('sift', '筛选号不能为空!');
   }
+  else if (2 != mb_strlen($form_state['values']['sift'])){
+    form_set_error('sift', '筛选号必须为2位!');
+  }
   if (empty($form_state['values']['p_name'])) {
     form_set_error('p_name', '受试者姓名缩写不能为空!');
   }
+  else if (4 != mb_strlen($form_state['values']['p_name'])){
+    form_set_error('p_name', '受试者姓名缩写请用四个字母表示！');
+  }
+  
+  
   if (empty($form_state['values']['p_birthday'])) {
     form_set_error('p_birthday', '受试者出生日期不能为空!');
   }
