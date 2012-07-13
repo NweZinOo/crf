@@ -14,8 +14,16 @@ $(document).ready(function() {
   $('#sidebar-left .block-nice_menus li a').each(function(){
     var href = $(this).attr('href');
     var key  = href.split('/').pop();
-    if (p.indexOf(key) != -1) {
+   
+    if($(this).hasClass('active')){ //current
+      
+    }
+    else if (p.indexOf(key) != -1) {
       $(this).addClass('done').css('background', 'yellow');
+    }
+    else {
+      $(this).addClass('inactived');
+      $(this).attr('href', 'javascript:void(0)');
     }
   });
 });

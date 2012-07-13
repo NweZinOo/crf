@@ -85,6 +85,34 @@ function crf_case_edit() {
     return drupal_not_found();
   }
   
+  //crf_progress_save(arg(1));
+  $row = crf_progress_load();
+
+  if ($row) {
+    $progress = json_decode($row['data']);
+    
+    drupal_add_js(array('progress' => $progress), 'setting');
+      
+    $last     = array_pop($progress);
+    $next     = crf_get_next_form_key($last);
+    
+    $progress[] = $last;
+    $progress[] = $next;
+    /*
+    if (!in_array($no, $progress)) {
+      drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
+      return ''; 
+    }
+    **/
+  }
+  else {
+    //if ($no != 'zhiqing_tys') {
+    //  drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
+    //  return ''; 
+    // }
+  }
+
+    
   return drupal_get_form("crf_case_form", $no);
 }
 
@@ -124,11 +152,28 @@ function crf_case_form(&$form_state, $arg = NULL) {
 }
 
 
+function crf_case_form_validate($form, &$form_state) {
+  
+  $prev = crf_get_next_form_key($no, -1);
+  $progress = crf_progress_load();
+  
+  if ($progress && $pregress['data']) {
+    $p = json_decode($progress['data']);
+    if (!in_array($prev, $p)) {
+      form_set_error(NULL, '保存顺序有问题，请按顺序填写表格！');
+    }
+  }
+  
+}
+
 function crf_case_form_submit($form, $form_state) {
   $no = arg(1);
   if (empty($no)) {
     $no = 'zhiqing_tys';
   }
+  
+  
+  
   
   $values  = $form_state['values'];
   $dataset = crf_ds_parse($no, $values, $form);
@@ -152,15 +197,29 @@ function crf_case_form_submit($form, $form_state) {
    crf_progress_save($no);
    drupal_set_message('保存成功！');
    
-   global $crf_el;
-   $keys  = array_keys($crf_el);
-   $index = array_search($no, $keys);
+   $next = crf_get_next_form_key($no);
    
-   if ($index !== FALSE && $keys[$index+1]) {
-     drupal_goto('crf_case_edit/' . $keys[$index+1]);
+   if ($next !== FALSE) {
+     drupal_goto('crf_case_edit/' . $next);
+   }
+   else {
+     drupal_set_message('恭喜您录入已完成！');
    }
 }
 
+
+function crf_get_next_form_key($current, $offset = 1) {
+   global $crf_el;
+   $keys  = array_keys($crf_el);
+   $index = array_search($current, $keys);
+   
+   if (FALSE !== $index && $keys[$index+$offset]) {
+     return $keys[$index+$offset];
+   }
+   else {
+     return FALSE;
+   }
+}
 
 function crf_set_element_default_value(&$element, $dataset, $row, $col) {
   if (isset($dataset[$row]) && isset($dataset[$row][$col])) {
@@ -173,9 +232,11 @@ function crf_progress_save($name) {
  
   $p_uid = crf_common_session('p_uid');
   $row   = crf_progress_load();
+  $did   = FALSE;  
   
   if (!$row) {
     db_query("INSERT INTO crf_case_user_profile (uid, data, updated) VALUES (%d, '%s', %d)",  $p_uid, json_encode(array($name)), time());
+    $did = TRUE;
   }
   else {
     $keys = json_decode($row['data']);
@@ -183,17 +244,22 @@ function crf_progress_save($name) {
     if (!in_array($name, $keys)) {
       $keys[] = $name;
       db_query("UPDATE crf_case_user_profile SET data = '%s', updated = %d WHERE uid = %d", json_encode($keys), time(), $p_uid);
+      $did = TRUE;
     }
+  }
+  
+  if ($did) {
+    crf_progress_load($p_uid, TRUE);
   }
 }
 
-function crf_progress_load($p_uid = NULL) {
+function crf_progress_load($p_uid = NULL, $reset = FALSE) {
   static $p;
   if (!$p_uid) {
     $p_uid = crf_common_session('p_uid');
   }
   
-  if (!isset($p[$p_uid])) {
+  if (!isset($p[$p_uid]) || $reset) {
     $row = db_fetch_array(db_query('SELECT * FROM crf_case_user_profile WHERE uid = %d', $p_uid));
     $p[$p_uid] = $row;
   }
@@ -804,17 +870,6 @@ function json_to_array($data){
 }
 
 function crf_case_init() {
-  if (arg(0) == 'crf_case_edit') {
-    $row = crf_progress_load();
-    if ($row) {
-      $progress = json_decode($row['data']);
-    }
-    else {
-      $progress = array();
-    }
-    drupal_add_js(array('progress' => $progress), 'setting');
-  }
-  
   $path = drupal_get_path('module', 'crf_case');
   drupal_add_js($path . '/js/crf_common.js', 'module');
 }
