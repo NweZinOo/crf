@@ -1003,6 +1003,43 @@ tr.taxonomy-term-divider-bottom {
 }
 
 /**
+ * Messages
+ */
+div.messages,
+div.status,
+div.warning,
+div.error {
+  padding:10px 10px 10px 35px;
+  margin: 0 0 20px 0;
+}
+
+div.status {
+  background:#BFFFBF url(../images/status.png) no-repeat scroll 10px center;
+  color: #009900;
+  border: 1px solid #009900;
+}
+
+div.warning {
+  background:#FFFFCC url(../images/warning.png) no-repeat scroll 10px center;
+  color: #FF6600;
+  border: 1px solid #FF6600;
+}
+
+div.error {
+  background:#FFD9D9 url(../images/error.png) no-repeat scroll 10px center;
+  color: #FF0000;
+  border: 1px solid #FF0000;
+}
+
+.messages ul {
+  list-style-type:none;
+  padding:5px;
+  margin-bottom:0;
+}
+
+/* End of messages*/
+
+/**
  * CSS support
  */
 
