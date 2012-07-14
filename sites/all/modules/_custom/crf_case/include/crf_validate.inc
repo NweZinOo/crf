@@ -18,6 +18,35 @@ function crf_case_validate_huaiyun_knx($form, &$form_state) {
   }
 }
 
+function crf_case_validate_zq2_2($form, &$form_state) {
+}
+
+function crf_case_validate_zq2_3($form, &$form_state) {
+}
+
+function _crf_validate_did(&$form_state, $key, $val = '1') {
+  $v = $form_state['values'][$key];
+  if (is_array($v)) {
+    $v = array_shift($v);
+  }
+  if ($v == $val) {
+    $clone = $form_state['values'];    
+    //var_dump($clone);exit;
+
+    unset($clone[$key]);
+    unset($clone['op']);
+    unset($clone['submit']);
+    unset($clone['form_build_id']);
+    unset($clone['form_token']);
+    unset($clone['form_id']);
+    
+    //var_dump($clone);exit;
+    if (!_crf_empty($clone)) {
+      form_set_error('form', "您选择了 [没有] 或 [未做]，所以请不要填写表格里面的任何选项！");
+    }
+  }
+}
+
 function _crf_validate_yes($star_el, &$form_state) {
   $values = $form_state['values'];
   foreach ($values as $k => $v) {
@@ -28,4 +57,25 @@ function _crf_validate_yes($star_el, &$form_state) {
       }
     }
   }
+}
+
+function _crf_empty(&$array) {
+  foreach ($array as $k => $v) {
+    if (is_array($v)) {
+      $return = _crf_empty($v);
+    }
+    else {
+      if (is_string($v) && $v === '0') {
+        $return = FALSE;
+      }
+      else {
+        $return = empty($v);
+      }
+    }
+    
+    if ($return === FALSE) {
+      return $return;
+    }
+  }
+  return TRUE;
 }

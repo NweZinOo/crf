@@ -39,3 +39,39 @@ $(document).ready(function() {
   
   
 });
+
+
+$(document).ready(function(){
+  var els = $('tr.title').find('input:checkbox');
+  if (els && els.size() == 1) {
+    els.click(function(){
+      clear_alert(this)
+    });
+  }
+});
+
+/**
+ * el 要点击的按钮
+ * msg 要提示的信息
+ */
+function clear_alert(el, msg) {
+  if (!msg) {
+    msg = '选中将清空下面所有内容，是否确定？';
+  }
+  
+  if ($(el).is(':checked')) {
+    if(confirm(msg)) {
+      reset_form();
+      $(el).attr('checked', true).attr('disabled', false);
+    }
+  }
+  else {
+    $("form input").attr('disabled', false);
+  }
+}
+
+function reset_form() {
+  $("form input:radio").attr("checked", false);//.attr('disabled', true);;
+  $("form input:checkbox").attr("checked", false);//.attr('disabled', true);;
+  $("form input:text").val('');//.attr('disabled', true);;
+}
