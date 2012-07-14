@@ -44,8 +44,14 @@ $(document).ready(function() {
 $(document).ready(function(){
   var els = $('tr.title').find('input:checkbox');
   if (els && els.size() == 1) {
+    $('form#crf-case-form').submit(function(){
+      clear_alert(els);
+    });
+    
     els.click(function(){
-      clear_alert(this)
+      if ($(this).is(':checked')) {
+        confirm('选中此项，下面所有内容都不能保存，是否确定？')
+      }
     });
   }
 });
@@ -56,7 +62,7 @@ $(document).ready(function(){
  */
 function clear_alert(el, msg) {
   if (!msg) {
-    msg = '选中将清空下面所有内容，是否确定？';
+    msg = '由于您选择了【无】或者【未做】，因此其他内容将不被保存，是否确定？';
   }
   
   if ($(el).is(':checked')) {
@@ -64,9 +70,6 @@ function clear_alert(el, msg) {
       reset_form();
       $(el).attr('checked', true).attr('disabled', false);
     }
-  }
-  else {
-    $("form input").attr('disabled', false);
   }
 }
 
