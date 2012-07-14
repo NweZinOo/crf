@@ -17,7 +17,14 @@ function type_textfield($default_value = NULL, $size = NULL) {
   if (empty($size)) {
     $size = 20;
   }
-  return array('#type'=>'textfield', '#default_value' => $default_value, '#size' => $size,);
+  return array('#type'=>'textfield', '#default_value' => $default_value, '#size' => $size);
+}
+
+function type_item($default_value = NULL, $size = NULL) {
+  if (empty($size)) {
+    $size = 20;
+  }
+  return array('#type'=>'item', '#value' => $default_value, '#size' => $size);
 }
 
 function type_date_popup($default_value = NULL, $title = NULL) {

@@ -93,7 +93,7 @@ function crf_work_add_form(&$form_state) {
   $form['approved_time'] = array(
     '#type' => 'date_popup',
     '#date_format' => 'Y-m-d',
-    '#date_year_range' => '-90:+0',
+    '#date_year_range' => '-1:+3',
     '#title' => '知情同意日期',
     '#size' => 15,
   );
