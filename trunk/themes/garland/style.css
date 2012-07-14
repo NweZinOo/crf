@@ -30,6 +30,7 @@ input {
 textarea, select {
   font: 12px/160% Verdana, sans-serif;
   color: #494949;
+  border: 1px solid;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1174,6 +1175,11 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
    border-width: 0 0 1px;
  }
 
+ #crf-case-form .form-text.error {
+   border: 1px solid #C52020;
+   color: #363636;
+ }
+ 
 #crf-case-form .f-left {
   float: left;
 }
