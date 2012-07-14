@@ -24,6 +24,19 @@ function crf_case_validate_zq2_2($form, &$form_state) {
 function crf_case_validate_zq2_3($form, &$form_state) {
 }
 
+function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
+  print_r($form_state['values']);
+  if (!is_numeric($form_state['values']['e_weiai_ssyzdqk_6_1']) ||
+      !is_numeric($form_state['values']['e_weiai_ssyzdqk_6_2']) ||
+      !is_numeric($form_state['values']['e_weiai_ssyzdqk_6_3']) ||
+      !is_numeric($form_state['values']['e_weiai_ssyzdqk_6_4']) ||
+      !is_numeric($form_state['values']['e_weiai_ssyzdqk_6_5']) ||
+      !is_numeric($form_state['values']['e_weiai_ssyzdqk_6_6'])
+      ) {
+    form_set_error('form', "淋巴结转移情况的所有选项必须为数字！");
+  }
+}
+
 function _crf_validate_did(&$form_state, $key, $val = '1') {
   $v = $form_state['values'][$key];
   if (is_array($v)) {
