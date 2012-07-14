@@ -14,7 +14,7 @@ $crf_el['zhiqing_tys'] = array(
 );
 
 $crf_el['ruxuan_bz'] = array(
-  '#name' => '入选标准',
+  '#name'  => '入选标准',
   1 => array(1 => type_radios()),
   2 => array(1 => type_radios()),
   3 => array(1 => type_radios()),

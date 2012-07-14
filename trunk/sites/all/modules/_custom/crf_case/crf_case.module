@@ -91,14 +91,11 @@ function crf_case_edit() {
   if ($row) {
     $progress = json_decode($row['data']);
     
-    drupal_add_js(array('progress' => $progress), 'setting');
-      
+    /*
     $last     = array_pop($progress);
     $next     = crf_get_next_form_key($last);
-    
     $progress[] = $last;
     $progress[] = $next;
-    /*
     if (!in_array($no, $progress)) {
       drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
       return ''; 
@@ -110,9 +107,12 @@ function crf_case_edit() {
     //  drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
     //  return ''; 
     // }
+    $progress = array();
   }
-
-    
+  
+  drupal_add_js(array('progress' => $progress), 'setting');
+  
+  include_once dirname(__FILE__) . '/include/crf_validate.inc';
   return drupal_get_form("crf_case_form", $no);
 }
 
@@ -126,15 +126,22 @@ function crf_case_form(&$form_state, $arg = NULL) {
   foreach($form_elements_arr as $row => $group) {
     if (stristr($row, '#') === FALSE) {//skip #
       foreach($group as $element_no => $element) {
-  //      print "e_{$no}_{$row}_{$element_no}";
+        //print "e_{$no}_{$row}_{$element_no}";
         crf_set_element_default_value($element, $dataset, $row, $element_no);
         $form["e_{$no}_{$row}_{$element_no}"] = $element;
       }
     }
   }
   
-  $form['#theme'] = 'crf_case_form_'. $no;
-  
+  $form['#theme']    = 'crf_case_form_'. $no;
+  $form['#validate'][] = 'crf_case_form_step_validate';
+
+
+  $validate = "crf_case_form_validate_$no";
+  if (is_callable($validate)) {
+     $form['#validate'][] = $validate;
+  }
+
   if (user_access('crf case edit')) {
     $form['submit'] = array(
       '#type' => 'submit',
@@ -152,18 +159,21 @@ function crf_case_form(&$form_state, $arg = NULL) {
 }
 
 
-function crf_case_form_validate($form, &$form_state) {
-  
-  $prev = crf_get_next_form_key($no, -1);
-  $progress = crf_progress_load();
-  
-  if ($progress && $pregress['data']) {
-    $p = json_decode($progress['data']);
-    if (!in_array($prev, $p)) {
-      form_set_error(NULL, '保存顺序有问题，请按顺序填写表格！');
+function crf_case_form_step_validate($form, &$form_state) {
+  $no = arg(1);
+  //form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
+
+  if ( $no && $no != 'zhiqing_tys') {
+    $prev     = crf_get_next_form_key($no, -1);
+    $progress = crf_progress_load();
+
+    if ($progress && $progress['data']) {
+      $prog = json_decode($progress['data']);
+      if (!in_array($prev, $prog)) {
+        form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
+      }
     }
   }
-  
 }
 
 function crf_case_form_submit($form, $form_state) {
@@ -172,9 +182,20 @@ function crf_case_form_submit($form, $form_state) {
     $no = 'zhiqing_tys';
   }
   
+  if ($msg = crf_case_form_step_validate($form, $form_state)) {
+    drupal_set_message($msg, 'error');
+    return;
+  }
   
+  $hook = "crf_case_form_validate_$no";
+  if (is_callable($hook)) {
+    if ($msg = $hook($form, $form_state)) {
+      drupal_set_message($msg, 'error');
+      return;
+    }
+  }
   
-  
+
   $values  = $form_state['values'];
   $dataset = crf_ds_parse($no, $values, $form);
   
@@ -266,6 +287,34 @@ function crf_progress_load($p_uid = NULL, $reset = FALSE) {
   
   return $p[$p_uid];
 }
+
+function json_to_array($data){
+  $arr=array();
+  if (empty ($data)) {
+    return $arr;
+  }
+  
+  if (is_object($data)) {
+    $data = (array)$data;
+  }
+  
+  foreach($data as $k=>$w){
+    if(is_object($w)) {
+      $arr[$k]=json_to_array($w); //判断类型是不是object
+    }
+    else {
+      $arr[$k]=$w;
+    }
+  }
+  
+  return $arr;
+}
+
+function crf_case_init() {
+  $path = drupal_get_path('module', 'crf_case');
+  drupal_add_js($path . '/js/crf_common.js', 'module');
+}
+
 
 /**
  * Implementation of hook_theme().
@@ -847,29 +896,3 @@ function crf_case_theme() {
   );
 }
 
-function json_to_array($data){
-  $arr=array();
-  if (empty ($data)) {
-    return $arr;
-  }
-  
-  if (is_object($data)) {
-    $data = (array)$data;
-  }
-  
-  foreach($data as $k=>$w){
-    if(is_object($w)) {
-      $arr[$k]=json_to_array($w); //判断类型是不是object
-    }
-    else {
-      $arr[$k]=$w;
-    }
-  }
-  
-  return $arr;
-}
-
-function crf_case_init() {
-  $path = drupal_get_path('module', 'crf_case');
-  drupal_add_js($path . '/js/crf_common.js', 'module');
-}
