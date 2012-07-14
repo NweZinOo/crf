@@ -223,7 +223,7 @@ function crf_work_list() {
       sprintf('%03s', ++$start),
       /*$r->hospital_no,
       $hospital_name_arr[$r->hospital_no],*/
-      $r->sift,
+      $r->sift . $hospital_name_current,
       l(_add_rand($r->p_uid), 'patient/' . $r->p_uid),
       $r->p_name,
       $r->p_birthday,
