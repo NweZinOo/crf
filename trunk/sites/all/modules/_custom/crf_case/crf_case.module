@@ -137,7 +137,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
   $form['#validate'][] = 'crf_case_form_step_validate';
 
 
-  $validate = "crf_case_form_validate_$no";
+  $validate = "crf_case_validate_$no";
   if (is_callable($validate)) {
      $form['#validate'][] = $validate;
   }
