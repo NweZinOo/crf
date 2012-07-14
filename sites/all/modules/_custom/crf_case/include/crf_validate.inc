@@ -10,6 +10,13 @@ function crf_case_validate_paichu_bz($form, &$form_state){
   _crf_validate_yes($star_el, $form_state);
 }
 
+function crf_case_validate_huaiyun_knx($form, &$form_state) {
+  $values = $form_state['values'];
+  $yin    = $values['e_huaiyun_knx_2_1'];
+  if ($yin == '1') {
+    form_set_error('form', "必须为阴性，否则请核实后再填写！");
+  }
+}
 
 function _crf_validate_yes($star_el, &$form_state) {
   $values = $form_state['values'];

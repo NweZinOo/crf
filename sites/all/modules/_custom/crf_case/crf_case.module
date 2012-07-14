@@ -85,6 +85,14 @@ function crf_case_edit() {
     return drupal_not_found();
   }
   
+   $disabled = crf_common_session('disable_item');
+   if (is_array($disabled) && in_array($no, $disabled)) {
+     //禁用了，则跳过
+     $next = crf_get_next_form_key($no);
+     drupal_goto('crf_case_edit/' . $next);
+   }
+
+   
   //crf_progress_save(arg(1));
   $row = crf_progress_load();
 
@@ -111,6 +119,10 @@ function crf_case_edit() {
   }
   
   drupal_add_js(array('progress' => $progress), 'setting');
+  $disabled = crf_common_session('disable_item');
+  if (is_array($disabled) && count($disabled)) {
+     drupal_add_js(array('disabled' => $disabled), 'setting');
+  }
   
   include_once dirname(__FILE__) . '/include/crf_validate.inc';
   return drupal_get_form("crf_case_form", $no);
@@ -196,9 +208,18 @@ function crf_case_form_submit($form, $form_state) {
        )
   */
    
+   include_once dirname(__FILE__) . '/include/crf_form_save.inc';
+   
    $hook = "crf_ds_update_$no";
    if (is_callable($hook)) {
      $dataset = call_user_func_array($hook, array($no, $dataset));
+   }
+   
+   $hook = "crf_form_save_$no";
+        
+   if (is_callable($hook)) {
+     var_dump($hook);
+     call_user_func_array($hook, array($dataset, $form_state));
    }
    
    crf_ds_save($dataset, $no);
@@ -301,6 +322,7 @@ function crf_case_init() {
   $path = drupal_get_path('module', 'crf_case');
   drupal_add_js($path . '/js/crf_common.js', 'module');
 }
+
 
 
 /**
