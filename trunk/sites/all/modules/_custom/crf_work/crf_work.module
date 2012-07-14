@@ -60,22 +60,29 @@ function crf_work_add_form(&$form_state) {
   $form['sift'] = array(
     '#type' => 'textfield',
     '#title' => '筛选号',
+    '#size' => 15,
+    '#maxlength' => 3,
     '#default_value' => ''
   );
   $form['p_name'] = array(
     '#type' => 'textfield',
+    '#size' => 15,
+    '#maxlength' => 4,  
     '#title' => '受试者姓名缩写',
-    '#default_value' => ''
+    '#default_value' => '',
+    '#description' => '患者姓名拼音缩写需填满四格，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母。'
   );
   $form['p_birthday'] = array(
     '#type' => 'date_popup',
     '#date_format' => 'Y-m-d',
     '#date_year_range' => '-90:+0',
+    '#size' => 15,
     '#title' => '受试者出生日期',
   );
   $form['case_history_no'] = array(
     '#type' => 'textfield',
     '#title' => '病历号',
+    '#size' => 15,
     '#default_value' => ''
   );
   $form['approved'] = array(
@@ -88,6 +95,13 @@ function crf_work_add_form(&$form_state) {
     '#date_format' => 'Y-m-d',
     '#date_year_range' => '-90:+0',
     '#title' => '知情同意日期',
+    '#size' => 15,
+  );
+  $form['editor'] = array(
+    '#type' => 'textfield',
+    '#title' => '研究医生签名',
+    '#default_value' => '',
+    '#size' => 15
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -101,17 +115,15 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['sift'])) {
     form_set_error('sift', '筛选号不能为空!');
   }
-  else if (2 != mb_strlen($form_state['values']['sift'])){
-    form_set_error('sift', '筛选号必须为2位!');
+  else if (3 != mb_strlen($form_state['values']['sift']) || !is_numeric($form_state['values']['sift'])){
+    form_set_error('sift', '筛选号必须为3位数字!');
   }
   if (empty($form_state['values']['p_name'])) {
     form_set_error('p_name', '受试者姓名缩写不能为空!');
   }
-  else if (4 != mb_strlen($form_state['values']['p_name'])){
-    form_set_error('p_name', '受试者姓名缩写请用四个字母表示！');
+  else if (4 != mb_strlen($form_state['values']['p_name']) || !ctype_alpha($form_state['values']['p_name'])){
+    form_set_error('p_name', '受试者姓名缩写请用四个字母表示，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母！');
   }
-  
-  
   if (empty($form_state['values']['p_birthday'])) {
     form_set_error('p_birthday', '受试者出生日期不能为空!');
   }
@@ -127,6 +139,9 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['approved_time'])) {
     form_set_error('approved_time', '知情同意日期不能为空!');
   }
+  if (empty($form_state['values']['editor'])) {
+    form_set_error('editor', '研究医生签名不能为空!');
+  }
 }
 
 function crf_work_add_form_submit($form, &$form_state) {
@@ -140,7 +155,7 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
   $obj->team = '';
   $obj->apply_time = date("Y-m-d H:i:s");
-  $obj->editor = $user->uid;
+  $obj->editor = $form_state['values']['editor'];
   
   $table = 'apply';
   $r = crf_work_write_record($table, $obj);
@@ -155,7 +170,7 @@ function crf_work_add_form_submit($form, &$form_state) {
 }
 
 function crf_work_write_record($table, $obj) {
-  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", %d)';
+  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s")';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
@@ -185,7 +200,7 @@ function crf_work_list() {
     $term_arr[$v->tid] = $v->name;
   }
 
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '研究人员', '输入病历');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称',*/ '筛选号', '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '研究医生', '输入病历');
 
   $rows = array();
 
@@ -216,7 +231,7 @@ function crf_work_list() {
       $r->approved_time,
       $term_arr[$r->team],
       $r->apply_time,
-      $user_arr[$r->editor],  
+      $r->editor,  
       l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
