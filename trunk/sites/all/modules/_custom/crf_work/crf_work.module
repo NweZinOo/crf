@@ -128,7 +128,10 @@ function crf_work_add_form_validate($form, &$form_state) {
     form_set_error('p_birthday', '受试者出生日期不能为空!');
   }
   if (empty($form_state['values']['case_history_no'])) {
-    form_set_error('p_name', '病历号不能为空!');
+    form_set_error('case_history_no', '病历号不能为空!');
+  }
+  if (!ctype_alnum($form_state['values']['case_history_no'])) {
+    form_set_error('case_history_no', '病历号只能为数字和字母!');
   }
   if ($form_state['values']['approved'] == '') {
     form_set_error('approved', '受试者是否获得知情同意书需要选择一项!');
