@@ -1014,19 +1014,19 @@ div.error {
 }
 
 div.status {
-  background:#BFFFBF url(../images/status.png) no-repeat scroll 10px center;
+  background:#BFFFBF url(images/status.png) no-repeat scroll 10px center;
   color: #009900;
   border: 1px solid #009900;
 }
 
 div.warning {
-  background:#FFFFCC url(../images/warning.png) no-repeat scroll 10px center;
+  background:#FFFFCC url(images/warning.png) no-repeat scroll 10px center;
   color: #FF6600;
   border: 1px solid #FF6600;
 }
 
 div.error {
-  background:#FFD9D9 url(../images/error.png) no-repeat scroll 10px center;
+  background:#FFD9D9 url(images/error.png) no-repeat scroll 10px center;
   color: #FF0000;
   border: 1px solid #FF0000;
 }

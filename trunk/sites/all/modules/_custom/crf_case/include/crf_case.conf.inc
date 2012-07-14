@@ -4,11 +4,11 @@
  */
 
 global $crf_el;
-
+//print_r($_SESSION);
 $crf_el['zhiqing_tys'] = array(
   '#name' => '知情同意书',
   1 => array(
-    1 => type_date_popup()
+    1 => type_item($_SESSION['crf']['p_arr']['approved_time'])
   ),
     
 );
