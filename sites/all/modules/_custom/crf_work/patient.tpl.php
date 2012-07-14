@@ -29,6 +29,9 @@
   <div>
     <label>知情同意日期：</label> <span><?php echo $row['approved_time'] ?></span>
   </div>
+  <div>
+    <label>研究医生：</label> <span><?php echo $row['editor'] ?></span>
+  </div>
   <?php    
     }
   ?>
