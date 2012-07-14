@@ -11,6 +11,10 @@ if (!Array.indexOf) {
 
 $(document).ready(function() {
   var p = Drupal.settings.progress;
+  
+  var d = Drupal.settings.disabled;
+
+
   $('#sidebar-left .block-nice_menus li a').each(function(){
     var href = $(this).attr('href');
     var key  = href.split('/').pop();
@@ -25,5 +29,13 @@ $(document).ready(function() {
       $(this).addClass('inactived');
       $(this).attr('href', 'javascript:void(0)');
     }
+    
+    if (d && d.join) {
+      if (d.indexOf(key) != -1) {
+        $(this).parent().hide();
+      }
+    }
   });
+  
+  
 });
