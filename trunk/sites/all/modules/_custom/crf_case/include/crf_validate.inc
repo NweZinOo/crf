@@ -42,6 +42,29 @@ function crf_case_validate_xindian_tjc($form, &$form_state) {
   }
 }
 
+function crf_case_validate_quanshen_tgjc($form, &$form_state) {
+  if (strlen($form_state['values']['e_quanshen_tgjc_2_2']) != 3) {
+    form_set_error('e_quanshen_tgjc_2_2', "身高必须为3位！");
+  }
+  if ($form_state['values']['e_quanshen_tgjc_2_2'] > 220) {
+    form_set_error('e_quanshen_tgjc_2_2', "请输入合理的身高！");
+  }
+  if (strlen($form_state['values']['e_quanshen_tgjc_2_1']) != 3) {
+    form_set_error('e_quanshen_tgjc_2_1', "体重必须为3位！");
+  }
+  if ($form_state['values']['e_quanshen_tgjc_2_1'] > 150) {
+    form_set_error('e_quanshen_tgjc_2_1', "请输入合理的体重！");
+  }
+  if (!empty($form_state['values']['e_quanshen_tgjc_2_1']) && !empty($form_state['values']['e_quanshen_tgjc_2_2'])) {
+    //体表面积：0.0061 * 身高 + 0.0128 * 体重 - 0.1529
+    $mianji = 0.0061 * $form_state['values']['e_quanshen_tgjc_2_2'] + 0.0128 * $form_state['values']['e_quanshen_tgjc_2_1'] - 0.1529;
+    if ($form_state['values']['e_quanshen_tgjc_3_2'] != $mianji) {
+      $form_state['values']['e_quanshen_tgjc_3_2'] = $mianji;
+      drupal_set_message('根据您输入的体重和身高，体表面积自动更正为'. $mianji, 'warning');
+    }
+  }
+}
+
 function _crf_validate_did(&$form_state, $key, $val = '1') {
   $v = $form_state['values'][$key];
   if (is_array($v)) {

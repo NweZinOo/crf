@@ -20,7 +20,7 @@
     <td>过去3月内体重减轻</td>
     <td><?php print drupal_render($form[$key_pre ."_3_1"]);?>%</td>
     <td>体表面积</td>
-    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?>m2</td>
+    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?>m2<br/>(无需填写，系统会自动算出。)</td>
   </tr>
   <tr>
     <td>血压</td>
