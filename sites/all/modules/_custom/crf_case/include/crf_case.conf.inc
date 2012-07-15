@@ -70,20 +70,20 @@ $crf_el['huaiyun_knx'] = array(
 
 $crf_el['teshu_jc'] = array(
   '#name' => '特殊检查',
-    1 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    2 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    3 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    4 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    5 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    6 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    7 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    8 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    9 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    10 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    11 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未作')), 3 => type_radios(), 4 => type_textfield()),
-    12 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未作')), 4 => type_radios(), 5 => type_textfield()),
-    13 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未作')), 4 => type_radios(), 5 => type_textfield()),
-    14 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未作')), 4 => type_radios(), 5 => type_textfield()),
+    1 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    2 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    3 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    4 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    5 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    6 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    7 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    8 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    9 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    10 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    11 => array(1 => type_date_popup(), 2 => type_checkboxs(array('未做')), 3 => type_radios(), 4 => type_textfield()),
+    12 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未做')), 4 => type_radios(), 5 => type_textfield()),
+    13 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未做')), 4 => type_radios(), 5 => type_textfield()),
+    14 => array(1 => type_textfield(), 2 => type_date_popup(), 3 => type_checkboxs(array('未做')), 4 => type_radios(), 5 => type_textfield()),
 );
 
 $crf_el['xindian_tjc'] = array(
@@ -115,9 +115,9 @@ $crf_el['quanshen_tgjc'] = array(
 $crf_el['xueqing_zlbzwjc'] = array(
   '#name' => '血清肿瘤标志物检测',
     1 => array(1 => type_date_popup()),
-    2 => array(1 => type_textfield(), 2 => type_checkboxs(array('未作')), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
-    3 => array(1 => type_textfield(), 2 => type_checkboxs(array('未作')), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
-    4 => array(1 => type_textfield(), 2 => type_checkboxs(array('未作')), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
+    2 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
+    3 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
+    4 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
 );
 
 $crf_el['shiyan_sjc'] = array(
