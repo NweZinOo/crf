@@ -27,8 +27,11 @@ function type_item($default_value = NULL, $size = NULL) {
   return array('#type'=>'item', '#value' => $default_value, '#size' => $size);
 }
 
-function type_date_popup($default_value = NULL, $title = NULL) {
-  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>'-5:+5', '#title' => $title, '#default_value' => $default_value);
+function type_date_popup($default_value = NULL, $title = NULL, $date_year_range = NULL) {
+  if (empty($date_year_range)) {
+    $date_year_range = '-5:+5';
+  }
+  return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>$date_year_range, '#title' => $title, '#default_value' => $default_value);
 }
 
 function type_radios($options = NULL, $default_value = NULL, $title = NULL) {

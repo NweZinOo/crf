@@ -40,7 +40,7 @@ $crf_el['paichu_bz'] = array(
 
 $crf_el['renkou_tjx'] = array(
   '#name' => '人口统计学',
-  1 => array(1 => type_date_popup(), 2 => type_radios(array('男','女'))),
+  1 => array(1 => type_date_popup('','','-112:+0'), 2 => type_radios(array('男','女'))),
 );
 
 $crf_el['weiai_ssyzdqk'] = array(
