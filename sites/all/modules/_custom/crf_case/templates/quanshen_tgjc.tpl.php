@@ -12,15 +12,15 @@
   </tr>
   <tr>
     <td>体重</td>
-    <td><?php print drupal_render($form[$key_pre ."_2_1"]);?>kg</td>
+    <td class="v_tz"><?php print drupal_render($form[$key_pre ."_2_1"]);?>kg</td>
     <td>身高</td>
-    <td><?php print drupal_render($form[$key_pre ."_2_2"]);?>cm</td>
+    <td class="v_sg"><?php print drupal_render($form[$key_pre ."_2_2"]);?>cm</td>
   </tr>
   <tr>
     <td>过去3月内体重减轻</td>
     <td><?php print drupal_render($form[$key_pre ."_3_1"]);?>%</td>
     <td>体表面积</td>
-    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?>m2<br/>(无需填写，系统会自动算出。)</td>
+    <td id="tbmj"><?php print drupal_render($form[$key_pre ."_3_2"]);?>m2<br/>(无需填写，系统会自动算出。)</td>
   </tr>
   <tr>
     <td>血压</td>
@@ -97,3 +97,56 @@
 <?php
   print drupal_render($form);
 ?>
+<script type="text/javascript">
+  
+  function tbmj() {
+    var sg = parseInt($('.v_sg input').val());
+    var tz = parseInt($('.v_tz input').val());
+    
+    if (isNaN(tz)) {
+      alert('体重请填写数字！');
+      return false;
+    }
+    
+    if (isNaN(sg)) {
+      alert('身高请填写数字！');
+      return false;
+    }
+    
+    tbmj = 0.0061 * sg + 0.0128 * tz - 0.1529;
+    $('#tbmj input').val(tbmj.toFixed(4));
+    return true;
+  }
+  
+  $('.v_tz input').blur(
+     function(){
+       var a = parseInt($(this).val());
+       if (isNaN(a)) {
+         alert('体重请填写数字！');
+       }
+       if (a>150) {
+         alert('体重应该不能超过150KG');
+       }
+       
+     }
+  );
+    
+  $('.v_sg input').blur(
+     function(){
+       var a = parseInt($(this).val());
+       if (isNaN(a)) {
+         alert('身高请填写数字！');
+       }
+       
+       if (a>220) {
+         alert('身高应该不能超过220CM');
+       } else {
+         
+         tbmj();
+       }
+       
+     }
+  );
+  $('form').submit(tbmj);
+  
+</script>
