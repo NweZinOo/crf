@@ -152,7 +152,7 @@ $crf_el['shiyan_sjc'] = array(
 
 $crf_el['zq1_1'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_checkboxs(array('40mg','50mg','60mg')), 4 => type_textfield()),
+    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_checkboxs(array('40','50','60')), 4 => type_textfield()),
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_date_popup(), 3 => type_textfield(), 4 => type_textfield()),
 );
 
@@ -275,7 +275,7 @@ $crf_el['zhiliao_js'] = array(
     1 => array(1 => type_date_popup()),
     2 => array(1 => type_radios(), 2 => type_textfield()),
     3 => array(1 => type_date_popup()),
-    4 => array(1 => type_checkboxs(array('同时应用研究方案之外的抗肿瘤治疗','未按方案规定剂量和疗程用药','受试者出现病情进展','经剂量调整和药物暂停后受试者毒性仍然无法耐受者','受试者主动要求退出试验','研究者认为受试者有必要停止试验','院外治疗失访','死亡'))),
+    4 => array(1 => type_checkboxs(array('同时应用研究方案之外的抗肿瘤治疗','未按方案规定剂量和疗程用药','受试者出现病情进展','经剂量调整和药物暂停后受试者毒性仍然无法耐受者','受试者主动要求退出试验','研究者认为受试者有必要停止试验','院外治疗失访','死亡','其它')), 2 => type_textfield()),
 );
 
 $crf_el['xueye_zlbjwjcjghzb'] = array(

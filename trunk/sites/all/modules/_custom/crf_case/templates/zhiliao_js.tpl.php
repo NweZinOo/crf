@@ -11,7 +11,7 @@
   <tr>
     <td>是否完成治疗计划？<?php print drupal_render($form[$key_pre ."_2_1"]);?>,共完成<?php print drupal_render($form[$key_pre ."_2_2"]);?>个给药周期<br/>
         中止日期：<?php print drupal_render($form[$key_pre ."_3_1"]);?><br/>
-        中止治疗的原因：<div class='l-block'><?php print drupal_render($form[$key_pre ."_4_1"]);?></div>
+        中止治疗的原因：<div class='l-block'><?php print drupal_render($form[$key_pre ."_4_1"]);?><br/>请详细说明<?php print drupal_render($form[$key_pre ."_4_2"]);?></div>
     </td>
   </tr>    
 </table>
