@@ -49,8 +49,14 @@ $(document).ready(function(){
     });
     
     els.click(function(){
+                
+
       if ($(this).is(':checked')) {
-        confirm('选中此项，下面所有内容都不能保存，是否确定？')
+        if (confirm('选中此项，下面所有内容都不能保存，是否确定？')) {
+        }
+        else {
+          $(this).attr('checked', false);
+        }
       }
     });
   }
@@ -61,11 +67,15 @@ $(document).ready(function(){
  * msg 要提示的信息
  */
 function clear_alert(el, msg) {
-  if (!msg) {
-    msg = '由于您选择了【无】或者【未做】，因此其他内容将不被保存，是否确定？';
-  }
+  
   
   if ($(el).is(':checked')) {
+    var text = $(el).parent().text();
+    
+    if (!msg) {
+      msg = '由于您选择了【 ' + text + ' 】，因此其他内容将不被保存，是否确定？';
+    }
+  
     if(confirm(msg)) {
       reset_form();
       $(el).attr('checked', true).attr('disabled', false);

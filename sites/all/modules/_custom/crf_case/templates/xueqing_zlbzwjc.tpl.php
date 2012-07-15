@@ -33,3 +33,25 @@
 <?php
   print drupal_render($form);
 ?>
+<script type="text/javascript">
+  $('.xueqing-zlbzwjc input:checkbox').click(
+    function() {
+      if ($(this).is(':checked')) {
+        if(confirm('如果选择【未做】，其他项将被清空，是否继续？')) {
+          $(this).parents('tr').find('input:not(checkbox)').each( function(){
+             if ($(this).attr('type') == 'radio') {
+               $(this).attr('checked', false);
+             }
+             else if ($(this).attr('type') == 'text') {
+               $(this).val('');
+             }
+           }
+          );
+        }
+        else {
+          $(this).attr('checked', false);
+        }
+      }
+    }
+  );
+</script>
