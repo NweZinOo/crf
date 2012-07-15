@@ -124,10 +124,10 @@ ol li, ul li, ul.menu li, .item-list ul li, li.leaf {
 }
 
 ul li, ul.menu li, .item-list ul li, li.leaf {
-  padding: 0 0 .2em 1.5em;
+/*  padding: 0 0 .2em 1.5em;*/
   list-style-type: none;
   list-style-image: none;
-  background: transparent url(images/menu-leaf.gif) no-repeat 1px .35em; /* LTR */
+/*  background: transparent url(images/menu-leaf.gif) no-repeat 1px .35em;  LTR */
 }
 
 ol li {
