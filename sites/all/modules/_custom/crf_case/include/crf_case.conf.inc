@@ -173,7 +173,7 @@ $crf_el['zq1_2'] = array(
 
 $crf_el['zq2_1'] = array(
     '#name' => '第一周期化疗不良事件',
-    1 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
+    1 => array(1 => type_checkboxs(array('无，请跳过此表'))),
     2 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     3 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     4 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
@@ -198,9 +198,10 @@ $crf_el['zq2_1'] = array(
     23 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     24 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     25 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
-    26 => array(1 => type_textfield('',6), 2 => type_radios(array('I', 'II', 'III', 'IV')), 3 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 4 => type_textfield(), 5 => type_select(array('', '消失', '改善', '无改善', '加重')), 6 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
+    26 => array(1 => type_radios(array('I', 'II', 'III', 'IV')), 2 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 3 => type_textfield(), 4 => type_select(array('', '消失', '改善', '无改善', '加重')), 5 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     27 => array(1 => type_textfield('',6), 2 => type_radios(array('I', 'II', 'III', 'IV')), 3 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 4 => type_textfield(), 5 => type_select(array('', '消失', '改善', '无改善', '加重')), 6 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
     28 => array(1 => type_textfield('',6), 2 => type_radios(array('I', 'II', 'III', 'IV')), 3 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 4 => type_textfield(), 5 => type_select(array('', '消失', '改善', '无改善', '加重')), 6 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
+    29 => array(1 => type_textfield('',6), 2 => type_radios(array('I', 'II', 'III', 'IV')), 3 => type_select(array('', '继续用药', '减少用量', '暂停后继续用药', '停药')), 4 => type_textfield(), 5 => type_select(array('', '消失', '改善', '无改善', '加重')), 6 => type_select(array('', '肯定有关', '很可能有关', '可能有关', '可能无关', '肯定无关'))),
 );
 
 $crf_el['zq2_2'] = array(
