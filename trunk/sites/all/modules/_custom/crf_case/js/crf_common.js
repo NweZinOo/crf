@@ -20,10 +20,12 @@ $(document).ready(function() {
     var key  = href.split('/').pop();
    
     if($(this).hasClass('active')){ //current
-      
+      $(this).append("<span class='big-active'></span>")
+      $(this).parent().parent().siblings("a").append("<span class='big-active'></span>");
     }
     else if (p.indexOf(key) != -1) {
-      $(this).addClass('done').css('background', 'yellow');
+//      $(this).addClass('done').css('background', 'yellow');
+      $(this).addClass('done');
     }
     else {
       $(this).addClass('inactived');

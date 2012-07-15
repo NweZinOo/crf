@@ -1280,3 +1280,27 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   margin: 0;
 }
 
+.nice-menu .done {
+  background: url("images/done.png") no-repeat scroll 115px 0.35em transparent;
+}
+
+.nice-menu .inactived{
+  background: url("images/inactived.png") no-repeat scroll 115px 0.35em transparent;
+}
+
+.nice-menu ul .active{
+  background: url("images/active.png") no-repeat scroll 115px 0.35em transparent;
+}
+
+.nice-menu .big-active{
+  background: url("images/big_active.png") no-repeat 0 0;
+  height: 25px;
+  position: absolute;
+  right: -29px;
+  top: 1px;
+  width: 25px;
+}
+
+.nice-menu ul .big-active {
+  background: none;
+}
