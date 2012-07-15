@@ -88,3 +88,15 @@ function reset_form() {
   $("form input:checkbox").attr("checked", false);//.attr('disabled', true);;
   $("form input:text").val('');//.attr('disabled', true);;
 }
+
+
+function get_days(d1, d2) {
+  var dd1 = d1.split('-');
+  var dd2 = d2.split('-');
+  var date1   = new Date(dd1[0], dd1[1], dd1[2]);
+  var date2   = new Date(dd2[0], dd2[1], dd2[2]);
+  var one_day = 1000*60*60*24;
+  var offset  = (date2.getTime() - date1.getTime()) / one_day;
+  return offset;
+}
+
