@@ -182,7 +182,7 @@ function crf_case_form_step_validate($form, &$form_state) {
     if ($progress && $progress['data']) {
       $prog = json_decode($progress['data']);
       if (!in_array($prev, $prog)) {
-        form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
+//        form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
       }
     }
   }
