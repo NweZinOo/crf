@@ -157,7 +157,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
   if (user_access('crf case edit')) {
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value'=> '保存&继续'
+      '#value'=> $no == 'yanjiu_js' ? '保存结果' : '保存&继续'
     );
   }
   else {
