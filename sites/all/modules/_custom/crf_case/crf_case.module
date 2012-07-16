@@ -320,6 +320,12 @@ function json_to_array($data){
 
 function crf_case_init() {
   $path = drupal_get_path('module', 'crf_case');
+  //drupal_add_css($path . '/js/jquery.mb.tooltip.1.6/css/mbtooltip.css', 'module');
+  //  drupal_add_js($path . '/js/crf_common.js', 'module');
+  //drupal_add_js($path . '/js/jquery-tooltip/js/jtip.js', 'module');
+  drupal_add_js($path . '/js/vtip/vtip.js', 'module');
+  drupal_add_css($path . '/js/vtip/css/vtip.css', 'module');
+
   drupal_add_js($path . '/js/crf_common.js', 'module');
 }
 
