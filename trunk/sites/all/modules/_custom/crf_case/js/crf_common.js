@@ -102,3 +102,5 @@ function get_days(d1, d2) {
   return offset;
 }
 
+
+
