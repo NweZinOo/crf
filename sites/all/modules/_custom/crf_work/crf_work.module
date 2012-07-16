@@ -145,6 +145,12 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['editor'])) {
     form_set_error('editor', '研究医生签名不能为空!');
   }
+  if ($form_state['values']['approved_time'] < $form_state['values']['p_birthday']) {
+    form_set_error('approved_time', '知情同意日期不能早于出生日期!');
+  }
+  if (!preg_match("/[\x{4e00}-\x{9fa5}]+/u", $form_state['values']['editor'], $match)) {
+    form_set_error('editor', '研究医生签名必须为汉字!');
+  }
 }
 
 function crf_work_add_form_submit($form, &$form_state) {
