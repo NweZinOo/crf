@@ -7,7 +7,7 @@ this.vtip = function() {
     this.xOffset = -10; // x distance from mouse
     this.yOffset = 10; // y distance from mouse       
     
-    $("form input:text").unbind().hover(    
+    $("form input:text").hover(    
         function(e) {
             this.t = $(this).val();
             if (!this.t || this.t.toString().length == 0) {
