@@ -16,7 +16,7 @@
   <tr>
     <td>术后肿瘤分期</td>
     <td>TNM：T<?php print drupal_render($form[$key_pre ."_3_1"]);?> N<?php print drupal_render($form[$key_pre ."_3_2"]);?> M<?php print drupal_render($form[$key_pre ."_3_3"]);?> <br/>
-      AJCC：II<?php print drupal_render($form[$key_pre ."_3_4"]);?> IIIA<?php print drupal_render($form[$key_pre ."_3_5"]);?> IIIB<?php print drupal_render($form[$key_pre ."_3_6"]);?> IIIC<?php print drupal_render($form[$key_pre ."_3_7"]);?>
+      AJCC：<?php print drupal_render($form[$key_pre ."_3_4"]);?>
     </td>
   </tr>
   <tr>
