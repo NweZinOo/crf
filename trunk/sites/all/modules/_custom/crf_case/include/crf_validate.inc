@@ -46,31 +46,22 @@ function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
 }
 
 function crf_case_validate_shiyan_sjc($form, &$form_state) {
-  if (!is_numeric($form_state['values']['e_shiyan_sjc_2_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_3_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_4_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_5_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_6_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_7_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_9_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_11_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_12_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_13_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_14_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_15_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_16_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_17_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_18_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_19_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_20_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_21_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_22_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_23_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_24_1']) ||
-      !is_numeric($form_state['values']['e_shiyan_sjc_26_1'])
-      ) {
-    form_set_error('form', "请检查数值的内容，必须为数字！");
+  $check_field = array('e_shiyan_sjc_2_1', 'e_shiyan_sjc_3_1', 'e_shiyan_sjc_4_1', 'e_shiyan_sjc_5_1', 'e_shiyan_sjc_6_1', 'e_shiyan_sjc_7_1', 
+      'e_shiyan_sjc_9_1', 'e_shiyan_sjc_11_1', 'e_shiyan_sjc_12_1', 'e_shiyan_sjc_13_1', 'e_shiyan_sjc_14_1', 'e_shiyan_sjc_15_1', 'e_shiyan_sjc_16_1',
+      'e_shiyan_sjc_17_1', 'e_shiyan_sjc_18_1', 'e_shiyan_sjc_19_1', 'e_shiyan_sjc_20_1', 'e_shiyan_sjc_21_1', 'e_shiyan_sjc_22_1', 'e_shiyan_sjc_23_1',
+      'e_shiyan_sjc_24_1', 'e_shiyan_sjc_26_1');
+  $field_name = array('白细胞计数WBC', '中性粒细胞计数ANC', '血红蛋白HBG', '红细胞计数RBC', '红细胞比积', '血小板计数PLT', 'INR(华法令治疗者须查)',
+      '总胆红素TBIL', '结合胆红素CB', '谷丙转氨酶ALT', '谷草转氨酶AST', '总蛋白TP', '白蛋白ALB', '碱性磷酸酶ALP', '乳酸脱氢酶LDH', '尿素BUN', '肌酐CRE', 
+      '肌酐清除率Ccr', '钾K+', '钠Na+', '钙Ca2+', '尿蛋白');
+  
+  foreach($check_field as $k => $v) {
+    if (!empty($form_state['values'][$v])) {
+      if (!is_numeric($form_state['values'][$v])) {
+        form_set_error($v, "请检查\"{$field_name[$k]}\"的内容，必须为数字！");
+      }
+    }
   }
+
 }
 
 function crf_case_validate_xindian_tjc($form, &$form_state) {
