@@ -37,12 +37,17 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
 }
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
-  if (!is_numeric($form_state['values']['e_xueqing_zlbzwjc_2_1']) ||
-      !is_numeric($form_state['values']['e_xueqing_zlbzwjc_3_1']) ||
-      !is_numeric($form_state['values']['e_xueqing_zlbzwjc_4_1'])
-      ) {
-    form_set_error('form', "请检查数值的内容，必须为数字！");
+  $check_field = array('e_xueqing_zlbzwjc_2_1', 'e_xueqing_zlbzwjc_3_1', 'e_xueqing_zlbzwjc_4_1');
+  $field_name = array('CEA数值', 'CEA数值', 'CA724数值');
+  
+  foreach($check_field as $k => $v) {
+    if (!empty($form_state['values'][$v])) {
+      if (!is_numeric($form_state['values'][$v])) {
+        form_set_error($v, "请检查\"{$field_name[$k]}\"的内容，必须为数字！");
+      }
+    }
   }
+  
 }
 
 function crf_case_validate_shiyan_sjc($form, &$form_state) {
