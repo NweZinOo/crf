@@ -62,6 +62,11 @@ $(document).ready(function(){
       }
     });
   }
+  
+  var tt = setTimeout(function() {
+    $('form#user-login-form').attr("autocomplete", "off").find('#edit-name, #edit-pass').val('').attr("autocomplete", "off");
+    clearTimeout(tt);
+  }, 500);
 });
 
 /**

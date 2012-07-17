@@ -78,6 +78,8 @@ function crf_case_edit() {
   $no = arg(1);
   if (empty($no)) {
     $no = 'zhiqing_tys';
+    drupal_goto('crf_case_edit/' . $no);
+    exit;
   }
   
   if (FALSE === get_form_elements_arr($no)) {
@@ -96,7 +98,7 @@ function crf_case_edit() {
   //crf_progress_save(arg(1));
   $row = crf_progress_load();
 
-  if ($row) {
+  if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
     
     /*
