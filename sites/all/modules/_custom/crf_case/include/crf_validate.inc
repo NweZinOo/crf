@@ -57,7 +57,7 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
       'e_shiyan_sjc_24_1', 'e_shiyan_sjc_26_1');
   $field_name = array('白细胞计数WBC', '中性粒细胞计数ANC', '血红蛋白HBG', '红细胞计数RBC', '红细胞比积', '血小板计数PLT', 'INR(华法令治疗者须查)',
       '总胆红素TBIL', '结合胆红素CB', '谷丙转氨酶ALT', '谷草转氨酶AST', '总蛋白TP', '白蛋白ALB', '碱性磷酸酶ALP', '乳酸脱氢酶LDH', '尿素BUN', '肌酐CRE', 
-      '肌酐清除率Ccr', '钾K+', '钠Na+', '钙Ca2+', '尿蛋白');
+      '肌酐清除率Ccr', '钾K<sup>+</sup>', '钠Na<sup>+</sup>', '钙Ca<sup>2+</sup>', '尿蛋白');
   
   foreach($check_field as $k => $v) {
     if (!empty($form_state['values'][$v])) {
@@ -70,9 +70,9 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
 }
 
 function crf_case_validate_xindian_tjc($form, &$form_state) {
-  if (empty($form_state['values']['e_xindian_tjc_1_1'])) {
-    form_set_error('form', "检查日期不能为空！");
-  }
+//  if (empty($form_state['values']['e_xindian_tjc_1_1'])) {
+//    form_set_error('form', "检查日期不能为空！");
+//  }
 }
 
 function crf_case_validate_quanshen_tgjc($form, &$form_state) {
