@@ -9,9 +9,9 @@
   <div>
     <label>实验中心名称：</label> <span><?php global $hospital_name_arr; echo $hospital_name_arr[$row['hospital_no']] ?></span>
   </div>
-  <div>
+<!--  <div>
     <label>筛选号：</label> <span><?php echo $row['sift'] ?></span>
-  </div>
+  </div>-->
   <div>
     <label>受试者姓名缩写：</label> <span><?php echo $row['p_name'] ?></span>
   </div>
