@@ -98,16 +98,12 @@ function crf_case_edit() {
   //crf_progress_save(arg(1));
   $row = crf_progress_load();
 
-
-      
   if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
     
-    
-    if ($no == 'zq1_1') {
+    if (in_array('shiyan_sjc', $progress)) {
       crf_common_session('all_doable', 1);
     }
-    
     
     /*
     $last     = array_pop($progress);
@@ -229,15 +225,14 @@ function crf_case_form_submit($form, $form_state) {
      $dataset = call_user_func_array($hook, array($no, $dataset));
    }
    
+   crf_ds_save($dataset, $no);
+   crf_progress_save($no);
+   
    $hook = "crf_form_save_$no";
-        
    if (is_callable($hook)) {
-     var_dump($hook);
      call_user_func_array($hook, array($dataset, $form_state));
    }
    
-   crf_ds_save($dataset, $no);
-   crf_progress_save($no);
    drupal_set_message('保存成功！');
    
    $next = crf_get_next_form_key($no);

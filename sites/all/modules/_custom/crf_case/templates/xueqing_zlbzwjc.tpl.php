@@ -29,7 +29,8 @@
   $('.xueqing-zlbzwjc input:checkbox').click(
     function() {
       if ($(this).is(':checked')) {
-        if(confirm('如果选择【未做】，其他项将被清空，是否继续？')) {
+        var re = confirm('如果选择【未做】，其他项将被清空，是否继续？');
+        if(re) {
           $(this).parents('tr').find('input:not(checkbox)').each( function(){
              if ($(this).attr('type') == 'radio') {
                $(this).attr('checked', false);
@@ -46,4 +47,33 @@
       }
     }
   );
+  
+  alerted = 0;
+  $('form input[type=submit]').click(function(){
+    $('.xueqing-zlbzwjc input:checkbox').each(
+    function() {
+      if ($(this).is(':checked')) {
+        var re = true;
+        if (!alerted) {
+          re = confirm('如果选择【未做】，其他项将被清空，是否继续？');
+          alerted = 1;
+        }
+        if(re) {
+          $(this).parents('tr').find('input:not(checkbox)').each( function(){
+             if ($(this).attr('type') == 'radio') {
+               $(this).attr('checked', false);
+             }
+             else if ($(this).attr('type') == 'text') {
+               $(this).val('');
+             }
+           }
+          );
+        }
+        else {
+          $(this).attr('checked', false);
+        }
+      }
+    }
+  );
+  })
 </script>

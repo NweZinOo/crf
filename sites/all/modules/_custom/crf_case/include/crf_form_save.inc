@@ -16,3 +16,7 @@ function crf_form_save_renkou_tjx($dataset, $form_state) {
     crf_common_session('disable_item', $disabled);
   }
 }
+
+//function crf_form_save_shiyan_sjc($dataset, $form_state) {
+//  crf_common_session('all_doable', 1);
+//}
