@@ -38,7 +38,7 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
   $check_field = array('e_xueqing_zlbzwjc_2_2', 'e_xueqing_zlbzwjc_3_2', 'e_xueqing_zlbzwjc_4_2');
-  $field_name = array('CEA数值', 'CEA数值', 'CA724数值');
+  $field_name = array('CEA数值', 'CA19-9数值', 'CA724数值');
   
   foreach($check_field as $k => $v) {
     if (!empty($form_state['values'][$v])) {
@@ -48,6 +48,15 @@ function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
     }
   }
   
+  $check_arr = array('e_xueqing_zlbzwjc_2_3', 'e_xueqing_zlbzwjc_3_3', 'e_xueqing_zlbzwjc_4_3');
+  $field_name = array('e_xueqing_zlbzwjc_2_4', 'e_xueqing_zlbzwjc_3_4', 'e_xueqing_zlbzwjc_4_4');
+  foreach($check_arr as $k => $v) {
+    if ($form_state['values'][$v] == 1) {
+      if (empty($form_state['values'][$field_name[$k]])) {
+        form_set_error($field_name[$k], "选择了其它单位，请填写！");
+      }
+    }    
+  }
 }
 
 function crf_case_validate_shiyan_sjc($form, &$form_state) {
@@ -58,11 +67,21 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
   $field_name = array('白细胞计数WBC', '中性粒细胞计数ANC', '血红蛋白HBG', '红细胞计数RBC', '红细胞压积', '血小板计数PLT', 'INR(华法令治疗者须查)',
       '总胆红素TBIL', '直接胆红素CB', '谷丙转氨酶ALT', '谷草转氨酶AST', '总蛋白TP', '白蛋白ALB', '碱性磷酸酶ALP', '乳酸脱氢酶LDH', '尿素BUN', '肌酐CRE', 
       '肌酐清除率Ccr', '钾K<sup>+</sup>', '钠Na<sup>+</sup>', '钙Ca<sup>2+</sup>', '尿蛋白');
+  $field_radio = array('e_shiyan_sjc_2_3', 'e_shiyan_sjc_3_3', 'e_shiyan_sjc_4_3', 'e_shiyan_sjc_5_3', 'e_shiyan_sjc_6_3', 'e_shiyan_sjc_7_3', 
+      'e_shiyan_sjc_9_3', 'e_shiyan_sjc_11_3', 'e_shiyan_sjc_12_3', 'e_shiyan_sjc_13_3', 'e_shiyan_sjc_14_3', 'e_shiyan_sjc_15_3', 'e_shiyan_sjc_16_3',
+      'e_shiyan_sjc_17_3', 'e_shiyan_sjc_18_3', 'e_shiyan_sjc_19_3', 'e_shiyan_sjc_20_3', 'e_shiyan_sjc_21_3', 'e_shiyan_sjc_22_3', 'e_shiyan_sjc_23_3',
+      'e_shiyan_sjc_24_3', 'e_shiyan_sjc_26_3');
+  
   
   foreach($check_field as $k => $v) {
     if (!empty($form_state['values'][$v])) {
       if (!is_numeric($form_state['values'][$v])) {
         form_set_error($v, "请检查\"{$field_name[$k]}\"的内容，必须为数字！");
+      }
+      $current_radio = $field_radio[$k];
+      if ($form_state['values'][$current_radio] == '') {
+//        print $form_state['values'][$current_radio];
+        form_set_error($current_radio, "请确定\"{$field_name[$k]}\"是否有临床意义！");
       }
     }
   }
@@ -70,9 +89,17 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
 }
 
 function crf_case_validate_xindian_tjc($form, &$form_state) {
-//  if (empty($form_state['values']['e_xindian_tjc_1_1'])) {
-//    form_set_error('form', "检查日期不能为空！");
-//  }
+//  print $form_state['values']['e_xindian_tjc_2_1'];
+  if ($form_state['values']['e_xindian_tjc_2_1'] != '') {
+    if (empty($form_state['values']['e_xindian_tjc_1_1'])) {
+      form_set_error('e_xindian_tjc_1_1', "检查日期不能为空！");
+    }
+  }
+  if ($form_state['values']['e_xindian_tjc_2_1'] == 1) {
+    if (empty($form_state['values']['e_xindian_tjc_2_2'])) {
+      form_set_error('e_xindian_tjc_2_2', "如有异常，请填写说明！");
+    }
+  }  
 }
 
 function crf_case_validate_quanshen_tgjc($form, &$form_state) {
@@ -88,6 +115,12 @@ function crf_case_validate_quanshen_tgjc($form, &$form_state) {
   if ($form_state['values']['e_quanshen_tgjc_2_1'] > 150) {
     form_set_error('e_quanshen_tgjc_2_1', "请输入合理的体重！");
   }
+  if (!is_numeric($form_state['values']['e_quanshen_tgjc_4_1'])) {
+     form_set_error('e_quanshen_tgjc_4_1', "血压必须为数字！");
+  }
+  if (!is_numeric($form_state['values']['e_quanshen_tgjc_4_2'])) {
+     form_set_error('e_quanshen_tgjc_4_2', "血压必须为数字！");
+  }
   if (!empty($form_state['values']['e_quanshen_tgjc_2_1']) && !empty($form_state['values']['e_quanshen_tgjc_2_2'])) {
     //体表面积：0.0061 * 身高 + 0.0128 * 体重 - 0.1529
     $mianji = 0.0061 * $form_state['values']['e_quanshen_tgjc_2_2'] + 0.0128 * $form_state['values']['e_quanshen_tgjc_2_1'] - 0.1529;
@@ -95,6 +128,18 @@ function crf_case_validate_quanshen_tgjc($form, &$form_state) {
       $form_state['values']['e_quanshen_tgjc_3_2'] = $mianji;
       drupal_set_message('根据您输入的体重和身高，体表面积自动更正为'. $mianji, 'warning');
     }
+  }
+  
+  $check_arr = array('e_quanshen_tgjc_5_1', 'e_quanshen_tgjc_6_1', 'e_quanshen_tgjc_7_1', 'e_quanshen_tgjc_8_1', 'e_quanshen_tgjc_9_1', 'e_quanshen_tgjc_10_1', 
+          'e_quanshen_tgjc_11_1', 'e_quanshen_tgjc_12_1', 'e_quanshen_tgjc_13_1', 'e_quanshen_tgjc_14_1', 'e_quanshen_tgjc_15_1', 'e_quanshen_tgjc_16_1', );
+  $field_name = array('e_quanshen_tgjc_5_2', 'e_quanshen_tgjc_6_2', 'e_quanshen_tgjc_7_2', 'e_quanshen_tgjc_8_2', 'e_quanshen_tgjc_9_2', 'e_quanshen_tgjc_10_2', 
+          'e_quanshen_tgjc_11_2', 'e_quanshen_tgjc_12_2', 'e_quanshen_tgjc_13_2', 'e_quanshen_tgjc_14_2', 'e_quanshen_tgjc_15_2', 'e_quanshen_tgjc_16_2', );
+  foreach($check_arr as $k => $v) {
+    if ($form_state['values'][$v] == 1) {
+      if (empty($form_state['values'][$field_name[$k]])) {
+        form_set_error($field_name[$k], "选择异常的项，请填写说明！");
+      }
+    }    
   }
 }
 

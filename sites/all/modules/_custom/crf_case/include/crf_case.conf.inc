@@ -8,7 +8,7 @@ global $crf_el;
 $crf_el['zhiqing_tys'] = array(
   '#name' => '知情同意书',
   1 => array(
-    1 => type_item($_SESSION['crf']['p_arr']['approved_time'])
+    1 => type_textfield($_SESSION['crf']['p_arr']['approved_time'])
   ),
     
 );
@@ -40,7 +40,7 @@ $crf_el['paichu_bz'] = array(
 
 $crf_el['renkou_tjx'] = array(
   '#name' => '人口统计学',
-  1 => array(1 => type_date_popup('','','-112:+0'), 2 => type_radios(array('男','女'))),
+  1 => array(1 => type_textfield($_SESSION['crf']['p_arr']['p_birthday']), 2 => type_radios(array('男','女'))),
 );
 
 $crf_el['weiai_ssyzdqk'] = array(
@@ -97,7 +97,7 @@ $crf_el['quanshen_tgjc'] = array(
     1 => array(1 => type_date_popup()),
     2 => array(1 => type_textfield(), 2 => type_textfield()),
     3 => array(1 => type_textfield(), 2 => type_textfield()),
-    4 => array(1 => type_textfield(), 2 => type_select(array('0','1','2','3','4','5'))),
+    4 => array(1 => type_textfield('',2), 2 => type_textfield('',2), 3 => type_select(array('0','1','2'))),
     5 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()),
     6 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
     7 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()),
@@ -159,16 +159,16 @@ $crf_el['zq1_1'] = array(
 $crf_el['zq1_2'] = array(
     '#name' => '伴随治疗',
     1 => array(1 => type_checkboxs(array('无'))),
-    2 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    3 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    4 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    5 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    6 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    7 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    8 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    9 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    10 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    11 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    2 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    3 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    4 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    5 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    6 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    7 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    8 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    9 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    10 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    11 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '经脉给药','皮内注射','皮下注射','口服给药')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
 );
 
 $crf_el['zq2_1'] = array(
