@@ -13,8 +13,17 @@ $(document).ready(function() {
   var p = Drupal.settings.progress;
   
   var d = Drupal.settings.disabled;
+  var can = ['zhiliao_js', 'xueye_zlbjwjcjghzb', 'yanzhong_blsjjl', 'siwang_jl', 'yanjiu_js'];
 
-
+  for(var i=1; i<=5; i++) {
+    can.push('pg' + i.toString() + '_1');
+    can.push('pg' + i.toString() + '_2');
+    can.push('pg' + i.toString() + '_3');
+    can.push('pg' + i.toString() + '_4');
+    can.push('pg' + i.toString() + '_5');
+    can.push('pg' + i.toString() + '_6');
+  }
+  
   $('#sidebar-left .block-nice_menus li a').each(function(){
     var href = $(this).attr('href');
     var key  = href.split('/').pop();
@@ -24,12 +33,15 @@ $(document).ready(function() {
       $(this).parent().parent().siblings("a").append("<span class='big-active'></span>");
     }
     else if (p.indexOf(key) != -1) {
-//      $(this).addClass('done').css('background', 'yellow');
+//    $(this).addClass('done').css('background', 'yellow');
       $(this).addClass('done');
+    }
+    else if (can.indexOf(key) != -1) {
+      $(this).addClass('doable');
     }
     else {
       $(this).addClass('inactived');
-      $(this).attr('href', 'javascript:void(0)');
+      $(this).attr('href', 'javascript:alert("目前不能编辑该项，请按顺序完成！")');
     }
     
     if (d && d.join) {
