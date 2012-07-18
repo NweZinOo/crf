@@ -24,9 +24,9 @@
   </tr>
   <tr>
     <td>血压</td>
-    <td><?php print drupal_render($form[$key_pre ."_4_1"]);?>mmHg</td>
+    <td><?php print drupal_render($form[$key_pre ."_4_1"]);?>/<?php print drupal_render($form[$key_pre ."_4_2"]);?>mmHg</td>
     <td>ECOG PS评分</td>
-    <td><?php print drupal_render($form[$key_pre ."_4_2"]);?>分</td>
+    <td><?php print drupal_render($form[$key_pre ."_4_3"]);?>分</td>
   </tr>
   <tr>
     <td>检查项目</td>
