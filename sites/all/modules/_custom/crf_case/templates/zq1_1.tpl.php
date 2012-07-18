@@ -3,7 +3,7 @@
 ?>
 <table class="<?php print $class?>" border="1">
   <tr class="title">
-    <td class="title" colspan="4"><h2><?php print $table_name?></h2> <div><?php print drupal_render($form[$key_pre ."_1_1"]);?></div>
+    <td class="title" colspan="4"><h2><?php print $table_name?></h2>
     </td>
   </tr>
   <tr>
