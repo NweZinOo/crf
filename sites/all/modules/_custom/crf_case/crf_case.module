@@ -102,7 +102,7 @@ function crf_case_edit() {
     $progress = json_decode($row['data']);
     
     if (in_array('shiyan_sjc', $progress)) {
-      crf_common_session('all_doable', 1);
+      drupal_add_js(array('all_doable' => 1), 'setting');
     }
     
     /*
@@ -124,11 +124,7 @@ function crf_case_edit() {
     $progress = array();
   }
   
-  $all_doable = crf_common_session('all_doable');
-  drupal_add_js(array('all_doable' => $all_doable), 'setting');
   drupal_add_js(array('progress' => $progress), 'setting');
-  
-  
   $disabled = crf_common_session('disable_item');
   if (is_array($disabled) && count($disabled)) {
      drupal_add_js(array('disabled' => $disabled), 'setting');
