@@ -14,7 +14,7 @@ $(document).ready(function() {
   
   var d = Drupal.settings.disabled;
   
-  if (Drupal.settings.all_doable === true) {
+  if (Drupal.settings.all_doable == 1) {
     //nothing
   }
   else {
