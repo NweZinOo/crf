@@ -224,7 +224,7 @@ $crf_el['zq2_3'] = array(
 
 $crf_el['zq2_4'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_checkboxs(array('40mg','50mg','60mg')), 6 => type_textfield()),
+    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_checkboxs(array('40','50','60')), 6 => type_textfield()),
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield('',8), 6 => type_textfield()),
 );
 

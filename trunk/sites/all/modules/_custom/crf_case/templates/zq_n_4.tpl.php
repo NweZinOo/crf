@@ -50,7 +50,13 @@
 </table>
 <table>
 <tr><td>
+<?php
+if(arg(1) == 'zq8_4' || arg(1) == 'zq12_4' || arg(1) == 'zq16_4') {
+?>
 <u><i>请进行疗效与安全性评估，并完成《临床评估》表。</i></u>
+<?php
+}
+?>
 </td></tr>
 </table>
 <?php

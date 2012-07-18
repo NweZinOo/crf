@@ -118,6 +118,11 @@
     <td><?php print drupal_render($form[$key_pre ."_11_8"]);?></td>    
   </tr>
 </table>
+<table>
+<tr><td>
+<u><i>请进行疗效与安全性评估，并完成《临床评估》表。</i></u>
+</td></tr>
+</table>
 <?php
   print drupal_render($form);
 ?>
