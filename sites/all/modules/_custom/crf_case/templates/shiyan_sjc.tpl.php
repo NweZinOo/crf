@@ -38,7 +38,7 @@
     <td><?php print drupal_render($form[$key_pre ."_5_3"]);?></td>
   </tr>
   <tr>
-    <td>红细胞比积</td>
+    <td>红细胞压积</td>
     <td><?php print drupal_render($form[$key_pre ."_6_1"]);?></td>
     <td>%</td>
     <td><?php print drupal_render($form[$key_pre ."_6_2"]);?></td>
@@ -57,7 +57,7 @@
     <td><?php print drupal_render($form[$key_pre ."_11_2"]);?><?php print drupal_render($form[$key_pre ."_11_3"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_11_4"]);?></td>
   </tr>
-  <td>结合胆红素CB</td>
+  <td>直接胆红素CB</td>
     <td><?php print drupal_render($form[$key_pre ."_12_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_12_2"]);?><?php print drupal_render($form[$key_pre ."_12_3"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_12_4"]);?></td>
