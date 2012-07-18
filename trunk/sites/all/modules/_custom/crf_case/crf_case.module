@@ -129,7 +129,7 @@ function crf_case_edit() {
   }
   
   $all_doable = crf_common_session('all_doable');
-  drupal_add_js(array('progress' => $all_doable), 'setting');
+  drupal_add_js(array('all_doable' => $all_doable), 'setting');
   drupal_add_js(array('progress' => $progress), 'setting');
   
   

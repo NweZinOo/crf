@@ -42,7 +42,7 @@ $(document).ready(function() {
 //    $(this).addClass('done').css('background', 'yellow');
       $(this).addClass('done');
     }
-    else if (Drupal.settings.all_doable === true || can.indexOf(key) != -1) {
+    else if (Drupal.settings.all_doable == 1 || can.indexOf(key) != -1) {
       $(this).addClass('doable');
     }
     else {
