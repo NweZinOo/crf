@@ -41,6 +41,7 @@ function crf_common_session($key, $value = null) {
   if (isset($_SESSION['crf'][$key])) {    
     return $_SESSION['crf'][$key];  
   }
+  return FALSE;
 }
 
 function crf_common_user($op, &$edit, &$account, $category = NULL) {
