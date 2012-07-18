@@ -19,9 +19,38 @@ function crf_case_validate_huaiyun_knx($form, &$form_state) {
 }
 
 function crf_case_validate_zq2_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq2_2_2_2', 'e_zq2_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq2_2_3_2', 'e_zq2_2_3_3');
+}
+function crf_case_validate_zq3_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq3_2_2_2', 'e_zq3_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq3_2_3_2', 'e_zq3_2_3_3');
+}
+function crf_case_validate_zq4_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq4_2_2_2', 'e_zq4_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq4_2_3_2', 'e_zq4_2_3_3');
+}
+function crf_case_validate_zq5_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq5_2_2_2', 'e_zq5_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq5_2_3_2', 'e_zq5_2_3_3');
+}
+function crf_case_validate_zq6_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq6_2_2_2', 'e_zq6_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq6_2_3_2', 'e_zq6_2_3_3');
+}
+function crf_case_validate_zq7_2($form, &$form_state) {
+  _check_zq_jianliang($form_state, 'e_zq7_2_2_2', 'e_zq7_2_2_3');
+  _check_zq_jianliang($form_state, 'e_zq7_2_3_2', 'e_zq7_2_3_3');
 }
 
 function crf_case_validate_zq2_3($form, &$form_state) {
+}
+
+function _check_zq_jianliang(&$form_state, $check_field, $text_field) {
+  if ($form_state['values'][$check_field][1] != 0 || $form_state['values'][$check_field][2] != 0) {
+    if (empty($form_state['values'][$text_field]))
+    form_set_error($text_field, "如果选择了减量或延迟，必须填写主要原因！");
+  }
 }
 
 function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
