@@ -115,9 +115,9 @@ $crf_el['quanshen_tgjc'] = array(
 $crf_el['xueqing_zlbzwjc'] = array(
   '#name' => '血清肿瘤标志物检测',
     1 => array(1 => type_date_popup()),
-    2 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
-    3 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
-    4 => array(1 => type_textfield(), 2 => type_radios(array('ng/ml','其它')), 3 => type_textfield(), 4 => type_checkboxs(array('未做'))),
+    2 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
+    3 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
+    4 => array(1 => type_checkboxs(array('未做')), 2 => type_textfield(), 3 => type_radios(array('ng/ml','其它')), 4 => type_textfield()),
 );
 
 $crf_el['shiyan_sjc'] = array(
