@@ -98,8 +98,16 @@ function crf_case_edit() {
   //crf_progress_save(arg(1));
   $row = crf_progress_load();
 
+
+      
   if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
+    
+    
+    if ($no == 'zq1_1') {
+      crf_common_session('all_doable', 1);
+    }
+    
     
     /*
     $last     = array_pop($progress);
@@ -120,7 +128,11 @@ function crf_case_edit() {
     $progress = array();
   }
   
+  $all_doable = crf_common_session('all_doable');
+  drupal_add_js(array('progress' => $all_doable), 'setting');
   drupal_add_js(array('progress' => $progress), 'setting');
+  
+  
   $disabled = crf_common_session('disable_item');
   if (is_array($disabled) && count($disabled)) {
      drupal_add_js(array('disabled' => $disabled), 'setting');
