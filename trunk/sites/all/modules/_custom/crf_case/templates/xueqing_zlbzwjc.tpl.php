@@ -10,16 +10,16 @@
     <td colspan="2">取样日期:<?php print drupal_render($form[$key_pre ."_1_1"]);?></td>
   </tr>
   <tr>
-    <td>CEA</td>
-    <td>数值：<?php print drupal_render($form[$key_pre ."_2_1"]);?>  单位：<?php print drupal_render($form[$key_pre ."_2_2"]);?><?php print drupal_render($form[$key_pre ."_2_3"]);?><?php print drupal_render($form[$key_pre ."_2_4"]);?><?php print drupal_render($form[$key_pre ."_2_5"]);?></td>
+    <td>CEA <?php print drupal_render($form[$key_pre ."_2_1"]);?></td>
+    <td>数值：<?php print drupal_render($form[$key_pre ."_2_2"]);?>  单位：<?php print drupal_render($form[$key_pre ."_2_3"]);?><?php print drupal_render($form[$key_pre ."_2_4"]);?><?php print drupal_render($form[$key_pre ."_2_5"]);?></td>
   </tr>
   <tr>
-    <td>CA19-9</td>
-    <td>数值：<?php print drupal_render($form[$key_pre ."_3_1"]);?>  单位：<?php print drupal_render($form[$key_pre ."_3_2"]);?><?php print drupal_render($form[$key_pre ."_3_3"]);?><?php print drupal_render($form[$key_pre ."_3_4"]);?><?php print drupal_render($form[$key_pre ."_3_5"]);?></td>
+    <td>CA19-9 <?php print drupal_render($form[$key_pre ."_3_1"]);?></td>
+    <td>数值：<?php print drupal_render($form[$key_pre ."_3_2"]);?>  单位：<?php print drupal_render($form[$key_pre ."_3_3"]);?><?php print drupal_render($form[$key_pre ."_3_4"]);?><?php print drupal_render($form[$key_pre ."_3_5"]);?></td>
   </tr>
   <tr>
-    <td>CA724</td>
-    <td>数值：<?php print drupal_render($form[$key_pre ."_4_1"]);?>  单位：<?php print drupal_render($form[$key_pre ."_4_2"]);?><?php print drupal_render($form[$key_pre ."_4_3"]);?><?php print drupal_render($form[$key_pre ."_4_4"]);?><?php print drupal_render($form[$key_pre ."_4_5"]);?></td>
+    <td>CA724 <?php print drupal_render($form[$key_pre ."_4_1"]);?></td>
+    <td>数值：<?php print drupal_render($form[$key_pre ."_4_2"]);?>  单位：<?php print drupal_render($form[$key_pre ."_4_3"]);?><?php print drupal_render($form[$key_pre ."_4_4"]);?><?php print drupal_render($form[$key_pre ."_4_5"]);?></td>
   </tr>
 </table>
 <?php

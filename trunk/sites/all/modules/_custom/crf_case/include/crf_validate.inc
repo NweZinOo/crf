@@ -37,7 +37,7 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
 }
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
-  $check_field = array('e_xueqing_zlbzwjc_2_1', 'e_xueqing_zlbzwjc_3_1', 'e_xueqing_zlbzwjc_4_1');
+  $check_field = array('e_xueqing_zlbzwjc_2_2', 'e_xueqing_zlbzwjc_3_2', 'e_xueqing_zlbzwjc_4_2');
   $field_name = array('CEA数值', 'CEA数值', 'CA724数值');
   
   foreach($check_field as $k => $v) {
