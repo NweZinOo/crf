@@ -49,7 +49,7 @@ function type_select($options = NULL, $default_value = 0, $title = NULL) {
 }
 
 function type_checkboxs($options, $default_value = array()) {
-  if ($options[0]) {
+  if (isset($options[0])) {
     //start with 0, we need start with 1
     
     $new_opt = array();
