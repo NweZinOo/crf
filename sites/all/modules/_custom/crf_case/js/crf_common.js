@@ -14,11 +14,13 @@ $(document).ready(function() {
   
   var d = Drupal.settings.disabled;
   
+  var can = [];
+  
   if (Drupal.settings.all_doable == 1) {
     //nothing
   }
-  else {
-    var can = [/*'zhiliao_js', 'xueye_zlbjwjcjghzb', 'yanzhong_blsjjl', */'siwang_jl', 'yanjiu_js'];
+  else if (false) {
+    can = [/*'zhiliao_js', 'xueye_zlbjwjcjghzb', 'yanzhong_blsjjl', */'siwang_jl', 'yanjiu_js'];
 
     for(var i=1; i<=5; i++) {
       can.push('pg' + i.toString() + '_1');
