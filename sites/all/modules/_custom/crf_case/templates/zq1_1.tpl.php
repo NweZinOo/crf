@@ -53,7 +53,7 @@
          }
        }
      });
-     $('.total input:text').val(unit * days);
+     $('.total input:text').val(unit * 14 * 2);s
    }
  }
  
