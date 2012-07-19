@@ -68,6 +68,46 @@ function crf_case_validate_zq7_2($form, &$form_state) {
 
 function crf_case_validate_zq2_3($form, &$form_state) {
 }
+//周期给药时间大于上一周期给药时间
+function crf_case_validate_zq2_4($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+  if (!empty($form_state['values']['e_zq2_4_1_3'])) {
+    if (crf_ds_s_time($form_state['values']['e_zq2_4_1_3']) < $data[1][1]) {
+      form_set_error('e_zq2_4_1_3', "给药日期不能小于第一周期给药的日期！");
+    }
+    if (crf_ds_s_time($form_state['values']['e_zq2_4_1_3']) >= crf_ds_s_time($form_state['values']['e_zq2_4_1_4'])) {
+      form_set_error('e_zq2_4_1_4', "结束日期应大于起始日期！");
+    }
+  }
+  if (!empty($form_state['values']['e_zq2_4_2_4'])) {
+    if (crf_ds_s_time($form_state['values']['e_zq2_4_2_4']) < $data[2][2]) {
+      form_set_error('e_zq2_4_2_4', "给药日期不能小于第一周期给药的日期！");
+    }
+  }
+}
+function crf_case_validate_zq3_4($form, &$form_state) {
+  _check_zq_date($form_state, 'zq2_4', 'e_zq3_4_1_3', 'e_zq3_4_1_4', 'e_zq3_4_2_4', '第二周期');
+}
+
+function _check_zq_date(&$form_state, $last_table, $e1_1, $e1_2, $e2, $last_zq_name) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load($last_table, $p_uid));
+//  print_r($data);exit;
+  if (!empty($form_state['values'][$e1_1])) {
+    if (crf_ds_s_time($form_state['values'][$e1_1]) < $data[1][4]) {
+      form_set_error($e1_1, "给药日期要大于{$last_zq_name}给药的日期！");
+    }
+    if (crf_ds_s_time($form_state['values'][$e1_1]) >= crf_ds_s_time($form_state['values'][$e1_2])) {
+      form_set_error($e1_2, "结束日期应大于起始日期！");
+    }
+  }  
+  if (!empty($form_state['values'][$e2])) {
+    if (crf_ds_s_time($form_state['values'][$e2]) < $data[2][4]) {
+      form_set_error($e2, "给药日期要大于{$last_zq_name}给药的日期！");
+    }
+  }  
+}
 
 function _check_zq_jianliang(&$form_state, $check_field, $text_field) {
   if ($form_state['values'][$check_field][1] != 0 || $form_state['values'][$check_field][2] != 0) {
