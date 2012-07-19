@@ -61,3 +61,12 @@ function crf_ds_load($name, $p_uid = NULL) {
     return FALSE;
   }
 }
+
+function crf_ds_s_data($name) {
+  return $_SESSION['crf']['p_arr'][$name];
+}
+
+function crf_ds_s_time($t) {
+  return substr($t, 0, 10);
+}
+

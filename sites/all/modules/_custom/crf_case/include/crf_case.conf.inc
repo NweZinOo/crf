@@ -254,9 +254,9 @@ $crf_el['zq8_3'] = array(
 $crf_el['zq8_4'] = array(
     '#name' => '伴随治疗',
     1 => array(1 => type_checkboxs(array('无'))),
-    2 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    3 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
-    4 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    2 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '给药途径','皮内注射','皮下注射','口服给药','肌肉注射')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    3 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '给药途径','皮内注射','皮下注射','口服给药','肌肉注射')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
+    4 => array(1 => type_textfield('',10), 2 => type_textfield('',10), 3 => type_select(array('', '给药途径','皮内注射','皮下注射','口服给药','肌肉注射')), 4 => type_radios(array('','')), 5 => type_textfield('',10), 6 => type_date_popup(), 7 => type_date_popup(), 8 => type_checkboxs(array(''))),
 );
 
 //9-16 table
