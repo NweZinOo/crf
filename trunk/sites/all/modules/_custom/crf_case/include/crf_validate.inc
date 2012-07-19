@@ -18,6 +18,29 @@ function crf_case_validate_huaiyun_knx($form, &$form_state) {
   }
 }
 
+function crf_case_validate_teshu_jc($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+//  print_r($data);exit;
+  $check_arr = array('e_teshu_jc_1_1', 'e_teshu_jc_2_1', 'e_teshu_jc_3_1', 'e_teshu_jc_4_1', 'e_teshu_jc_5_1', 'e_teshu_jc_6_1', 
+      'e_teshu_jc_7_1', 'e_teshu_jc_8_1', 'e_teshu_jc_9_1', 'e_teshu_jc_10_1', 'e_teshu_jc_11_1', 'e_teshu_jc_12_2', 'e_teshu_jc_13_2', 'e_teshu_jc_14_2');
+  $check_name = array('胸部X线检查','腹部CT检查','腹部MRI','盆腔CT检查','盆腔MRI','胸部CT检查','胸部MRI','头颅CT检查','头颅MRI','骨扫描','全身PET/CT','详细说明','详细说明','详细说明');
+  foreach ($check_arr as $k => $v) {
+    if (!empty($form_state['values'][$v])) {
+      if (crf_ds_s_time($form_state['values'][$v]) > $_SESSION['crf']['p_arr']['approved_time']) {
+        print 'x'.crf_ds_s_time($form_state['values'][$v]).'x';
+        print 'y'.$_SESSION['crf']['p_arr']['approved_time'].'y';
+        form_set_error($v, $check_name[$k] ."的评估日期不能大于知情同意书的日期(". $_SESSION['crf']['p_arr']['approved_time'] .")！");
+      }
+    }
+    if (!empty($form_state['values'][$v]) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+      if ($form_state['values'][$v] > $data[1][1] || $form_state['values'][$v] > $data[2][2]) {
+        form_set_error($v, $check_name[$k] ."的评估日期不能大于第一周期给药的日期！");
+      }
+    }
+  }  
+}
+
 function crf_case_validate_zq2_2($form, &$form_state) {
   _check_zq_jianliang($form_state, 'e_zq2_2_2_2', 'e_zq2_2_2_3');
   _check_zq_jianliang($form_state, 'e_zq2_2_3_2', 'e_zq2_2_3_3');
@@ -66,6 +89,14 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
 }
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+  if (!empty($form_state['values']['e_xueqing_zlbzwjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+    if ($form_state['values']['e_xueqing_zlbzwjc_1_1'] > $data[1][1] || $form_state['values']['e_xueqing_zlbzwjc_1_1'] > $data[2][2]) {
+      form_set_error('e_xueqing_zlbzwjc_1_1', "检查日期不能大于第一周期给药的日期！");
+    }
+  }
+  
   $check_field = array('e_xueqing_zlbzwjc_2_2', 'e_xueqing_zlbzwjc_3_2', 'e_xueqing_zlbzwjc_4_2');
   $field_name = array('CEA数值', 'CA19-9数值', 'CA724数值');
   
@@ -89,6 +120,13 @@ function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
 }
 
 function crf_case_validate_shiyan_sjc($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+  if (!empty($form_state['values']['e_shiyan_sjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+    if ($form_state['values']['e_shiyan_sjc_1_1'] > $data[1][1] || $form_state['values']['e_shiyan_sjc_1_1'] > $data[2][2]) {
+      form_set_error('e_shiyan_sjc_1_1', "检查日期不能大于第一周期给药的日期！");
+    }
+  }
   $check_field = array('e_shiyan_sjc_2_1', 'e_shiyan_sjc_3_1', 'e_shiyan_sjc_4_1', 'e_shiyan_sjc_5_1', 'e_shiyan_sjc_6_1', 'e_shiyan_sjc_7_1', 
       'e_shiyan_sjc_9_1', 'e_shiyan_sjc_11_1', 'e_shiyan_sjc_12_1', 'e_shiyan_sjc_13_1', 'e_shiyan_sjc_14_1', 'e_shiyan_sjc_15_1', 'e_shiyan_sjc_16_1',
       'e_shiyan_sjc_17_1', 'e_shiyan_sjc_18_1', 'e_shiyan_sjc_19_1', 'e_shiyan_sjc_20_1', 'e_shiyan_sjc_21_1', 'e_shiyan_sjc_22_1', 'e_shiyan_sjc_23_1',
@@ -119,6 +157,8 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
 
 function crf_case_validate_xindian_tjc($form, &$form_state) {
 //  print $form_state['values']['e_xindian_tjc_2_1'];
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
   if ($form_state['values']['e_xindian_tjc_2_1'] != '') {
     if (empty($form_state['values']['e_xindian_tjc_1_1'])) {
       form_set_error('e_xindian_tjc_1_1', "检查日期不能为空！");
@@ -129,9 +169,21 @@ function crf_case_validate_xindian_tjc($form, &$form_state) {
       form_set_error('e_xindian_tjc_2_2', "如有异常，请填写说明！");
     }
   }  
+  if (!empty($form_state['values']['e_xindian_tjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+    if ($form_state['values']['e_xindian_tjc_1_1'] > $data[1][1] || $form_state['values']['e_xindian_tjc_1_1'] > $data[2][2]) {
+      form_set_error('e_xindian_tjc_1_1', "检查日期不能大于第一周期给药的日期！");
+    }
+  }
 }
 
 function crf_case_validate_quanshen_tgjc($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+  if (!empty($form_state['values']['e_quanshen_tgjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+    if ($form_state['values']['e_quanshen_tgjc_1_1'] > $data[1][1] || $form_state['values']['e_quanshen_tgjc_1_1'] > $data[2][2]) {
+      form_set_error('e_quanshen_tgjc_1_1', "检查日期不能大于第一周期给药的日期！");
+    }
+  }
   if (strlen($form_state['values']['e_quanshen_tgjc_2_2']) != 3) {
     form_set_error('e_quanshen_tgjc_2_2', "身高必须为3位！");
   }
