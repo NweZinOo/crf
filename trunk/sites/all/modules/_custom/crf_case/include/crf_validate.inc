@@ -96,10 +96,10 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
   $field_name = array('白细胞计数WBC', '中性粒细胞计数ANC', '血红蛋白HBG', '红细胞计数RBC', '红细胞压积', '血小板计数PLT', 'INR(华法令治疗者须查)',
       '总胆红素TBIL', '直接胆红素CB', '谷丙转氨酶ALT', '谷草转氨酶AST', '总蛋白TP', '白蛋白ALB', '碱性磷酸酶ALP', '乳酸脱氢酶LDH', '尿素BUN', '肌酐CRE', 
       '肌酐清除率Ccr', '钾K<sup>+</sup>', '钠Na<sup>+</sup>', '钙Ca<sup>2+</sup>', '尿蛋白');
-  $field_radio = array('e_shiyan_sjc_2_3', 'e_shiyan_sjc_3_3', 'e_shiyan_sjc_4_3', 'e_shiyan_sjc_5_3', 'e_shiyan_sjc_6_3', 'e_shiyan_sjc_7_3', 
-      'e_shiyan_sjc_9_3', 'e_shiyan_sjc_11_3', 'e_shiyan_sjc_12_3', 'e_shiyan_sjc_13_3', 'e_shiyan_sjc_14_3', 'e_shiyan_sjc_15_3', 'e_shiyan_sjc_16_3',
-      'e_shiyan_sjc_17_3', 'e_shiyan_sjc_18_3', 'e_shiyan_sjc_19_3', 'e_shiyan_sjc_20_3', 'e_shiyan_sjc_21_3', 'e_shiyan_sjc_22_3', 'e_shiyan_sjc_23_3',
-      'e_shiyan_sjc_24_3', 'e_shiyan_sjc_26_3');
+  $field_radio = array('e_shiyan_sjc_2_3', 'e_shiyan_sjc_3_3', 'e_shiyan_sjc_4_3', 'e_shiyan_sjc_5_3', 'e_shiyan_sjc_6_2', 'e_shiyan_sjc_7_3', 
+      'e_shiyan_sjc_9_2', 'e_shiyan_sjc_11_4', 'e_shiyan_sjc_12_4', 'e_shiyan_sjc_13_4', 'e_shiyan_sjc_14_4', 'e_shiyan_sjc_15_4', 'e_shiyan_sjc_16_4',
+      'e_shiyan_sjc_17_4', 'e_shiyan_sjc_18_4', 'e_shiyan_sjc_19_4', 'e_shiyan_sjc_20_4', 'e_shiyan_sjc_21_4', 'e_shiyan_sjc_22_4', 'e_shiyan_sjc_23_4',
+      'e_shiyan_sjc_24_4', 'e_shiyan_sjc_26_4');
   
   
   foreach($check_field as $k => $v) {
