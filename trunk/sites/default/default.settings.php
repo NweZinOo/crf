@@ -269,3 +269,5 @@ ini_set('url_rewriter.tags',        '');
  * threshold has elapsed since installation.
  */
 # $conf['pressflow_smart_start'] = TRUE;
+
+$conf['cache_inc'] ='sites/all/modules/contrib/memcache/memcache.inc';
