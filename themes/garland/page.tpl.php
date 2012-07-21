@@ -26,15 +26,18 @@
           </h1>
           <div id="slagon-floater">
             <span>
-              <?php echo date('M d, Y'); ?>
+              <?php $block = module_invoke('autologout', 'block', 'view', "0"); ?>
+              
+              <?php echo date('M d, Y'); ?> 
               <br/>
               <?php 
               global $user, $hospital_name_arr;
               $hospital = $hospital_name_arr[$user->profile_hospital_no];
               
               echo $hospital, ' ', $user->name, ' 您好！ ', l('修改密码', 'user/'. $user->uid .'/edit');
-              
               ?>
+              
+              <span class="logout-timer" style="color: greenYellow"> 登录有效时间：<?php print $block['content'];?></span>
             </span>
           </div>
         </div>
