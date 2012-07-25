@@ -26,7 +26,7 @@
     <td><?php print drupal_render($form[$key_pre ."_3_3"]);?></td>
   </tr>
   <tr>
-    <td>血红蛋白HBG</td>
+    <td>血红蛋白HGB</td>
     <td><?php print drupal_render($form[$key_pre ."_4_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_4_2"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_4_3"]);?></td>
@@ -57,7 +57,7 @@
     <td><?php print drupal_render($form[$key_pre ."_11_2"]);?><?php print drupal_render($form[$key_pre ."_11_3"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_11_4"]);?></td>
   </tr>
-  <td>直接胆红素CB</td>
+  <td>直接胆红素DB</td>
     <td><?php print drupal_render($form[$key_pre ."_12_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_12_2"]);?><?php print drupal_render($form[$key_pre ."_12_3"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_12_4"]);?></td>
