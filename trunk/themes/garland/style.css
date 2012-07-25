@@ -1235,9 +1235,9 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 */
 .background {
   background: url(images/front_back.jpg) no-repeat;
-  width: 900px;
-  height:650px;
-  margin: 50px auto;
+  width: 1026px;
+  height:768px;
+  margin: 20px auto;
 }
 .background #edit-captcha-response-wrapper #edit-captcha-response,
 .background #edit-captcha-response-wrapper label,
@@ -1246,6 +1246,27 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 .background #edit-name-wrapper #edit-name,
 .background #edit-name-wrapper label {
   display: inline-block;
+}
+
+.background #edit-name-wrapper label,
+.background #edit-pass-wrapper label,
+.background #edit-captcha-response-wrapper label {
+  font-size: 14px;
+  color: #ee7701;
+}
+
+.background #edit-captcha-response-wrapper #edit-captcha-response,
+.background #edit-pass-wrapper #edit-pass,
+.background #edit-name-wrapper #edit-name {
+  background: url(images/text_bg.gif) no-repeat scroll center top transparent;  
+  border: 0 none;
+  clear: both;
+  color: #494949;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 14px;
+  width: 257px;
+  height: 47px;
 }
 
 .background .content {
@@ -1261,15 +1282,29 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 }
 
 .background .captcha #image-captcha-image {
-  bottom: 70px;
+  bottom: 87px;
   display: block;
   position: absolute;
-  right: 285px;
+  right: 276px;
 }
 
 .background #image_captcha_refresh {
+  bottom: 76px;
   position: absolute;
-  right: 192px;
+  right: 186px;
+}
+
+#user-login-form #edit-submit {
+  background: url(images/login_bg.png) no-repeat scroll center top transparent; 
+  height: 36px;
+  text-indent: -9000px;
+  width: 131px;
+  border: none;
+  cursor: pointer;
+}
+
+#user-login-form #edit-submit:hover {
+  background: url(images/login_bg.png) no-repeat scroll center -36px transparent;
 }
 
 .background #image_captcha_refresh a {
