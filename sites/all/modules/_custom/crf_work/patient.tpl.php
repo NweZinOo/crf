@@ -32,6 +32,9 @@
   <div>
     <label>研究医生：</label> <span><?php echo $row['editor'] ?></span>
   </div>
+  <div>
+    <label>手机号：</label> <span><?php echo $row['phone'] ?></span>
+  </div>
   <?php    
     }
   ?>

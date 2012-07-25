@@ -230,8 +230,8 @@ function crf_case_validate_quanshen_tgjc($form, &$form_state) {
   if ($form_state['values']['e_quanshen_tgjc_2_2'] > 220) {
     form_set_error('e_quanshen_tgjc_2_2', "请输入合理的身高！");
   }
-  if (strlen($form_state['values']['e_quanshen_tgjc_2_1']) != 3) {
-    form_set_error('e_quanshen_tgjc_2_1', "体重必须为3位！");
+  if (strlen($form_state['values']['e_quanshen_tgjc_2_1']) != 3 && strlen($form_state['values']['e_quanshen_tgjc_2_1']) != 2) {
+    form_set_error('e_quanshen_tgjc_2_1', "体重必须为2位或者3位！");
   }
   if ($form_state['values']['e_quanshen_tgjc_2_1'] > 150) {
     form_set_error('e_quanshen_tgjc_2_1', "请输入合理的体重！");
