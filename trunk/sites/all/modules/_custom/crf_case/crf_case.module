@@ -169,7 +169,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
   else {
     drupal_add_js('
      $(function(){
-       $("input").attr("disabled", "disabled");
+       $("input,select").attr("disabled", "disabled");
      });
     ', 'inline');
   }
