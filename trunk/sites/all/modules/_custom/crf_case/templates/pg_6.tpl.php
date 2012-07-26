@@ -40,8 +40,8 @@
   <tr>
     <td>红细胞压积</td>
     <td><?php print drupal_render($form[$key_pre ."_6_1"]);?></td>
+    <td>%</td>
     <td><?php print drupal_render($form[$key_pre ."_6_2"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_6_3"]);?></td>
   </tr>
   <tr>
     <td>血小板计数PLT</td>
