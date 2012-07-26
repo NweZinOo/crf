@@ -41,6 +41,108 @@ function crf_case_validate_teshu_jc($form, &$form_state) {
   }  
 }
 
+function crf_case_validate_zq1_1($form, &$form_state) {
+  $p_uid = crf_ds_s_data('p_uid');
+  if (!empty($form_state['values']['e_zq1_1_1_2']) && !empty($form_state['values']['e_zq1_1_1_1']) && ($form_state['values']['e_zq1_1_1_2'] < $form_state['values']['e_zq1_1_1_1'])) {
+    form_set_error('e_zq1_1_1_2', "S-1结束时间不能小于起始时间！");
+  }
+  if (!empty($form_state['values']['e_zq1_1_1_1'])) {
+    $data = json_to_array(crf_ds_load('zhiqing_tys', $p_uid));
+    if ($form_state['values']['e_zq1_1_1_1'] < $data[1][1]) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于知情同意书时间！");
+    }
+    $data = json_to_array(crf_ds_load('renkou_tjx', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于出生日期！");
+    }
+    $data = json_to_array(crf_ds_load('weiai_ssyzdqk', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于胃癌手术与诊断情况中的首次诊断日期！");
+    }
+    if (!empty($data[2][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[2][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于胃癌手术与诊断情况中的手术日期！");
+    }
+    $data = json_to_array(crf_ds_load('jiwang_hxhjb', $p_uid));
+    if (!empty($data[2][3]) && ($form_state['values']['e_zq1_1_1_1'] < $data[2][3])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于既往或现患疾病中的诊断日期！");
+    }
+    if (!empty($data[3][3]) && ($form_state['values']['e_zq1_1_1_1'] < $data[3][3])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于既往或现患疾病中的诊断日期！");
+    }
+    if (!empty($data[4][3]) && ($form_state['values']['e_zq1_1_1_1'] < $data[4][3])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于既往或现患疾病中的诊断日期！");
+    }
+    $data = json_to_array(crf_ds_load('teshu_jc', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的胸部X线检查评估日期！");
+    }
+    if (!empty($data[2][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[2][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的腹部CT检查评估日期！");
+    }
+    if (!empty($data[3][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[3][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的腹部MRI评估日期！");
+    }
+    if (!empty($data[4][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[4][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的盆腔CT检查评估日期！");
+    }
+    if (!empty($data[5][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[5][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的盆腔MRI评估日期！");
+    }
+    if (!empty($data[6][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[6][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的胸部CT检查评估日期！");
+    }
+    if (!empty($data[7][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[7][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的胸部MRI评估日期！");
+    }
+    if (!empty($data[8][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[8][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的头颅CT评估日期！");
+    }
+    if (!empty($data[9][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[9][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的头颅MRI评估日期！");
+    }
+    if (!empty($data[10][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[10][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的骨扫描评估日期！");
+    }
+    if (!empty($data[11][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[11][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的全身PET/CT评估日期！");
+    }
+    if (!empty($data[11][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[12][2])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的其它的评估日期！");
+    }
+    if (!empty($data[11][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[13][2])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的其它的评估日期！");
+    }
+    if (!empty($data[11][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[14][2])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于特殊检查中的其它的评估日期！");
+    }
+    $data = json_to_array(crf_ds_load('xindian_tjc', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于心电图检查中的检查日期！");
+    }
+    $data = json_to_array(crf_ds_load('quanshen_tgjc', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于全身体格检查中的检查日期！");
+    }
+    $data = json_to_array(crf_ds_load('xueqing_zlbzwjc', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于血清肿瘤标志物检测中的取样日期！");
+    }
+    $data = json_to_array(crf_ds_load('shiyan_sjc', $p_uid));
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[1][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于实验室检查中的血常规-取样日期！");
+    }
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[8][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于实验室检查中的凝血功能-取样日期！");
+    }
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[10][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于实验室检查中的血生化-取样日期！");
+    }
+    if (!empty($data[1][1]) && ($form_state['values']['e_zq1_1_1_1'] < $data[25][1])) {
+      form_set_error('e_zq1_1_1_1', "S-1起始时间不能小于实验室检查中的尿常规-取样日期！");
+    }
+  }
+}
+
 function crf_case_validate_zq2_2($form, &$form_state) {
   _check_zq_jianliang($form_state, 'e_zq2_2_2_2', 'e_zq2_2_2_3');
   _check_zq_jianliang($form_state, 'e_zq2_2_3_2', 'e_zq2_2_3_3');
