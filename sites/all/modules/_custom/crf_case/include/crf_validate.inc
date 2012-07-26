@@ -293,6 +293,27 @@ function crf_case_validate_zq8_3($form, &$form_state) {
 function crf_case_validate_zq9_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq8_3', 'e_zq9_3_3_1', 'e_zq9_3_3_2', '第八周期');
 }
+function crf_case_validate_zq10_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq9_3', 'e_zq10_3_3_1', 'e_zq10_3_3_2', '第九周期');
+}
+function crf_case_validate_zq11_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq10_3', 'e_zq11_3_3_1', 'e_zq11_3_3_2', '第十周期');
+}
+function crf_case_validate_zq12_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq11_3', 'e_zq12_3_3_1', 'e_zq12_3_3_2', '第十一周期');
+}
+function crf_case_validate_zq13_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq12_3', 'e_zq13_3_3_1', 'e_zq13_3_3_2', '第十二周期');
+}
+function crf_case_validate_zq14_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq13_3', 'e_zq14_3_3_1', 'e_zq14_3_3_2', '第十三周期');
+}
+function crf_case_validate_zq15_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq14_3', 'e_zq15_3_3_1', 'e_zq15_3_3_2', '第十四周期');
+}
+function crf_case_validate_zq16_3($form, &$form_state) {
+  _check_zq_date_2($form_state, 'zq15_3', 'e_zq16_3_3_1', 'e_zq16_3_3_2', '第十五周期');
+}
 function _check_zq_date(&$form_state, $last_table, $e1_1, $e1_2, $e2, $last_zq_name) {
   $p_uid = crf_ds_s_data('p_uid');
   $data = json_to_array(crf_ds_load($last_table, $p_uid));
@@ -357,6 +378,41 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
       ) {
     form_set_error('form', "淋巴结转移情况的所有选项必须为数字！");
   }
+}
+ 
+function crf_case_validate_sf2_1($form, &$form_state) {
+   _sf_did($form_state, 'sf1_1', 'e_sf2_1_1_1');
+}
+function crf_case_validate_sf3_1($form, &$form_state) {
+   _sf_did($form_state, 'sf2_1', 'e_sf3_1_1_1');
+}
+function crf_case_validate_sf4_1($form, &$form_state) {
+   _sf_did($form_state, 'sf3_1', 'e_sf4_1_1_1');
+}
+function crf_case_validate_sf5_1($form, &$form_state) {
+   _sf_did($form_state, 'sf4_1', 'e_sf5_1_1_1');
+}
+function crf_case_validate_sf6_1($form, &$form_state) {
+   _sf_did($form_state, 'sf5_1', 'e_sf6_1_1_1');
+}
+function crf_case_validate_sf7_1($form, &$form_state) {
+   _sf_did($form_state, 'sf6_1', 'e_sf7_1_1_1');
+}
+function crf_case_validate_sf8_1($form, &$form_state) {
+   _sf_did($form_state, 'sf7_1', 'e_sf8_1_1_1');
+}
+function crf_case_validate_sf9_1($form, &$form_state) {
+   _sf_did($form_state, 'sf8_1', 'e_sf9_1_1_1');
+}
+
+function _sf_did($form_state, $last_table, $e) {
+  if (!empty($form_state['values'][$e])) {
+    $p_uid = crf_ds_s_data('p_uid');
+    $data = json_to_array(crf_ds_load($last_table, $p_uid));
+    if ($form_state['values'][$e] <= $data[1][1]) {
+      form_set_error($e, "随访日期需大于上一个随访日期！");
+    }
+  } 
 }
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
@@ -499,19 +555,26 @@ function crf_case_validate_pg1_1($form, &$form_state) {
   _pg_did($form_state, array('e_pg1_1_2_1','e_pg1_1_3_2','e_pg1_1_3_3','e_pg1_1_4_1','e_pg1_1_4_2','e_pg1_1_5_1','e_pg1_1_5_2','e_pg1_1_7_1','e_pg1_1_7_2'));
 }
 function crf_case_validate_pg2_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg2_1_2_1','e_pg2_1_3_2','e_pg2_1_3_3','e_pg2_1_4_1','e_pg2_1_4_2','e_pg2_1_5_1','e_pg2_1_5_2','e_pg2_1_7_1','e_pg2_1_7_2'));
+  _pg_did($form_state, array('e_pg2_1_2_1','e_pg2_1_3_2','e_pg2_1_3_3','e_pg2_1_4_1','e_pg2_1_4_2','e_pg2_1_5_1','e_pg2_1_5_2','e_pg2_1_7_1','e_pg2_1_7_2','pg1_1','e_pg2_1_1_1'));
 }
 function crf_case_validate_pg3_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg3_1_2_1','e_pg3_1_3_2','e_pg3_1_3_3','e_pg3_1_4_1','e_pg3_1_4_2','e_pg3_1_5_1','e_pg3_1_5_2','e_pg3_1_7_1','e_pg3_1_7_2'));
+  _pg_did($form_state, array('e_pg3_1_2_1','e_pg3_1_3_2','e_pg3_1_3_3','e_pg3_1_4_1','e_pg3_1_4_2','e_pg3_1_5_1','e_pg3_1_5_2','e_pg3_1_7_1','e_pg3_1_7_2','pg2_1','e_pg3_1_1_1'));
 }
 function crf_case_validate_pg4_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg4_1_2_1','e_pg4_1_3_2','e_pg4_1_3_3','e_pg4_1_4_1','e_pg4_1_4_2','e_pg4_1_5_1','e_pg4_1_5_2','e_pg4_1_7_1','e_pg4_1_7_2'));
+  _pg_did($form_state, array('e_pg4_1_2_1','e_pg4_1_3_2','e_pg4_1_3_3','e_pg4_1_4_1','e_pg4_1_4_2','e_pg4_1_5_1','e_pg4_1_5_2','e_pg4_1_7_1','e_pg4_1_7_2','pg3_1','e_pg4_1_1_1'));
 }
 function crf_case_validate_pg5_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg5_1_2_1','e_pg5_1_3_2','e_pg5_1_3_3','e_pg5_1_4_1','e_pg5_1_4_2','e_pg5_1_5_1','e_pg5_1_5_2','e_pg5_1_7_1','e_pg5_1_7_2'));
+  _pg_did($form_state, array('e_pg5_1_2_1','e_pg5_1_3_2','e_pg5_1_3_3','e_pg5_1_4_1','e_pg5_1_4_2','e_pg5_1_5_1','e_pg5_1_5_2','e_pg5_1_7_1','e_pg5_1_7_2','pg4_1','e_pg5_1_1_1'));
 }
 
 function _pg_did(&$form_state,$arr) {
+  if ($arr[9] != '') {
+    $p_uid = crf_ds_s_data('p_uid');
+    $data = json_to_array(crf_ds_load($arr[9], $p_uid));
+    if ($form_state['values'][$arr[10]] <= $data[1][1]) {
+      form_set_error($arr[10], "检查日期需大于上一次临床评估的检查时间！");  
+    }
+  }
   if (strlen($form_state['values'][$arr[0]]) != 3 && strlen($form_state['values'][$arr[0]]) != 2) {
     form_set_error($arr[0], "体重必须为2位或者3位！");
   }
@@ -539,6 +602,132 @@ function _pg_did(&$form_state,$arr) {
       form_set_error($arr[8], "必须填写说明！");
     }
   }
+}
+
+function crf_case_validate_pg2_2($form, &$form_state) {
+  _pg_did_1($form_state, array('pg1_2', 'e_pg2_2_2_1'));
+}
+function crf_case_validate_pg3_2($form, &$form_state) {
+  _pg_did_1($form_state, array('pg2_2', 'e_pg3_2_2_1'));
+}
+function crf_case_validate_pg4_2($form, &$form_state) {
+  _pg_did_1($form_state, array('pg3_2', 'e_pg4_2_2_1'));
+}
+function crf_case_validate_pg5_2($form, &$form_state) {
+  _pg_did_1($form_state, array('pg4_2', 'e_pg5_2_2_1'));
+}
+function _pg_did_1(&$form_state,$arr) {
+  $p_uid = crf_ds_s_data('p_uid');
+  $data = json_to_array(crf_ds_load($arr[0], $p_uid));
+  if ($form_state['values'][$arr[1]] <= $data[2][1]) {
+    form_set_error($arr[1], "心电图检查检查日期需大于上一次心电图检查的检查时间！");  
+  }  
+}
+
+function crf_case_validate_pg1_4($form, &$form_state) {
+  _t_did($form_state, array('e_pg1_4_2_3', 1, 'e_pg1_4_2_4','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg2_4($form, &$form_state) {
+  _t_did($form_state, array('e_pg2_4_2_3', 1, 'e_pg2_4_2_4','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg3_4($form, &$form_state) {
+  _t_did($form_state, array('e_pg3_4_2_3', 1, 'e_pg3_4_2_4','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg4_4($form, &$form_state) {
+  _t_did($form_state, array('e_pg4_4_2_3', 1, 'e_pg4_4_2_4','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg5_4($form, &$form_state) {
+  _t_did($form_state, array('e_pg5_4_2_3', 1, 'e_pg5_4_2_4','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg1_6($form, &$form_state) {
+  _t_did($form_state, array('e_pg1_6_11_2', 2, 'e_pg1_6_11_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_12_2', 2, 'e_pg1_6_12_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_13_2', 2, 'e_pg1_6_13_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_14_2', 2, 'e_pg1_6_14_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_15_2', 2, 'e_pg1_6_15_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_16_2', 2, 'e_pg1_6_16_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_17_2', 2, 'e_pg1_6_17_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_18_2', 2, 'e_pg1_6_18_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_19_2', 2, 'e_pg1_6_19_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_20_2', 2, 'e_pg1_6_20_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_21_2', 1, 'e_pg1_6_21_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_22_2', 1, 'e_pg1_6_22_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_23_2', 1, 'e_pg1_6_23_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_24_2', 1, 'e_pg1_6_24_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg1_6_26_2', 1, 'e_pg1_6_26_3','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg2_6($form, &$form_state) {
+  _t_did($form_state, array('e_pg2_6_11_2', 2, 'e_pg2_6_11_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_12_2', 2, 'e_pg2_6_12_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_13_2', 2, 'e_pg2_6_13_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_14_2', 2, 'e_pg2_6_14_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_15_2', 2, 'e_pg2_6_15_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_16_2', 2, 'e_pg2_6_16_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_17_2', 2, 'e_pg2_6_17_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_18_2', 2, 'e_pg2_6_18_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_19_2', 2, 'e_pg2_6_19_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_20_2', 2, 'e_pg2_6_20_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_21_2', 1, 'e_pg2_6_21_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_22_2', 1, 'e_pg2_6_22_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_23_2', 1, 'e_pg2_6_23_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_24_2', 1, 'e_pg2_6_24_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg2_6_26_2', 1, 'e_pg2_6_26_3','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg3_6($form, &$form_state) {
+  _t_did($form_state, array('e_pg3_6_11_2', 2, 'e_pg3_6_11_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_12_2', 2, 'e_pg3_6_12_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_13_2', 2, 'e_pg3_6_13_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_14_2', 2, 'e_pg3_6_14_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_15_2', 2, 'e_pg3_6_15_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_16_2', 2, 'e_pg3_6_16_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_17_2', 2, 'e_pg3_6_17_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_18_2', 2, 'e_pg3_6_18_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_19_2', 2, 'e_pg3_6_19_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_20_2', 2, 'e_pg3_6_20_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_21_2', 1, 'e_pg3_6_21_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_22_2', 1, 'e_pg3_6_22_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_23_2', 1, 'e_pg3_6_23_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_24_2', 1, 'e_pg3_6_24_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg3_6_26_2', 1, 'e_pg3_6_26_3','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg4_6($form, &$form_state) {
+  _t_did($form_state, array('e_pg4_6_11_2', 2, 'e_pg4_6_11_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_12_2', 2, 'e_pg4_6_12_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_13_2', 2, 'e_pg4_6_13_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_14_2', 2, 'e_pg4_6_14_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_15_2', 2, 'e_pg4_6_15_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_16_2', 2, 'e_pg4_6_16_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_17_2', 2, 'e_pg4_6_17_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_18_2', 2, 'e_pg4_6_18_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_19_2', 2, 'e_pg4_6_19_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_20_2', 2, 'e_pg4_6_20_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_21_2', 1, 'e_pg4_6_21_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_22_2', 1, 'e_pg4_6_22_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_23_2', 1, 'e_pg4_6_23_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_24_2', 1, 'e_pg4_6_24_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg4_6_26_2', 1, 'e_pg4_6_26_3','选择其它单位不能为空！'));
+}
+function crf_case_validate_pg5_6($form, &$form_state) {
+  _t_did($form_state, array('e_pg5_6_11_2', 2, 'e_pg5_6_11_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_12_2', 2, 'e_pg5_6_12_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_13_2', 2, 'e_pg5_6_13_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_14_2', 2, 'e_pg5_6_14_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_15_2', 2, 'e_pg5_6_15_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_16_2', 2, 'e_pg5_6_16_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_17_2', 2, 'e_pg5_6_17_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_18_2', 2, 'e_pg5_6_18_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_19_2', 2, 'e_pg5_6_19_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_20_2', 2, 'e_pg5_6_20_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_21_2', 1, 'e_pg5_6_21_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_22_2', 1, 'e_pg5_6_22_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_23_2', 1, 'e_pg5_6_23_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_24_2', 1, 'e_pg5_6_24_3','选择其它单位不能为空！'));
+  _t_did($form_state, array('e_pg5_6_26_2', 1, 'e_pg5_6_26_3','选择其它单位不能为空！'));
+}
+function _t_did(&$form_state,$arr) {
+  if ($form_state['values'][$arr[0]] == $arr[1]) {
+    form_set_error($arr[2], $arr[3]);  
+  } 
 }
 
 function _crf_validate_did(&$form_state, $key, $val = '1') {
