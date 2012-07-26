@@ -324,8 +324,8 @@ for($i=1; $i<=5; $i++) {
   $crf_el["pg{$i}_1"] = array(
     '#name' => '体格检查',
       1 => array(1 => type_date_popup()),
-      2 => array(1 => type_textfield(), 2 => type_textfield()),
-      3 => array(1 => type_textfield(), 2 => type_textfield()),
+      2 => array(1 => type_textfield(), 2 => type_select(array('0','1','2'))),
+      3 => array(1 => type_textfield(), 2 => type_textfield('',2), 3 => type_textfield('',2)),
       4 => array(1 => type_radios(array('未做','正常','异常无临床意义','异常有临床意义')), 2 => type_textfield()),
       5 => array(1 => type_radios(array('未做','正常','异常无临床意义','异常有临床意义')), 2 => type_textfield()),
       6 => array(1 => type_radios(array('很差','差','尚可','较好','良好'))),
