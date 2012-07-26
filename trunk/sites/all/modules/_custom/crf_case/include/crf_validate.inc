@@ -264,6 +264,52 @@ function crf_case_validate_quanshen_tgjc($form, &$form_state) {
   }
 }
 
+function crf_case_validate_pg1_1($form, &$form_state) {
+  _pg_did($form_state, array('e_pg1_1_2_1','e_pg1_1_3_2','e_pg1_1_3_3','e_pg1_1_4_1','e_pg1_1_4_2','e_pg1_1_5_1','e_pg1_1_5_2','e_pg1_1_7_1','e_pg1_1_7_2'));
+}
+function crf_case_validate_pg2_1($form, &$form_state) {
+  _pg_did($form_state, array('e_pg2_1_2_1','e_pg2_1_3_2','e_pg2_1_3_3','e_pg2_1_4_1','e_pg2_1_4_2','e_pg2_1_5_1','e_pg2_1_5_2','e_pg2_1_7_1','e_pg2_1_7_2'));
+}
+function crf_case_validate_pg3_1($form, &$form_state) {
+  _pg_did($form_state, array('e_pg3_1_2_1','e_pg3_1_3_2','e_pg3_1_3_3','e_pg3_1_4_1','e_pg3_1_4_2','e_pg3_1_5_1','e_pg3_1_5_2','e_pg3_1_7_1','e_pg3_1_7_2'));
+}
+function crf_case_validate_pg4_1($form, &$form_state) {
+  _pg_did($form_state, array('e_pg4_1_2_1','e_pg4_1_3_2','e_pg4_1_3_3','e_pg4_1_4_1','e_pg4_1_4_2','e_pg4_1_5_1','e_pg4_1_5_2','e_pg4_1_7_1','e_pg4_1_7_2'));
+}
+function crf_case_validate_pg5_1($form, &$form_state) {
+  _pg_did($form_state, array('e_pg5_1_2_1','e_pg5_1_3_2','e_pg5_1_3_3','e_pg5_1_4_1','e_pg5_1_4_2','e_pg5_1_5_1','e_pg5_1_5_2','e_pg5_1_7_1','e_pg5_1_7_2'));
+}
+
+function _pg_did(&$form_state,$arr) {
+  if (strlen($form_state['values'][$arr[0]]) != 3 && strlen($form_state['values'][$arr[0]]) != 2) {
+    form_set_error($arr[0], "体重必须为2位或者3位！");
+  }
+  if ($form_state['values'][$arr[0]] > 150) {
+    form_set_error($arr[0], "请输入合理的体重！");
+  }  
+  if (!is_numeric($form_state['values'][$arr[1]])) {
+     form_set_error($arr[1], "血压必须为数字！");
+  }
+  if (!is_numeric($form_state['values'][$arr[2]])) {
+     form_set_error($arr[2], "血压必须为数字！");
+  }  
+  if ($form_state['values'][$arr[3]] == '3') {
+    if (empty($form_state['values'][$arr[4]])) {
+      form_set_error($arr[4], "必须填写说明！");
+    }
+  }
+  if ($form_state['values'][$arr[5]] == '3') {
+    if (empty($form_state['values'][$arr[6]])) {
+      form_set_error($arr[6], "必须填写说明！");
+    }
+  }
+  if ($form_state['values'][$arr[7]] == '3') {
+    if (empty($form_state['values'][$arr[8]])) {
+      form_set_error($arr[8], "必须填写说明！");
+    }
+  }
+}
+
 function _crf_validate_did(&$form_state, $key, $val = '1') {
   $v = $form_state['values'][$key];
   if (is_array($v)) {

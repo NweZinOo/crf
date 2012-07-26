@@ -14,13 +14,13 @@
     <td>体重</td>
     <td><?php print drupal_render($form[$key_pre ."_2_1"]);?>kg</td>
     <td>ECOG PS评分</td>
-    <td><?php print drupal_render($form[$key_pre ."_2_2"]);?></td>
+    <td><?php print drupal_render($form[$key_pre ."_2_2"]);?>分</td>
   </tr>
   <tr>
     <td>过去3月内体重减轻</td>
     <td><?php print drupal_render($form[$key_pre ."_3_1"]);?>%</td>
     <td>血压</td>
-    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?></td>
+    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?>/<?php print drupal_render($form[$key_pre ."_3_3"]);?>mmHg</td>
   </tr>
   <tr>
     <td>生命体征</td>
