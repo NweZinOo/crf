@@ -71,15 +71,7 @@ $(document).ready(function(){
     });
     
     els.click(function(){
-                
-
-      if ($(this).is(':checked')) {
-        if (confirm('选中此项，下面所有内容都不能保存，是否确定？')) {
-        }
-        else {
-          $(this).attr('checked', false);
-        }
-      }
+     clear_alert(els);
     });
   }
   
