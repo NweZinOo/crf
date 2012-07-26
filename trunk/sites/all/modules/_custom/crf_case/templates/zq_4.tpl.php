@@ -22,7 +22,7 @@
     <td><?php print drupal_render($form[$key_pre ."_1_5"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_1_6"]);?></td>
   </tr>
-  <tr>
+  <tr class="clear-alert">
     <td>奥沙利铂<?php print drupal_render($form[$key_pre ."_2_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_2_2"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_2_3"]);?></td>

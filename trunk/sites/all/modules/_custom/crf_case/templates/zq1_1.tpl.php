@@ -18,7 +18,7 @@
     <td class="unit"><?php print drupal_render($form[$key_pre ."_1_3"]);?></td>
     <td class="total"><?php print drupal_render($form[$key_pre ."_1_4"]);?></td>
   </tr>
-  <tr>
+  <tr class="clear-alert">
     <td>奥沙利铂<?php print drupal_render($form[$key_pre ."_2_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_2_2"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_2_3"]);?></td>

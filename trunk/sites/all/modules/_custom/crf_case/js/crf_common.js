@@ -93,7 +93,7 @@ $(document).ready(function(){
  * el 要点击的按钮
  * msg 要提示的信息
  */
-function clear_alert(el, msg) {
+function clear_alert(el, msg, callback) {
   
   
   if ($(el).is(':checked')) {
@@ -104,7 +104,13 @@ function clear_alert(el, msg) {
     }
   
     if(confirm(msg)) {
-      reset_form();
+      if (!callback) {
+        reset_form();
+      }
+      else {
+        callback.apply();
+      }
+      
       $(el).attr('checked', true).attr('disabled', false);
     }
   }
@@ -129,3 +135,15 @@ function get_days(d1, d2) {
 
 
 
+$(document).ready(function(){
+ var tr = $('tr.clear-alert');
+ var el = tr.find('td:nth-child(1)').find('input[type=checkbox]');
+ 
+ if (el.size()) {
+   el.click(
+     function () {
+       clear_alert(el, null, function(){ tr.find('input[type=text]').val('')}) 
+     }
+   );
+ }
+})
