@@ -105,6 +105,9 @@ function clear_alert(el, msg, callback) {
       
       $(el).attr('checked', true).attr('disabled', false);
     }
+    else {
+      $(el).attr('checked', false);
+    }
   }
 }
 
