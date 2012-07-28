@@ -163,9 +163,10 @@ function crf_case_form(&$form_state, $arg = NULL) {
   }
 
   if (user_access('crf case edit')) {
+    $no == 'yanjiu_js' ? $v = '完 成' : $v = '保 存 & 继 续';
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value'=> $no == 'yanjiu_js' ? '保存结果' : '保存&继续'
+      '#value'=> $v
     );
   }
   else {
