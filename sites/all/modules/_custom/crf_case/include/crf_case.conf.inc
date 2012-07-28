@@ -8,7 +8,7 @@ global $crf_el;
 $crf_el['zhiqing_tys'] = array(
   '#name' => '知情同意书',
   1 => array(
-    1 => type_textfield($_SESSION['crf']['p_arr']['approved_time'])
+    1 => type_item($_SESSION['crf']['p_arr']['approved_time'])
   ),
     
 );
@@ -40,7 +40,7 @@ $crf_el['paichu_bz'] = array(
 
 $crf_el['renkou_tjx'] = array(
   '#name' => '人口统计学',
-  1 => array(1 => type_textfield($_SESSION['crf']['p_arr']['p_birthday']), 2 => type_radios(array('男','女'))),
+  1 => array(1 => type_item($_SESSION['crf']['p_arr']['p_birthday']), 2 => type_radios(array('男','女'))),
 );
 
 $crf_el['weiai_ssyzdqk'] = array(
