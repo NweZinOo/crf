@@ -248,7 +248,7 @@ $crf_el['zq8_3'] = array(
     1 => array(1 => type_textfield(), 2 => type_textfield()),
     2 => array(1 => type_radios(), 2 => type_textfield()),
     3 => array(1 => type_date_popup(), 2 => type_date_popup()),
-    4 => array(1 => type_textfield(), 2 => type_textfield()),
+    4 => array(1 => type_checkboxs(array('40','50','60')), 2 => type_textfield()),
 ); 
 
 $crf_el['zq8_4'] = array(

@@ -22,7 +22,7 @@
     <td>给药日期：<?php print drupal_render($form[$key_pre ."_3_1"]);?>至<?php print drupal_render($form[$key_pre ."_3_2"]);?></td>
   </tr>
   <tr>
-    <td>计划剂量：<?php print drupal_render($form[$key_pre ."_4_1"]);?>mg/m2；计划总量：<?php print drupal_render($form[$key_pre ."_4_2"]);?>mg</td>
+    <td>计划剂量(mg)：<?php print drupal_render($form[$key_pre ."_4_1"]);?>；计划总量：<?php print drupal_render($form[$key_pre ."_4_2"]);?>mg</td>
   </tr>  
 </table>
 <?php
