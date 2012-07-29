@@ -378,6 +378,18 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
       ) {
     form_set_error('form', "淋巴结转移情况的所有选项必须为数字！");
   }
+  if ($form_state['values']['e_weiai_ssyzdqk_4_1'][8] != 0 && empty($form_state['values']['e_weiai_ssyzdqk_4_2'])) {
+    form_set_error('e_weiai_ssyzdqk_4_2', "选择其它需要写说明！"); 
+  }
+  if ($form_state['values']['e_weiai_ssyzdqk_5_1'][5] != 0 && empty($form_state['values']['e_weiai_ssyzdqk_5_2'])) {
+    form_set_error('e_weiai_ssyzdqk_5_2', "选择其它需要写说明！"); 
+  }
+  if (!empty($form_state['values']['e_weiai_ssyzdqk_1_1']) && ($form_state['values']['e_weiai_ssyzdqk_1_1'] < $_SESSION['crf']['p_arr']['p_birthday'])) {
+    form_set_error('e_weiai_ssyzdqk_1_1', '首次诊断日期不能小于出生日期！');
+  }
+  if (!empty($form_state['values']['e_weiai_ssyzdqk_2_1']) && $form_state['values']['e_weiai_ssyzdqk_2_1'] < $_SESSION['crf']['p_arr']['p_birthday']) {
+    form_set_error('e_weiai_ssyzdqk_2_1', '手术日期不能小于出生日期！');
+  }
 }
  
 function crf_case_validate_sf2_1($form, &$form_state) {
