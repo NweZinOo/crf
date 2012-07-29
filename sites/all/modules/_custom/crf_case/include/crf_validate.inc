@@ -447,7 +447,42 @@ function crf_case_validate_zq7_2($form, &$form_state) {
 }
 
 function crf_case_validate_zq2_3($form, &$form_state) {
+  $arr_i1 = array('e_zq2_3_2_1', 'e_zq2_3_2_2', 'e_zq2_3_2_3', 'e_zq2_3_2_4');
+  $arr_i2 = array('e_zq2_3_3_1', 'e_zq2_3_3_2', 'e_zq2_3_3_3', 'e_zq2_3_3_4');
+  $arr_i3 = array('e_zq2_3_4_1', 'e_zq2_3_4_2', 'e_zq2_3_4_3', 'e_zq2_3_4_4');
+  _zqx_i3($form_state, $arr_i1);
+  _zqx_i3($form_state, $arr_i2);
+  _zqx_i3($form_state, $arr_i3);
+  $arr_i4 = array('e_zq2_3_5_1','e_zq2_3_5_2', 'e_zq2_3_5_3', 'e_zq2_3_5_4', 'e_zq2_3_5_5');
+  $arr_i5 = array('e_zq2_3_6_1','e_zq2_3_6_2', 'e_zq2_3_6_3', 'e_zq2_3_6_4', 'e_zq2_3_6_5');
+  $arr_i6 = array('e_zq2_3_7_1','e_zq2_3_7_2', 'e_zq2_3_7_3', 'e_zq2_3_7_4', 'e_zq2_3_7_5');
+  _zqx_i3_1($form_state, $arr_i4);
+  _zqx_i3_1($form_state, $arr_i5);
+  _zqx_i3_1($form_state, $arr_i6);
 }
+function _zqx_i3($form_state, $arr) {
+  $c = count($arr);
+  $arr_text = array('', '单位','是否有临床意义','取样日期');
+  if (!empty($form_state['values'][$arr[0]])) {
+    for($i=1;$i<$c;$i++) {
+      if ($form_state['values'][$arr[$i]] == "") {
+        form_set_error($arr[$i], "填写数值后，". $arr_text[$i] ."必须填写");
+      }
+    }
+  }
+}
+function _zqx_i3_1($form_state, $arr) {
+  $c = count($arr);
+  $arr_text = array('', '数值', '单位','是否有临床意义','取样日期');
+  if (!empty($form_state['values'][$arr[0]])) {
+    for($i=1;$i<$c;$i++) {
+      if ($form_state['values'][$arr[$i]] == "") {
+        form_set_error($arr[$i], "填写其它后，". $arr_text[$i] ."必须填写");
+      }
+    }
+  }
+}
+
 //周期给药时间大于上一周期给药时间
 function crf_case_validate_zq2_4($form, &$form_state) {
   $p_uid = crf_ds_s_data('p_uid');
