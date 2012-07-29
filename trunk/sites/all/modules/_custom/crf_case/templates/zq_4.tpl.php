@@ -1,7 +1,7 @@
 <?php
   $key_pre = "e_{$table}";
 ?>
-<table class="<?php print $class?>" border="1">
+<table class="<?php print $class?> calculate" border="1">
   <tr>
     <td rowspan="2">研究药物</td>
     <td colspan="2"><?php print $no_1;?></td>
@@ -18,9 +18,9 @@
     <td>S-1</td>
     <td><?php print drupal_render($form[$key_pre ."_1_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_1_2"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_1_3"]);?><br/>至<br/><?php print drupal_render($form[$key_pre ."_1_4"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_1_5"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_1_6"]);?></td>
+    <td class="date-select"><?php print drupal_render($form[$key_pre ."_1_3"]);?><br/>至<br/><?php print drupal_render($form[$key_pre ."_1_4"]);?></td>
+    <td class="unit"><?php print drupal_render($form[$key_pre ."_1_5"]);?></td>
+    <td class="total"><?php print drupal_render($form[$key_pre ."_1_6"]);?></td>
   </tr>
   <tr class="clear-alert">
     <td>奥沙利铂<?php print drupal_render($form[$key_pre ."_2_1"]);?></td>

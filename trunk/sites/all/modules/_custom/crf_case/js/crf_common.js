@@ -121,8 +121,8 @@ function reset_form() {
 function get_days(d1, d2) {
   var dd1 = d1.split('-');
   var dd2 = d2.split('-');
-  var date1   = new Date(dd1[0], dd1[1], dd1[2]);
-  var date2   = new Date(dd2[0], dd2[1], dd2[2]);
+  var date1   = new Date(dd1[0], dd1[1] - 1, dd1[2]);
+  var date2   = new Date(dd2[0], dd2[1] - 1, dd2[2]);
   var one_day = 1000*60*60*24;
   var offset  = (date2.getTime() - date1.getTime()) / one_day;
   return offset;
@@ -141,4 +141,58 @@ $(document).ready(function(){
      }
    );
  }
-})
+});
+
+$(document).ready(function(){
+  var cal = function(){
+   var date1 = $('.date-select input:text').eq(0).val();
+   var date2 = $('.date-select input:text').eq(1).val();
+   
+   var days  = get_days(date1, date2) + 1;
+   
+   if (isNaN(days)) {
+     alert('日期不对，请检查！');
+     return false;
+   }
+   if (days < 0) {
+     alert('结束日期不能早于起始日期');
+     return false;
+   }
+   else if(days != 14) {
+     alert('您选择的时间间隔为' + days + '，给药持续时间间隔必须为14天，请检查！');
+     return false;
+   }
+   else {
+     var unit = 0
+     $('.calculate input:checkbox').each(function(){
+       if ($(this).is(':checked')) {
+         var u = parseInt($(this).parent().text());//.val();
+         if (!isNaN(u)) {
+           unit += u; 
+         }
+       }
+     });
+     
+     $('.total input:text').val(unit * 14 * 2);s
+   }
+ }
+ 
+ /*
+ $('.date-select input').eq(1).blur(function(){
+   var date1 = $('.date-select input:text').eq(0).val();
+   var date2 = $('.date-select input:text').eq(1).val();
+   
+   var days  = get_days(date1, date2);
+   
+   if (days < 0) {
+     alert('结束日期不能早于起始日期');
+     return;
+   }
+ });
+ */
+ if ($('.calculate input[type=checkbox]').size()) {
+   $('.calculate input[type=checkbox]').click(cal);
+   $('.total input[type=text]').focus(cal);
+   $('form').submit(cal);
+  }
+});//给药日期计算总量
