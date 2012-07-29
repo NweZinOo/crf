@@ -500,7 +500,35 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
       }
     }
   }
-
+  
+  if (!empty($form_state['values']['e_shiyan_sjc_2_1']) || !empty($form_state['values']['e_shiyan_sjc_3_1'])
+          || !empty($form_state['values']['e_shiyan_sjc_4_1']) || !empty($form_state['values']['e_shiyan_sjc_5_1']) 
+          || !empty($form_state['values']['e_shiyan_sjc_6_1']) || !empty($form_state['values']['e_shiyan_sjc_7_1'])) {
+    if (empty($form_state['values']['e_shiyan_sjc_1_1'])) {
+      form_set_error('e_shiyan_sjc_1_1', '血常规 取样日期不能为空！');
+    }
+  }
+  if (!empty($form_state['values']['e_shiyan_sjc_9_1'])) {
+    if (!empty($form_state['values']['e_shiyan_sjc_8_1'])) {
+      form_set_error('e_shiyan_sjc_8_1', '凝血功能 取样日期不能为空！');
+    }
+  }
+  if (!empty($form_state['values']['e_shiyan_sjc_11_1']) || !empty($form_state['values']['e_shiyan_sjc_12_1'])
+          || !empty($form_state['values']['e_shiyan_sjc_13_1']) || !empty($form_state['values']['e_shiyan_sjc_14_1']) 
+          || !empty($form_state['values']['e_shiyan_sjc_15_1']) || !empty($form_state['values']['e_shiyan_sjc_16_1'])
+          || !empty($form_state['values']['e_shiyan_sjc_17_1']) || !empty($form_state['values']['e_shiyan_sjc_18_1']) 
+          || !empty($form_state['values']['e_shiyan_sjc_19_1']) || !empty($form_state['values']['e_shiyan_sjc_20_1'])
+          || !empty($form_state['values']['e_shiyan_sjc_21_1']) || !empty($form_state['values']['e_shiyan_sjc_22_1']) 
+          || !empty($form_state['values']['e_shiyan_sjc_23_1']) || !empty($form_state['values']['e_shiyan_sjc_24_1'])) {
+    if (empty($form_state['values']['e_shiyan_sjc_10_1'])) {
+      form_set_error('e_shiyan_sjc_10_1', '血生化 取样日期不能为空！');
+    }
+  }
+  if (!empty($form_state['values']['e_shiyan_sjc_26_1'])) {
+    if (empty($form_state['values']['e_shiyan_sjc_25_1'])) {
+      form_set_error('e_shiyan_sjc_25_1', '尿常规 取样日期不能为空！');
+    }
+  }
 }
 
 function crf_case_validate_xindian_tjc($form, &$form_state) {
