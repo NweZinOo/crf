@@ -435,7 +435,16 @@ function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
 //      form_set_error('e_xueqing_zlbzwjc_1_1', "检查日期不能大于第一周期给药的日期！");
 //    }
 //  }
-  
+  if (!empty($form_state['values']['e_xueqing_zlbzwjc_2_2']) || !empty($form_state['values']['e_xueqing_zlbzwjc_3_2']) || !empty($form_state['values']['e_xueqing_zlbzwjc_4_2'])) {
+    if (empty($form_state['values']['e_xueqing_zlbzwjc_1_1'])) {
+      form_set_error('e_xueqing_zlbzwjc_1_1', '取样日期不能为空！');
+    }
+  }
+//  if (!empty($form_state['values']['e_xueqing_zlbzwjc_2_3']) || !empty($form_state['values']['e_xueqing_zlbzwjc_3_3']) || !empty($form_state['values']['e_xueqing_zlbzwjc_4_3'])) {
+//    if (empty($form_state['values']['e_xueqing_zlbzwjc_1_1'])) {
+//      form_set_error('e_xueqing_zlbzwjc_1_1', '取样日期不能为空！');
+//    }
+//  }  
   $check_field = array('e_xueqing_zlbzwjc_2_2', 'e_xueqing_zlbzwjc_3_2', 'e_xueqing_zlbzwjc_4_2');
   $field_name = array('CEA数值', 'CA19-9数值', 'CA724数值');
   
