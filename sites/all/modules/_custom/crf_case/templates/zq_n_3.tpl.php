@@ -1,7 +1,7 @@
 <?php
   $key_pre = "e_{$table}";
 ?>
-<table class="<?php print $class?>" border="1">
+<table class="<?php print $class?> calculate" border="1">
   <tr class="title">
     <td class="title"><h2><?php print $table_name?></h2>
     </td>
@@ -18,10 +18,10 @@
   <tr>
     <td><b>第<?php print $no_2?>周期S-1给药计划：</b></td>
   </tr>
-  <tr>
+  <tr class="date-select">
     <td>给药日期：<?php print drupal_render($form[$key_pre ."_3_1"]);?>至<?php print drupal_render($form[$key_pre ."_3_2"]);?></td>
   </tr>
-  <tr>
+  <tr class="total unit">
     <td>计划剂量(mg)：<?php print drupal_render($form[$key_pre ."_4_1"]);?>；计划总量：<?php print drupal_render($form[$key_pre ."_4_2"]);?>mg</td>
   </tr>  
 </table>
