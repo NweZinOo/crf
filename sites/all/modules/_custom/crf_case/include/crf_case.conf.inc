@@ -152,7 +152,7 @@ $crf_el['shiyan_sjc'] = array(
 
 $crf_el['zq1_1'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_checkboxs(array('40','50','60')), 4 => type_textfield()),
+    1 => array(1 => type_date_popup(), 2 => type_date_popup(), 3 => type_radios(array('40','50','60')), 4 => type_textfield()),
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_date_popup(), 3 => type_textfield(), 4 => type_textfield()),
 );
 
@@ -224,7 +224,7 @@ $crf_el['zq2_3'] = array(
 
 $crf_el['zq2_4'] = array(
   '#name' => '研究给药',
-    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_checkboxs(array('40','50','60')), 6 => type_textfield()),
+    1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 4 => type_date_popup(), 5 => type_radios(array('40','50','60')), 6 => type_textfield()),
     2 => array(1 => type_checkboxs(array('不适用')), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup(), 5 => type_textfield('',8), 6 => type_textfield()),
 );
 
@@ -248,7 +248,7 @@ $crf_el['zq8_3'] = array(
     1 => array(1 => type_textfield(), 2 => type_textfield()),
     2 => array(1 => type_radios(), 2 => type_textfield()),
     3 => array(1 => type_date_popup(), 2 => type_date_popup()),
-    4 => array(1 => type_checkboxs(array('40','50','60')), 2 => type_textfield()),
+    4 => array(1 => type_radios(array('40','50','60')), 2 => type_textfield()),
 ); 
 
 $crf_el['zq8_4'] = array(
