@@ -1170,9 +1170,12 @@ function crf_case_validate_pg5_2($form, &$form_state) {
 function _pg_did_1(&$form_state,$arr) {
   $p_uid = crf_ds_s_data('p_uid');
   $data = json_to_array(crf_ds_load($arr[0], $p_uid));
-  if ($form_state['values'][$arr[1]] <= $data[2][1]) {
+  if (!empty($form_state['values'][$arr[1]]) && $form_state['values'][$arr[1]] <= $data[2][1]) {
     form_set_error($arr[1], "心电图检查检查日期需大于上一次心电图检查的检查时间！");  
   }  
+  if ($form_state['values']['e_pg3_2_3_1'] == 1 && empty($form_state['values']['e_pg3_2_3_2'])) {
+    form_set_error('e_pg3_2_3_2', "您选择了异常，请说明理由！");  
+  }
 }
 
 function crf_case_validate_pg1_4($form, &$form_state) {
