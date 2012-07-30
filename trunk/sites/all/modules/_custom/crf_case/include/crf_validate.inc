@@ -837,30 +837,41 @@ function crf_case_validate_weiai_ssyzdqk($form, &$form_state) {
     form_set_error('e_weiai_ssyzdqk_2_1', '手术日期不能小于出生日期！');
   }
 }
- 
+
+function crf_case_validate_sf1_1($form, &$form_state) {
+   _sf_did1($form_state, 'sf1');
+}
 function crf_case_validate_sf2_1($form, &$form_state) {
    _sf_did($form_state, 'sf1_1', 'e_sf2_1_1_1');
+   _sf_did1($form_state, 'sf2');
 }
 function crf_case_validate_sf3_1($form, &$form_state) {
    _sf_did($form_state, 'sf2_1', 'e_sf3_1_1_1');
+   _sf_did1($form_state, 'sf3');
 }
 function crf_case_validate_sf4_1($form, &$form_state) {
    _sf_did($form_state, 'sf3_1', 'e_sf4_1_1_1');
+   _sf_did1($form_state, 'sf4');
 }
 function crf_case_validate_sf5_1($form, &$form_state) {
    _sf_did($form_state, 'sf4_1', 'e_sf5_1_1_1');
+   _sf_did1($form_state, 'sf5');
 }
 function crf_case_validate_sf6_1($form, &$form_state) {
    _sf_did($form_state, 'sf5_1', 'e_sf6_1_1_1');
+   _sf_did1($form_state, 'sf6');
 }
 function crf_case_validate_sf7_1($form, &$form_state) {
    _sf_did($form_state, 'sf6_1', 'e_sf7_1_1_1');
+   _sf_did1($form_state, 'sf7');
 }
 function crf_case_validate_sf8_1($form, &$form_state) {
    _sf_did($form_state, 'sf7_1', 'e_sf8_1_1_1');
+   _sf_did1($form_state, 'sf8');
 }
 function crf_case_validate_sf9_1($form, &$form_state) {
    _sf_did($form_state, 'sf8_1', 'e_sf9_1_1_1');
+   _sf_did1($form_state, 'sf9');
 }
 
 function _sf_did($form_state, $last_table, $e) {
@@ -872,6 +883,14 @@ function _sf_did($form_state, $last_table, $e) {
     }
   } 
 }
+
+function _sf_did1($form_state, $sf) {
+  if ($form_state['values']['e_'. $sf .'_1_2_1'] != "" || $form_state['values']['e_'. $sf .'_1_3_1'] != "") {
+    if (empty($form_state['values']['e_'. $sf .'_1_1_1'])) {
+      form_set_error('e_'. $sf .'_1_1_1', "随访日期不能为空！");
+    }
+  }
+} 
 
 function crf_case_validate_xueqing_zlbzwjc($form, &$form_state) {
   $p_uid = crf_ds_s_data('p_uid');
