@@ -5,6 +5,23 @@ function crf_case_validate_ruxuan_bz($form, &$form_state){
   _crf_validate_yes($star_el, $form_state);
 }
 
+function crf_case_validate_zhiliao_js($form, &$form_state){
+  if ($form_state['values']['e_zhiliao_js_2_1'] == 0 && empty($form_state['values']['e_zhiliao_js_2_2'])) {
+    form_set_error('e_zhiliao_js_2_2', "需说明完成几个给药周期！");
+  }
+  if ($form_state['values']['e_zhiliao_js_2_1'] != "" || !empty($form_state['values']['e_zhiliao_js_3_1'])) {
+    if (empty($form_state['values']['e_zhiliao_js_1_1'])) {
+      form_set_error('e_zhiliao_js_1_1', "总结日期不能为空！");  
+    }
+  }
+  if($form_state['values']['e_zhiliao_js_4_1'][9] != 0) {
+    if (empty($form_state['values']['e_zhiliao_js_4_2'])) {
+      form_set_error('e_zhiliao_js_4_2', "详细说明不能为空！");  
+    }
+  }
+    
+}
+
 function crf_case_validate_paichu_bz($form, &$form_state){
   $star_el = 'e_paichu_bz';
   _crf_validate_yes($star_el, $form_state, '0', '否');
@@ -735,30 +752,39 @@ function crf_case_validate_zq7_4($form, &$form_state) {
 }
 function crf_case_validate_zq8_3($form, &$form_state) {
   _check_zq_date_1($form_state, 'zq7_4', 'e_zq8_3_3_1', 'e_zq8_3_3_2', '第七周期');
+  _check_zq_date_3(&$form_state, 'zq8');
 }
 function crf_case_validate_zq9_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq8_3', 'e_zq9_3_3_1', 'e_zq9_3_3_2', '第八周期');
+  _check_zq_date_3(&$form_state, 'zq9');
 }
 function crf_case_validate_zq10_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq9_3', 'e_zq10_3_3_1', 'e_zq10_3_3_2', '第九周期');
+  _check_zq_date_3(&$form_state, 'zq10');
 }
 function crf_case_validate_zq11_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq10_3', 'e_zq11_3_3_1', 'e_zq11_3_3_2', '第十周期');
+  _check_zq_date_3(&$form_state, 'zq11');
 }
 function crf_case_validate_zq12_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq11_3', 'e_zq12_3_3_1', 'e_zq12_3_3_2', '第十一周期');
+  _check_zq_date_3(&$form_state, 'zq12');
 }
 function crf_case_validate_zq13_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq12_3', 'e_zq13_3_3_1', 'e_zq13_3_3_2', '第十二周期');
+  _check_zq_date_3(&$form_state, 'zq13');
 }
 function crf_case_validate_zq14_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq13_3', 'e_zq14_3_3_1', 'e_zq14_3_3_2', '第十三周期');
+  _check_zq_date_3(&$form_state, 'zq14');
 }
 function crf_case_validate_zq15_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq14_3', 'e_zq15_3_3_1', 'e_zq15_3_3_2', '第十四周期');
+  _check_zq_date_3(&$form_state, 'zq15');
 }
 function crf_case_validate_zq16_3($form, &$form_state) {
   _check_zq_date_2($form_state, 'zq15_3', 'e_zq16_3_3_1', 'e_zq16_3_3_2', '第十五周期');
+  _check_zq_date_3(&$form_state, 'zq16');
 }
 function _check_zq_date(&$form_state, $last_table, $e1_1, $e1_2, $e2, $last_zq_name) {
   $p_uid = crf_ds_s_data('p_uid');
@@ -805,6 +831,12 @@ function _check_zq_date_2(&$form_state, $last_table, $e1_1, $e1_2, $last_zq_name
       form_set_error($e1_2, "结束日期应大于起始日期！");
     }
   }  
+}
+
+function _check_zq_date_3(&$form_state, $e) {
+  if ($form_state['values']['e_'. $e .'_3_2_1'] == 1 && empty($form_state['values']['e_'. $e .'_3_2_2'])) {
+    form_set_error('e_'. $e .'_3_2_2', "请填写发生减量/或延迟给药的原因！");
+  }
 }
 
 function _check_zq_jianliang(&$form_state, $check_field, $text_field) {
@@ -1066,22 +1098,27 @@ function crf_case_validate_quanshen_tgjc($form, &$form_state) {
 }
 
 function crf_case_validate_pg1_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg1_1_2_1','e_pg1_1_3_2','e_pg1_1_3_3','e_pg1_1_4_1','e_pg1_1_4_2','e_pg1_1_5_1','e_pg1_1_5_2','e_pg1_1_7_1','e_pg1_1_7_2'));
+  _pg_did($form_state, array('e_pg1_1_2_1','e_pg1_1_3_2','e_pg1_1_3_3','e_pg1_1_4_1','e_pg1_1_4_2','e_pg1_1_5_1','e_pg1_1_5_2','e_pg1_1_7_1','e_pg1_1_7_2'), 'pg1');
 }
 function crf_case_validate_pg2_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg2_1_2_1','e_pg2_1_3_2','e_pg2_1_3_3','e_pg2_1_4_1','e_pg2_1_4_2','e_pg2_1_5_1','e_pg2_1_5_2','e_pg2_1_7_1','e_pg2_1_7_2','pg1_1','e_pg2_1_1_1'));
+  _pg_did($form_state, array('e_pg2_1_2_1','e_pg2_1_3_2','e_pg2_1_3_3','e_pg2_1_4_1','e_pg2_1_4_2','e_pg2_1_5_1','e_pg2_1_5_2','e_pg2_1_7_1','e_pg2_1_7_2','pg1_1','e_pg2_1_1_1'), 'pg2');
 }
 function crf_case_validate_pg3_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg3_1_2_1','e_pg3_1_3_2','e_pg3_1_3_3','e_pg3_1_4_1','e_pg3_1_4_2','e_pg3_1_5_1','e_pg3_1_5_2','e_pg3_1_7_1','e_pg3_1_7_2','pg2_1','e_pg3_1_1_1'));
+  _pg_did($form_state, array('e_pg3_1_2_1','e_pg3_1_3_2','e_pg3_1_3_3','e_pg3_1_4_1','e_pg3_1_4_2','e_pg3_1_5_1','e_pg3_1_5_2','e_pg3_1_7_1','e_pg3_1_7_2','pg2_1','e_pg3_1_1_1'), 'pg3');
 }
 function crf_case_validate_pg4_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg4_1_2_1','e_pg4_1_3_2','e_pg4_1_3_3','e_pg4_1_4_1','e_pg4_1_4_2','e_pg4_1_5_1','e_pg4_1_5_2','e_pg4_1_7_1','e_pg4_1_7_2','pg3_1','e_pg4_1_1_1'));
+  _pg_did($form_state, array('e_pg4_1_2_1','e_pg4_1_3_2','e_pg4_1_3_3','e_pg4_1_4_1','e_pg4_1_4_2','e_pg4_1_5_1','e_pg4_1_5_2','e_pg4_1_7_1','e_pg4_1_7_2','pg3_1','e_pg4_1_1_1'), 'pg4');
 }
 function crf_case_validate_pg5_1($form, &$form_state) {
-  _pg_did($form_state, array('e_pg5_1_2_1','e_pg5_1_3_2','e_pg5_1_3_3','e_pg5_1_4_1','e_pg5_1_4_2','e_pg5_1_5_1','e_pg5_1_5_2','e_pg5_1_7_1','e_pg5_1_7_2','pg4_1','e_pg5_1_1_1'));
+  _pg_did($form_state, array('e_pg5_1_2_1','e_pg5_1_3_2','e_pg5_1_3_3','e_pg5_1_4_1','e_pg5_1_4_2','e_pg5_1_5_1','e_pg5_1_5_2','e_pg5_1_7_1','e_pg5_1_7_2','pg4_1','e_pg5_1_1_1'), 'pg5');
 }
 
-function _pg_did(&$form_state,$arr) {
+function _pg_did(&$form_state,$arr,$e) {
+  if (!empty($form_state['values'][$arr[0]]) || !empty($form_state['values'][$arr[1]])) {
+    if (empty($form_state['values']['e_'. $e .'_1_1_1'])) {
+      form_set_error('e_'. $e .'_1_1_1', "检查日期不能为空！"); 
+    }
+  }
   if ($arr[9] != '') {
     $p_uid = crf_ds_s_data('p_uid');
     $data = json_to_array(crf_ds_load($arr[9], $p_uid));
@@ -1089,16 +1126,16 @@ function _pg_did(&$form_state,$arr) {
       form_set_error($arr[10], "检查日期需大于上一次临床评估的检查时间！");  
     }
   }
-  if (strlen($form_state['values'][$arr[0]]) != 3 && strlen($form_state['values'][$arr[0]]) != 2) {
+  if (!empty($form_state['values'][$arr[0]]) && (strlen($form_state['values'][$arr[0]]) != 3 && strlen($form_state['values'][$arr[0]]) != 2)) {
     form_set_error($arr[0], "体重必须为2位或者3位！");
   }
-  if ($form_state['values'][$arr[0]] > 150) {
+  if (!empty($form_state['values'][$arr[0]]) && $form_state['values'][$arr[0]] > 150) {
     form_set_error($arr[0], "请输入合理的体重！");
   }  
-  if (!is_numeric($form_state['values'][$arr[1]])) {
+  if (!empty($form_state['values'][$arr[1]]) && !is_numeric($form_state['values'][$arr[1]])) {
      form_set_error($arr[1], "血压必须为数字！");
   }
-  if (!is_numeric($form_state['values'][$arr[2]])) {
+  if (!empty($form_state['values'][$arr[2]]) && !is_numeric($form_state['values'][$arr[2]])) {
      form_set_error($arr[2], "血压必须为数字！");
   }  
   if ($form_state['values'][$arr[3]] == '3') {
