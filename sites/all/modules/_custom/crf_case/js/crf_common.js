@@ -164,7 +164,7 @@ $(document).ready(function(){
    }
    else {
      var unit = 0
-     $('.calculate input:checkbox').each(function(){
+     $('.calculate input:radio').each(function(){
        if ($(this).is(':checked')) {
          var u = parseInt($(this).parent().text());//.val();
          if (!isNaN(u)) {
@@ -190,8 +190,8 @@ $(document).ready(function(){
    }
  });
  */
- if ($('.calculate input[type=checkbox]').size()) {
-   $('.calculate input[type=checkbox]').click(cal);
+ if ($('.calculate input[type=radio]').size()) {
+   $('.calculate input[type=radio]').click(cal);
    $('.total input[type=text]').focus(cal);
    $('form').submit(cal);
   }
