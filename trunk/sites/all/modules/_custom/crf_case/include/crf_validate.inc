@@ -1006,7 +1006,7 @@ function crf_case_validate_shiyan_sjc($form, &$form_state) {
     }
   }
   if (!empty($form_state['values']['e_shiyan_sjc_9_1'])) {
-    if (!empty($form_state['values']['e_shiyan_sjc_8_1'])) {
+    if (empty($form_state['values']['e_shiyan_sjc_8_1'])) {
       form_set_error('e_shiyan_sjc_8_1', '凝血功能 取样日期不能为空！');
     }
   }
@@ -1224,6 +1224,7 @@ function crf_case_validate_pg1_6($form, &$form_state) {
   _t_did($form_state, array('e_pg1_6_23_2', 1, 'e_pg1_6_23_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg1_6_24_2', 1, 'e_pg1_6_24_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg1_6_26_2', 1, 'e_pg1_6_26_3','选择其它单位不能为空！'));
+  _t_did_2($form_state, 'pg1');
 }
 function crf_case_validate_pg2_6($form, &$form_state) {
   _t_did($form_state, array('e_pg2_6_11_2', 2, 'e_pg2_6_11_3','选择其它单位不能为空！'));
@@ -1241,6 +1242,7 @@ function crf_case_validate_pg2_6($form, &$form_state) {
   _t_did($form_state, array('e_pg2_6_23_2', 1, 'e_pg2_6_23_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg2_6_24_2', 1, 'e_pg2_6_24_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg2_6_26_2', 1, 'e_pg2_6_26_3','选择其它单位不能为空！'));
+  _t_did_2($form_state, 'pg2');
 }
 function crf_case_validate_pg3_6($form, &$form_state) {
   _t_did($form_state, array('e_pg3_6_11_2', 2, 'e_pg3_6_11_3','选择其它单位不能为空！'));
@@ -1258,6 +1260,7 @@ function crf_case_validate_pg3_6($form, &$form_state) {
   _t_did($form_state, array('e_pg3_6_23_2', 1, 'e_pg3_6_23_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg3_6_24_2', 1, 'e_pg3_6_24_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg3_6_26_2', 1, 'e_pg3_6_26_3','选择其它单位不能为空！'));
+  _t_did_2($form_state, 'pg3');
 }
 function crf_case_validate_pg4_6($form, &$form_state) {
   _t_did($form_state, array('e_pg4_6_11_2', 2, 'e_pg4_6_11_3','选择其它单位不能为空！'));
@@ -1275,6 +1278,7 @@ function crf_case_validate_pg4_6($form, &$form_state) {
   _t_did($form_state, array('e_pg4_6_23_2', 1, 'e_pg4_6_23_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg4_6_24_2', 1, 'e_pg4_6_24_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg4_6_26_2', 1, 'e_pg4_6_26_3','选择其它单位不能为空！'));
+  _t_did_2($form_state, 'pg4');
 }
 function crf_case_validate_pg5_6($form, &$form_state) {
   _t_did($form_state, array('e_pg5_6_11_2', 2, 'e_pg5_6_11_3','选择其它单位不能为空！'));
@@ -1292,6 +1296,7 @@ function crf_case_validate_pg5_6($form, &$form_state) {
   _t_did($form_state, array('e_pg5_6_23_2', 1, 'e_pg5_6_23_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg5_6_24_2', 1, 'e_pg5_6_24_3','选择其它单位不能为空！'));
   _t_did($form_state, array('e_pg5_6_26_2', 1, 'e_pg5_6_26_3','选择其它单位不能为空！'));
+  _t_did_2($form_state, 'pg5');
 }
 function _t_did(&$form_state,$arr) {
   if ($form_state['values'][$arr[0]] == $arr[1]) {
@@ -1330,6 +1335,33 @@ function _t_did_1($form_state, $e) {
           form_set_error('e_'. $e .'_4_4_4', '输入结果后请选择取样日期！');  
         }
       }
+    }
+  }
+}
+
+function _t_did_2($form_state, $e) {
+  if (!empty($form_state['values']['e_'. $e .'_6_2_1']) || !empty($form_state['values']['e_'. $e .'_6_3_1']) || !empty($form_state['values']['e_'. $e .'_6_4_1']) || !empty($form_state['values']['e_'. $e .'_6_5_1']) || 
+          !empty($form_state['values']['e_'. $e .'_6_6_1']) || !empty($form_state['values']['e_'. $e .'_6_7_1'])) {
+    if (empty($form_state['values']['e_'. $e .'_6_1_1'])) {
+      form_set_error('e_'. $e .'_6_1_1', '血常规 取样日期不能为空！');  
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_9_1'])) {
+    if (empty($form_state['values']['e_'. $e .'_6_8_1'])) {
+      form_set_error('e_'. $e .'_6_8_1', '凝血功能 取样日期不能为空！');  
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_11_1']) || !empty($form_state['values']['e_'. $e .'_6_12_1']) || !empty($form_state['values']['e_'. $e .'_6_13_1']) || !empty($form_state['values']['e_'. $e .'_6_14_1']) || 
+          !empty($form_state['values']['e_'. $e .'_6_15_1']) || !empty($form_state['values']['e_'. $e .'_6_16_1']) || !empty($form_state['values']['e_'. $e .'_6_17_1']) || !empty($form_state['values']['e_'. $e .'_6_18_1'])
+          || !empty($form_state['values']['e_'. $e .'_6_19_1']) || !empty($form_state['values']['e_'. $e .'_6_20_1']) || !empty($form_state['values']['e_'. $e .'_6_21_1']) || !empty($form_state['values']['e_'. $e .'_6_22_1'])
+          || !empty($form_state['values']['e_'. $e .'_6_23_1']) || !empty($form_state['values']['e_'. $e .'_6_24_1'])) {
+    if (empty($form_state['values']['e_'. $e .'_6_10_1'])) {
+      form_set_error('e_'. $e .'_6_10_1', '血生化 取样日期不能为空！');  
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_26_1'])) {
+    if (empty($form_state['values']['e_'. $e .'_6_25_1'])) {
+      form_set_error('e_'. $e .'_6_25_1', '尿常规 取样日期不能为空！');  
     }
   }
 }
