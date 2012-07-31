@@ -383,14 +383,14 @@ for ($i=1; $i<=9; $i++) {
   $crf_el["sf{$i}_3"] = array(
     '#name' => '肿瘤评估',
       1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
-      2 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      3 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      4 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      5 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      6 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      7 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      8 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
-      9 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      2 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      3 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      4 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      5 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      6 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      7 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      8 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
+      9 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield(), 4 => type_date_popup()),
   );
 }
 
