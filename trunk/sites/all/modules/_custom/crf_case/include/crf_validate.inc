@@ -1306,8 +1306,8 @@ function _t_did_1($form_state, $e) {
         if ($form_state['values']['e_'. $e .'_4_2_3']=="") {
           form_set_error('e_'. $e .'_4_2_3', '输入结果后请选择单位！');  
         }
-        if ($form_state['values']['e_'. $e .'_4_2_4']=="") {
-          form_set_error('e_'. $e .'_4_2_4', '输入结果后请选择取样日期！');  
+        if ($form_state['values']['e_'. $e .'_4_2_5']=="") {
+          form_set_error('e_'. $e .'_4_2_5', '输入结果后请选择取样日期！');  
         }
       }
     }
