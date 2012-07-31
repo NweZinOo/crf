@@ -137,7 +137,7 @@ $(document).ready(function(){
  if (el.size()) {
    el.click(
      function () {
-       clear_alert(el, null, function(){ tr.find('input[type=text]').val('')}) 
+       clear_alert(el, null, function(){tr.find('input[type=text]').val('')}) 
      }
    );
  }
@@ -201,3 +201,10 @@ $(document).ready(function(){
    $('form').submit(cal);
   }
 });//给药日期计算总量
+
+$(document).ready(function(){
+  var gy = $('input[name=last_gy]');
+  if (gy.attr('type') == 'hidden') {
+    $('.actual-total input[type=text]').eq(0).val(gy.val());
+  }
+});

@@ -16,7 +16,7 @@
   </tr>
   <tr>
     <td>S-1</td>
-    <td><?php print drupal_render($form[$key_pre ."_1_1"]);?></td>
+    <td class="actual-total"><?php print drupal_render($form[$key_pre ."_1_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_1_2"]);?></td>
     <td class="date-select"><?php print drupal_render($form[$key_pre ."_1_3"]);?><br/>至<br/><?php print drupal_render($form[$key_pre ."_1_4"]);?></td>
     <td class="unit"><?php print drupal_render($form[$key_pre ."_1_5"]);?></td>
