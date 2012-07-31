@@ -1300,7 +1300,9 @@ function crf_case_validate_pg5_6($form, &$form_state) {
 }
 function _t_did(&$form_state,$arr) {
   if ($form_state['values'][$arr[0]] == $arr[1]) {
-    form_set_error($arr[2], $arr[3]);  
+    if (empty($form_state['values'][$arr[2]])) {
+      form_set_error($arr[2], $arr[3]);  
+    }
   } 
 }
 
@@ -1362,6 +1364,176 @@ function _t_did_2($form_state, $e) {
   if (!empty($form_state['values']['e_'. $e .'_6_26_1'])) {
     if (empty($form_state['values']['e_'. $e .'_6_25_1'])) {
       form_set_error('e_'. $e .'_6_25_1', '尿常规 取样日期不能为空！');  
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_2_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_2_2'] == "") {
+      form_set_error('e_'. $e .'_6_2_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_2_3'] == "") {
+      form_set_error('e_'. $e .'_6_2_3', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_3_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_3_2'] == "") {
+      form_set_error('e_'. $e .'_6_3_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_3_3'] == "") {
+      form_set_error('e_'. $e .'_6_3_3', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_4_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_4_2'] == "") {
+      form_set_error('e_'. $e .'_6_4_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_4_3'] == "") {
+      form_set_error('e_'. $e .'_6_4_3', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_5_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_5_2'] == "") {
+      form_set_error('e_'. $e .'_6_5_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_5_3'] == "") {
+      form_set_error('e_'. $e .'_6_5_3', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_6_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_6_2'] == "") {
+      form_set_error('e_'. $e .'_6_6_2', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_7_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_7_2'] == "") {
+      form_set_error('e_'. $e .'_6_7_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_7_3'] == "") {
+      form_set_error('e_'. $e .'_6_7_3', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_9_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_9_2'] == "") {
+      form_set_error('e_'. $e .'_6_9_2', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_11_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_11_2'] == "") {
+      form_set_error('e_'. $e .'_6_11_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_11_4'] == "") {
+      form_set_error('e_'. $e .'_6_11_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_12_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_12_2'] == "") {
+      form_set_error('e_'. $e .'_6_12_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_12_4'] == "") {
+      form_set_error('e_'. $e .'_6_12_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_13_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_13_2'] == "") {
+      form_set_error('e_'. $e .'_6_13_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_13_4'] == "") {
+      form_set_error('e_'. $e .'_6_13_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_14_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_14_2'] == "") {
+      form_set_error('e_'. $e .'_6_14_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_14_4'] == "") {
+      form_set_error('e_'. $e .'_6_14_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_15_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_15_2'] == "") {
+      form_set_error('e_'. $e .'_6_15_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_15_4'] == "") {
+      form_set_error('e_'. $e .'_6_15_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_16_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_16_2'] == "") {
+      form_set_error('e_'. $e .'_6_16_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_16_4'] == "") {
+      form_set_error('e_'. $e .'_6_16_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_17_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_17_2'] == "") {
+      form_set_error('e_'. $e .'_6_17_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_17_4'] == "") {
+      form_set_error('e_'. $e .'_6_17_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_18_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_18_2'] == "") {
+      form_set_error('e_'. $e .'_6_18_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_18_4'] == "") {
+      form_set_error('e_'. $e .'_6_18_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_19_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_19_2'] == "") {
+      form_set_error('e_'. $e .'_6_19_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_19_4'] == "") {
+      form_set_error('e_'. $e .'_6_19_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_20_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_20_2'] == "") {
+      form_set_error('e_'. $e .'_6_20_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_20_4'] == "") {
+      form_set_error('e_'. $e .'_6_20_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_21_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_21_2'] == "") {
+      form_set_error('e_'. $e .'_6_21_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_21_4'] == "") {
+      form_set_error('e_'. $e .'_6_21_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_22_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_22_2'] == "") {
+      form_set_error('e_'. $e .'_6_22_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_22_4'] == "") {
+      form_set_error('e_'. $e .'_6_22_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_23_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_23_2'] == "") {
+      form_set_error('e_'. $e .'_6_23_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_23_4'] == "") {
+      form_set_error('e_'. $e .'_6_23_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_24_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_24_2'] == "") {
+      form_set_error('e_'. $e .'_6_24_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_24_4'] == "") {
+      form_set_error('e_'. $e .'_6_24_4', '写明数值后，请选择是否有临床意义！'); 
+    }
+  }
+  if (!empty($form_state['values']['e_'. $e .'_6_26_1'])) {
+    if ($form_state['values']['e_'. $e .'_6_26_2'] == "") {
+      form_set_error('e_'. $e .'_6_26_2', '写明数值后，必须选择单位！'); 
+    }
+    if ($form_state['values']['e_'. $e .'_6_26_4'] == "") {
+      form_set_error('e_'. $e .'_6_26_4', '写明数值后，请选择是否有临床意义！'); 
     }
   }
 }
