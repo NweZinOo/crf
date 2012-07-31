@@ -73,12 +73,12 @@ function crf_work_alloc_rand($alloc = FALSE) {
   }
   
   //是否阻止继续录入，如果R的没有完成
-  $block_alloc = FALSE;
+  $block_alloc = TRUE;
   if ($block_alloc && !$array) {
     $query = 'SELECT * FROM apply_rand WHERE used = 0 AND rand_type = "R" LIMIT 1';
     $next  = db_fetch_array(db_query($query));
     if ($next) {
-      drupal_set_message('固定顺序的录入还没有完成, ' . $next['hospital'] . '应该接下来录入！');
+      drupal_set_message('目前为已入组用户阶段，需把已入组用户录入完毕！ 接下来应为：, ' . $next['hospital']);
       return FALSE;
     }
   }
