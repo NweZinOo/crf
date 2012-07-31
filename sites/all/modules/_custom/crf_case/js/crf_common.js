@@ -175,6 +175,7 @@ $(document).ready(function(){
      
      if (unit == 0) {
        alert ('计量选择不对，请检查！');
+       return false;
      }
      
      $('.total input:text').val(unit * 14 * 2);s
