@@ -10,7 +10,7 @@
     <td><b>第<?php print $no_1?>周期S-1给药记录：</b></td>
   </tr>
   <tr>
-    <td>实际给药总量为：<?php print drupal_render($form[$key_pre ."_1_1"]);?>mg;   剂量强度为：<?php print drupal_render($form[$key_pre ."_1_2"]);?></td>
+    <td class="actual-total">实际给药总量为：<?php print drupal_render($form[$key_pre ."_1_1"]);?>mg;   剂量强度为：<?php print drupal_render($form[$key_pre ."_1_2"]);?></td>
   </tr>
   <tr>
     <td>是否发生减量/或延迟给药？<?php print drupal_render($form[$key_pre ."_2_1"]);?>，原因为：<?php print drupal_render($form[$key_pre ."_2_2"]);?></td>
