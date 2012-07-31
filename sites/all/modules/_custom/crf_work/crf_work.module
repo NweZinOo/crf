@@ -94,9 +94,14 @@ function crf_work_alloc_rand($alloc = FALSE) {
     
     if (!$array) {
       //分配新BLOCK
-      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 132 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
       $array = db_fetch_array(db_query($query));
 
+      if (!$array) {
+        $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 32 AND puid < 81 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+        $array = db_fetch_array(db_query($query));
+      }
+      
       if ($array) {
         if ($alloc) {
           $query = 'UPDATE apply_rand SET hospital = "%s", rand_type = "L" WHERE `block` = %d';
