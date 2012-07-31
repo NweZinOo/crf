@@ -40,7 +40,72 @@ function crf_work_checkperm() {
 
 function crf_work_add() {
   drupal_set_breadcrumb(array(l('首页', ''),'新病人录入'));
+  
+  global $hospital_name_arr;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+  $rand = crf_work_alloc_rand();
+  
+  if (!$rand) {
+    drupal_set_message('随机号分配失败，请联系管理员！', 'error');
+    return '';
+  }
+  
   return drupal_get_form('crf_work_add_form');
+}
+
+function crf_work_alloc_rand($alloc = FALSE) {
+  global $hospital_name_arr, $user;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+  $array = FALSE;
+  
+  //固定PUID
+  $query = 'SELECT * FROM apply_rand WHERE hospital = "%s" AND used = 0 AND rand_type = "R" LIMIT 1';
+  $array = db_fetch_array(db_query($query, $hospital_name));
+  
+  //是否阻止继续录入，如果R的没有完成
+  $block_alloc = FALSE;
+  if ($block_alloc && !$array) {
+    $query = 'SELECT * FROM apply_rand WHERE used = 0 AND rand_type = "R" LIMIT 1';
+    $next  = db_fetch_array(db_query($query));
+    if ($next) {
+      drupal_set_message('固定顺序的录入还没有完成, ' . $next['hospital'] . '应该接下来录入！');
+      return FALSE;
+    }
+  }
+  //END 阻止
+  
+  //随机PUID
+  if (!$array) {
+    
+    //获取已有BLOCK
+    $query = 'SELECT * FROM apply_rand WHERE hospital = "%s" AND used = 0 AND rand_type = "L" LIMIT 1';
+    $array = db_fetch_array(db_query($query, $hospital_name));
+   
+    
+    if (!$array) {
+      //分配新BLOCK
+      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+      $array = db_fetch_array(db_query($query));
+
+      if ($array) {
+        if ($alloc) {
+          $query = 'UPDATE apply_rand SET hospital = "%s", rand_type = "L" WHERE `block` = %d';
+          db_query($query, $hospital_name, $rand['block']);
+        }
+      }
+    }
+
+    
+  }
+  
+  if ($array && $alloc) {
+    $query = 'UPDATE apply_rand SET used = 1 WHERE puid = %d';
+    db_query($query, $array['puid']);
+  }
+  
+  return $array;
 }
 
 function crf_work_add_form(&$form_state) {
@@ -165,10 +230,26 @@ function crf_work_add_form_validate($form, &$form_state) {
   else if (11 != mb_strlen($form_state['values']['phone']) || !is_numeric($form_state['values']['phone'])){
     form_set_error('phone', '手机号必须为11位数字!');
   }  
+  
+  
 }
 
 function crf_work_add_form_submit($form, &$form_state) {
-  global $user;
+  global $hospital_name_arr, $user;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+  $rand = crf_work_alloc_rand(TRUE);
+  
+  if ($rand) {
+    
+  }
+  else {
+    drupal_set_message('随机号码分配失败，请联系管理员！', 'error');
+    //drupal_goto();
+    return;
+  }
+  
+  $obj->p_uid = $rand['puid'];
   $obj->hospital_no = $user->profile_hospital_no;
 //  $obj->sift = $form_state['values']['sift'];
   $obj->p_name = $form_state['values']['p_name'];
@@ -176,26 +257,29 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->case_history_no = $form_state['values']['case_history_no'];
   $obj->approved = $form_state['values']['approved'];
   $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
-  $obj->team = '';
+  $obj->team = $rand['group'] == 'A' ? '1' : '2';
   $obj->apply_time = date("Y-m-d H:i:s");
   $obj->editor = $form_state['values']['editor'];
   $obj->phone = $form_state['values']['phone'];
   
   $table = 'apply';
   $r = crf_work_write_record($table, $obj);
-  if ($r != FALSE) {
-    $p_uid = db_last_insert_id($table, 'p_uid');
-    $team = get_rand_team($p_uid);
-    $query = 'UPDATE ' . $table . ' SET team = %d WHERE p_uid = %d';
-    db_query($query, $team, $p_uid);
-    drupal_set_message('添加成功！');
-    drupal_goto('patient/' . $p_uid);
-  }
+  drupal_set_message('添加成功！');
+  drupal_goto('patient/' . $obj->p_uid);
+    
+  //if ($r != FALSE) {
+  //  $p_uid = db_last_insert_id($table, 'p_uid');
+    //$team = get_rand_team($p_uid);
+    //$query = 'UPDATE ' . $table . ' SET team = %d WHERE p_uid = %d';
+    //db_query($query, $team, $p_uid);
+ //   drupal_set_message('添加成功！');
+ //   drupal_goto('patient/' . $p_uid);
+ // }
 }
 
 function crf_work_write_record($table, $obj) {
 //  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s")';
-  $query = 'INSERT INTO '. $table .' (hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone) VALUES("%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s")';
+  $query = 'INSERT INTO '. $table .' (p_uid, hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone) VALUES(%d, "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s")';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
