@@ -1155,26 +1155,36 @@ function _pg_did(&$form_state,$arr,$e) {
   }
 }
 
+function crf_case_validate_pg1_2($form, &$form_state) {
+  _pg_did_1($form_state, array(),'pg1');
+}
 function crf_case_validate_pg2_2($form, &$form_state) {
-  _pg_did_1($form_state, array('pg1_2', 'e_pg2_2_2_1'));
+  _pg_did_1($form_state, array('pg1_2', 'e_pg2_2_2_1'),'pg2');
 }
 function crf_case_validate_pg3_2($form, &$form_state) {
-  _pg_did_1($form_state, array('pg2_2', 'e_pg3_2_2_1'));
+  _pg_did_1($form_state, array('pg2_2', 'e_pg3_2_2_1'),'pg3');
 }
 function crf_case_validate_pg4_2($form, &$form_state) {
-  _pg_did_1($form_state, array('pg3_2', 'e_pg4_2_2_1'));
+  _pg_did_1($form_state, array('pg3_2', 'e_pg4_2_2_1'),'pg4');
 }
 function crf_case_validate_pg5_2($form, &$form_state) {
-  _pg_did_1($form_state, array('pg4_2', 'e_pg5_2_2_1'));
+  _pg_did_1($form_state, array('pg4_2', 'e_pg5_2_2_1'),'pg5');
 }
-function _pg_did_1(&$form_state,$arr) {
-  $p_uid = crf_ds_s_data('p_uid');
-  $data = json_to_array(crf_ds_load($arr[0], $p_uid));
-  if (!empty($form_state['values'][$arr[1]]) && $form_state['values'][$arr[1]] <= $data[2][1]) {
-    form_set_error($arr[1], "心电图检查检查日期需大于上一次心电图检查的检查时间！");  
-  }  
-  if ($form_state['values']['e_pg3_2_3_1'] == 1 && empty($form_state['values']['e_pg3_2_3_2'])) {
-    form_set_error('e_pg3_2_3_2', "您选择了异常，请说明理由！");  
+function _pg_did_1(&$form_state,$arr,$e) {
+  if ($e != "pg1") {
+    $p_uid = crf_ds_s_data('p_uid');
+    $data = json_to_array(crf_ds_load($arr[0], $p_uid));
+    if (!empty($form_state['values'][$arr[1]]) && $form_state['values'][$arr[1]] <= $data[2][1]) {
+      form_set_error($arr[1], "心电图检查检查日期需大于上一次心电图检查的检查时间！");  
+    }  
+  }
+  if ($form_state['values']['e_'. $e .'_2_3_1'] == 1 && empty($form_state['values']['e_'. $e .'_2_3_2'])) {
+    form_set_error('e_'. $e .'_2_3_2', "您选择了异常，请说明理由！");  
+  }
+  if ($form_state['values']['e_'. $e .'_2_3_1'] != "") {
+    if (empty($form_state['values']['e_'. $e .'_2_2_1'])) {
+      form_set_error('e_'. $e .'_2_2_1', "检查日期不能为空！");
+    }
   }
 }
 
