@@ -1122,7 +1122,7 @@ function _pg_did(&$form_state,$arr,$e) {
   if ($arr[9] != '') {
     $p_uid = crf_ds_s_data('p_uid');
     $data = json_to_array(crf_ds_load($arr[9], $p_uid));
-    if ($form_state['values'][$arr[10]] <= $data[1][1]) {
+    if (!empty($form_state['values'][$arr[10]]) && $form_state['values'][$arr[10]] <= $data[1][1]) {
       form_set_error($arr[10], "检查日期需大于上一次临床评估的检查时间！");  
     }
   }
