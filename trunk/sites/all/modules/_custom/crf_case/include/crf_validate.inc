@@ -1190,18 +1190,23 @@ function _pg_did_1(&$form_state,$arr,$e) {
 
 function crf_case_validate_pg1_4($form, &$form_state) {
   _t_did($form_state, array('e_pg1_4_2_3', 1, 'e_pg1_4_2_4','选择其它单位不能为空！'));
+  _t_did_1($form_state, 'pg1');
 }
 function crf_case_validate_pg2_4($form, &$form_state) {
   _t_did($form_state, array('e_pg2_4_2_3', 1, 'e_pg2_4_2_4','选择其它单位不能为空！'));
+  _t_did_1($form_state, 'pg2');
 }
 function crf_case_validate_pg3_4($form, &$form_state) {
   _t_did($form_state, array('e_pg3_4_2_3', 1, 'e_pg3_4_2_4','选择其它单位不能为空！'));
+  _t_did_1($form_state, 'pg3');
 }
 function crf_case_validate_pg4_4($form, &$form_state) {
   _t_did($form_state, array('e_pg4_4_2_3', 1, 'e_pg4_4_2_4','选择其它单位不能为空！'));
+  _t_did_1($form_state, 'pg4');
 }
 function crf_case_validate_pg5_4($form, &$form_state) {
   _t_did($form_state, array('e_pg5_4_2_3', 1, 'e_pg5_4_2_4','选择其它单位不能为空！'));
+  _t_did_1($form_state, 'pg5');
 }
 function crf_case_validate_pg1_6($form, &$form_state) {
   _t_did($form_state, array('e_pg1_6_11_2', 2, 'e_pg1_6_11_3','选择其它单位不能为空！'));
@@ -1292,6 +1297,41 @@ function _t_did(&$form_state,$arr) {
   if ($form_state['values'][$arr[0]] == $arr[1]) {
     form_set_error($arr[2], $arr[3]);  
   } 
+}
+
+function _t_did_1($form_state, $e) {
+  if ($form_state['values']['e_'. $e .'_4_1_1'] != 1) {
+    if ($form_state['values']['e_'. $e .'_4_2_1'][1] == 0) {
+      if (!empty($form_state['values']['e_'. $e .'_4_2_2'])) {
+        if ($form_state['values']['e_'. $e .'_4_2_3']=="") {
+          form_set_error('e_'. $e .'_4_2_3', '输入结果后请选择单位！');  
+        }
+        if ($form_state['values']['e_'. $e .'_4_2_4']=="") {
+          form_set_error('e_'. $e .'_4_2_4', '输入结果后请选择取样日期！');  
+        }
+      }
+    }
+    if ($form_state['values']['e_'. $e .'_4_3_1'][1] == 0) {
+      if (!empty($form_state['values']['e_'. $e .'_4_3_2'])) {
+        if ($form_state['values']['e_'. $e .'_4_3_3']=="") {
+          form_set_error('e_'. $e .'_4_3_3', '输入结果后请选择单位！');  
+        }
+        if ($form_state['values']['e_'. $e .'_4_3_4']=="") {
+          form_set_error('e_'. $e .'_4_3_4', '输入结果后请选择取样日期！');  
+        }
+      }
+    }
+    if ($form_state['values']['e_'. $e .'_4_4_1'][1] == 0) {
+      if (!empty($form_state['values']['e_'. $e .'_4_4_2'])) {
+        if ($form_state['values']['e_'. $e .'_4_4_3']=="") {
+          form_set_error('e_'. $e .'_4_4_3', '输入结果后请选择单位！');  
+        }
+        if ($form_state['values']['e_'. $e .'_4_4_4']=="") {
+          form_set_error('e_'. $e .'_4_4_4', '输入结果后请选择取样日期！');  
+        }
+      }
+    }
+  }
 }
 
 function _crf_validate_did(&$form_state, $key, $val = '1') {
