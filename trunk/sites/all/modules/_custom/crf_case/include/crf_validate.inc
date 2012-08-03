@@ -1042,11 +1042,11 @@ function crf_case_validate_xindian_tjc($form, &$form_state) {
       form_set_error('e_xindian_tjc_2_2', "如有异常，请填写说明！");
     }
   }  
-  if (!empty($form_state['values']['e_xindian_tjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
-    if ($form_state['values']['e_xindian_tjc_1_1'] > $data[1][1] || $form_state['values']['e_xindian_tjc_1_1'] > $data[2][2]) {
-      form_set_error('e_xindian_tjc_1_1', "检查日期不能大于第一周期给药的日期！");
-    }
-  }
+//  if (!empty($form_state['values']['e_xindian_tjc_1_1']) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+//    if ($form_state['values']['e_xindian_tjc_1_1'] > $data[1][1] || $form_state['values']['e_xindian_tjc_1_1'] > $data[2][2]) {
+//      form_set_error('e_xindian_tjc_1_1', "检查日期不能大于第一周期给药的日期！");
+//    }
+//  }
 }
 
 function crf_case_validate_quanshen_tgjc($form, &$form_state) {
