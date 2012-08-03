@@ -1,6 +1,8 @@
 <?php
 
 function crf_form_save_renkou_tjx($dataset, $form_state) {
+  
+  /**
   $sex = $dataset[1][2];
   $disabled = crf_common_session('disable_item');
   if (!is_array($disabled)) {
@@ -15,6 +17,8 @@ function crf_form_save_renkou_tjx($dataset, $form_state) {
     $disabled = array_diff($disabled, array('huaiyun_knx'));
     crf_common_session('disable_item', $disabled);
   }
+   
+  */
 }
 
 //function crf_form_save_shiyan_sjc($dataset, $form_state) {
