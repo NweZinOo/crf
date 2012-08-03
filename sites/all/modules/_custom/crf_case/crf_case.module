@@ -89,12 +89,21 @@ function crf_case_edit() {
     return drupal_not_found();
   }
   
-   $disabled = crf_common_session('disable_item');
-   if (is_array($disabled) && in_array($no, $disabled)) {
-     //禁用了，则跳过
-     $next = crf_get_next_form_key($no);
-     drupal_goto('crf_case_edit/' . $next);
-   }
+  $knx = crf_ds_load('huaiyun_knx', crf_common_session('p_uid'));
+  $disabled = array();
+  
+  if ($knx) {
+    $knx = json_to_array($knx);
+
+    if ($knx[1][2] == 0) {
+    $disabled[] = 'huaiyun_knx';
+    
+    if (is_array($disabled) && in_array($no, $disabled)) {     
+      //禁用了，则跳过
+      $next = crf_get_next_form_key($no);
+      drupal_goto('crf_case_edit/' . $next);
+    }
+  }
 
    
   //crf_progress_save(arg(1));
@@ -127,7 +136,7 @@ function crf_case_edit() {
   }
   
   drupal_add_js(array('progress' => $progress), 'setting');
-  $disabled = crf_common_session('disable_item');
+  
   if (is_array($disabled) && count($disabled)) {
      drupal_add_js(array('disabled' => $disabled), 'setting');
   }

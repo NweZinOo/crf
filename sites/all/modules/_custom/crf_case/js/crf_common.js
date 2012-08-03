@@ -12,7 +12,7 @@ if (!Array.indexOf) {
 $(document).ready(function() {
   var p = Drupal.settings.progress;
   
-  var d = Drupal.settings.disabled;
+  var d = Drupal.settings.disabled ;
   
   var can = [];
   
