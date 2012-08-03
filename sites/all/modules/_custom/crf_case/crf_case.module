@@ -89,7 +89,7 @@ function crf_case_edit() {
     return drupal_not_found();
   }
   
-  $knx = crf_ds_load('huaiyun_knx', crf_common_session('p_uid'));
+  $knx = crf_ds_load('renkou_tjx', crf_common_session('p_uid'));
   $disabled = array();
   
   if ($knx) {
