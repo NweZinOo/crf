@@ -50,11 +50,11 @@ function crf_case_validate_teshu_jc($form, &$form_state) {
         form_set_error($v, $check_name[$k] ."的评估日期不能大于知情同意书的日期(". $_SESSION['crf']['p_arr']['approved_time'] .")！");
       }
     }
-    if (!empty($form_state['values'][$v]) && (!empty($data[1][1]) || !empty($data[2][2]))) {
-      if ($form_state['values'][$v] > $data[1][1] || $form_state['values'][$v] > $data[2][2]) {
-        form_set_error($v, $check_name[$k] ."的评估日期不能大于第一周期给药的日期！");
-      }
-    }
+//    if (!empty($form_state['values'][$v]) && (!empty($data[1][1]) || !empty($data[2][2]))) {
+//      if ($form_state['values'][$v] > $data[1][1] || $form_state['values'][$v] > $data[2][2]) {
+//        form_set_error($v, $check_name[$k] ."的评估日期不能大于第一周期给药的日期！");
+//      }
+//    }
   }  
 }
 
