@@ -98,10 +98,11 @@ function crf_case_edit() {
     if ($knx[1][2] == 0) {
     $disabled[] = 'huaiyun_knx';
     
-    if (is_array($disabled) && in_array($no, $disabled)) {     
-      //禁用了，则跳过
-      $next = crf_get_next_form_key($no);
-      drupal_goto('crf_case_edit/' . $next);
+      if (is_array($disabled) && in_array($no, $disabled)) {     
+        //禁用了，则跳过
+        $next = crf_get_next_form_key($no);
+        drupal_goto('crf_case_edit/' . $next);
+      }
     }
   }
 
@@ -1030,5 +1031,6 @@ function crf_case_theme() {
       'template' => 'templates/yanjiu_js',
     ), 
   );
+  
 }
 
