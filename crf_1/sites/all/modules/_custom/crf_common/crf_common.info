@@ -1,0 +1,5 @@
+; $Id: $
+name = "CRF COMMON"
+description = "CRF common moudle."
+package = "CRF"
+core = 6.x

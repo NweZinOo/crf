@@ -1,0 +1,31 @@
+; $Id$ 
+
+name = "Acme Theme"
+description = "The Acme theme was created by David Needham and Jen Lampton of Chapter Three. Many people recognize it from our theming course."
+core = 6.x
+version = 1.1
+engine = phptemplate
+
+stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/html-elements.css
+stylesheets[all][] = css/acme.css
+
+regions[right] = Sidebar (right)
+regions[content] = Content
+regions[footer] = Footer
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = search
+features[] = favicon
+features[] = primary_links
+
+; Information added by drupal.org packaging script on 2011-04-25
+version = "6.x-1.1"
+core = "6.x"
+project = "acme"
+datestamp = "1303757215"
+

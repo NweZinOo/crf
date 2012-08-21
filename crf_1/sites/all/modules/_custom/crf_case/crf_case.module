@@ -1,0 +1,490 @@
+<?php
+
+include_once dirname(__FILE__) . '/include/form_elements.inc';
+
+include_once dirname(__FILE__) . '/include/crf_case.conf.inc';
+
+include_once dirname(__FILE__) . '/include/crf_dataset.inc';
+
+/**
+ * CRF Dataset Table Name
+ */
+define('CRF_DS_TABLE', 'crf_case_data');
+
+module_load_include('inc', 'crf_common', 'include/crf_common.conf');
+
+/**
+* Implementation of hook_menu
+*/
+function crf_case_menu()
+{
+  $items = array();
+  $items['crf_case/%/%'] = array(
+    'page callback' => 'crf_case',
+    'page arguments' => array(1,2),
+    'access callback' => 'crf_case_checkperm',
+    //'access arguments' => array(1),    
+    //'access aguments' => array('crf case view'),
+    'type' => MENU_CALLBACK
+  );
+  $items['crf_case_edit'] = array(
+    'page callback' => 'crf_case_edit',
+    //'access callback' => 'crf_case_checkperm',
+    'access arguments' => array('crf case view'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;  
+}
+
+function crf_case_checkperm() {
+  global $user;
+  if ((isset($user->roles[3]) || $user->uid == 1)) {
+    return true;
+  }
+  else if(user_access('crf case view') || user_access('crf view all') || user_access('crf case edit')) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function crf_case($p_uid, $type) {
+  global $user;
+  //$hospital_no = $user->profile_hospital_no;
+  //$query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s'";
+  $query = "SELECT * FROM apply WHERE p_uid = %d";
+  $result = db_query($query, $p_uid/*, $hospital_no*/);
+  $p_arr = db_fetch_array($result);
+//  print_r($p_arr);exit;
+  if ($p_arr != NULL) {
+    crf_common_session('p_arr', $p_arr);
+    crf_common_session('p_uid', $p_uid);
+    crf_common_session('type', $type); //1代表可编辑 2代表不可编辑
+    drupal_goto('crf_case_edit');
+  }
+  else {
+    drupal_set_message('非法操作，请从下列列表中选择一项进入录入!');
+    drupal_goto('crf_case');
+  }
+}
+
+/**
+ * 参数eg:
+ * crf_case_edit/zqtys
+ * crf_case_edit/第几页
+ */
+function crf_case_edit() {
+  $p_arr = crf_common_session('p_arr');
+  
+  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【姓名缩写：' . $p_arr['p_name'] . '】'));
+  $no = arg(1);
+  if (empty($no)) {
+    $no = 'dyxx';
+    drupal_goto('crf_case_edit/' . $no);
+    exit;
+  }
+  
+  if (FALSE === get_form_elements_arr($no)) {
+    drupal_set_message('未建立的数组元素,请联系管理员！');
+    return drupal_not_found();
+  }
+  
+  $knx = crf_ds_load('renkou_tjx', crf_common_session('p_uid'));
+  $disabled = array();
+  
+  if ($knx) {
+    $knx = json_to_array($knx);
+
+    if ($knx[1][2] == 0) {
+    $disabled[] = 'huaiyun_knx';
+    
+      if (is_array($disabled) && in_array($no, $disabled)) {     
+        //禁用了，则跳过
+        $next = crf_get_next_form_key($no);
+        drupal_goto('crf_case_edit/' . $next);
+      }
+    }
+  }
+
+   
+  //crf_progress_save(arg(1));
+  $row = crf_progress_load();
+
+  if ($row && isset($row['data']) && !empty($row['data'])) {
+    $progress = json_decode($row['data']);
+    
+    if (in_array('shiyan_sjc', $progress)) {
+      drupal_add_js(array('all_doable' => 1), 'setting');
+    }
+    
+    /*
+    $last     = array_pop($progress);
+    $next     = crf_get_next_form_key($last);
+    $progress[] = $last;
+    $progress[] = $next;
+    if (!in_array($no, $progress)) {
+      drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
+      return ''; 
+    }
+    **/
+  }
+  else {
+    //if ($no != 'zhiqing_tys') {
+    //  drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
+    //  return ''; 
+    // }
+    $progress = array();
+  }
+  
+  drupal_add_js(array('progress' => $progress), 'setting');
+  
+  if (is_array($disabled) && count($disabled)) {
+     drupal_add_js(array('disabled' => $disabled), 'setting');
+  }
+  
+  include_once dirname(__FILE__) . '/include/crf_validate.inc';
+  return drupal_get_form("crf_case_form", $no);
+}
+
+function crf_case_form(&$form_state, $arg = NULL) {
+  $no = $arg;
+  $form_elements_arr = get_form_elements_arr($no);
+  
+  $dataset = crf_ds_load($no);
+  $dataset = json_to_array($dataset);
+  
+  foreach($form_elements_arr as $row => $group) {
+    if (stristr($row, '#') === FALSE) {//skip #
+      foreach($group as $element_no => $element) {
+        //print "e_{$no}_{$row}_{$element_no}";
+        crf_set_element_default_value($element, $dataset, $row, $element_no);
+        $form["e_{$no}_{$row}_{$element_no}"] = $element;
+      }
+    }
+  }
+  $p_uid = crf_ds_s_data('p_uid');
+  if ($no == "zq2_4") {
+    $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][4]
+    );
+  }
+  if ($no == "zq3_4") {
+    $data = json_to_array(crf_ds_load('zq2_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq4_4") {
+    $data = json_to_array(crf_ds_load('zq3_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq5_4") {
+    $data = json_to_array(crf_ds_load('zq4_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq6_4") {
+    $data = json_to_array(crf_ds_load('zq5_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq7_4") {
+    $data = json_to_array(crf_ds_load('zq6_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq8_3") {
+    $data = json_to_array(crf_ds_load('zq7_4', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[1][6]
+    );
+  }
+  if ($no == "zq9_3") {
+    $data = json_to_array(crf_ds_load('zq8_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq10_3") {
+    $data = json_to_array(crf_ds_load('zq9_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq11_3") {
+    $data = json_to_array(crf_ds_load('zq10_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq12_3") {
+    $data = json_to_array(crf_ds_load('zq11_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq13_3") {
+    $data = json_to_array(crf_ds_load('zq12_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq14_3") {
+    $data = json_to_array(crf_ds_load('zq13_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq15_3") {
+    $data = json_to_array(crf_ds_load('zq14_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  if ($no == "zq16_3") {
+    $data = json_to_array(crf_ds_load('zq15_3', $p_uid));
+    $form['last_gy'] = array(
+      '#type' => 'hidden',
+      '#value'=> $data[4][2]
+    );
+  }
+  $form['#theme']    = 'crf_case_form_'. $no;
+  $form['#validate'][] = 'crf_case_form_step_validate';
+
+  $validate = "crf_case_validate_$no";
+  if (is_callable($validate)) {
+     $form['#validate'][] = $validate;
+  }
+
+  if (user_access('crf case edit')) {
+    $no == 'yanjiu_js' ? $v = '完 成' : $v = '保 存 & 继 续';
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value'=> $v
+    );
+  }
+  else {
+    drupal_add_js('
+     $(function(){
+       $("input,select").attr("disabled", "disabled");
+     });
+    ', 'inline');
+  }
+  return $form;
+}
+
+
+function crf_case_form_step_validate($form, &$form_state) {
+  $no = arg(1);
+  //form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
+
+  if ( $no && $no != 'dyxx') {
+    $prev     = crf_get_next_form_key($no, -1);
+    $progress = crf_progress_load();
+
+    if ($progress && $progress['data']) {
+      $prog = json_decode($progress['data']);
+      if (!in_array($prev, $prog)) {
+//        form_set_error('form', '保存顺序有问题，请按顺序填写表格！');
+      }
+    }
+  }
+}
+
+function crf_case_form_submit($form, $form_state) {
+  $no = arg(1);
+  if (empty($no)) {
+    $no = 'zhiqing_tys';
+  }
+  
+  
+  $values  = $form_state['values'];
+  $dataset = crf_ds_parse($no, $values, $form);
+  
+  //var_dump($dataset);
+  /**
+   * $dataset
+   *  array
+       1 => array (
+          1 => string '2012-06-05 00:00:00' (length=19)
+          2 => string '2012-06-05 00:00:00' (length=19)
+       )
+  */
+   
+   include_once dirname(__FILE__) . '/include/crf_form_save.inc';
+   
+   $hook = "crf_ds_update_$no";
+   if (is_callable($hook)) {
+     $dataset = call_user_func_array($hook, array($no, $dataset));
+   }
+   
+   crf_ds_save($dataset, $no);
+   crf_progress_save($no);
+   
+   $hook = "crf_form_save_$no";
+   if (is_callable($hook)) {
+     call_user_func_array($hook, array($dataset, $form_state));
+   }
+   
+   drupal_set_message('保存成功！');
+   
+   $next = crf_get_next_form_key($no);
+   
+   if ($next !== FALSE) {
+     drupal_goto('crf_case_edit/' . $next);
+   }
+   else {
+     drupal_set_message('恭喜您录入已完成！');
+   }
+}
+
+
+function crf_get_next_form_key($current, $offset = 1) {
+   global $crf_el;
+   $keys  = array_keys($crf_el);
+   $index = array_search($current, $keys);
+   
+   if (FALSE !== $index && $keys[$index+$offset]) {
+     return $keys[$index+$offset];
+   }
+   else {
+     return FALSE;
+   }
+}
+
+function crf_set_element_default_value(&$element, $dataset, $row, $col) {
+  if (isset($dataset[$row]) && isset($dataset[$row][$col])) {
+    $element['#default_value'] = $dataset[$row][$col];
+  }
+} 
+
+
+function crf_progress_save($name) {
+ 
+  $p_uid = crf_common_session('p_uid');
+  $row   = crf_progress_load();
+  $did   = FALSE;  
+  
+  if (!$row) {
+    db_query("INSERT INTO crf_case_user_profile (uid, data, updated) VALUES (%d, '%s', %d)",  $p_uid, json_encode(array($name)), time());
+    $did = TRUE;
+  }
+  else {
+    $keys = json_decode($row['data']);
+    
+    if (!in_array($name, $keys)) {
+      $keys[] = $name;
+      db_query("UPDATE crf_case_user_profile SET data = '%s', updated = %d WHERE uid = %d", json_encode($keys), time(), $p_uid);
+      $did = TRUE;
+    }
+  }
+  
+  if ($did) {
+    crf_progress_load($p_uid, TRUE);
+  }
+}
+
+function crf_progress_load($p_uid = NULL, $reset = FALSE) {
+  static $p;
+  if (!$p_uid) {
+    $p_uid = crf_common_session('p_uid');
+  }
+  
+  if (!isset($p[$p_uid]) || $reset) {
+    $row = db_fetch_array(db_query('SELECT * FROM crf_case_user_profile WHERE uid = %d', $p_uid));
+    $p[$p_uid] = $row;
+  }
+  
+  return $p[$p_uid];
+}
+
+function json_to_array($data){
+  $arr=array();
+  if (empty ($data)) {
+    return $arr;
+  }
+  
+  if (is_object($data)) {
+    $data = (array)$data;
+  }
+  
+  foreach($data as $k=>$w){
+    if(is_object($w)) {
+      $arr[$k]=json_to_array($w); //判断类型是不是object
+    }
+    else {
+      $arr[$k]=$w;
+    }
+  }
+  
+  return $arr;
+}
+
+function crf_case_init() {
+  $path = drupal_get_path('module', 'crf_case');
+  //drupal_add_css($path . '/js/jquery.mb.tooltip.1.6/css/mbtooltip.css', 'module');
+  //  drupal_add_js($path . '/js/crf_common.js', 'module');
+  //drupal_add_js($path . '/js/jquery-tooltip/js/jtip.js', 'module');
+  drupal_add_js($path . '/js/vtip/vtip.js', 'module');
+  drupal_add_css($path . '/js/vtip/css/vtip.css', 'module');
+
+  drupal_add_js($path . '/js/crf_common.js', 'module');
+}
+
+
+
+/**
+ * Implementation of hook_theme().
+ */
+function crf_case_theme() {
+  global $hospital_name_arr;
+//  print_r($hospital_name_arr);exit;
+  return array(
+    'crf_case_form_dyxx' => array(
+      'arguments' => array('form' => NULL, 'class' => 'dyxx', 'table' => 'dyxx', 'table_name' => '调研数据录入', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/dyxx',
+    ),      
+    'crf_case_form_sf_1' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf-1', 'table' => 'sf_1', 'table_name' => '第一次随访', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/sf',
+    ),
+    'crf_case_form_sf_2' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf-2', 'table' => 'sf_2', 'table_name' => '第二次随访', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/sf',
+    ),
+    'crf_case_form_sf_3' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf-3', 'table' => 'sf_3', 'table_name' => '第三次随访', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/sf',
+    ),
+    'crf_case_form_sf_4' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf-4', 'table' => 'sf_4', 'table_name' => '第四次随访', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/sf',
+    ),
+    'crf_case_form_sf_5' => array(
+      'arguments' => array('form' => NULL, 'class' => 'sf-5', 'table' => 'sf_5', 'table_name' => '第五次随访', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/sf',
+    ),
+  );
+}
+

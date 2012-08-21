@@ -1,0 +1,63 @@
+<?php
+function crf_common_init() {
+  global $user;
+  $profile =  profile_load_profile($user);  
+}
+/**
+* Implementation of hook_menu
+*/
+function crf_common_menu()
+{
+  $items = array();
+  $items['crf_front'] = array(
+    'title' => 'Front',
+    'page callback' => 'crf_common_front',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;  
+}
+
+/**
+ * Menu callback; Generate a listing of promoted nodes.
+ */
+function crf_common_front() {
+  global $user;
+  if ($user->uid) {
+    drupal_goto('crf_list');
+  }
+  else {
+    drupal_set_title('');
+    $output = drupal_get_form('user_login_block');    
+  }
+  return $output;
+}
+
+function crf_common_session($key, $value = null) {  
+  if (isset($value)) {    
+    unset($_SESSION['crf'][$key]);    
+    $_SESSION['crf'][$key] = $value;  
+  }    
+  if (isset($_SESSION['crf'][$key])) {    
+    return $_SESSION['crf'][$key];  
+  }
+  return FALSE;
+}
+
+function crf_common_user($op, &$edit, &$account, $category = NULL) {
+  
+  switch ($op) {
+    case 'login': 
+      $_GET['destination'] = 'crf_list';
+      drupal_goto('crf_list');
+      break;
+  }
+}
+
+function crf_common_perm() {
+  return array('crf view all', 'crf view list', 'crf case view', 'crf case edit',);
+}
+
+function crf_common_form_alter() {
+  
+}

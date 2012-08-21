@@ -1,0 +1,32 @@
+; $Id$
+name = Gordon warm
+description = Tableness theme for Drupal CMS by <a href="http://premiumcmsthemes.com">Premium CMS Themes<a>.
+core = 6.x
+engine = phptemplate
+screenshot = screenshot.jpg
+
+; Css files
+stylesheets[all][] = css/styles.css
+
+base theme = gordon
+
+; Regions
+regions[left] = Left sidebar
+regions[right] = Left sidebar
+regions[content] = Content
+regions[footer] = Footer
+regions[front_top] = Front top
+
+; Features
+features[] = logo
+features[] = slogan
+features[] = search
+features[] = favicon
+features[] = primary_links
+features[] = secondary_links
+; Information added by drupal.org packaging script on 2011-10-10
+version = "6.x-1.4"
+core = "6.x"
+project = "gordon"
+datestamp = "1318234304"
+

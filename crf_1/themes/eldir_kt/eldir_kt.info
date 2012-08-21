@@ -1,0 +1,23 @@
+; $Id$
+name = Eldir for Koumbit
+description = Eldir customizations for Koumbit
+core = 6.x
+engine = phptemplate
+base theme = eldir
+
+stylesheets[all][] = koumbit.css
+
+conditional-stylesheets[if gte IE 7][all][] = ie7up.css
+
+regions[left] = Left sidebar
+regions[right] = Right sidebar
+regions[content] = Content
+regions[header] = Header
+regions[footer] = Footer
+
+; Information added by drupal.org packaging script on 2011-04-04
+version = "6.x-1.0"
+core = "6.x"
+project = "eldir_kt"
+datestamp = "1301946727"
+

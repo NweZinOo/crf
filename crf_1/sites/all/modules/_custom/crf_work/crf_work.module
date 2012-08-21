@@ -1,0 +1,523 @@
+<?php
+module_load_include('inc', 'crf_common', 'include/crf_common.conf');
+/**
+* Implementation of hook_menu
+*/
+function crf_work_menu()
+{
+  $items = array();
+  $items['crf_add'] = array(
+    'title' => '随机申请表',
+    'page callback' => 'crf_work_add',
+    'access callback' => 'crf_work_checkperm',
+    'type' => MENU_CALLBACK
+  );
+  $items['crf_list'] = array(
+    'title' => '随机列表',
+    'page callback' => 'crf_work_list',
+    //'access callback' => 'crf_work_checkperm',
+    'access arguments' => array('crf view list'),
+    'type' => MENU_CALLBACK
+  );
+  $items['patient'] = array(
+    'title' => '随机操作结果',
+    'page callback' => 'crf_patient',
+    'access callback' => 'crf_work_checkperm',
+    'type' => MENU_CALLBACK
+  );
+  return $items;  
+}
+
+function crf_work_checkperm() {
+  global $user;
+  if ((isset($user->roles[3]) || $user->uid == 1)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function crf_work_add() {
+  drupal_set_breadcrumb(array(l('首页', ''),'新病人录入'));
+  
+  global $hospital_name_arr;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+//  $rand = crf_work_alloc_rand();
+  
+//  if (!$rand) {
+//    drupal_set_message('随机号分配失败，请联系管理员！', 'error');
+//    return '';
+//  }
+  
+  return drupal_get_form('crf_work_add_form');
+}
+
+function crf_work_alloc_rand($alloc = FALSE) {
+  global $hospital_name_arr, $user;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+  $array = FALSE;
+  
+  //固定PUID
+  $query = 'SELECT * FROM apply_rand WHERE hospital = "%s" AND used = 0 AND rand_type = "R" LIMIT 1';
+  $array = db_fetch_array(db_query($query, $hospital_name));
+  if ($array) {
+    if ($array['group_before'] == '1') {
+      $array['group'] = 'A';
+    }
+    else {
+      $array['group'] = 'B';
+    }
+  }
+  
+  //是否阻止继续录入，如果R的没有完成
+  $block_new_without_spec = TRUE;
+  if ($block_new_without_spec && !$array) {
+    $query = 'SELECT * FROM apply_rand WHERE used = 0 AND rand_type = "R" LIMIT 1';
+    $next  = db_fetch_array(db_query($query));
+    if ($next) {
+      drupal_set_message('目前为已入组用户阶段，需把已入组用户录入完毕！ 接下来应为：' . $next['hospital'] . '。');
+      return FALSE;
+    }
+  }
+  //END 阻止
+  
+  //随机PUID
+  if (!$array) {
+    
+    //获取已有BLOCK
+    $query = 'SELECT * FROM apply_rand WHERE hospital = "%s" AND used = 0 AND rand_type = "L" LIMIT 1';
+    $array = db_fetch_array(db_query($query, $hospital_name));
+   
+    
+    if (!$array) {
+      //分配新BLOCK
+      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 132 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+      $array = db_fetch_array(db_query($query));
+
+      if (!$array) {
+        $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 32 AND puid < 81 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+        $array = db_fetch_array(db_query($query));
+      }
+      
+      if ($alloc && $array) {
+        $query = 'UPDATE apply_rand SET hospital = "%s", rand_type = "L" WHERE `block` = %d';
+        db_query($query, $hospital_name, $array['block']);
+      }
+    }
+  }
+  
+  if ($array && $alloc) {
+    $query = 'UPDATE apply_rand SET used = 1 WHERE puid = %d';
+    db_query($query, $array['puid']);
+  }
+  
+  return $array;
+}
+
+function crf_work_add_form(&$form_state) {
+  global $user;
+  global $hospital_name_arr;
+  $form = array();
+  $form['hospital_no'] = array(
+    '#type' => 'item',
+    '#title' => '试验中心编号（自动生成）',
+    '#value' => $user->profile_hospital_no,
+  );
+  $form['hospital_name'] = array(
+    '#type' => 'item',
+    '#title' => '试验中心名称（自动生成）',
+    '#value' => $hospital_name_arr[$user->profile_hospital_no],
+  );
+  /*$form['sift'] = array(
+    '#type' => 'textfield',
+    '#title' => '筛选号',
+    '#size' => 15,
+    '#maxlength' => 3,
+    '#default_value' => ''
+  );*/
+  
+  $form['u_name'] = array(
+    '#type' => 'textfield',
+    '#size' => 15,
+    '#maxlength' => 4,  
+    '#title' => '患者姓名',
+    '#default_value' => '',
+    '#description' => '患者姓名请填写中文。'
+  );
+  $form['p_name'] = array(
+    '#type' => 'textfield',
+    '#size' => 15,
+    '#maxlength' => 4,  
+    '#title' => '受试者姓名缩写',
+    '#default_value' => '',
+    '#description' => '患者姓名拼音缩写需填满四格，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母。'
+  );
+  $form['p_birthday'] = array(
+    '#type' => 'date_popup',
+    '#date_format' => 'Y-m-d',
+    '#date_year_range' => '-90:+0',
+    '#size' => 15,
+    '#title' => '受试者出生日期',
+  );
+  $form['u_age'] = array(
+    '#type' => 'textfield',
+    '#size' => 15,
+    '#maxlength' => 3,  
+    '#title' => '患者年龄',
+    '#default_value' => '',
+    '#description' => '请输入患者年龄!'
+  );
+  $form['case_history_no'] = array(
+    '#type' => 'textfield',
+    '#title' => '病历号',
+    '#size' => 15,
+    '#default_value' => ''
+  );
+  $form['u_gender'] = array(
+    '#type' => 'radios',
+    '#title' => '受试者的性别',
+    '#options' => array('男','女'),
+  );
+  $form['approved_time'] = array(
+    '#type' => 'date_popup',
+    '#date_format' => 'Y-m-d',
+    '#date_year_range' => '-1:+3',
+    '#title' => '知情同意日期',
+    '#size' => 15,
+  );
+  $form['editor'] = array(
+    '#type' => 'textfield',
+    '#title' => '研究医生签名',
+    '#default_value' => '',
+    '#size' => 15
+  );
+  $form['phone'] = array(
+    '#type' => 'textfield',
+    '#title' => '手机号码',
+    '#default_value' => '',
+    '#size' => 15,
+    '#maxlength' => 11, 
+    '#description' => '请填写你的手机号码，以便及时通知患者随访信息，更好管理患者。本系统保证不会将您的手机号码用于本研究以外的任何用途。'
+  );
+  $form['u_phone'] = array(
+    '#type' => 'textfield',
+    '#title' => '用户手机号码',
+    '#default_value' => '',
+    '#size' => 15,
+    '#maxlength' => 11, 
+    '#description' => '请填写手机号码。'
+  );
+  $form['u_card_id'] = array(
+    '#type' => 'textfield',
+    '#title' => '受试者身份证号码',
+    '#default_value' => '',
+    '#size' => 55,
+    '#maxlength' => 25, 
+    '#description' => '请填写受试者身份证号。'
+  );
+  $form['u_weight'] = array(
+    '#type' => 'textfield',
+    '#title' => '受试者体重(KG)',
+    '#default_value' => '',
+    '#size' => 15,
+    '#description' => '请填写受试者体重。'
+  );
+  $form['u_address'] = array(
+    '#type' => 'textfield',
+    '#title' => '受试者家庭住址',
+    '#default_value' => '',
+    '#size' => 105,
+  );
+  $form['approved'] = array(
+    '#type' => 'radios',
+    '#title' => '受试者是否获得知情同意书',
+    '#options' => array('是','否'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value'=> '确定'
+  );
+
+  return $form;
+}
+
+function crf_work_add_form_validate($form, &$form_state) {
+//  if (empty($form_state['values']['sift'])) {
+//    form_set_error('sift', '筛选号不能为空!');
+//  }
+//  else if (3 != mb_strlen($form_state['values']['sift']) || !is_numeric($form_state['values']['sift'])){
+//    form_set_error('sift', '筛选号必须为3位数字!');
+//  }
+  if (empty($form_state['values']['p_name'])) {
+    form_set_error('p_name', '受试者姓名缩写不能为空!');
+  }
+  else if (4 != mb_strlen($form_state['values']['p_name']) || !ctype_alpha($form_state['values']['p_name'])){
+    form_set_error('p_name', '受试者姓名缩写请用四个字母表示，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母！');
+  }
+  if (empty($form_state['values']['u_name'])) {
+    form_set_error('u_name', '受试者姓名不能为空!');
+  }
+  if (empty($form_state['values']['u_address'])) {
+    form_set_error('u_address', '受试者住址不能为空!');
+  }
+  if (empty($form_state['values']['p_birthday'])) {
+    form_set_error('p_birthday', '受试者出生日期不能为空!');
+  }
+  if (empty($form_state['values']['case_history_no'])) {
+    form_set_error('case_history_no', '病历号不能为空!');
+  }
+  if (!ctype_alnum($form_state['values']['case_history_no'])) {
+    form_set_error('case_history_no', '病历号只能为数字和字母!');
+  }
+  if ($form_state['values']['approved'] == '') {
+    form_set_error('approved', '受试者是否获得知情同意书需要选择一项!');
+  }
+  if ($form_state['values']['u_gender'] == '') {
+    form_set_error('u_gender', '受试者性别需要选择一项!');
+  }
+  if ($form_state['values']['approved'] == 1) {
+    form_set_error('approved', '受试者必须获得知情同意书!');
+  }
+  if (empty($form_state['values']['approved_time'])) {
+    form_set_error('approved_time', '知情同意日期不能为空!');
+  }
+  if (empty($form_state['values']['u_age'])) {
+    form_set_error('u_weight', '患者年龄不能为空!');
+  }
+  if (!is_numeric($form_state['values']['u_age'])) {
+    form_set_error('u_age', "患者年龄必须数字！");
+  }
+  if (empty($form_state['values']['u_weight'])) {
+    form_set_error('u_weight', '受试者体重不能为空!');
+  }
+  if (strlen($form_state['values']['u_weight']) != 3 && strlen($form_state['values']['u_weight']) != 2) {
+    form_set_error('u_weight', "受试者体重必须为2位或者3位！");
+  }
+  if ($form_state['values']['u_weight'] > 150) {
+    form_set_error('u_weight', "受试者体重请输入合理的体重！");
+  }
+  if (empty($form_state['values']['editor'])) {
+    form_set_error('editor', '研究医生签名不能为空!');
+  }
+  if ($form_state['values']['approved_time'] < $form_state['values']['p_birthday']) {
+    form_set_error('approved_time', '知情同意日期不能早于出生日期!');
+  }
+  if (!preg_match("/[\x{4e00}-\x{9fa5}]+/u", $form_state['values']['editor'], $match)) {
+    form_set_error('editor', '研究医生签名必须为汉字!');
+  }
+  if (!preg_match("/[\x{4e00}-\x{9fa5}]+/u", $form_state['values']['u_name'], $match)) {
+    form_set_error('u_name', '受试者姓名必须为汉字!');
+  }
+  if (empty($form_state['values']['phone'])) {
+    form_set_error('phone', '手机号不能为空!');
+  }
+  else if (11 != mb_strlen($form_state['values']['phone']) || !is_numeric($form_state['values']['phone'])){
+    form_set_error('phone', '手机号必须为11位数字!');
+  }  
+  if (empty($form_state['values']['u_phone'])) {
+    form_set_error('u_phone', '受试者手机号不能为空!');
+  }
+  else if (11 != mb_strlen($form_state['values']['u_phone']) || !is_numeric($form_state['values']['u_phone'])){
+    form_set_error('u_phone', '受试者手机号必须为11位数字!');
+  }
+  if (empty($form_state['values']['u_card_id'])) {
+    form_set_error('u_card_id', '受试者身份证号不能为空!');
+  }
+  else if (18 != mb_strlen($form_state['values']['u_card_id'])){
+    form_set_error('u_card_id', '受试者身份证号必须为18位!');
+  }
+}
+
+function crf_work_add_form_submit($form, &$form_state) {
+  global $hospital_name_arr, $user;
+  $hospital_name = $hospital_name_arr[$user->profile_hospital_no];
+  
+//  $rand = crf_work_alloc_rand(TRUE);
+  
+//  if ($rand) {
+//    
+//  }
+//  else {
+//    drupal_set_message('随机号码分配失败，请联系管理员！', 'error');
+//    //drupal_goto();
+//    return;
+//  }
+  
+  $obj->p_uid = $rand['puid'];
+  $obj->hospital_no = $user->profile_hospital_no;
+//  $obj->sift = $form_state['values']['sift'];
+  $obj->p_name = $form_state['values']['p_name'];
+  $obj->p_birthday = substr($form_state['values']['p_birthday'], 0, 10);
+  $obj->case_history_no = $form_state['values']['case_history_no'];
+  $obj->approved = $form_state['values']['approved'];
+  $obj->approved_time = substr($form_state['values']['approved_time'], 0, 10);
+  $obj->team = $rand['group'] == 'A' ? '1' : '2';
+  $obj->apply_time = date("Y-m-d H:i:s");
+  $obj->editor = $form_state['values']['editor'];
+  $obj->phone = $form_state['values']['phone'];
+  $obj->u_address = $form_state['values']['u_address'];
+  $obj->u_phone = $form_state['values']['u_phone'];
+  $obj->u_card_id = $form_state['values']['u_card_id'];
+  $obj->u_name = $form_state['values']['u_name'];
+  $obj->u_gender = $form_state['values']['u_gender'];
+  $obj->u_age = $form_state['values']['u_age'];
+  $obj->u_weight = $form_state['values']['u_weight'];
+  
+//  print_r($obj);exit;
+  $table = 'apply';
+  $r = crf_work_write_record($table, $obj);
+//  drupal_set_message('添加成功！');
+//  drupal_goto('patient/' . $obj->p_uid);
+    
+  if ($r != FALSE) {
+    $p_uid = db_last_insert_id($table, 'p_uid');
+    $team = get_rand_team($p_uid);
+    $query = 'UPDATE ' . $table . ' SET team = %d WHERE p_uid = %d';
+    db_query($query, $team, $p_uid);
+    drupal_set_message('添加成功！');
+    drupal_goto('patient/' . $p_uid);
+  }
+}
+
+function crf_work_write_record($table, $obj) {
+//  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s")';
+//  $query = 'INSERT INTO '. $table .' (p_uid, hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone, u_name, u_card_id, u_weight, u_age, u_gender, u_phone, u_address) VALUES(%d, "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s", "%s", "%s", %d, %d, %d, "%s", "%s")';
+  $query = 'INSERT INTO '. $table .' (p_uid, hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone, u_address, u_phone, u_card_id, u_name, u_gender, u_age, u_weight) VALUES(%d, "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")';
+  $arr = (array)$obj;
+  $r = db_query($query, $arr);
+  return $r;
+}
+
+function get_rand_team($p_uid) {
+  $arr = array('1' => '1', '2' => '2', '3' => '1', '4' => '2', '5' => '2', '6' => '1', '7' => '1', '8' => '2', '9' => '2', '0' => '1');
+  $n = substr($p_uid, -1);
+  return $arr[$n];
+}
+
+function crf_work_list() {
+  drupal_set_breadcrumb(array(l('首页', ''),'随机列表'));
+  global $user;
+  global $hospital_name_arr;
+  global $pager_page_array;
+
+  $hospital_name_current = $user->profile_hospital_no;
+  if (user_access('crf view all') && $hospital_key = crf_common_session('hospital_key')) {
+    $hospital_name_current = $hospital_key;
+  }
+  
+  $limit  = 20;
+  
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), /*'中心编号', '中心名称', '筛选号',*/ '随机号', '姓名缩写', '出生日期', '病历号', '知情同意日期', '受试者分组', '随机申请日期', '研究医生', '提醒手机号', '输入病历');
+
+  $rows = array();
+
+  if ($user->uid == 1) {
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no != ''" . tablesort_sql($header), $limit);
+  }
+  else {
+    $results = pager_query("SELECT * FROM apply WHERE hospital_no = $hospital_name_current " . tablesort_sql($header), $limit);
+  }
+  
+
+  $pager_current = $pager_page_array[0] + 1;
+  
+  $start = ($pager_current - 1) * $limit ;
+  
+  $user_arr = _get_user_arr();
+  while ($r = db_fetch_object($results)) {
+    $terms = array();
+    $rows[] = array(
+      sprintf('%03s', ++$start),
+      /*$r->hospital_no,
+      $hospital_name_arr[$r->hospital_no],*/
+//      $r->sift . $hospital_name_current,
+      l(_add_rand($r->p_uid), 'patient/' . $r->p_uid),
+      $r->p_name,
+      $r->p_birthday,
+      $r->case_history_no,
+      $r->approved_time,
+      $term_arr[$r->team],
+      $r->apply_time,
+      $r->editor,  
+      $r->phone,  
+      l('进入', 'crf_case/'. $r->p_uid .'/1')
+    );
+   }
+
+  if (user_access('crf view all')) {
+    $output .= drupal_get_form('crf_select_hospital_form');
+  }
+  
+  $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
+  $output .= theme('table', $header, $rows);
+  $output .= theme('pager', $limit);
+  return $output;
+}
+
+function _add_serial_no($id) {
+  
+}
+
+function crf_work_theme() {
+  return array(
+    'patient' => array(
+      'arguments' => array('row' => NULL, 'team_arr' => array(), 'approved_arr' => array()),
+      'template' => 'patient',
+    )
+  );
+}
+
+function _add_rand($str) {
+  $str = '000'.$str;
+  return 'R' . substr($str, -3);
+}
+
+function crf_patient() {
+  $pid = arg(1);
+  $row = db_fetch_array(db_query('SELECT * FROM apply WHERE p_uid = %d', $pid));
+  
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+  $approved_arr = array('是','否');
+  return theme('patient', $row, $term_arr, $approved_arr);
+}
+
+function crf_select_hospital_form() {
+  global $hospital_name_arr;
+   $hospital = crf_common_session('hospital_key');
+
+   $form['hospital'] = array(
+    '#type' => 'select',
+    '#title' => '请选择要医院',
+    '#default_value' => $hospital ? $hospital : '01',
+    '#options' => $hospital_name_arr,
+  );
+  $form['submit'] = array(
+   '#type' => 'submit',
+   '#value'=> '确定'
+  );
+  return $form;
+}
+
+function crf_select_hospital_form_submit(&$form, &$form_state) {
+  crf_common_session('hospital_key', $form_state['values']['hospital']);
+}
+
+function _get_user_arr() {
+  $query = "SELECT uid, name FROM users";
+  $result = db_query($query);
+  while ($row = db_fetch_object($result)) {
+    $arr[$row->uid] = $row->name;
+  }
+  return $arr;
+}
