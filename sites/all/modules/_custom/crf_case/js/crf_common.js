@@ -208,3 +208,10 @@ $(document).ready(function(){
     $('.actual-total input[type=text]').eq(0).val(gy.val());
   }
 });
+
+
+function clear_this_form() {
+  if(confirm('该操作将删除该表的数据，有可能会引起数据不完整等问题，是否确定？')) {
+    location.href = Drupal.settings.basePath + 'index.php?q=crf_case_clear&from=' + window.location.pathname;
+  }
+}
