@@ -32,6 +32,14 @@ function crf_case_menu()
     'access arguments' => array('crf case view'),
     'type' => MENU_CALLBACK
   );
+  
+  $items['crf_case_clear'] = array(
+    'page callback' => 'crf_case_clear',
+    //'access callback' => 'crf_case_checkperm',
+    'access arguments' => array('crf case view'),
+    'type' => MENU_CALLBACK
+  );
+  
   return $items;  
 }
 
@@ -145,6 +153,17 @@ function crf_case_edit() {
   include_once dirname(__FILE__) . '/include/crf_validate.inc';
   return drupal_get_form("crf_case_form", $no);
 }
+
+function crf_case_clear() {
+  $from = $_GET['from'];
+  if (preg_match('{crf_case_edit/(\w+)}i', $from, $matches)) {
+    $name = $matches[1];
+    crf_ds_delete($name);
+  }
+  
+  drupal_goto('crf_case_edit/' . $name);
+}
+
 
 function crf_case_form(&$form_state, $arg = NULL) {
   $no = $arg;
@@ -281,6 +300,11 @@ function crf_case_form(&$form_state, $arg = NULL) {
     $form['submit'] = array(
       '#type' => 'submit',
       '#value'=> $v
+    );
+    
+    $form['clear'] = array(
+      '#type'  => 'markup',
+      '#value' => '<input type="button" value="清除此表" onclick="clear_this_form()" />',
     );
   }
   else {

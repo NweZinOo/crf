@@ -66,7 +66,20 @@ function crf_ds_s_data($name) {
   return $_SESSION['crf']['p_arr'][$name];
 }
 
+function crf_ds_delete($name, $p_uid = NULL) {
+   if (!$p_uid) {
+    $p_uid = crf_common_session('p_uid');
+  }
+  
+  $table =  CRF_DS_TABLE;
+  $sql = sprintf("DELETE FROM $table WHERE uid = %d AND name = '%s'", $p_uid, $name);
+  //var_dump($sql); exit;
+  return db_query($sql);
+}
+
 function crf_ds_s_time($t) {
   return substr($t, 0, 10);
 }
+
+
 
