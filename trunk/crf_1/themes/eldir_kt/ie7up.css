@@ -1,0 +1,77 @@
+div#navigation ul.links a
+ {
+  background: transparent url(images/sprite.png) no-repeat scroll 0px -425px;
+  height: 30px;
+  padding: 0px;
+  padding-left: 15px;
+ }
+
+div#navigation ul.links a span
+ {
+  background: transparent url(images/sprite.png) no-repeat scroll right -505px;
+  display: inline-block;
+  height: 30px;
+  margin: 0px;
+  padding: 0;
+  padding-right: 15px;
+ }
+
+div#navigation ul.links li a:hover,
+div#navigation ul.links li a:active,
+div#navigation ul.links li a.active
+ {
+  background: transparent url(images/sprite.png) no-repeat scroll 0px -465px;
+  height: 30px;
+  padding: 0px;
+  padding-left: 15px;
+ }
+
+div#navigation ul.links a:hover span,
+div#navigation ul.links a:active span,
+div#navigation ul.links a.active span
+ {
+  background: transparent url(images/sprite.png) no-repeat scroll right -545px;
+  height: 30px;
+  margin: 0px;
+  padding: 0;
+  padding-right: 15px;
+ }
+
+div#page div.limiter
+ {
+  border-top: none;
+  border-bottom: none;
+ }
+
+div#page-upper
+ {
+  background: transparent url(images/corners.png) no-repeat scroll top;
+  height: 8px;
+  display: block;
+ }
+
+div#page-lower
+ {
+  background: transparent url(images/corners.png) no-repeat scroll bottom;
+  height: 8px;
+  display: block;
+ }
+
+span.button-wrapper
+ {
+  background: #f8b735 url(images/input-corners.png) no-repeat scroll right -30px;
+  height: 30px;
+  padding: 0px;
+  padding-right: 10px;
+ }
+
+span.button-wrapper input
+ {
+  background: #f8b735 url(images/input-corners.png) no-repeat scroll left 0px;
+  display: inline-block;
+  height: 30px;
+  margin: 0px;
+  padding: 0;
+  padding-left: 10px;
+ }
+

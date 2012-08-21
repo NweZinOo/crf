@@ -1,0 +1,1 @@
+<div id="image_captcha_refresh" class="description"><a href="javascript:void(0)" onclick= "change_image();return false;" title="Refresh Image">看不清，换一张</a></div>

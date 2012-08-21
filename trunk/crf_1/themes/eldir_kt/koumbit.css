@@ -1,0 +1,366 @@
+/** Default HTML Elements **/
+
+a
+ {
+  color: #5ca91d;
+ }
+
+/** Adjust default lists so bullets don't always end up outside of the margin **/
+
+div.item-list ul li
+ {
+  margin-left: 1em;
+ }
+
+/** Header Theming **/
+
+div#header 
+ {
+  background: url("images/sprite.png") repeat-x scroll 0 -120px transparent;
+ }
+
+div#header div.logo a 
+ {
+  background: url("images/sprite.png") no-repeat scroll 0 -240px transparent;
+  width: 200px;
+ }
+
+div#header div.site-name
+ {
+  border-left-color: #a3d26c;
+  color: #ebf4e1;
+  font-style: oblique;
+  padding: 0 19px;
+ }
+
+/** Primary Links **/
+
+div#navigation
+ {
+  background: url("images/sprite.png") repeat scroll 0 0 transparent;
+  border-top-color: #a3d26c;
+ }
+
+div#navigation ul.links
+ {
+  width: 100%;
+ }
+
+div#navigation ul.links a
+ {
+  padding: 0 0 0 15px;
+  margin-right: 5px;
+  background: #90d32b;
+  -moz-border-radius: 12px 12px 0 0;
+  -webkit-border-radius: 12px 12px 0 0;
+  border-radius: 12px 12px 0 0;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  padding: .25em 1em;
+  font-weight: bold;
+ }
+
+div#navigation ul.links li a:hover,
+div#navigation ul.links li a.active,
+div#navigation ul.links li.active-trail a
+ {
+  background: #fff; 
+  color: #5ca91d;
+ }
+
+/** Breadcrumb **/
+
+div#header-region
+ {
+  padding: 0;
+ }
+
+div#header-region div.breadcrumb
+ {
+  margin-bottom: 20px;
+ }
+
+div.breadcrumb a
+ {
+  color: #9a9a98;
+ }
+
+div.breadcrumb span.first-crumb a
+ {
+  color: #5ca91d;
+ }
+
+/** Main Content Area **/
+
+div#main-wrapper
+ {
+  background: #f1f2f1 url("images/grid-top.png") repeat-x scroll center top;
+ }
+
+div#header-region
+ {
+  background: transparent;
+  min-height: 40px;
+ }
+
+div#page
+ {
+  background: transparent url("images/grid-bottom.png") repeat-x scroll center bottom;
+ }
+
+div#page div.limiter
+ {
+  background: transparent;
+ }
+
+div#main h2.page-title
+ {
+  border:0 none;
+  font-size:32px;
+  font-weight:normal;
+  letter-spacing:-2px;
+  line-height:40px;
+  padding:0 0 10px;
+ }
+
+/** Rounded corners and style for the limiter div **/
+
+div#page-upper
+ {
+  background: transparent url("images/corners.png") no-repeat scroll center top;
+ }
+
+div#page-lower
+ {
+  background: transparent url("images/corners.png") no-repeat scroll 0px -15px;
+  clear: both;
+ }
+
+div#page-lower,
+div#page-upper
+ {
+  width: 940px;
+  margin: 0 auto;
+  height: 15px;
+  display: none;
+ }
+
+div#page div.limiter
+ {
+  background: #fff url("images/main-bg.png") repeat-y scroll 0 0;
+  width: 940px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid #d5d7d2;
+ }
+
+/*
+div#main,
+div#right
+ {
+  padding: 0 10px;
+ }
+*/
+
+/** Menu links in sidebar styles **/
+
+div#right ul.menu li
+ {
+  background: #fff; 
+  font-size: 12px;
+  font-weight: bold;
+  height: 24px;
+  width: 286px;
+  margin: 4px 0;
+  padding: 5px 0;
+  border: 1px solid #e7d7d7;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+ }
+
+div#right ul.menu li.expanded
+ {
+  height: auto;
+ }
+
+div#right ul.menu li.expanded ul
+ {
+  margin: 10px 0 0;
+ }
+
+div#right ul.menu li.expanded li
+ {
+  width: 266px;
+ }
+
+div#right ul.menu li a
+ {
+  color: #f5a216;
+ }
+
+div#right ul.menu li a:hover,
+div#right ul.menu li a.active
+ {
+  background: transparent;
+  text-decoration: none;
+  color: #5ca91d;
+ }
+
+/** Node labels **/
+
+div.node h2 span.label,
+div#main h2.page-title span.label
+ {
+  color: #e49d1d;
+  border: 1px solid #f9e38d;
+  background:none repeat scroll 0 0 #fcefb8;
+  float:left;
+  font-size:9px;
+  font-weight:bold;
+  line-height:20px;
+  margin:5px 10px 0 0;
+  padding:0 5px;
+  letter-spacing: 0px;
+ }
+  
+/** Buttons and certain links **/
+
+input.form-submit,
+.big-orange-button
+ {
+  background:none repeat scroll 0 0 #f8b735;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 10px;
+ }
+
+a.hosting-button-enabled
+ {
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px; 
+ }
+
+/** Primary and secondary local tasks **/
+
+div#header-region ul.tabs
+ {
+  margin-left: 20px;
+ }
+
+div#header-region ul.tabs li
+ {
+  margin: 0 1px;
+ }
+
+div#header-region ul.tabs li a
+ {
+  background: transparent;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-top: 1px solid #d6d8d3;
+  border-left: 1px solid #d6d8d3;
+  border-right: 1px solid #d6d8d3;
+  border-bottom: none;
+  font-weight: bold;
+ }
+
+div#header-region ul.tabs li a:hover,
+div#header-region ul.tabs li a.active
+ {
+  background: #fff;
+  color: #f5a216;
+ }
+
+div#header-region ul.tabs li a.active
+ {
+  border-bottom: 1px solid #fff;
+ }
+
+/** RSS Icons **/
+
+a.feed-icon img
+ {
+  display: none;
+ }
+
+a.feed-icon
+ {
+  height: 27px;
+  width: 27px;
+  background: transparent url("images/rss.png") scroll no-repeat 0 0;
+  display: inline-block;
+  position: relative;
+  top: -27px;
+ }
+
+/** Pagers **/
+
+.item-list ul.pager li.pager-current,
+.item-list ul.pager li a:hover
+ {
+  font-weight: bold;
+  text-decoration: none;
+  color: #5ca91d;
+ }
+
+.item-list ul.pager li
+ {
+  margin: 0 -.25em;
+  padding: .5em .75em;
+  border-top: 1px solid #e7d7d7;
+  border-bottom: 1px solid #e7d7d7;
+  background-color: #fff;
+ }
+
+.item-list ul.pager li.first
+ {
+  border-left: 1px solid #e7d7d7;
+  -moz-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+ }
+
+.item-list ul.pager li.last
+ {
+  border-right: 1px solid #e7d7d7;
+  -moz-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+ }
+
+.item-list ul.pager li a
+ {
+  font-weight: bold;
+  color: #e49d1d;
+ }
+
+/** The Footer **/
+
+div#footer
+ {
+  background-color: #55a61d;
+  height: 20px;
+  padding: 0;
+ }
+
+/** Our Custom Blocks **/
+
+div#block-hosting_tweaks-ui-tweaks-anon-cart-link
+ {
+  text-align: center;
+ }
+
+/** Our Views **/
+
+table.views-view-grid td
+ {
+  vertical-align: top;
+ }
