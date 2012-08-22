@@ -114,7 +114,7 @@ function crf_case_edit() {
   if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
     
-    if (in_array('shiyan_sjc', $progress)) {
+    if (in_array('dyxx', $progress)) {
       drupal_add_js(array('all_doable' => 1), 'setting');
     }
     
