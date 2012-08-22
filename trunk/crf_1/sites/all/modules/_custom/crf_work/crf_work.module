@@ -394,7 +394,7 @@ function crf_work_list() {
     $term_arr[$v->tid] = $v->name;
   }
 
-  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '姓名', '姓名缩写', '性别', '年龄', '体重', '身份证号','联系电话',/*,'病历号', '研究医生', '提醒手机号'*/ '信息录入');
+  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '姓名', '姓名缩写', '性别', '年龄', '体重', '联系电话', '研究医生', '是否接受统一随访',/*,'病历号', '提醒手机号'*/ '信息录入');
 
   $rows = array();
 
@@ -420,11 +420,12 @@ function crf_work_list() {
       $genders[$r->u_gender],
       $r->u_age,
       $r->u_weight,
-      $r->u_card_id,
+//      $r->u_card_id,
       $r->u_phone,
 //      $r->case_history_no,
-//      $r->editor,  
+      $r->editor,  
 //      $r->phone,  
+      '',
       l('进入', 'crf_case/'. $r->p_uid .'/1')
     );
    }
