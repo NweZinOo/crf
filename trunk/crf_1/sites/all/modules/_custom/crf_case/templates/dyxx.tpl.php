@@ -193,9 +193,14 @@
   </tr>
 </table>
 <table>
-<tr>
+  <tr>
     <td>
-      填表医生签名：<?php print drupal_render($form[$key_pre ."_28_1"]);?>       填表日期：<?php print drupal_render($form[$key_pre ."_28_2"]);?>
+      是否接受统一随访？  是则勾选<?php print drupal_render($form[$key_pre ."_28_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      填表医生签名：<?php print drupal_render($form[$key_pre ."_29_1"]);?>       填表日期：<?php print drupal_render($form[$key_pre ."_29_2"]);?>
     </td>
   </tr>
 </table>
