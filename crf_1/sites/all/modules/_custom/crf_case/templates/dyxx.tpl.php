@@ -195,7 +195,7 @@
 <table>
   <tr>
     <td>
-      是否接受统一随访？  是则勾选<?php print drupal_render($form[$key_pre ."_28_1"]);?>
+      是否接受统一随访: <?php print drupal_render($form[$key_pre ."_28_1"]);?>
     </td>
   </tr>
   <tr>

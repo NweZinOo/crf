@@ -38,7 +38,7 @@ $crf_el['dyxx'] = array(
   25 => array(1 => type_date_popup()),
   26 => array(1 => type_date_popup()),
   27 => array(1 => type_radios(array('不进行祛铁治疗','进行祛铁治疗,请继续填写访视记录(每3个月随访一次)'))),
-  28 => array(1 => type_checkboxs(array(''))),
+  28 => array(1 => type_radios(array('是','否'))),
   29 => array(1 => type_textfield(),2 => type_date_popup()),
 );
 
