@@ -49,7 +49,7 @@ $(document).ready(function() {
     }
     else {
       $(this).addClass('inactived');
-      //$(this).attr('href', 'javascript:alert("目前不能编辑该项，请按顺序完成！")');
+      $(this).attr('href', 'javascript:alert("目前不能编辑该项，请按顺序完成！")');
     }
     
     if (d && d.join) {
