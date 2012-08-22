@@ -57,18 +57,6 @@
   <?php    
     }
   ?>
-
-  <div style="clear: both;">--------------------------<span style="color: red; font-size: 1.2em;">随机结果</span> -------------------------- </div>
-
-  <div>
-    <label>受试者分组：</label> <span><?php echo $team_arr[$row['team']] ?></span>
-  </div>
-  <div>
-    <label>随机号：</label> <span><?php echo _add_rand($row['p_uid']) ?></span>
-  </div>
-  <div>
-    <label>随机时间：</label> <span><?php echo $row['apply_time'] ?></span>
-  </div>
 </div>
 
 <div style="margin-left: 20px;">
