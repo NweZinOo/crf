@@ -11,7 +11,12 @@
     <td rowspan="2"><div align="center"><?php print $table_name; ?></div></td>
   </tr>
   <tr>
-    <td>医院名称: <?php print($hospital_name_arr[$_SESSION['crf']['p_arr']['hospital_no']]);?></td>
+    <td>医院名称: 
+      <?php 
+        global $user;
+        print($hospital_name_arr[$user->profile_hospital_no]);
+      ?>
+    </td>
   </tr>
 </table>
 <table>
@@ -41,7 +46,7 @@
     <td><?php print drupal_render($form[$key_pre ."_3_3"]);?></td>
   </tr>
   <tr>
-    <td>治疗时间<br/>(年/月/日)</td>
+    <td>治疗时间</td>
     <td><?php print drupal_render($form[$key_pre ."_4_1"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_4_2"]);?></td>
     <td><?php print drupal_render($form[$key_pre ."_4_3"]);?></td>

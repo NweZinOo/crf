@@ -88,27 +88,27 @@ $(document).ready(function(){
 function clear_alert(el, msg, callback) {
   
   
-  if ($(el).is(':checked')) {
-    var text = $(el).parent().text();
-    
-    if (!msg) {
-      msg = '由于您选择了【 ' + text + ' 】，因此其他内容将不被保存，是否确定？';
-    }
-  
-    if(confirm(msg)) {
-      if (!callback) {
-        reset_form();
-      }
-      else {
-        callback.apply();
-      }
-      
-      $(el).attr('checked', true).attr('disabled', false);
-    }
-    else {
-      $(el).attr('checked', false);
-    }
-  }
+//  if ($(el).is(':checked')) {
+//    var text = $(el).parent().text();
+//    
+//    if (!msg) {
+//      msg = '由于您选择了【 ' + text + ' 】，因此其他内容将不被保存，是否确定？';
+//    }
+//  
+//    if(confirm(msg)) {
+//      if (!callback) {
+//        reset_form();
+//      }
+//      else {
+//        callback.apply();
+//      }
+//      
+//      $(el).attr('checked', true).attr('disabled', false);
+//    }
+//    else {
+//      $(el).attr('checked', false);
+//    }
+//  }
 }
 
 function reset_form() {
