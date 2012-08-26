@@ -51,14 +51,9 @@ function crf_case_checkperm() {
 
 function crf_case($p_uid, $type) {
   global $user;
-  //$hospital_no = $user->profile_hospital_no;
-  //$query = "SELECT * FROM apply WHERE p_uid = %d AND hospital_no = '%s'";
-  $query = "SELECT * FROM apply WHERE p_uid = %d";
-  $result = db_query($query, $p_uid/*, $hospital_no*/);
-  $p_arr = db_fetch_array($result);
-//  print_r($p_arr);exit;
-  if ($p_arr != NULL) {
-    crf_common_session('p_arr', $p_arr);
+
+  if ($p_uid != NULL) {
+//    crf_common_session('p_arr', $p_arr);
     crf_common_session('p_uid', $p_uid);
     crf_common_session('type', $type); //1代表可编辑 2代表不可编辑
     drupal_goto('crf_case_edit');
@@ -76,8 +71,13 @@ function crf_case($p_uid, $type) {
  */
 function crf_case_edit() {
   $p_arr = crf_common_session('p_arr');
-  
-  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【姓名缩写：' . $p_arr['p_name'] . '】'));
+  if ($p_arr['p_name'] != '') {
+    $p_name = '【姓名：' . $p_arr['u_name'] . '】  【缩写：' . $p_arr['p_name'] . '】';
+  }
+  else {
+    $p_name = '【新建资料】';
+  }
+  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), 'CRF录入 '. $p_name));
   $no = arg(1);
   if (empty($no)) {
     $no = 'dyxx';
@@ -113,21 +113,6 @@ function crf_case_edit() {
 
   if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
-    
-    //if (in_array('dyxx', $progress)) {
-    //  drupal_add_js(array('all_doable' => 1), 'setting');
-    //}
-    
-    /*
-    $last     = array_pop($progress);
-    $next     = crf_get_next_form_key($last);
-    $progress[] = $last;
-    $progress[] = $next;
-    if (!in_array($no, $progress)) {
-      drupal_set_message('请按顺序填写前面没有完成的表格！', 'error');
-      return ''; 
-    }
-    **/
   }
   else {
     //if ($no != 'zhiqing_tys') {
@@ -164,111 +149,7 @@ function crf_case_form(&$form_state, $arg = NULL) {
     }
   }
   $p_uid = crf_ds_s_data('p_uid');
-  if ($no == "zq2_4") {
-    $data = json_to_array(crf_ds_load('zq1_1', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][4]
-    );
-  }
-  if ($no == "zq3_4") {
-    $data = json_to_array(crf_ds_load('zq2_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq4_4") {
-    $data = json_to_array(crf_ds_load('zq3_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq5_4") {
-    $data = json_to_array(crf_ds_load('zq4_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq6_4") {
-    $data = json_to_array(crf_ds_load('zq5_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq7_4") {
-    $data = json_to_array(crf_ds_load('zq6_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq8_3") {
-    $data = json_to_array(crf_ds_load('zq7_4', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[1][6]
-    );
-  }
-  if ($no == "zq9_3") {
-    $data = json_to_array(crf_ds_load('zq8_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq10_3") {
-    $data = json_to_array(crf_ds_load('zq9_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq11_3") {
-    $data = json_to_array(crf_ds_load('zq10_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq12_3") {
-    $data = json_to_array(crf_ds_load('zq11_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq13_3") {
-    $data = json_to_array(crf_ds_load('zq12_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq14_3") {
-    $data = json_to_array(crf_ds_load('zq13_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq15_3") {
-    $data = json_to_array(crf_ds_load('zq14_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
-  if ($no == "zq16_3") {
-    $data = json_to_array(crf_ds_load('zq15_3', $p_uid));
-    $form['last_gy'] = array(
-      '#type' => 'hidden',
-      '#value'=> $data[4][2]
-    );
-  }
+
   $form['#theme']    = 'crf_case_form_'. $no;
   $form['#validate'][] = 'crf_case_form_step_validate';
 
@@ -277,8 +158,13 @@ function crf_case_form(&$form_state, $arg = NULL) {
      $form['#validate'][] = $validate;
   }
 
+//  $validate = "crf_case_submit_$no";
+//  if (is_callable($validate)) {
+//     $form['#submit'][] = $validate;
+//  }
+  
   if (user_access('crf case edit')) {
-    $no == 'yanjiu_js' ? $v = '完 成' : $v = '保 存 & 继 续';
+    $no == 'sf_5' ? $v = '完 成' : $v = '保 存 & 继 续';
     $form['submit'] = array(
       '#type' => 'submit',
       '#value'=> $v
@@ -315,11 +201,11 @@ function crf_case_form_step_validate($form, &$form_state) {
 function crf_case_form_submit($form, $form_state) {
   $no = arg(1);
   if (empty($no)) {
-    $no = 'zhiqing_tys';
+    $no = 'dyxx';
   }
   
-  
   $values  = $form_state['values'];
+  
   $dataset = crf_ds_parse($no, $values, $form);
   
   //var_dump($dataset);
@@ -355,7 +241,7 @@ function crf_case_form_submit($form, $form_state) {
      drupal_goto('crf_case_edit/' . $next);
    }
    else {
-     drupal_set_message('恭喜您录入已完成！');
+     drupal_set_message('录入已完成！');
    }
 }
 
@@ -381,7 +267,7 @@ function crf_set_element_default_value(&$element, $dataset, $row, $col) {
 
 
 function crf_progress_save($name) {
- 
+//  print_r($_SESSION);exit;
   $p_uid = crf_common_session('p_uid');
   $row   = crf_progress_load();
   $did   = FALSE;  
