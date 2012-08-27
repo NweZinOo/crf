@@ -1,0 +1,212 @@
+<?php
+
+define('SCRIPT_ROOT',  dirname(__FILE__).'/SMS_Client/');
+
+require_once SCRIPT_ROOT . '/include/Client.php';
+
+define('SMS_SESSION', '100043');
+define('SMS_PASS', '237728');
+//define('SMS_PASS', 575842);
+define('SMS_NO', '3SDK-EMY-0130-NGVNO');
+define('SMS_URL', 'http://sdkhttp.eucp.b2m.cn/sdk/SDKService?wsdl');
+
+
+function crf_common_drush_command() {
+  $items = array();
+  $items['crf_sms'] = array(
+    'callback' => 'crf_sms',
+    'options' => array('--phone' => dt('test phone number')),
+    'description' => 'Sent SMS to users.',
+    'aliases' => array('cms'),
+    'examples' => array(
+      'drush cms --test=1 --phone=13512345678' => 'Send test SMS to number.',
+    ),
+  );
+  return $items;
+}
+
+function crf_sms() {
+  $phone = drush_get_option('phone', FALSE);
+  $test  = drush_get_option('test', FALSE);
+
+  $reg   = drush_get_option('reg', 0);
+  
+  if ($reg) {
+    crf_sms_reg();
+  }
+  else {
+    if ($test) {
+      crf_sendSMS($phone);
+    }
+    else {
+      $sql = 'SELECT * FROM apply';
+      $res = db_query($sql);
+      while ($row = db_fetch_array($res)) {
+        crf_send_next_sms($row['p_uid'], $phone ? $phone : $row['phone']);
+      }
+    }
+  }
+}
+
+
+function crf_send_next_sms($p_uid, $phone, $stage = NULL) {
+  
+  if (!$stage) {
+    $sms_stage = db_result(db_query('SELECT sms_stage FROM apply_sms WHERE puid = %d', $p_uid));
+    if ($sms_stage) {
+      $stage = $sms_stage;
+    }
+    else {
+      $stage = 'zq1';
+    }
+  }
+  
+  list($name, $key_1st, $key_2nd) = crf_geiyao_key($stage);
+  
+  $object = crf_ds_load($name, $p_uid);
+  $array  = json_to_array($object);
+  
+  if (isset($array[$key_1st]) && $date = $array[$key_1st][$key_2nd]) {
+
+    list($new_stage, $time_span) = _next_sms_stage($stage);
+
+    $geiyao_date = strtotime($date);
+
+    $next_date   = $geiyao_date + $time_span;
+
+    if (time() > $next_date) {
+      //crf_sendSMS();
+      
+      drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
+      if ($sms_stage) {
+        
+        $sql = "UPDATE apply_sms SET sms_stage = '%s', updated = %d WHERE puid = %d";
+        db_query($sql, $new_stage, time(), $p_uid);
+        
+      }
+      else {
+        $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
+        db_query($sql, $p_uid, 'zq2', time());
+      }
+    }
+  }
+}
+
+function _next_sms_stage($stage) {
+  
+  preg_match('{([a-z]+)(\d+)}', $stage, $matches);
+  if ($matches[1] == 'zq' && $matches[2] == '16') {
+    $new_stage = 'sf1';
+  }
+  else {
+    $new_stage = $matches[1] . $matches[2] + 1;
+  }
+  
+  if ($matches[1] == 'zq') {
+    $time_span   = 17 * 24 * 60 * 60;
+  }
+  else if ($matches[1] == 'cf') {
+    if ($matches[2] < 5) {
+      $time_span   = 86 * 24 * 60 * 60;
+    }
+    else {
+      $time_span   = 176 * 24 * 60 * 60;
+    }
+  }
+  
+  return array($new_stage, $time_span);
+}
+
+/**
+ *
+ * @param type $stage such as zq1 zq2
+ * @return type 
+ */
+function crf_geiyao_key($stage) {
+  global $crf_el;
+  static $stages;
+  
+  if (isset($stages[$stage])) {
+    return $stages[$stage];
+  }
+  
+  for ($i = 1; $i < 5; $i++) {     
+    $key = "{$stage}_{$i}";
+    if (isset($crf_el[$key])) {
+      if ($crf_el[$key]['#name'] == '研究给药') {
+        $stages[$stage][] = $key;
+        
+        for ($n = 1; $n < 5; $n++) {
+          $array = $crf_el[$key][$n];
+
+          foreach ($array as $k => $v) {
+            if ($v['#type'] == 'date_popup') {
+              $stages[$stage][] = $n;
+              $stages[$stage][] = $k;
+              break 3;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  return $stages[$stage];
+}
+
+function crf_sms_reg() {
+  set_time_limit(0);
+	header("Content-Type: text/html; charset=$encode");
+  
+  $client = new Client(SMS_URL, SMS_NO, SMS_PASS, SMS_SESSION);
+  $client->setOutgoingEncoding("$encode");
+  
+  $regStatus = $client->registDetailInfo('中国抗癌协会', '肖德楠', '13811980205', '13811980205', 'xiaodenan@gmail.com', '13811980205', 'Beijing', '100085');
+  drush_print_r($regStatus);
+}
+
+function crf_sendSMS($phone, $msg = NULL) {
+  $encode = 'UTF-8';
+  
+  set_time_limit(0);
+	header("Content-Type: text/html; charset=$encode");
+  
+  $client = new Client(SMS_URL, SMS_NO, SMS_PASS, SMS_SESSION);
+  $client->setOutgoingEncoding("$encode");
+  
+  //$loginStatus = $client->login(SMS_SESSION);
+  //drush_print('Login status: ' . $loginStatus);
+  /*
+  if ($loginStatus == 0) {
+  	//登录成功，并且做保存 $sessionKey 的操作，用于以后相关操作的使用
+    $SMS_text = 'TEST21111';
+    $statusCode = $client->sendSMS(array($phone), $SMS_text . ' [中国抗癌协会]');
+    drush_print('Sent status: ' . $statusCode);
+  }else{
+  	 //登录失败处理
+  }*/
+  
+  if (empty ($msg)) {
+    $msg = 'Test Message';
+  }
+  
+  $statusCode = $client->sendSMS(array($phone), $msg . ' [中国抗癌协会]');
+  drush_print($statusCode);
+  
+   
+  //$statusCode = $client->login();
+  //drush_print('Login status: ' . $statusCode);
+  
+  //$SMS_text = 'TEST21111';
+  //$statusCode = $client->sendSMS(array($phone), $SMS_text . ' [中国抗癌协会]');
+  //var_dump($statusCode);
+  
+  //$balance = $client->getBalance();
+  //drush_print($balance);
+	//drush_print("StatusCode: " . $statusCode);
+  
+  //$err = $client->getError();
+  
+  watchdog('sms', "Sent SMS to $phone");
+  drush_print("Sent SMS to $phone");
+}
