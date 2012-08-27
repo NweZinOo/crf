@@ -42,23 +42,18 @@ function crf_sms() {
       $sql = 'SELECT * FROM apply';
       $res = db_query($sql);
       while ($row = db_fetch_array($res)) {
-        crf_send_next_sms($row['p_uid'], $phone ? $phone : $row['phone']);
+        crf_send_next_sms($row['p_uid'], $phone ? $phone : $row['phone'], $row);
       }
     }
   }
 }
 
 
-function crf_send_next_sms($p_uid, $phone, $stage = NULL) {
+function crf_send_next_sms($p_uid, $phone, $row = NULL) {
   
+  $stage = db_result(db_query('SELECT sms_stage FROM apply_sms WHERE puid = %d', $p_uid));
   if (!$stage) {
-    $sms_stage = db_result(db_query('SELECT sms_stage FROM apply_sms WHERE puid = %d', $p_uid));
-    if ($sms_stage) {
-      $stage = $sms_stage;
-    }
-    else {
-      $stage = 'zq1';
-    }
+    $stage = 'zq1';
   }
   
   list($name, $key_1st, $key_2nd) = crf_geiyao_key($stage);
@@ -68,21 +63,21 @@ function crf_send_next_sms($p_uid, $phone, $stage = NULL) {
   
   if (isset($array[$key_1st]) && $date = $array[$key_1st][$key_2nd]) {
 
-    list($new_stage, $time_span) = _next_sms_stage($stage);
+    list($new_stage, $time_span, $content) = _next_sms_stage($stage);
 
     $geiyao_date = strtotime($date);
 
     $next_date   = $geiyao_date + $time_span;
 
     if (time() > $next_date) {
-      //crf_sendSMS();
+      $content = str_replace(array('{name}', '{patient_no}'), array($row['p_name'], $row['case_history_no']), $content);
+      
+      crf_sendSMS($phone, $content);
       
       drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
-      if ($sms_stage) {
-        
+      if ($stage) {
         $sql = "UPDATE apply_sms SET sms_stage = '%s', updated = %d WHERE puid = %d";
         db_query($sql, $new_stage, time(), $p_uid);
-        
       }
       else {
         $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
@@ -104,8 +99,11 @@ function _next_sms_stage($stage) {
   
   if ($matches[1] == 'zq') {
     $time_span   = 17 * 24 * 60 * 60;
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将开始下一周期的治疗。";
   }
   else if ($matches[1] == 'cf') {
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
+    
     if ($matches[2] < 5) {
       $time_span   = 86 * 24 * 60 * 60;
     }
@@ -114,7 +112,7 @@ function _next_sms_stage($stage) {
     }
   }
   
-  return array($new_stage, $time_span);
+  return array($new_stage, $time_span, $content);
 }
 
 /**
@@ -185,13 +183,17 @@ function crf_sendSMS($phone, $msg = NULL) {
   }else{
   	 //登录失败处理
   }*/
-  
   if (empty ($msg)) {
     $msg = 'Test Message';
   }
   
-  $statusCode = $client->sendSMS(array($phone), $msg . ' [中国抗癌协会]');
-  drush_print($statusCode);
+  $phones = array('18610256090');
+  if ($phone) {
+    $phones[] = $phone;
+  }
+  
+  $statusCode = $client->sendSMS($phones, $msg . ' [中国抗癌协会]');
+  drush_log('Sent status code : ' .$statusCode, 'notice');
   
    
   //$statusCode = $client->login();
@@ -208,5 +210,5 @@ function crf_sendSMS($phone, $msg = NULL) {
   //$err = $client->getError();
   
   watchdog('sms', "Sent SMS to $phone");
-  drush_print("Sent SMS to $phone");
+  drush_log("Sent SMS to $phone", 'ok');
 }
