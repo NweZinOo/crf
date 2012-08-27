@@ -35,8 +35,8 @@ function crf_sms() {
     crf_sms_reg();
   }
   else {
-    if ($test) {
-      crf_sendSMS($phone);
+    if ($test_sms) {
+      crf_sendSMS('18610256090');
     }
     else {
       $sql = 'SELECT * FROM apply';
