@@ -15,41 +15,41 @@ function crf_common_drush_command() {
   $items = array();
   $items['crf_sms'] = array(
     'callback' => 'crf_sms',
-    'options' => array('testmod' => dt('test mode to send tester number'), 'testsms' => dt('test sms')),
+    'options' => array('mode' => dt('[test|formal] mode to send tester number'), 'test' => dt('test sms')),
     'description' => 'Sent SMS to users.',
     'aliases' => array('cms'),
     'examples' => array(
-      'drush cms --testmod=1 --testsms=1' => 'Send test SMS to number.',
+      'drush cms --mode=test|formal --test=1' => 'Send test SMS to number, please set mode=formal when you are running this script.',
     ),
   );
   return $items;
 }
 
 function crf_sms() {
-  $test_sms  = drush_get_option('testsms', FALSE);
-  $test_mod  = drush_get_option('testmod', FALSE);
-  
+  $test  = drush_get_option('test', FALSE);
+  $mode  = drush_get_option('mode', 'test');
+
   $reg   = drush_get_option('reg', 0);
   
   if ($reg) {
     crf_sms_reg();
   }
   else {
-    if ($test_sms) {
+    if ($test) {
       crf_sendSMS('18610256090');
     }
     else {
       $sql = 'SELECT * FROM apply';
       $res = db_query($sql);
       while ($row = db_fetch_array($res)) {
-        crf_send_next_sms($row['p_uid'], $test_mod ? 0 : $row['phone'], $row);
+        crf_send_next_sms($row['p_uid'], $mode == 'formal' ? $row['phone'] : 0, $row);
       }
     }
   }
 }
 
 
-function crf_send_next_sms($p_uid, $phone, $row = NULL) {
+function crf_send_next_sms($p_uid, $phone = 0, $row = NULL) {
   
   $stage     = db_result(db_query('SELECT sms_stage FROM apply_sms WHERE puid = %d', $p_uid));
   $db_exists = TRUE;
@@ -79,13 +79,15 @@ function crf_send_next_sms($p_uid, $phone, $row = NULL) {
       crf_sendSMS($phone, $content);
       
       drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
-      if ($db_exists) {
-        $sql = "UPDATE apply_sms SET sms_stage = '%s', updated = %d WHERE puid = %d";
-        db_query($sql, $new_stage, time(), $p_uid);
-      }
-      else {
-        $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
-        db_query($sql, $p_uid, 'zq2', time());
+      if ($phone) {
+        if ($db_exists) {
+          $sql = "UPDATE apply_sms SET sms_stage = '%s', updated = %d WHERE puid = %d";
+          db_query($sql, $new_stage, time(), $p_uid);
+        }
+        else {
+          $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
+          db_query($sql, $p_uid, 'zq2', time());
+        }
       }
     }
   }
