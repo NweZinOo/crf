@@ -21,8 +21,12 @@ function crf_case_validate_dyxx($form, &$form_state){
   }
   else {
     if (!is_numeric($values['e_dyxx_1_3'])) {
-    form_set_error('e_dyxx_1_3', "患者年龄必须数字！");
-  }
+      form_set_error('e_dyxx_1_3', "患者年龄必须数字！");
+    }
+    if ($values['e_dyxx_1_3'] <= 0 || $values['e_dyxx_1_3'] > 150) {
+      form_set_error('e_dyxx_1_3', "请输入正确的患者年龄！");
+    }
+    
   }
   if ($values['e_dyxx_1_4'] == '') {
     form_set_error('e_dyxx_1_4', '患者性别需要选择一项!');
