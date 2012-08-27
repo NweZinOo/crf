@@ -19,7 +19,7 @@ function crf_common_drush_command() {
     'description' => 'Sent SMS to users.',
     'aliases' => array('cms'),
     'examples' => array(
-      'drush cms --test=1 --phone=13512345678' => 'Send test SMS to number.',
+      'drush cms --test_mod=1 --test_mod=1' => 'Send test SMS to number.',
     ),
   );
   return $items;
