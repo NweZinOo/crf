@@ -26,8 +26,8 @@ function crf_common_drush_command() {
 }
 
 function crf_sms() {
-  $test_sms  = drush_get_option('test_sms', FALSE);
-  $test_mod  = drush_get_option('test_mod', FALSE);
+  $test_sms  = drush_get_option('testsms', FALSE);
+  $test_mod  = drush_get_option('testmod', FALSE);
   
   $reg   = drush_get_option('reg', 0);
   
