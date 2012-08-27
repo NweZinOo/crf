@@ -15,7 +15,7 @@ function crf_common_drush_command() {
   $items = array();
   $items['crf_sms'] = array(
     'callback' => 'crf_sms',
-    'options' => array('--testmod' => dt('test mode to send tester number'), 'testsms' => dt('test sms')),
+    'options' => array('testmod' => dt('test mode to send tester number'), 'testsms' => dt('test sms')),
     'description' => 'Sent SMS to users.',
     'aliases' => array('cms'),
     'examples' => array(
