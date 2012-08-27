@@ -199,7 +199,7 @@ function crf_sendSMS($phone = 0, $msg = NULL) {
   }
   
   $statusCode = $client->sendSMS($phones, $msg . ' [中国抗癌协会]');
-  drush_log('Sent status code : ' .$statusCode, 'notice');
+  //drush_log('Sent status code : ' .$statusCode, 'notice');
   
    
   //$statusCode = $client->login();
