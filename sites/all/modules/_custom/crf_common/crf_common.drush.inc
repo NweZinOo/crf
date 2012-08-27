@@ -15,11 +15,11 @@ function crf_common_drush_command() {
   $items = array();
   $items['crf_sms'] = array(
     'callback' => 'crf_sms',
-    'options' => array('--test_mod' => dt('test mode to send tester number'), 'test_sms' => dt('test sms')),
+    'options' => array('--testmod' => dt('test mode to send tester number'), 'testsms' => dt('test sms')),
     'description' => 'Sent SMS to users.',
     'aliases' => array('cms'),
     'examples' => array(
-      'drush cms --test_mod=1 --test_mod=1' => 'Send test SMS to number.',
+      'drush cms --testmod=1 --testsms=1' => 'Send test SMS to number.',
     ),
   );
   return $items;
