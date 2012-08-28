@@ -37,7 +37,7 @@ function crf_sms() {
     if ($test) {
       if (is_numeric($test) && $test > 1) {
         $row = db_fetch_array(db_query('SELECT * FROM apply WHERE p_uid = %d', $test));
-        crf_scan_user_stage($row, $row['phone']);
+        crf_scan_user_stage($row, '18610256090');
       }
       else {
         crf_sendSMS('18610256090');
@@ -58,7 +58,8 @@ function crf_sms() {
 function crf_scan_user_stage($data, $phone) {
   $stages = array(
     'zq1','zq2','zq3','zq4','zq5','zq6','zq7','zq8','zq9', 'zq10', 'zq11', 'zq12', 'zq13', 'zq14', 'zq15', 'zq16',
-    'cf1', 'cf2', 'cf3', 'cf4', 
+    'zhiliao_js',
+    'sf1', 'sf2', 'sf3', 'sf4', 
   );
   foreach ($stages as $stage ) {
     crf_send_next_sms($data['p_uid'], $stage, $phone, $data['p_name'], $data['case_history_no']);
@@ -77,21 +78,23 @@ function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no 
   }
   
   list($name, $key_1st, $key_2nd) = crf_geiyao_key($stage);
+  drush_print($name . '--' . $stage . " ==>[$name, $key_1st, $key_2nd]");
   
   $object = crf_ds_load($name, $p_uid);
   $array  = json_to_array($object);
   
   if (isset($array[$key_1st]) && $date = $array[$key_1st][$key_2nd]) {
-
+    
+    $is_zq = preg_match('{^zq}i', $stage);
     list($new_stage, $time_span, $content) = _next_sms_meta($stage);
 
-    $geiyao_date = strtotime($date);
-    $send_date   = $geiyao_date + $time_span;
+    $done_date = strtotime($date);
+    $send_date = $done_date + $time_span;
     
     if (time() > $send_date) {
 
-      $next_op_date = date('Y年m月d日', $geiyao_date +  21 * 24 * 3600);
-      if ($zq = preg_match('{^zq}i', $stage) && time() > $geiyao_date +  21 * 24 * 3600) {
+      $next_op_date = date('Y年m月d日', $done_date +  21 * 24 * 3600);
+      if ($is_zq && time() > $done_date +  21 * 24 * 3600) {
         drush_log($p_uid . ' --expired, ' . $next_op_date, 'warning');
         //时间已过
         return FALSE;
@@ -111,7 +114,6 @@ function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no 
           db_query($sql, $new_stage, time(), $p_uid);
         }
         else {
-          
         }
         */
       }
@@ -124,6 +126,9 @@ function _next_sms_meta($stage) {
   preg_match('{([a-z]+)(\d+)}', $stage, $matches);
   
   if ($matches[1] == 'zq' && $matches[2] == '16') {
+    $new_stage = 'zhiliao_js';
+  }
+  else if($stage == 'zhiliao_js') {
     $new_stage = 'sf1';
   }
   else {
@@ -134,7 +139,7 @@ function _next_sms_meta($stage) {
     $time_span   = 17 * 24 * 60 * 60;
     $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于{date}开始下一周期的治疗。";
   }
-  else if ($matches[1] == 'cf') {
+  else if ($matches[1] == 'sf') {
     $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
     
     if ($matches[2] < 5) {
@@ -143,6 +148,10 @@ function _next_sms_meta($stage) {
     else {
       $time_span   = 176 * 24 * 60 * 60;
     }
+  }
+  else if ($matches[1] == 'zhiliao_js') {
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
+    $time_span = 86 * 24 * 60 * 60;
   }
   
   return array($new_stage, $time_span, $content);
@@ -154,8 +163,16 @@ function _next_sms_meta($stage) {
  * @return type 
  */
 function crf_geiyao_key($stage) {
+  
   global $crf_el;
   static $stages;
+  
+  if ($stage == 'zhiliao_js') {
+    return array('zhiliao_js', 1, 1);
+  }
+  else if (preg_match('{^sf(\d+)}i', $stage, $matches) ) {
+    return array("{$stage}_1", 1, 1);
+  }
   
   if (isset($stages[$stage])) {
     return $stages[$stage];
@@ -164,7 +181,7 @@ function crf_geiyao_key($stage) {
   for ($i = 1; $i < 5; $i++) {     
     $key = "{$stage}_{$i}";
     if (isset($crf_el[$key])) {
-      if ($crf_el[$key]['#name'] == '研究给药') {
+      if (in_array($crf_el[$key]['#name'], array('研究给药'))) {
         $stages[$stage][] = $key;
         
         for ($n = 1; $n < 5; $n++) {
@@ -200,7 +217,7 @@ function crf_sendSMS($phone = 0, $msg = NULL) {
   $encode = 'UTF-8';
   
   set_time_limit(0);
-	header("Content-Type: text/html; charset=$encode");
+	//header("Content-Type: text/html; charset=$encode");
   
   $client = new Client(SMS_URL, SMS_NO, SMS_PASS, SMS_SESSION);
   $client->setOutgoingEncoding("$encode");
@@ -220,7 +237,7 @@ function crf_sendSMS($phone = 0, $msg = NULL) {
     $msg = 'Test Message';
   }
   
-  $phones = array('18610256090', '13811980205');
+  $phones = array('18610256090', /*'13811980205'*/);
   if ($phone) {
     $phones[] = $phone;
   }
