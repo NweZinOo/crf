@@ -105,8 +105,8 @@ function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no 
       
       drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
       if ($phone) {
-        $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
-        db_query($sql, $p_uid, $stage, time());
+        $sql = "INSERT INTO apply_sms (puid, sms_stage, updated, phone, content) VALUES (%d, '%s', %d, '%s', '%s')";
+        db_query($sql, $p_uid, $stage, time(), $phone, $content);
         
         /*
         if ($db_exists) {
