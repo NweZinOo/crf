@@ -28,7 +28,6 @@ function crf_common_drush_command() {
 function crf_sms() {
   $test  = drush_get_option('test', FALSE);
   $mode  = drush_get_option('mode', 'test');
-
   $reg   = drush_get_option('reg', 0);
   
   if ($reg) {
@@ -36,27 +35,45 @@ function crf_sms() {
   }
   else {
     if ($test) {
-      crf_sendSMS('18610256090');
+      if (is_numeric($test) && $test > 1) {
+        $row = db_fetch_array(db_query('SELECT * FROM apply WHERE p_uid = %d', $test));
+        crf_scan_user_stage($row, $row['phone']);
+      }
+      else {
+        crf_sendSMS('18610256090');
+      }
     }
     else {
       $sql = 'SELECT * FROM apply';
       $res = db_query($sql);
+      
       while ($row = db_fetch_array($res)) {
-        crf_send_next_sms($row['p_uid'], $mode == 'formal' ? $row['phone'] : 0, $row);
+        $to_phone = $mode == 'formal' ? $row['phone'] : 0;
+        crf_scan_user_stage($row, $to_phone);
       }
     }
   }
 }
 
+function crf_scan_user_stage($data, $phone) {
+  $stages = array(
+    'zq1','zq2','zq3','zq4','zq5','zq6','zq7','zq8','zq9', 'zq10', 'zq11', 'zq12', 'zq13', 'zq14', 'zq15', 'zq16',
+    'cf1', 'cf2', 'cf3', 'cf4', 
+  );
+  foreach ($stages as $stage ) {
+    crf_send_next_sms($data['p_uid'], $stage, $phone, $data['p_name'], $data['case_history_no']);
+  }
+}
 
-function crf_send_next_sms($p_uid, $phone = 0, $row = NULL) {
+function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no = NULL) {
   
-  $stage     = db_result(db_query('SELECT sms_stage FROM apply_sms WHERE puid = %d', $p_uid));
-  $db_exists = TRUE;
+  $db_exists = db_result(db_query('SELECT count(1) FROM apply_sms WHERE puid = %d AND sms_stage = "%s"', $p_uid, $stage));
+  //drush_log($db_exists, 'ok');
+  drush_log($p_uid . ' --stage: ' . $stage . ' --sent: ' . $db_exists, 'warning');
 
-  if (!$stage) {
-    $db_exists = FALSE;
-    $stage = 'zq1';
+  if ($db_exists == 1) {
+    //drush_log('User ' . $p_uid . ' at stage ' . $stage . ' has been sent sms to admin', 'warning');
+    return false;
   }
   
   list($name, $key_1st, $key_2nd) = crf_geiyao_key($stage);
@@ -66,36 +83,46 @@ function crf_send_next_sms($p_uid, $phone = 0, $row = NULL) {
   
   if (isset($array[$key_1st]) && $date = $array[$key_1st][$key_2nd]) {
 
-    list($new_stage, $time_span, $content) = _next_sms_stage($stage);
+    list($new_stage, $time_span, $content) = _next_sms_meta($stage);
 
     $geiyao_date = strtotime($date);
+    $send_date   = $geiyao_date + $time_span;
+    
+    if (time() > $send_date) {
 
-    $next_date   = $geiyao_date + $time_span;
-
-    if (time() > $next_date) {
       $next_op_date = date('Y年m月d日', $geiyao_date +  21 * 24 * 3600);
-      $content = str_replace(array('{name}', '{patient_no}', '{date}'), array($row['p_name'], $row['case_history_no'], $next_op_date), $content);
+      if ($zq = preg_match('{^zq}i', $stage) && time() > $geiyao_date +  21 * 24 * 3600) {
+        drush_log($p_uid . ' --expired, ' . $next_op_date, 'warning');
+        //时间已过
+        return FALSE;
+      }
       
+      $content = str_replace(array('{name}', '{patient_no}', '{date}'), array($p_name, $case_no, $next_op_date), $content);
       crf_sendSMS($phone, $content);
       
       drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
       if ($phone) {
+        $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
+        db_query($sql, $p_uid, $stage, time());
+        
+        /*
         if ($db_exists) {
           $sql = "UPDATE apply_sms SET sms_stage = '%s', updated = %d WHERE puid = %d";
           db_query($sql, $new_stage, time(), $p_uid);
         }
         else {
-          $sql = "INSERT INTO apply_sms (puid, sms_stage, updated) VALUES (%d, '%s', %d)";
-          db_query($sql, $p_uid, 'zq2', time());
+          
         }
+        */
       }
     }
   }
 }
 
-function _next_sms_stage($stage) {
+function _next_sms_meta($stage) {
   
   preg_match('{([a-z]+)(\d+)}', $stage, $matches);
+  
   if ($matches[1] == 'zq' && $matches[2] == '16') {
     $new_stage = 'sf1';
   }
@@ -199,6 +226,9 @@ function crf_sendSMS($phone = 0, $msg = NULL) {
   }
   
   $statusCode = $client->sendSMS($phones, $msg . ' [中国抗癌协会]');
+  
+
+  //
   //drush_log('Sent status code : ' .$statusCode, 'notice');
   
    
