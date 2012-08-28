@@ -29,7 +29,7 @@ function type_item($default_value = NULL, $size = NULL) {
 
 function type_date_popup($default_value = NULL, $title = NULL, $date_year_range = NULL) {
   if (empty($date_year_range)) {
-    $date_year_range = '-5:+5';
+    $date_year_range = '-50:+5';
   }
   return array('#type'=>'date_popup', '#date_format'=>'Y-m-d', '#date_year_range'=>$date_year_range, '#title' => $title, '#default_value' => $default_value);
 }
