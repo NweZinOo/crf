@@ -66,7 +66,7 @@
     </td>
   </tr>
   <tr>
-    <td><?php print drupal_render($form[$key_pre ."_7_1"]);?>
+    <td>WPSS 评分：<?php print drupal_render($form[$key_pre ."_7_1"]);?>
     </td>
   </tr>
   <tr>
