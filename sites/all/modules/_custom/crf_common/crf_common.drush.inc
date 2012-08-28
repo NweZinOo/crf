@@ -149,7 +149,7 @@ function _next_sms_meta($stage) {
       $time_span   = 176 * 24 * 60 * 60;
     }
   }
-  else if ($matches[1] == 'zhiliao_js') {
+  else if ($stage == 'zhiliao_js') {
     $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
     $time_span = 86 * 24 * 60 * 60;
   }
