@@ -78,15 +78,21 @@
     </td>
   </tr>
   <tr>
-    <td>骨髓穿刺结果（铁染色+活检）：<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/><?php print drupal_render($form[$key_pre ."_11_1"]);?>
+    <td>骨髓穿刺结果（铁染色+活检）<br/>
+      日期：<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/>
+      结果：<?php print drupal_render($form[$key_pre ."_11_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>染色体检查结果：<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/><?php print drupal_render($form[$key_pre ."_13_1"]);?>
+    <td>染色体检查结果<br/>
+      日期：<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
+      结果<?php print drupal_render($form[$key_pre ."_13_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>基因检测结果：<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/><?php print drupal_render($form[$key_pre ."_15_1"]);?>
+    <td>基因检测结果<br/>
+      日期：<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/>
+      结果：<?php print drupal_render($form[$key_pre ."_15_1"]);?>
     </td>
   </tr>
 </table>
