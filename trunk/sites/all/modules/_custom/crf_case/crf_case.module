@@ -84,7 +84,7 @@ function crf_case($p_uid, $type) {
 function crf_case_edit() {
   $p_arr = crf_common_session('p_arr');
   
-  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【姓名缩写：' . $p_arr['p_name'] . '】'));
+  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【姓名缩写：' . $p_arr['p_name'] . ', ID: ' . $p_arr['p_uid'] . '】'));
   $no = arg(1);
   if (empty($no)) {
     $no = 'zhiqing_tys';
