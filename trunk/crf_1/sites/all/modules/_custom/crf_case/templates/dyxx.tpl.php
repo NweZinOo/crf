@@ -86,7 +86,7 @@
   <tr>
     <td>染色体检查结果<br/>
       日期：<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
-      结果<?php print drupal_render($form[$key_pre ."_13_1"]);?>
+      结果:<?php print drupal_render($form[$key_pre ."_13_1"]);?>
     </td>
   </tr>
   <tr>
