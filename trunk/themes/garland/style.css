@@ -1339,3 +1339,7 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 .nice-menu ul .big-active {
   background: none;
 }
+
+.item-changed {
+  border: 1px red solid;
+}
