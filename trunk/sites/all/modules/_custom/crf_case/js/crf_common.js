@@ -36,7 +36,10 @@ $(document).ready(function() {
     var href = $(this).attr('href');
     var key  = href.split('/').pop();
    
-    if($(this).hasClass('active')){ //current
+    if (key == Drupal.settings.next) {
+      //nothing
+    }
+    else if ($(this).hasClass('active')){ //current
       $(this).append("<span class='big-active'></span>")
       $(this).parent().parent().siblings("a").append("<span class='big-active'></span>");
     }
