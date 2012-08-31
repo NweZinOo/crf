@@ -113,6 +113,10 @@ function crf_case_edit() {
 
   if ($row && isset($row['data']) && !empty($row['data'])) {
     $progress = json_decode($row['data']);
+    
+    $last     = $progress[count($progress)-1];
+    $next     = crf_get_next_form_key($last);
+    
   }
   else {
     //if ($no != 'zhiqing_tys') {
@@ -120,10 +124,11 @@ function crf_case_edit() {
     //  return ''; 
     // }
     $progress = array();
+    $next     = '';
   }
   
-  drupal_add_js(array('progress' => $progress), 'setting');
-  
+  drupal_add_js(array('progress' => $progress, 'next' => $next), 'setting');
+
   if (is_array($disabled) && count($disabled)) {
      drupal_add_js(array('disabled' => $disabled), 'setting');
   }

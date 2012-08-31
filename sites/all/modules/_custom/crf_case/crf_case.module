@@ -125,6 +125,9 @@ function crf_case_edit() {
       drupal_add_js(array('all_doable' => 1), 'setting');
     }
     
+    $last     = $progress[count($progress)-1];
+    $next     = crf_get_next_form_key($last);
+    
     /*
     $last     = array_pop($progress);
     $next     = crf_get_next_form_key($last);
@@ -142,9 +145,9 @@ function crf_case_edit() {
     //  return ''; 
     // }
     $progress = array();
+    $next     = '';
   }
-  
-  drupal_add_js(array('progress' => $progress), 'setting');
+  drupal_add_js(array('progress' => $progress, 'next' => $next), 'setting');
   
   if (is_array($disabled) && count($disabled)) {
      drupal_add_js(array('disabled' => $disabled), 'setting');
