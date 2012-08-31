@@ -41,6 +41,8 @@ function crf_ds_save($dataset, $name, $p_uid = NULL) {
   
   $data  = drupal_to_js($dataset);
   $table =  CRF_DS_TABLE;
+  $table_original = CRF_DS_TABLE_ORIG;
+  
   $id = db_result(db_query("SELECT id FROM $table WHERE uid = %d AND name = '%s'", $p_uid, $name));
   if ($id) {
     db_query("UPDATE $table SET data = '%s', updated = %d WHERE id = %d",  $data, time(), $id);
@@ -48,17 +50,16 @@ function crf_ds_save($dataset, $name, $p_uid = NULL) {
   else {
 //    print 'abc';exit;
     db_query("INSERT INTO $table (uid, name, data, updated, hospital_no) VALUES (%d, '%s', '%s', %d, '%s')", $p_uid, $name, $data, time(), $hospital_no);
+    db_query("INSERT INTO $table_original (uid, name, data, updated) VALUES (%d, '%s', '%s', %d)", $p_uid, $name, $data, time());
     crf_common_session('p_uid', $p_uid);
   }
 }
 
 
-function crf_ds_load($name, $p_uid = NULL) {
+function crf_ds_load($name, $p_uid = NULL, $table = CRF_DS_TABLE) {
   if (!$p_uid) {
     $p_uid = crf_common_session('p_uid');
   }
-  
-  $table =  CRF_DS_TABLE;
   $data  = db_result(db_query("SELECT data FROM $table WHERE uid = %d AND name = '%s'", $p_uid, $name));
 
   if ($data && is_string($data)) {
@@ -67,6 +68,19 @@ function crf_ds_load($name, $p_uid = NULL) {
   else {
     return FALSE;
   }
+}
+
+function crf_ds_delete($name, $p_uid = NULL) {
+   if (!$p_uid) {
+    $p_uid = crf_common_session('p_uid');
+  }
+  
+  $table = CRF_DS_TABLE;
+  $table_o = CRF_DS_TABLE_ORIG;
+  $sql = sprintf("DELETE FROM $table WHERE uid = %d AND name = '%s'", $p_uid, $name);
+  $sql = sprintf("DELETE FROM $table WHERE uid = %d AND name = '%s'", $p_uid, $name);
+  //var_dump($sql); exit;
+  return db_query($sql);
 }
 
 function crf_ds_s_data($name) {

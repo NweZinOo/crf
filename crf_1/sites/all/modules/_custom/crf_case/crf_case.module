@@ -10,6 +10,7 @@ include_once dirname(__FILE__) . '/include/crf_dataset.inc';
  * CRF Dataset Table Name
  */
 define('CRF_DS_TABLE', 'crf_case_data');
+define('CRF_DS_TABLE_ORIG', 'crf_case_data_01');
 
 module_load_include('inc', 'crf_common', 'include/crf_common.conf');
 
@@ -144,11 +145,16 @@ function crf_case_form(&$form_state, $arg = NULL) {
   $dataset = crf_ds_load($no);
   $dataset = json_to_array($dataset);
   
+  if (!empty($dataset)) {
+    $dataset1 = crf_ds_load($no, NULL, CRF_DS_TABLE_ORIG);
+    $dataset1 = json_to_array($dataset1);
+  }
+  
   foreach($form_elements_arr as $row => $group) {
     if (stristr($row, '#') === FALSE) {//skip #
       foreach($group as $element_no => $element) {
         //print "e_{$no}_{$row}_{$element_no}";
-        crf_set_element_default_value($element, $dataset, $row, $element_no);
+        crf_set_element_default_value($element, $dataset, $row, $element_no, $dataset1);
         $form["e_{$no}_{$row}_{$element_no}"] = $element;
       }
     }
@@ -264,9 +270,14 @@ function crf_get_next_form_key($current, $offset = 1) {
    }
 }
 
-function crf_set_element_default_value(&$element, $dataset, $row, $col) {
+function crf_set_element_default_value(&$element, $dataset, $row, $col, $dataset_orig = NULL) {
   if (isset($dataset[$row]) && isset($dataset[$row][$col])) {
     $element['#default_value'] = $dataset[$row][$col];
+  }
+  if (isset($dataset_orig[$row]) && isset($dataset_orig[$row][$col])) {
+    if ($dataset[$row][$col] != $dataset_orig[$row][$col]) {
+      $element['#attributes']['class'] = 'item-changed';
+    }
   }
 } 
 
