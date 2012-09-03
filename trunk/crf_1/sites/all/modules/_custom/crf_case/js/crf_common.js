@@ -36,10 +36,7 @@ $(document).ready(function() {
     var href = $(this).attr('href');
     var key  = href.split('/').pop();
    
-    if (key == Drupal.settings.next) {
-      //nothing
-    }
-    else if($(this).hasClass('active')){ //current
+    if($(this).hasClass('active')){ //current
       $(this).append("<span class='big-active'></span>")
       $(this).parent().parent().siblings("a").append("<span class='big-active'></span>");
     }
@@ -49,6 +46,9 @@ $(document).ready(function() {
     }
     else if (Drupal.settings.all_doable == 1 || can.indexOf(key) != -1) {
       $(this).addClass('doable');
+    }
+    else if (key == Drupal.settings.next) {
+      //nothing
     }
     else {
       $(this).addClass('inactived');
