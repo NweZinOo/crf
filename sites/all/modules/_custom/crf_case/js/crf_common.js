@@ -49,6 +49,8 @@ $(document).ready(function() {
     }
     else if (key == Drupal.settings.next) {
       //nothing
+      $(this).addClass('current');
+
     }
     else {
       $(this).addClass('inactived');
