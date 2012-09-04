@@ -1323,6 +1323,10 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   background: url("images/inactived.png") no-repeat scroll 115px 0.35em transparent;
 }
 
+.nice-menu .current {
+  background: url("images/current.png") no-repeat scroll 115px 0.35em transparent;
+}
+
 .nice-menu ul .active{
   background: url("images/active.png") no-repeat scroll 115px 0.35em transparent;
 }
@@ -1338,4 +1342,11 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 
 .nice-menu ul .big-active {
   background: none;
+}
+
+/* item-changed */
+.form-checkboxes.item-changed,
+.form-radios.item-changed,
+.form-text.item-changed {
+  background: #FFFF99;
 }
