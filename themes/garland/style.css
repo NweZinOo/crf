@@ -1327,6 +1327,10 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   background: url("images/active.png") no-repeat scroll 115px 0.35em transparent;
 }
 
+.nice-menu .current {
+  background: url("images/current.png") no-repeat scroll 115px 0.35em transparent;
+}
+
 .nice-menu .big-active{
   background: url("images/big_active.png") no-repeat 0 0;
   height: 25px;
