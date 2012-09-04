@@ -17,36 +17,20 @@
     <td>结束日期</td>
     <td>继续</td>    
   </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_2_1"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_2"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_3"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_4"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_5"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_6"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_7"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_2_8"]);?></td>    
-  </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_3_1"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_2"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_3"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_4"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_5"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_6"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_7"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_3_8"]);?></td>    
-  </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_4_1"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_2"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_3"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_4"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_5"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_6"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_7"]);?></td>
-    <td><?php print drupal_render($form[$key_pre ."_4_8"]);?></td>    
-  </tr>
+  <?php
+  for($i=2;$i<=11;$i++) {
+    print "<tr>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_1"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_2"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_3"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_4"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_5"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_6"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_7"]) ."</td>";
+      print "<td>". drupal_render($form[$key_pre ."_{$i}_8"]) ."</td>";
+    print "</tr>";
+  }
+  ?>
 </table>
 <table>
 <tr><td>
