@@ -48,6 +48,13 @@
   </tr>
 </table>
 *说明：“姓名缩写”由患者姓名拼音缩写需填满四格，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母。
+<table>
+  <tr>
+    <td>
+      是否接受统一随访: <?php print drupal_render($form[$key_pre ."_35_1"]);?>
+    </td>
+  </tr>
+</table>
 <table class="<?php print $class?>" border="1">
   <tr class="title">
     <td class="title" colspan="3"><h2>基础疾病诊断信息</h2>(可多选)
@@ -62,19 +69,13 @@
     </td>
   </tr>
   <tr>
-    <td><?php print drupal_render($form[$key_pre ."_6_1"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_6_1"]);?><br/>
+        <?php print drupal_render($form[$key_pre ."_7_1"]);?><?php print drupal_render($form[$key_pre ."_7_2"]);?><br/>
+        <?php print drupal_render($form[$key_pre ."_8_1"]);?><?php print drupal_render($form[$key_pre ."_8_2"]);?> 为<?php print drupal_render($form[$key_pre ."_8_3"]);?>
     </td>
   </tr>
   <tr>
-    <td>WPSS 评分：<?php print drupal_render($form[$key_pre ."_7_1"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_8_1"]);?><?php print drupal_render($form[$key_pre ."_8_2"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?> 为<?php print drupal_render($form[$key_pre ."_9_3"]);?>
+    <td>WPSS 评分：<?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?>
     </td>
   </tr>
   <tr>
@@ -167,13 +168,17 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3">空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_1"]);?>
+    <td colspan="3">空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_1"]);?>餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_2"]);?>
     </td>
   </tr>
   <tr>
     <td colspan="3"><b>MRI：</b> <br/>
       肝脏：检测日期：<?php print drupal_render($form[$key_pre ."_28_1"]);?><br/>
-      心脏：检测日期：<?php print drupal_render($form[$key_pre ."_29_1"]);?>
+      <?php print drupal_render($form[$key_pre ."_29_1"]);?><br/>
+      T2*<?php print drupal_render($form[$key_pre ."_30_1"]);?>ms；LIC<?php print drupal_render($form[$key_pre ."_30_2"]);?><br/>
+      心脏：检测日期：<?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
+      T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>ms
+      其它：<?php print drupal_render($form[$key_pre ."_33_1"]);?>
     </td>
   </tr>
 </table>
@@ -183,7 +188,7 @@
     </td>
   </tr>
   <tr>
-    <td><?php print drupal_render($form[$key_pre ."_30_1"]);?><br/>
+    <td><?php print drupal_render($form[$key_pre ."_34_1"]);?><br/>
       <pre>
   整体治疗策略：
   MDS———
@@ -209,12 +214,7 @@
 <table>
   <tr>
     <td>
-      是否接受统一随访: <?php print drupal_render($form[$key_pre ."_31_1"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      填表医生签名：<?php print drupal_render($form[$key_pre ."_32_1"]);?>       填表日期：<?php print drupal_render($form[$key_pre ."_32_2"]);?>
+      填表医生签名：<?php print drupal_render($form[$key_pre ."_36_1"]);?>       填表日期：<?php print drupal_render($form[$key_pre ."_36_2"]);?>
     </td>
   </tr>
 </table>

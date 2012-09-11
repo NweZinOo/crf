@@ -60,24 +60,24 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_3_2', "患者体重请输入合理的体重！");
     }
   }
-  if ($values['e_dyxx_31_1'] == '') {
-    form_set_error('e_dyxx_31_1', '是否接受统一随访需要选择一项!');
+  if ($values['e_dyxx_35_1'] == '') {
+    form_set_error('e_dyxx_35_1', '是否接受统一随访需要选择一项!');
   }
-  if (empty($values['e_dyxx_32_1'])) {
-    form_set_error('e_dyxx_32_1', '医生签名不能为空!');
+  if (empty($values['e_dyxx_36_1'])) {
+    form_set_error('e_dyxx_36_1', '医生签名不能为空!');
   }
   else {
-    if (!preg_match("/[\x{4e00}-\x{9fa5}]+/u", $values['e_dyxx_32_1'], $match)) {
-      form_set_error('e_dyxx_32_1', '医生签名必须为汉字!');
+    if (!preg_match("/[\x{4e00}-\x{9fa5}]+/u", $values['e_dyxx_36_1'], $match)) {
+      form_set_error('e_dyxx_36_1', '医生签名必须为汉字!');
     }
   }
-  if (empty($values['e_dyxx_32_2'])) {
-    form_set_error('e_dyxx_32_2', '填表日期不能为空!');
+  if (empty($values['e_dyxx_36_2'])) {
+    form_set_error('e_dyxx_36_2', '填表日期不能为空!');
   }
   // other
-  if ($values['e_dyxx_9_2'][1] == 1) {
-    if (empty($values['e_dyxx_9_3'])) {
-      form_set_error('e_dyxx_9_3', '基础疾病诊断信息的诊断结果如选择了其他需要说明!');
+  if ($values['e_dyxx_8_2'][1] == 1) {
+    if (empty($values['e_dyxx_8_3'])) {
+      form_set_error('e_dyxx_8_3', '基础疾病诊断信息的诊断结果如选择了其他需要说明!');
     }
   }
 
