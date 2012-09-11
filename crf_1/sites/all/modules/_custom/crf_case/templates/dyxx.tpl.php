@@ -129,9 +129,9 @@
   <tr>
     <td>血清铁蛋白(SF)
     </td>
-    <td><?php print drupal_render($form[$key_pre ."_20_1"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_20_1"]);?>ug/L
     </td>
-    <td><?php print drupal_render($form[$key_pre ."_20_2"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_20_2"]);?>ug/L
     </td>
   </tr>
   <tr>
@@ -145,9 +145,9 @@
   <tr>
     <td>总铁结合力
     </td>
-    <td><?php print drupal_render($form[$key_pre ."_22_1"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_22_1"]);?>umol/L
     </td>
-    <td><?php print drupal_render($form[$key_pre ."_22_2"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_22_2"]);?>umol/L
     </td>
   </tr>
   <tr>
@@ -164,11 +164,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3">谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_1"]);?>；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>
+    <td colspan="3">谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_1"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L
     </td>
   </tr>
   <tr>
-    <td colspan="3">空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_1"]);?>餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_2"]);?>
+    <td colspan="3">空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_1"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L
     </td>
   </tr>
   <tr>
