@@ -88,7 +88,7 @@
  *   $db_url = 'mysqli://username:password@localhost/databasename';
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
-$db_url = 'mysqli://root:@localhost/crf';
+$db_url = 'mysqli://crf_db:crf_dbuser_qweasd@localhost/crf';
 $db_prefix = '';
 
 /**
@@ -269,3 +269,5 @@ ini_set('url_rewriter.tags',        '');
  * threshold has elapsed since installation.
  */
 # $conf['pressflow_smart_start'] = TRUE;
+
+$conf['cache_inc'] ='sites/all/modules/contrib/memcache/memcache.inc';
