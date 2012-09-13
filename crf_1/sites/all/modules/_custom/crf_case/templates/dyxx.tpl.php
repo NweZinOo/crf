@@ -65,11 +65,10 @@
     </td>
   </tr>
   <tr>
-    <td>诊断为：<?php print drupal_render($form[$key_pre ."_5_1"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td><?php print drupal_render($form[$key_pre ."_6_1"]);?><br/>
+    <td>诊断为：<?php print drupal_render($form[$key_pre ."_5_1"]);?><br/>
+    <td><?php print drupal_render($form[$key_pre ."_6_1"]);?><?php print drupal_render($form[$key_pre ."_6_2"]);?>
+      <?php print drupal_render($form[$key_pre ."_6_3"]);?><?php print drupal_render($form[$key_pre ."_6_4"]);?>
+      <?php print drupal_render($form[$key_pre ."_6_5"]);?><?php print drupal_render($form[$key_pre ."_6_6"]);?><?php print drupal_render($form[$key_pre ."_6_7"]);?><br/>
         <?php print drupal_render($form[$key_pre ."_7_1"]);?><?php print drupal_render($form[$key_pre ."_7_2"]);?><br/>
         <?php print drupal_render($form[$key_pre ."_8_1"]);?><?php print drupal_render($form[$key_pre ."_8_2"]);?> 为<?php print drupal_render($form[$key_pre ."_8_3"]);?>
     </td>
