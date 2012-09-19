@@ -79,15 +79,42 @@ for ($i=1; $i<=5; $i++) {
 
 $crf_el_name['dyxx'] = array(
   '#name'  => '调研数据录入',
-  1 => array(1 => "患者姓名", 2 => "姓名缩写", 3 => "年龄(岁)", 4 => "性别"),
-  2 => array(1 => "家庭住址", 2 => "联系电话"),
-  3 => array(1 => "身份证号码", 2 => "体重(kg)"),
-  4 => array(1 => "诊断日期"),
-  5 => array(1 => "1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为"),
-  6 => array(1 => type_checkboxs(array('1.1难治性贫血（RA）')), 2 => type_checkboxs(array('1.2难治性血细胞减少伴多系发育异常（RCMD）')), 3 => type_checkboxs(array('1.3 RARS')), 4 => type_checkboxs(array('1.4 RAEB-1')), 5 => type_checkboxs(array('1.5 RAEB-2')), 6 => type_checkboxs(array('1.6 MDS-U')), 7 => type_checkboxs(array('1.7 5q-综合征'))),
-  7 => array(1 => type_checkboxs(array('2再生障碍性贫血(AA)')), 2 => type_checkboxs(array('3纯红细胞再生障碍性贫血'))),
-  8 => array(1 => type_checkboxs(array('4骨髓纤维化')), 2 => type_checkboxs(array('5其它')), 3 => type_textfield()),
-  9 => array(1 => type_radios(array('极低危组','低危组','中危组','高危组','极高危组'))),
+  1 => array(
+      1 => array("name" => "患者姓名"), 
+      2 => array("name" => "姓名缩写"),  
+      3 => array("name" => "年龄(岁)"), 
+      4 => array("name" => "性别", 
+          "value" => array("男" => 0, "女" => 1)
+      )
+  ),
+  2 => array(
+      1 => array("name" => "家庭住址"), 
+      2 => array("name" => "联系电话")
+  ),
+  3 => array(
+      1 => array("name" => "身份证号码"), 
+      2 => array("name" => "体重(kg)")
+  ),
+  4 => array(
+      1 => array("name" => "诊断日期")
+  ),
+  5 => array(
+      1 => array("name" => "1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为",
+                 "options" => array("6_1", "6_2", "6_3", "6_4", "6_5", "6_6", "6_7")       
+      )
+  ),
+  6 => array(
+      1 => array("name" => "1.1难治性贫血（RA）", "value" => 1), 
+      2 => array("name" => "1.2难治性血细胞减少伴多系发育异常（RCMD）", "value" => 1), 
+      3 => array("name" => "1.3 RARS"), 
+      4 => array("name" => "1.4 RAEB-1", "value" => 1), 
+      5 => array("name" => "1.5 RAEB-2", "value" => 1), 
+      6 => array("name" => "1.6 MDS-U", "value" => 1), 
+      7 => array("name" => "1.7 5q-综合征", "value" => 1)
+  ),
+  7 => array(1 => array('2再生障碍性贫血(AA)'), 2 =>type_checkboxs(array('3纯红细胞再生障碍性贫血')),
+  8 => array(1 => array('4骨髓纤维化'), 2 => array('5其它'), 3 => type_textfield()),
+  9 => array(1 => array('极低危组','低危组','中危组','高危组','极高危组')),
   10 => array(1 => type_date_popup()),
   11 => array(1 => type_textfield('',100)),
   12 => array(1 => type_date_popup()),
