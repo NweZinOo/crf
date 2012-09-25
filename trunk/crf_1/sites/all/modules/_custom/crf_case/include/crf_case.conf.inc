@@ -138,14 +138,14 @@ $crf_el_name['dyxx'] = array(
   32 => array(1 => array("name" => "T2")),
   33 => array(1 => array("name" => "LIC")),
   34 => array(1 => array("name"=>"祛铁治疗","value"=>array('不进行祛铁治疗'=>0,'进行祛铁治疗'=>1))),
-//  35 => array(1 => type_radios(array('是','否'))),
-//  36 => array(1 => array("name" => "T2"), 2 => array("name" => "LIC")),
+  35 => array(1 => array("name" => "是否接受统一随访", "value" => array("是" => 0, "否" => 1))),
+  36 => array(1 => array("name" => "填表医生签名"), 2 => array("name" => "填表日期")),
 );
 
 for ($i=1; $i<=5; $i++) {
   $crf_el_name["sf_{$i}"] = array(
     '#name' => "第{$i}次随访",
-//    1 => array(1 => type_date_popup()),
+    1 => array(1 => array("name" => "随访日期")),
     2 => array(1 => array("name" => "药物名称")),
     3 => array(1 => array("name" => "剂量第一个月"),2 => array("name" => "剂量第二个月"),3 => array("name" => "剂量第三个月")),
     4 => array(1 => array("name" => "治疗时间第一个月"),2 => array("name" => "治疗时间第二个月"),3 => array("name" => "治疗时间第三个月")),
@@ -153,14 +153,14 @@ for ($i=1; $i<=5; $i++) {
     6 => array(1 => array(1 => array("name" => "血清铁蛋白"))),
     7 => array(1 => array("name" => "血常规取样日期")),
     8 => array(1 => array("name" => "血常规Hb"),2 => array("name" => "血常规WBC"),3 => array("name" => "血常规ANC"),4 => array("name" => "血常规PLT")),
-//    9 => array(1 => array("name" => "其它")),
+    9 => array(1 => array("name" => "血常规其它")),
     10 => array(1 => array("name" => "血生化取样日期")),
     11 => array(1 => array(1 => array("name" => "谷草转氨酶(SGOT)"),2 => array("name" => "谷丙转氨酶(SGPT)"))),
     12 => array(1 => array("name" => "空腹血糖(FBS)")),
-//    13 => array(1 => type_textfield(),2 => type_textfield(),3 => type_date_popup(),4 => type_date_popup()),
-//    14 => array(1 => type_textfield(),2 => type_textfield(),3 => type_date_popup(),4 => type_date_popup()),
-//    15 => array(1 => type_textfield(),2 => type_textfield(),3 => type_date_popup(),4 => type_date_popup()),
-//    16 => array(1 => type_textfield(),2 => type_textfield(),3 => type_date_popup(),4 => type_date_popup()),
+    13 => array(1 => array("name" => "原发病治疗情况药物"),2 => array("name" => "原发病治疗情况剂量"),3 => array("name" => "用药时间起始时间"),4 => array("name" => "用药时间结束时间")),
+    14 => array(1 => array("name" => "原发病治疗情况药物"),2 => array("name" => "原发病治疗情况剂量"),3 => array("name" => "用药时间起始时间"),4 => array("name" => "用药时间结束时间")),
+    15 => array(1 => array("name" => "原发病治疗情况药物"),2 => array("name" => "原发病治疗情况剂量"),3 => array("name" => "用药时间起始时间"),4 => array("name" => "用药时间结束时间")),
+    16 => array(1 => array("name" => "原发病治疗情况药物"),2 => array("name" => "原发病治疗情况剂量"),3 => array("name" => "用药时间起始时间"),4 => array("name" => "用药时间结束时间")),
 //    17 => array(1 => type_date_popup()),
 //    18 => array(1 => type_textfield('',100)),
   );
