@@ -20,7 +20,7 @@ function crf_work_menu()
     'type' => MENU_CALLBACK
   );
   $items['crf_search'] = array(
-    'title' => '随机列表',
+    'title' => '条件搜索',
     'page callback' => 'crf_work_search',
     //'access callback' => 'crf_work_checkperm',
     'access arguments' => array('crf view list'),
@@ -366,7 +366,7 @@ function get_rand_team($p_uid) {
 }
 
 function crf_work_search() {
-  drupal_set_breadcrumb(array(l('首页', ''),'随机列表'));
+  drupal_set_breadcrumb(array(l('首页', ''),'搜索列表'));
   global $user;
   global $hospital_name_arr;
   global $pager_page_array;
@@ -436,58 +436,25 @@ function crf_work_search() {
 }
 
 function crf_search_user_form() {
-  $form['key_1'] = array(
-    '#type'  => 'textfield',
-    '#title' => '名称1',
-    '#default_value' => '',
-  );
-  $form['val_1'] = array(
-    '#type'  => 'textfield',
-    '#title' => '值1',
-    '#default_value' => '',
-  );
-  
-  $form['key_2'] = array(
-    '#type'  => 'textfield',
-    '#title' => '名称2',
-    '#default_value' => '',
-  );
-  $form['val_2'] = array(
-    '#type'  => 'textfield',
-    '#title' => '值2',
-    '#default_value' => '',
-  );
-  $form['key_3'] = array(
-    '#type'  => 'textfield',
-    '#title' => '名称3',
-    '#default_value' => '',
-  );
-  $form['val_3'] = array(
-    '#type'  => 'textfield',
-    '#title' => '值3',
-    '#default_value' => '',
-  );
-  $form['key_4'] = array(
-    '#type'  => 'textfield',
-    '#title' => '名称4',
-    '#default_value' => '',
-  );
-  $form['val_4'] = array(
-    '#type'  => 'textfield',
-    '#title' => '值4',
-    '#default_value' => '',
-  );
-  $form['key_5'] = array(
-    '#type'  => 'textfield',
-    '#title' => '名称5',
-    '#default_value' => '',
-  );
-  $form['val_5'] = array(
-    '#type'  => 'textfield',
-    '#title' => '值5',
-    '#default_value' => '',
-  );
-  
+  global $search_i;
+  $search = crf_common_session('search');
+  for ($i = 1;$i<=$search_i;$i++) {
+//    print $_REQUEST['key_'. $i];exit;
+    $form['key_'.$i] = array(
+      '#type'  => 'textfield',
+      '#title' => '搜索名称',
+      '#size' => '20',
+      '#default_value' => $search['key_'. $i],
+    );
+//    print $_REQUEST['key_'. $i];exit;
+    $form['val_'.$i] = array(
+      '#type'  => 'textfield',
+      '#title' => '取值',
+      '#size' => '20',
+      '#default_value' => $search['val_'. $i],
+    );
+  }
+  $form['#theme'] = 'crf_search';
   $form['submit'] = array(
    '#type' => 'submit',
    '#value'=> '确定'
@@ -497,31 +464,45 @@ function crf_search_user_form() {
 }
 
 function crf_search_user_form_submit($form, &$form_state) {
-  $vals = $form_state['values'];
-  $cond = array();
-  foreach ($vals as $k => $v) {
-    if (preg_match("{key_(\d+)}i", $k, $m)) {
-      if (!empty($v)) {
-        $cond[$v] = $vals["val_{$m[1]}"];
+  if ($form_state['submitted'] == 1) {
+    global $search_i;
+    for ($i=1;$i<=$search_i;$i++) {
+      if ($form_state['values']["key_$i"] != "") {
+        $search['key_'.$i] = $form_state['values']["key_$i"];
+        $search['val_'.$i] = $form_state['values']["val_$i"];
+      }
+      else {
+        break;
       }
     }
+    crf_common_session('search', $search);
   }
-  
-  $res    = db_query('SELECT * FROM crf_case_data');
-  $result = array();
-  
-  while ($row = db_fetch_array($res)) {
-    $data = $row['data'];
-    
-    if ($data && is_string($data)) {
-      $case_data = json_decode($data);
-      if (crf_search_match($case_data, $cond)) {
-        $result[] = $row['uid'];
-      }
-    }
-  }
-  var_dump($cond);
-  exit;
+//  $vals = $form_state['values'];
+//  $cond = array()
+//  foreach ($vals as $k => $v) {
+//    if (preg_match("{key_(\d+)}i", $k, $m)) {
+//      if (!empty($v)) {
+//        $cond[$v] = $vals["val_{$m[1]}"];
+//      }
+//    }
+//  }
+//  
+//  $res    = db_query('SELECT * FROM crf_case_data');
+//  $result = array();
+//  
+//  while ($row = db_fetch_array($res)) {
+//    $data = $row['data'];
+//    
+//    if ($data && is_string($data)) {
+//      $case_data = json_decode($data);
+//      if (crf_search_match($case_data, $cond)) {
+//        $result[] = $row['uid'];
+//      }
+//    }
+//  }
+//  var_dump($cond);
+//  drupal_set_message('abc');
+////  exit;
 }
 
 function crf_search_match($data, $cond) {
@@ -631,8 +612,21 @@ function crf_work_theme() {
     'patient' => array(
       'arguments' => array('row' => NULL, 'team_arr' => array(), 'approved_arr' => array()),
       'template' => 'patient',
-    )
+    ),
+    'crf_search' => array(
+      'arguments' => array('form' => NULL),
+    ), 
   );
+  
+}
+
+function theme_crf_search($form){
+  global $search_i; 
+  for ($i=1; $i<=$search_i; $i++) {
+    $output.= "<div class=search_$i><span style=display:inline-block>". drupal_render($form["key_$i"]) ."</span> &nbsp;&nbsp;&nbsp; <span style=display:inline-block>". drupal_render($form["val_$i"]) ."</span></div>";  
+  }
+  $output.= drupal_render($form);
+  return $output;
 }
 
 function _add_rand($str) {
