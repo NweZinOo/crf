@@ -19,6 +19,13 @@ function crf_work_menu()
     'access arguments' => array('crf view list'),
     'type' => MENU_CALLBACK
   );
+  $items['crf_search'] = array(
+    'title' => '随机列表',
+    'page callback' => 'crf_work_search',
+    //'access callback' => 'crf_work_checkperm',
+    'access arguments' => array('crf view list'),
+    'type' => MENU_CALLBACK
+  );
   $items['patient'] = array(
     'title' => '随机操作结果',
     'page callback' => 'crf_patient',
@@ -356,6 +363,189 @@ function get_rand_team($p_uid) {
   $arr = array('1' => '1', '2' => '2', '3' => '1', '4' => '2', '5' => '2', '6' => '1', '7' => '1', '8' => '2', '9' => '2', '0' => '1');
   $n = substr($p_uid, -1);
   return $arr[$n];
+}
+
+function crf_work_search() {
+  drupal_set_breadcrumb(array(l('首页', ''),'随机列表'));
+  global $user;
+  global $hospital_name_arr;
+  global $pager_page_array;
+
+  $genders[0] = "男";
+  $genders[1] = "女";
+  
+  $sfs[0] = "是";
+  $sfs[1] = "否";
+  
+  $hospital_name_current = $user->profile_hospital_no;
+  if (user_access('crf view all') && $hospital_key = crf_common_session('hospital_key')) {
+    $hospital_name_current = $hospital_key;
+  }
+  
+  $limit  = 20;
+  
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+
+//  $header = array(array('data'=>'序号', 'field'=>'p_uid', 'sort'=>'asc'), '姓名', '姓名缩写', '性别', '年龄', '体重', '联系电话', '研究医生', '是否接受统一随访', '信息录入');
+  $header = array('序号', '姓名', '姓名缩写', '性别', '年龄', '体重', '联系电话', '研究医生', '是否接受统一随访', '信息录入');
+  
+  $rows = array();
+
+  if ($user->uid == 1) {
+    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no != ''" . tablesort_sql($header), $limit);
+  }
+  else {
+    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no = $hospital_name_current " . tablesort_sql($header), $limit);
+  }
+  
+
+  $pager_current = $pager_page_array[0] + 1;
+  
+  $start = ($pager_current - 1) * $limit ;
+  
+  $user_arr = _get_user_arr();
+  while ($r = db_fetch_object($results)) {
+    $data = $r->data;
+    $data = json_decode($data);
+    $d = json_to_array($data);
+    $rows[] = array(
+      sprintf('%03s', ++$start),
+      $d[1][1],
+      $d[1][2],
+      $genders[$d[1][4]],
+      $d[1][3],
+      $d[3][2],
+      $d[2][2],
+      $d[32][1], 
+      $sfs[$d[31][1]], 
+      l('进入', 'crf_case/'. $r->uid .'/1')
+    );
+   }
+
+  if (TRUE || user_access('crf view all')) {
+    $output .= drupal_get_form('crf_search_user_form');
+  }
+  
+  $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
+  $output .= theme('table', $header, $rows);
+  $output .= theme('pager', $limit);
+  return $output;
+}
+
+function crf_search_user_form() {
+  $form['key_1'] = array(
+    '#type'  => 'textfield',
+    '#title' => '名称1',
+    '#default_value' => '',
+  );
+  $form['val_1'] = array(
+    '#type'  => 'textfield',
+    '#title' => '值1',
+    '#default_value' => '',
+  );
+  
+  $form['key_2'] = array(
+    '#type'  => 'textfield',
+    '#title' => '名称2',
+    '#default_value' => '',
+  );
+  $form['val_2'] = array(
+    '#type'  => 'textfield',
+    '#title' => '值2',
+    '#default_value' => '',
+  );
+  $form['key_3'] = array(
+    '#type'  => 'textfield',
+    '#title' => '名称3',
+    '#default_value' => '',
+  );
+  $form['val_3'] = array(
+    '#type'  => 'textfield',
+    '#title' => '值3',
+    '#default_value' => '',
+  );
+  $form['key_4'] = array(
+    '#type'  => 'textfield',
+    '#title' => '名称4',
+    '#default_value' => '',
+  );
+  $form['val_4'] = array(
+    '#type'  => 'textfield',
+    '#title' => '值4',
+    '#default_value' => '',
+  );
+  $form['key_5'] = array(
+    '#type'  => 'textfield',
+    '#title' => '名称5',
+    '#default_value' => '',
+  );
+  $form['val_5'] = array(
+    '#type'  => 'textfield',
+    '#title' => '值5',
+    '#default_value' => '',
+  );
+  
+  $form['submit'] = array(
+   '#type' => 'submit',
+   '#value'=> '确定'
+  );
+  return $form;
+  
+}
+
+function crf_search_user_form_submit($form, &$form_state) {
+  $vals = $form_state['values'];
+  $cond = array();
+  foreach ($vals as $k => $v) {
+    if (preg_match("{key_(\d+)}i", $k, $m)) {
+      if (!empty($v)) {
+        $cond[$v] = $vals["val_{$m[1]}"];
+      }
+    }
+  }
+  
+  $res    = db_query('SELECT * FROM crf_case_data');
+  $result = array();
+  
+  while ($row = db_fetch_array($res)) {
+    $data = $row['data'];
+    
+    if ($data && is_string($data)) {
+      $case_data = json_decode($data);
+      if (crf_search_match($case_data, $cond)) {
+        $result[] = $row['uid'];
+      }
+    }
+  }
+  var_dump($cond);
+  exit;
+}
+
+function crf_search_match($data, $cond) {
+  
+  //global $co
+  
+}
+
+function crf_search_name_to_key($name, $key) {
+  global $crf_el_name;
+  
+  foreach ($crf_el_name as $no => &$form_elements_arr) {
+    foreach($form_elements_arr as $row => &$group) {
+      if (stristr($row, '#') === FALSE) {//skip #
+        foreach($group as $element_no => $element) {
+          if ($element['name'] == $name) {
+            return array($no, $row, $element_no);
+          }
+          //print "e_{$no}_{$row}_{$element_no}";
+        }
+      }
+    }
+  }
+  
 }
 
 function crf_work_list() {
