@@ -530,7 +530,7 @@ function crf_search_match($data, $cond) {
   
 }
 
-function crf_search_name_to_key($name, $key) {
+function crf_search_name_to_key($name) {
   global $crf_el_name;
   
   foreach ($crf_el_name as $no => &$form_elements_arr) {
@@ -546,6 +546,7 @@ function crf_search_name_to_key($name, $key) {
     }
   }
   
+  return FALSE;
 }
 
 function crf_work_list() {
