@@ -3,7 +3,7 @@
  * 所有case表的定义
  */
 
-global $crf_el;
+global $crf_el, $crf_el_name;
 //print_r($_SESSION);
 
 $genders[0] = "男";
