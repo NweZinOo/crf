@@ -532,21 +532,24 @@ function crf_search_match($data, $cond) {
 
 function crf_search_name_to_key($name) {
   global $crf_el_name;
+  static $names;
   
-  foreach ($crf_el_name as $no => &$form_elements_arr) {
-    foreach($form_elements_arr as $row => &$group) {
-      if (stristr($row, '#') === FALSE) {//skip #
-        foreach($group as $element_no => $element) {
-          if ($element['name'] == $name) {
-            return array($no, $row, $element_no);
+  if (!isset($names[$name])) {
+    foreach ($crf_el_name as $no => &$form_elements_arr) {
+      foreach($form_elements_arr as $row => &$group) {
+        if (stristr($row, '#') === FALSE) {//skip #
+          foreach($group as $element_no => $element) {
+            if ($element['name'] == $name) {
+              $names[$name] = array($no, $row, $element_no);
+              break;
+            }
+            //print "e_{$no}_{$row}_{$element_no}";
           }
-          //print "e_{$no}_{$row}_{$element_no}";
         }
       }
     }
   }
-  
-  return FALSE;
+  return isset($names[$name]) ? $names[$name] : FALSE;
 }
 
 function crf_work_list() {
