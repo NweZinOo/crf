@@ -439,11 +439,12 @@ function crf_search_user_form() {
   global $search_i;
   $name_list = array('' => ' -请选择- ', 'dyxx' => '调研信息','sf_1'=>'第一次随访','sf_2'=>'第二次随访','sf_3'=>'第三次随访','sf_4'=>'第四次随访','sf_5'=>'第五次随访');
   $search = crf_common_session('search');
+//  print_r($_SESSION);
   for ($i = 1;$i<=$search_i;$i++) {
     $form['name_'.$i] = array(
       '#type'  => 'select',
       '#title' => '选择分类',
-      '#default_value' => $search['name_'. $i],
+      '#default_value' => $search[$i]['name'],
       '#options' => $name_list,
       '#description' => '选择一个分类'
     );
@@ -451,7 +452,7 @@ function crf_search_user_form() {
       '#type'  => 'textfield',
       '#title' => '搜索名称',
       '#size' => '20',
-      '#default_value' => $search['key_'. $i],
+      '#default_value' => $search[$i]['key'],
       '#description' => '输入搜索名称，如性别'
     );
 //    print $_REQUEST['key_'. $i];exit;
@@ -459,8 +460,8 @@ function crf_search_user_form() {
       '#type'  => 'textfield',
       '#title' => '取值',
       '#size' => '20',
-      '#default_value' => $search['val_'. $i],
-      '#description' => '根据搜索的名称输入一个值，如搜索名称为性别，那么在这里输入男或者女'
+      '#default_value' => $search[$i]['val'],
+      '#description' => '根据搜索的名称输入一个值，如搜索名称为性别，在这里输入男或者女，如未填写，则判断此处是否有值'
     );
   }
   $form['#theme'] = 'crf_search';
@@ -475,7 +476,14 @@ function crf_search_user_form() {
 function crf_search_user_form_validate($form, &$form_state) {
   global $search_i;
   for ($i = 1;$i<=$search_i;$i++) {
-  print_r($form_state);exit;  
+    if ($form_state['values']['key_'.$i] != '' && $form_state['values']['name_'.$i] == "") {
+      form_set_error('name_'.$i, '请选择分类!');
+    }
+    if ($form_state['values']['key_'.$i] == '' && $form_state['values']['name_'.$i] != "") {
+      form_set_error('key_'.$i, '请填写搜索名称，如性别!');
+    }
+  }
+//  print_r($form_state);exit;  
 }
 
 function crf_search_user_form_submit($form, &$form_state) {
@@ -483,48 +491,62 @@ function crf_search_user_form_submit($form, &$form_state) {
     global $search_i;
     for ($i=1;$i<=$search_i;$i++) {
       if ($form_state['values']["key_$i"] != "") {
-        $search['key_'.$i] = $form_state['values']["name_$i"];
-        $search['key_'.$i] = $form_state['values']["key_$i"];
-        $search['val_'.$i] = $form_state['values']["val_$i"];
+        $search[$i]['name'] = $form_state['values']["name_$i"];
+        $search[$i]['key'] = $form_state['values']["key_$i"];
+        $search[$i]['val'] = $form_state['values']["val_$i"];
       }
       else {
         break;
       }
     }
+    $search = crf_search_el_key($search);
     crf_common_session('search', $search);
   }
-//  $vals = $form_state['values'];
-//  $cond = array()
-//  foreach ($vals as $k => $v) {
-//    if (preg_match("{key_(\d+)}i", $k, $m)) {
-//      if (!empty($v)) {
-//        $cond[$v] = $vals["val_{$m[1]}"];
-//      }
-//    }
-//  }
-//  
-//  $res    = db_query('SELECT * FROM crf_case_data');
-//  $result = array();
-//  
-//  while ($row = db_fetch_array($res)) {
-//    $data = $row['data'];
-//    
-//    if ($data && is_string($data)) {
-//      $case_data = json_decode($data);
-//      if (crf_search_match($case_data, $cond)) {
-//        $result[] = $row['uid'];
-//      }
-//    }
-//  }
-//  var_dump($cond);
-//  drupal_set_message('abc');
-////  exit;
+  $cond = crf_common_session('search');
+  global $user;
+  $result = array();
+  $res = db_query("SELECT * FROM crf_case_data WHERE hospital_no = $user->profile_hospital_no ORDER BY uid");
+  while ($r = db_fetch_array($res)) {
+    $result[$r['uid']][$r['name']] = json_to_array(json_decode($r['data']));
+  }
+  $search_result = crf_search_match($cond, $result);
+  print_r($result);exit;
 }
 
-function crf_search_match($data, $cond) {
+function crf_search_match($cond, $result) {
   
-  //global $co
   
+//  foreach($crf_el_name as $uid => $names) {
+//    
+//  }
+//  foreach($result as $uid => $names) {
+//    foreach($cond as $k => $c) {
+//      
+//    }
+//  }
+}
+
+function crf_search_el_key($search) {
+  global $crf_el_name;
+  foreach ($search as $conds => $cond) {
+    $key = $cond['key'];
+    foreach($crf_el_name[$cond['name']] as $row => $group) {
+      if (stristr($row, '#') === FALSE) {//skip #
+        foreach($group as $element_no => $element) {
+          if (preg_match("/.*$key.*/", $element['name'])) {
+            print $key.'--'.$element['name'].'---'.$row.' '.$element_no.'||||';
+            $search[$conds]['position'] = array($row, $element_no);
+            if ($element['value'] != "") {
+              $search[$conds]['val_option'] = $element['value']; 
+              $search[$conds]['val_r'] = $element['value'][$search[$conds]['val']]; 
+            }
+            break 2;
+          }
+        }
+      }
+    }
+  }
+  return $search;
 }
 
 function crf_search_name_to_key($name) {
