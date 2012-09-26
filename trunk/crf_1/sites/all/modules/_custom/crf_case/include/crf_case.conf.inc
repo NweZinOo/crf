@@ -103,15 +103,15 @@ $crf_el_name['dyxx'] = array(
   ),
   6 => array(
       1 => array("name" => "1.1难治性贫血（RA）", "value" => 1), 
-      2 => array("name" => "1.2难治性血细胞减少伴多系发育异常（RCMD）", "value" => 1),
+      2 => array("name" => "1.2难治性血细胞减少伴多系发育异常（RCMD）"),
       3 => array("name" => "1.3 RARS"), 
-      4 => array("name" => "1.4 RAEB-1", "value" => 1), 
-      5 => array("name" => "1.5 RAEB-2", "value" => 1), 
-      6 => array("name" => "1.6 MDS-U", "value" => 1), 
-      7 => array("name" => "1.7 5q-综合征", "value" => 1)
+      4 => array("name" => "1.4 RAEB-1"), 
+      5 => array("name" => "1.5 RAEB-2"), 
+      6 => array("name" => "1.6 MDS-U"), 
+      7 => array("name" => "1.7 5q-综合征")
   ),
   7 => array(1 => array("name"=>"2再生障碍性贫血(AA)"), 2 =>array("name" =>"3纯红细胞再生障碍性贫血")),
-  8 => array(1 => array("name"=>"4骨髓纤维化"), 2 => array("name"=>"5其它"), 3 => array("name"=>"5其它")),
+  8 => array(1 => array("name"=>"4骨髓纤维化"), 2 => array("name"=>"5其它"), 3 => array("name"=>"5其它说明")),
   9 => array(1 => array("name"=>"WPSS 评分","value"=>array('极低危组'=>0,'低危组'=>1,'中危组'=>2,'高危组'=>3,'极高危组'=>4))),
   10 => array(1 => array("name" => "骨髓穿刺日期")),
   11 => array(1 => array("name" => "骨髓穿刺结果")),
