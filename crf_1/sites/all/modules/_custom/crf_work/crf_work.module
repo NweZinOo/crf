@@ -437,14 +437,22 @@ function crf_work_search() {
 
 function crf_search_user_form() {
   global $search_i;
+  $name_list = array('' => ' -请选择- ', 'dyxx' => '调研信息','sf_1'=>'第一次随访','sf_2'=>'第二次随访','sf_3'=>'第三次随访','sf_4'=>'第四次随访','sf_5'=>'第五次随访');
   $search = crf_common_session('search');
   for ($i = 1;$i<=$search_i;$i++) {
-//    print $_REQUEST['key_'. $i];exit;
+    $form['name_'.$i] = array(
+      '#type'  => 'select',
+      '#title' => '选择分类',
+      '#default_value' => $search['name_'. $i],
+      '#options' => $name_list,
+      '#description' => '选择一个分类'
+    );
     $form['key_'.$i] = array(
       '#type'  => 'textfield',
       '#title' => '搜索名称',
       '#size' => '20',
       '#default_value' => $search['key_'. $i],
+      '#description' => '输入搜索名称，如性别'
     );
 //    print $_REQUEST['key_'. $i];exit;
     $form['val_'.$i] = array(
@@ -452,6 +460,7 @@ function crf_search_user_form() {
       '#title' => '取值',
       '#size' => '20',
       '#default_value' => $search['val_'. $i],
+      '#description' => '根据搜索的名称输入一个值，如搜索名称为性别，那么在这里输入男或者女'
     );
   }
   $form['#theme'] = 'crf_search';
@@ -463,11 +472,18 @@ function crf_search_user_form() {
   
 }
 
+function crf_search_user_form_validate($form, &$form_state) {
+  global $search_i;
+  for ($i = 1;$i<=$search_i;$i++) {
+  print_r($form_state);exit;  
+}
+
 function crf_search_user_form_submit($form, &$form_state) {
   if ($form_state['submitted'] == 1) {
     global $search_i;
     for ($i=1;$i<=$search_i;$i++) {
       if ($form_state['values']["key_$i"] != "") {
+        $search['key_'.$i] = $form_state['values']["name_$i"];
         $search['key_'.$i] = $form_state['values']["key_$i"];
         $search['val_'.$i] = $form_state['values']["val_$i"];
       }
@@ -623,7 +639,7 @@ function crf_work_theme() {
 function theme_crf_search($form){
   global $search_i; 
   for ($i=1; $i<=$search_i; $i++) {
-    $output.= "<div class=search_$i><span style=display:inline-block>". drupal_render($form["key_$i"]) ."</span> &nbsp;&nbsp;&nbsp; <span style=display:inline-block>". drupal_render($form["val_$i"]) ."</span></div>";  
+    $output.= "<div class=search_$i><span style=display:inline-block>". drupal_render($form["name_$i"]) ."</span> &nbsp;&nbsp;&nbsp;<span style=display:inline-block>". drupal_render($form["key_$i"]) ."</span> &nbsp;&nbsp;&nbsp;<span style=display:inline-block>". drupal_render($form["val_$i"]) ."</span></div>";  
   }
   $output.= drupal_render($form);
   return $output;
