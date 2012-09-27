@@ -153,7 +153,7 @@ function _export_deal_get_radios($header_data, $val) {
     }
   }
   else {
-    $r[] = $el[$val];
+    $r[] = $header_data[$val];
   }
   
   return $r;
@@ -173,7 +173,7 @@ function _export_deal_get_checkbox($header_data, $val) {
     }
   }
   else {
-    $r[] = $el[$val];
+    $r[] = $header_data[$val];
   }
   
   return $r;
