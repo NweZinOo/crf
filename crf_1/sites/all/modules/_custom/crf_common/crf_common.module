@@ -130,6 +130,8 @@ function _export_deal_value($field, $val, $keys, $header_data) {
   }
   
   switch ($field) {
+    //case '是否接受':
+      
     case '性别':
       return $val == 0 ?  '男' : '女';
     case '姓名缩写':
