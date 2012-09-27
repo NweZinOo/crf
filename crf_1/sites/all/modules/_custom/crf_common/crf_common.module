@@ -112,6 +112,21 @@ function crf_common_set_data(&$header, &$item, &$row, &$header_data) {
 function _export_deal_value($field, $val, $keys, $header_data) {
   global $crf_el;
   
+  
+  switch ($field) {
+    case '是否接受统一随访':
+      if ($val == '1') 
+        return '否';
+      else if ($val === '0' || $val === 0) {
+        return '是';
+      }
+      else return '无';
+    case '性别':
+      return $val == 0 ?  '男' : '女';
+    case '姓名缩写':
+        return strtoupper($val);
+  }
+  
   if ($keys) {
     if (   isset($crf_el[$keys[0]])
         && isset($crf_el[$keys[0]][$keys[1]])
@@ -128,17 +143,7 @@ function _export_deal_value($field, $val, $keys, $header_data) {
       }
     }
   }
-  
-  switch ($field) {
-    //case '是否接受':
-      
-    case '性别':
-      return $val == 0 ?  '男' : '女';
-    case '姓名缩写':
-        return strtoupper($val);
-    default :
-      return $val;
-  }
+  return $val;
 }
 
 function _export_deal_get_radios($header_data, $val) {
