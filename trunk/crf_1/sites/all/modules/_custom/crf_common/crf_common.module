@@ -27,10 +27,14 @@ function crf_common_menu()
 
 
 function crf_common_export() {
-  header("Content-type:application/csv"); 
+  //header("Content-type:application/csv"); 
   //header("Content-Disposition:\"inline;filename=data.csv\""); 
-  header("Content-Disposition: attachment; filename=export.csv");
   
+  header('Content-Encoding: UTF-8');
+  header('Content-type: text/csv; charset=UTF-8');
+  header("Content-Disposition: attachment; filename=export.csv");
+  echo "\xEF\xBB\xBF"; // UTF-8 BOM
+
   crf_common_export_do();
 }
 
