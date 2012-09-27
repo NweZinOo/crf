@@ -166,7 +166,7 @@ function _export_deal_get_radios($header_data, $val) {
 
 function _export_deal_get_checkbox($header_data, $val) {
   $r = array();
-  if (!$val) return $r;
+  if (is_null($val)) return $r;
   
   $header_data = array_flip($header_data);
   
