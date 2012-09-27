@@ -15,7 +15,174 @@ function crf_common_menu()
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK
   );
+   $items['crf_export'] = array(
+    'title' => '随机列表',
+    'page callback' => 'crf_common_export',
+    //'access callback' => 'crf_work_checkperm',
+    'access arguments' => array('crf view list'),
+    'type' => MENU_CALLBACK
+  );
   return $items;  
+}
+
+
+function crf_common_export() {
+  header("Content-type:application/csv"); 
+  //header("Content-Disposition:\"inline;filename=data.csv\""); 
+  header("Content-Disposition: attachment; filename=export.csv");
+  
+  crf_common_export_do();
+}
+
+function crf_common_export_do() {
+  global $crf_el_name;
+  //$crf_el_name['dyxx'];
+  
+  $header[] = 'uid';
+  
+  foreach ($crf_el_name as $name => $data) {
+    foreach ($data as $key => &$val) {
+      foreach ($val as $k => &$v) {
+        $header[] = $name . '-' . $v['name'];
+        //print $v['name'] . ' ,';
+      }
+    }
+  }
+  
+  //print_r($header);
+  //exit;
+  $body = array();
+  
+  $sql = 'SELECT * FROM crf_case_data WHERE name = "%s" ';
+  if ($uids = crf_common_session('export_uids')) {
+    if (count($uids)) {
+      $sql .= ' AND uid in ( ' . join(',', $uids) . ')';
+    }
+  }
+  
+  $res = db_query($sql, 'dyxx');
+  while ($row = db_fetch_array($res)) {
+    $item   = array();
+    $item[] = $row['uid'];
+    
+    crf_common_set_data($header, $item, $row);
+    $body[] = $item;
+  }
+  
+  //array_unshift($body, $header);
+  echo array_to_scv($body, $header);
+}
+
+function crf_common_set_data(&$header, &$item, &$row) {
+  $data = json_to_array(json_decode($row['data']));
+  $uid  = $row['uid'];
+  
+  $all  = array(
+    'dyxx' => $data, 
+    'sf_1' => json_to_array(crf_ds_load('sf_1', $uid)), 
+    'sf_2' => json_to_array(crf_ds_load('sf_2', $uid)), 
+    'sf_3' => json_to_array(crf_ds_load('sf_3', $uid)), 
+    'sf_4' => json_to_array(crf_ds_load('sf_4', $uid)), 
+    'sf_5' => json_to_array(crf_ds_load('sf_5', $uid)), 
+  );
+          
+  foreach ($header as $pos => $h) {
+    if (in_array($h, array('uid')))      
+      continue;
+    
+    list ($no, $field) = explode('-', $h, 2);
+    $keys = crf_search_name_to_key($field, $no);
+    if (isset($all[$keys[0]])) {
+      $current = $all[$keys[0]];
+    //var_dump($keys, $h, $data[$keys[1]][$keys[2]]);
+      $current_val = $current[$keys[1]][$keys[2]];
+      
+      $item[$pos] = _export_deal_value($field, $current_val, $keys);
+    }
+  }
+}
+
+function _export_deal_value($field, $val, $keys = NULL) {
+  global $crf_el;
+  
+  if ($keys) {
+    if (   isset($crf_el[$keys[0]])
+        && isset($crf_el[$keys[0]][$keys[1]])
+        && isset($crf_el[$keys[0]][$keys[1]][$keys[2]])
+       ) {
+      $el = $crf_el[$keys[0]][$keys[1]][$keys[2]];
+      if ($el['#type'] == 'checkboxes' || $el['#type'] == 'radios') {
+        $val = _export_deal_get_checkbox($el, $val);
+        if (empty($val)) $val = '无';
+      }
+    }
+  }
+  
+  switch ($field) {
+    case '性别':
+      return $val == 1 ?  '男' : '女';
+    case '姓名缩写':
+        return strtoupper($val);
+    default :
+      return $val;
+  }
+}
+
+function _export_deal_get_checkbox($el, $val) {
+  $r = array();
+  if (!$val) return $r;
+  
+  if (is_array($val)) {
+    foreach($val as $k => $v) {
+      if ($v == 1) {
+        $r[] = $el['#options'][$k];
+      }
+    }
+  }
+  else {
+    $r[] = $el[$val];
+  }
+  
+  return $r;
+}
+/**
+* Generatting CSV formatted string from an array.
+* By Sergey Gurevich.
+*/
+function array_to_scv($array, $header_row = null, $col_sep = ",", $row_sep = "\n", $qut = '"')
+{
+  
+	if (!is_array($array) or !is_array($array[0])) return false;
+	
+	//Header row.
+	if ($header_row)
+	{
+		foreach ($header_row as $key => $val)
+		{
+      $val = str_replace('dyxx-', '', $val);
+      $val = str_replace('sf', '随访', $val);
+			//Escaping quotes.
+			$key = str_replace($qut, "'", $val);
+			$output .= "$col_sep$qut$key$qut";
+		}
+		$output = substr($output, 1)."\n";
+	}
+  
+	//Data rows.
+	foreach ($array as $key => $val)
+	{
+		$tmp = '';
+		foreach ($val as $cell_key => $cell_val)
+		{
+      if (is_array($cell_val)) $cell_val = join(' ', $cell_val);
+			//Escaping quotes.
+			$cell_val = str_replace($qut, "'", $cell_val);
+			$tmp .= "$col_sep$qut$cell_val$qut";
+		}
+		$output .= substr($tmp, 1).$row_sep;
+	}
+	
+	return $output;
 }
 
 /**
