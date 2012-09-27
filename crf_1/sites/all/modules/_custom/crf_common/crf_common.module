@@ -54,7 +54,7 @@ function crf_common_export_do() {
   $body = array();
   
   $sql = 'SELECT * FROM crf_case_data WHERE name = "%s" ';
-  if ($uids = crf_common_session('export_uids')) {
+  if ($uids = crf_common_session('search_result')) {
     if (count($uids)) {
       $sql .= ' AND uid in ( ' . join(',', $uids) . ')';
     }
