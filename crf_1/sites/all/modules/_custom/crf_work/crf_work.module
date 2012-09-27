@@ -367,6 +367,12 @@ function get_rand_team($p_uid) {
 
 function crf_work_search() {
   drupal_set_breadcrumb(array(l('首页', ''),'搜索列表'));
+  if (TRUE || user_access('crf view all')) {
+    $output .= drupal_get_form('crf_search_user_form');
+  }
+  if ($_SESSION['crf']['search_result'] == "") {
+    return $output;
+  }
   global $user;
   global $hospital_name_arr;
   global $pager_page_array;
@@ -427,13 +433,14 @@ function crf_work_search() {
       l('进入', 'crf_case/'. $r->uid .'/1')
     );
    }
-
-  if (TRUE || user_access('crf view all')) {
-    $output .= drupal_get_form('crf_search_user_form');
+  if (count($rows) == 0) {
+    $output.= "<h3 style='color:red'>无搜索记录，请检查搜索条件！</h3>";
+    return $output;
   }
   $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
   $output .= theme('table', $header, $rows);
   $output .= theme('pager', $limit);
+  $output.= "<div style=float:right>". l('导出搜索结果', 'crf_export') ."</div>";
   return $output;
 }
 
