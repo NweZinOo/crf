@@ -120,7 +120,7 @@ function _export_deal_value($field, $val, $keys, $header_data) {
       else if ($val === '0' || $val === 0) {
         return '是';
       }
-      else return '无';
+      else return '';
     case '性别':
       return $val == 0 ?  '男' : '女';
     case '姓名缩写':
@@ -135,11 +135,11 @@ function _export_deal_value($field, $val, $keys, $header_data) {
       $el = $crf_el[$keys[0]][$keys[1]][$keys[2]];
       if ($el['#type'] == 'checkboxes') {
         $val = _export_deal_get_checkbox($header_data, $val);
-        if (empty($val)) $val = '无';
+        //if (empty($val)) $val = '无';
       }
       if ($el['#type'] == 'radios') {
         $val = _export_deal_get_radios($header_data, $val);
-        if (empty($val)) $val = '无';
+        //if (empty($val)) $val = '无';
       }
     }
   }
