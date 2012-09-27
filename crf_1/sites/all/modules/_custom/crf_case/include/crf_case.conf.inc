@@ -17,7 +17,7 @@ $crf_el['dyxx'] = array(
   2 => array(1 => type_textfield('',80), 2 => type_textfield()),
   3 => array(1 => type_textfield('',80), 2 => type_textfield()),
   4 => array(1 => type_date_popup()),
-  5 => array(1 => type_checkboxs(array('1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为:'))),
+  5 => array(1 => type_checkboxs(array('1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为'))),
 //  6 => array(1 => type_checkboxs(array('1.1难治性贫血（RA）','1.2难治性血细胞减少伴多系发育异常（RCMD）','1.3 RARS','1.4 RAEB-1','1.5 RAEB-2','1.6 MDS-U','1.7 5q-综合征'))),
   6 => array(1 => type_checkboxs(array('1.1难治性贫血（RA）')), 2 => type_checkboxs(array('1.2难治性血细胞减少伴多系发育异常（RCMD）')), 3 => type_checkboxs(array('1.3 RARS')), 4 => type_checkboxs(array('1.4 RAEB-1')), 5 => type_checkboxs(array('1.5 RAEB-2')), 6 => type_checkboxs(array('1.6 MDS-U')), 7 => type_checkboxs(array('1.7 5q-综合征'))),
   7 => array(1 => type_checkboxs(array('2再生障碍性贫血(AA)')), 2 => type_checkboxs(array('3纯红细胞再生障碍性贫血'))),

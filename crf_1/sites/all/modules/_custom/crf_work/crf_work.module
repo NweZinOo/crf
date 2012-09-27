@@ -549,12 +549,17 @@ function crf_search_el_key($search) {
   return $search;
 }
 
-function crf_search_name_to_key($name) {
+function crf_search_name_to_key($name, $no_limit = NULL) {
   global $crf_el_name;
   static $names;
   
   if (!isset($names[$name])) {
     foreach ($crf_el_name as $no => &$form_elements_arr) {
+      
+      if ($no_limit && $no != $no_limit) {
+        continue;
+      } 
+      
       foreach($form_elements_arr as $row => &$group) {
         if (stristr($row, '#') === FALSE) {//skip #
           foreach($group as $element_no => $element) {
