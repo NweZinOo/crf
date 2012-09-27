@@ -1350,3 +1350,7 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 .form-text.item-changed {
   background: #FFFF99;
 }
+
+#crf-search-user-form .form-text {
+  border: 1px solid;
+}
