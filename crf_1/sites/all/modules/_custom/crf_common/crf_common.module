@@ -166,7 +166,7 @@ function _export_deal_get_checkbox($header_data, $val) {
   if (is_array($val)) {
     foreach($val as $k => $v) {
       if ($v == 1) {
-        $r[] = $header_data[$k];
+        $r[] = '是';
       }
     }
   }
