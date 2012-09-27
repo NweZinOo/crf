@@ -366,7 +366,7 @@ function get_rand_team($p_uid) {
 }
 
 function crf_work_search() {
-  drupal_set_breadcrumb(array(l('首页', ''),'搜索列表'));
+  drupal_set_breadcrumb(array(l('首页', ''),'条件搜索'));
   if (TRUE || user_access('crf view all')) {
     $output .= drupal_get_form('crf_search_user_form');
   }
@@ -402,8 +402,8 @@ function crf_work_search() {
 //  print_r($_SESSION['crf']);
 //  print $search_p_uid;
   $search_p_uid = implode(',', $_SESSION['crf']['search_result']);
-  
-  if ($user->uid == 1) {
+//  print_r($user);
+  if (_is_special() == TRUE) {
     $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no != '' AND uid in ($search_p_uid)" . tablesort_sql($header), $limit);
   }
   else {
@@ -478,6 +478,10 @@ function crf_search_user_form() {
    '#type' => 'submit',
    '#value'=> '确定'
   );
+  $form['info'] = array(
+   '#type' => 'item',
+   '#value'=> '如有资料修改，请重新提交搜索条件。'
+  );
   return $form;
   
 }
@@ -517,7 +521,12 @@ function crf_search_user_form_submit($form, &$form_state) {
   $search = crf_common_session('search');
   global $user;
   $result = array();
-  $res = db_query("SELECT * FROM crf_case_data WHERE hospital_no = $user->profile_hospital_no ORDER BY uid");
+  if (_is_special() == TRUE) {
+    $res = db_query("SELECT * FROM crf_case_data WHERE hospital_no != '' ORDER BY uid");
+  }
+  else {
+    $res = db_query("SELECT * FROM crf_case_data WHERE hospital_no = $user->profile_hospital_no ORDER BY uid");
+  }
   while ($r = db_fetch_array($res)) {
     $result[$r['uid']][$r['name']] = json_to_array(json_decode($r['data']));
   }
@@ -726,4 +735,14 @@ function _get_user_arr() {
     $arr[$row->uid] = $row->name;
   }
   return $arr;
+}
+
+function _is_special() {
+  global $user;
+  if ($user->uid == 1 || $user->roles[4] != "" || $user->roles[5] != "") {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
