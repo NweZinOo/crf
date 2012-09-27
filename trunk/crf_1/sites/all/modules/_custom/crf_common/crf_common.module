@@ -43,11 +43,14 @@ function crf_common_export_do() {
   //$crf_el_name['dyxx'];
   
   $header[] = 'uid';
+  $header_data = array();
   
   foreach ($crf_el_name as $name => $data) {
     foreach ($data as $key => &$val) {
       foreach ($val as $k => &$v) {
-        $header[] = $name . '-' . $v['name'];
+        $tt = $name . '-' . $v['name'];
+        $header[] = $tt;
+        $header_data[$tt] = $v['value']; 
         //print $v['name'] . ' ,';
       }
     }
@@ -69,7 +72,7 @@ function crf_common_export_do() {
     $item   = array();
     $item[] = $row['uid'];
     
-    crf_common_set_data($header, $item, $row);
+    crf_common_set_data($header, $item, $row, $header_data);
     $body[] = $item;
   }
   
@@ -77,7 +80,7 @@ function crf_common_export_do() {
   echo array_to_scv($body, $header);
 }
 
-function crf_common_set_data(&$header, &$item, &$row) {
+function crf_common_set_data(&$header, &$item, &$row, &$header_data) {
   $data = json_to_array(json_decode($row['data']));
   $uid  = $row['uid'];
   
@@ -101,12 +104,12 @@ function crf_common_set_data(&$header, &$item, &$row) {
     //var_dump($keys, $h, $data[$keys[1]][$keys[2]]);
       $current_val = $current[$keys[1]][$keys[2]];
       
-      $item[$pos] = _export_deal_value($field, $current_val, $keys);
+      $item[$pos] = _export_deal_value($field, $current_val, $keys, $header_data[$h]);
     }
   }
 }
 
-function _export_deal_value($field, $val, $keys = NULL) {
+function _export_deal_value($field, $val, $keys, $header_data) {
   global $crf_el;
   
   if ($keys) {
@@ -116,7 +119,8 @@ function _export_deal_value($field, $val, $keys = NULL) {
        ) {
       $el = $crf_el[$keys[0]][$keys[1]][$keys[2]];
       if ($el['#type'] == 'checkboxes' || $el['#type'] == 'radios') {
-        $val = _export_deal_get_checkbox($el, $val);
+        
+        $val = _export_deal_get_checkbox($header_data, $val);
         if (empty($val)) $val = '无';
       }
     }
@@ -132,14 +136,16 @@ function _export_deal_value($field, $val, $keys = NULL) {
   }
 }
 
-function _export_deal_get_checkbox($el, $val) {
+function _export_deal_get_checkbox($header_data, $val) {
   $r = array();
   if (!$val) return $r;
+  
+  $header_data = array_flip($header_data);
   
   if (is_array($val)) {
     foreach($val as $k => $v) {
       if ($v == 1) {
-        $r[] = $el['#options'][$k];
+        $r[] = $header_data[$k];
       }
     }
   }
