@@ -120,11 +120,11 @@ function _export_deal_value($field, $val, $keys, $header_data) {
       $el = $crf_el[$keys[0]][$keys[1]][$keys[2]];
       if ($el['#type'] == 'checkboxes') {
         $val = _export_deal_get_checkbox($header_data, $val);
-        if (empty($val)) $val = '无';
+        if (empty($val)) $val = '是';
       }
       if ($el['#type'] == 'radios') {
         $val = _export_deal_get_radios($header_data, $val);
-        if (empty($val)) $val = '无';
+        if (empty($val)) $val = '是';
       }
     }
   }
@@ -147,9 +147,7 @@ function _export_deal_get_radios($header_data, $val) {
   
   if (is_array($val)) {
     foreach($val as $k => $v) {
-      if ($v == 1) {
-        $r[] = '是';
-      }
+      $r[] = $header_data[$val];
     }
   }
   else {
@@ -167,9 +165,7 @@ function _export_deal_get_checkbox($header_data, $val) {
   
   if (is_array($val)) {
     foreach($val as $k => $v) {
-      if ($v == 1) {
-        $r[] = '是';
-      }
+      $r[] = $header_data[$val];
     }
   }
   else {
