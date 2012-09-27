@@ -1354,3 +1354,8 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 #crf-search-user-form .form-text {
   border: 1px solid;
 }
+
+#crf-search-user-form .form-text.error,
+.form-item input.error, .form-item textarea.error {
+  border: 1px solid #C52020;
+}
