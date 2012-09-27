@@ -147,7 +147,9 @@ function _export_deal_get_radios($header_data, $val) {
   
   if (is_array($val)) {
     foreach($val as $k => $v) {
-      $r[] = $header_data[$v];
+      if ($v == 1) {
+        $r[] = '是';
+      }
     }
   }
   else {
