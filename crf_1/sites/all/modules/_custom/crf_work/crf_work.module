@@ -393,14 +393,17 @@ function crf_work_search() {
   $header = array('序号', '姓名', '姓名缩写', '性别', '年龄', '体重', '联系电话', '研究医生', '是否接受统一随访', '信息录入');
   
   $rows = array();
-
+//  print_r($_SESSION['crf']);
+//  print $search_p_uid;
+  $search_p_uid = implode(',', $_SESSION['crf']['search_result']);
+  
   if ($user->uid == 1) {
-    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no != ''" . tablesort_sql($header), $limit);
+    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no != '' AND uid in ($search_p_uid)" . tablesort_sql($header), $limit);
   }
   else {
-    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no = $hospital_name_current " . tablesort_sql($header), $limit);
+    $results = pager_query("SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no = $hospital_name_current  AND uid in ($search_p_uid)" . tablesort_sql($header), $limit);
   }
-  
+//  print "SELECT * FROM crf_case_data WHERE name='dyxx' AND hospital_no = $hospital_name_current  AND p_uid in ($search_p_uid)" . tablesort_sql($header);
 
   $pager_current = $pager_page_array[0] + 1;
   
@@ -428,7 +431,6 @@ function crf_work_search() {
   if (TRUE || user_access('crf view all')) {
     $output .= drupal_get_form('crf_search_user_form');
   }
-  
   $output .= "[<b>中心编号：</b> <i>{$hospital_name_current}</i>  <b>中心名称：</b> <i>{$hospital_name_arr[$hospital_name_current]}</i>]";
   $output .= theme('table', $header, $rows);
   $output .= theme('pager', $limit);
@@ -476,6 +478,9 @@ function crf_search_user_form() {
 function crf_search_user_form_validate($form, &$form_state) {
   global $search_i;
   for ($i = 1;$i<=$search_i;$i++) {
+    if ($form_state['values']['name_1'] == "") {
+      form_set_error('name_1', '请至少选择一个分类!');
+    }
     if ($form_state['values']['key_'.$i] != '' && $form_state['values']['name_'.$i] == "") {
       form_set_error('name_'.$i, '请选择分类!');
     }
@@ -502,28 +507,15 @@ function crf_search_user_form_submit($form, &$form_state) {
     $search = crf_search_el_key($search);
     crf_common_session('search', $search);
   }
-  $cond = crf_common_session('search');
+  $search = crf_common_session('search');
   global $user;
   $result = array();
   $res = db_query("SELECT * FROM crf_case_data WHERE hospital_no = $user->profile_hospital_no ORDER BY uid");
   while ($r = db_fetch_array($res)) {
     $result[$r['uid']][$r['name']] = json_to_array(json_decode($r['data']));
   }
-  $search_result = crf_search_match($cond, $result);
-  print_r($result);exit;
-}
-
-function crf_search_match($cond, $result) {
-  
-  
-//  foreach($crf_el_name as $uid => $names) {
-//    
-//  }
-//  foreach($result as $uid => $names) {
-//    foreach($cond as $k => $c) {
-//      
-//    }
-//  }
+  $search_result = crf_search_match($search, $result);
+  crf_common_session('search_result', $search_result);
 }
 
 function crf_search_el_key($search) {
@@ -534,7 +526,7 @@ function crf_search_el_key($search) {
       if (stristr($row, '#') === FALSE) {//skip #
         foreach($group as $element_no => $element) {
           if (preg_match("/.*$key.*/", $element['name'])) {
-            print $key.'--'.$element['name'].'---'.$row.' '.$element_no.'||||';
+//            print $key.'--'.$element['name'].'---'.$row.' '.$element_no.'||||';
             $search[$conds]['position'] = array($row, $element_no);
             if ($element['value'] != "") {
               $search[$conds]['val_option'] = $element['value']; 
@@ -549,31 +541,41 @@ function crf_search_el_key($search) {
   return $search;
 }
 
-function crf_search_name_to_key($name, $no_limit = NULL) {
-  global $crf_el_name;
-  static $names;
-  
-  if (!isset($names[$name])) {
-    foreach ($crf_el_name as $no => &$form_elements_arr) {
-      
-      if ($no_limit && $no != $no_limit) {
-        continue;
-      } 
-      
-      foreach($form_elements_arr as $row => &$group) {
-        if (stristr($row, '#') === FALSE) {//skip #
-          foreach($group as $element_no => $element) {
-            if ($element['name'] == $name) {
-              $names[$name] = array($no, $row, $element_no);
-              break;
-            }
-            //print "e_{$no}_{$row}_{$element_no}";
+function crf_search_match($search, $result) {
+//  print_r($search);
+//  print_r($result);exit;
+  foreach($result as $p_uid => $names) {
+    foreach($search as $k => $cond) {
+      $current_val = $names[$cond['name']][$cond['position'][0]][$cond['position'][1]];
+      if (is_null($current_val)) {
+        unset($result[$p_uid]);
+        break;
+      }
+      else {
+        if ($cond['val_r'] !== null) {
+          if ($cond['val_r'] != $current_val) {
+            unset($result[$p_uid]);
+            break;
+          }
+        }
+        else {
+          $cur_cond = $cond['val'];
+          if (!preg_match("/.*$cur_cond.*/", $current_val)) {
+            unset($result[$p_uid]);
+            break;
           }
         }
       }
+      unset($cur_cond);
+      unset($current_val);
     }
   }
-  return isset($names[$name]) ? $names[$name] : FALSE;
+//  print_r($result);
+  $search_result = array();
+  foreach($result as $p_uid => $names) {
+    $search_result[] = $p_uid;
+  }
+  return $search_result;
 }
 
 function crf_work_list() {
