@@ -26,6 +26,12 @@ function crf_work_menu()
     'access arguments' => array('crf view list'),
     'type' => MENU_CALLBACK
   );
+  $items['search_help'] = array(
+    'title' => '条件搜索',
+    'page callback' => 'crf_work_help_search',
+    'access arguments' => array('crf view list'),
+    'type' => MENU_CALLBACK
+  );
   $items['patient'] = array(
     'title' => '随机操作结果',
     'page callback' => 'crf_patient',
@@ -429,7 +435,7 @@ function crf_work_search() {
       $d[3][2],
       $d[2][2],
       $d[32][1], 
-      $sfs[$d[31][1]], 
+      $sfs[$d[35][1]], 
       l('进入', 'crf_case/'. $r->uid .'/1')
     );
    }
@@ -478,10 +484,10 @@ function crf_search_user_form() {
    '#type' => 'submit',
    '#value'=> '确定'
   );
-  $form['info'] = array(
-   '#type' => 'item',
-   '#value'=> '如有资料修改，请重新提交搜索条件。'
-  );
+//  $form['info'] = array(
+//   '#type' => 'item',
+//   '#value'=> '关于搜索关键字请看'.l('搜索帮助','search_help').'，如有资料修改，请点击"确定"重新提交搜索条件。'
+//  );
   return $form;
   
 }
@@ -763,4 +769,15 @@ function _is_special() {
   else {
     return FALSE;
   }
+}
+
+function crf_work_help_search() {
+//  global $crf_el_name;
+//  foreach ($crf_el_name['dyxx'] as $row => $group) {
+//    if (stristr($row, '#') === FALSE) {
+//      $dyxx['name'] = "调研数据关键字";
+//      foreach ($row as $k => $v) {
+//      }
+//    }
+//  }
 }
