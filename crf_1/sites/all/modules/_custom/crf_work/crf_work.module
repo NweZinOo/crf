@@ -486,6 +486,24 @@ function crf_search_user_form() {
   
 }
 
+function crf_search_name_to_key($name, $key) {
+  global $crf_el_name;
+  
+  foreach ($crf_el_name as $no => &$form_elements_arr) {
+    foreach($form_elements_arr as $row => &$group) {
+      if (stristr($row, '#') === FALSE) {//skip #
+        foreach($group as $element_no => $element) {
+          if ($element['name'] == $name) {
+            return array($no, $row, $element_no);
+          }
+          //print "e_{$no}_{$row}_{$element_no}";
+        }
+      }
+    }
+  }
+  
+}
+
 function crf_search_user_form_validate($form, &$form_state) {
   global $search_i;
   for ($i = 1;$i<=$search_i;$i++) {
