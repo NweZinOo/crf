@@ -118,9 +118,12 @@ function _export_deal_value($field, $val, $keys, $header_data) {
         && isset($crf_el[$keys[0]][$keys[1]][$keys[2]])
        ) {
       $el = $crf_el[$keys[0]][$keys[1]][$keys[2]];
-      if ($el['#type'] == 'checkboxes' || $el['#type'] == 'radios') {
-        
+      if ($el['#type'] == 'checkboxes') {
         $val = _export_deal_get_checkbox($header_data, $val);
+        if (empty($val)) $val = '无';
+      }
+      if ($el['#type'] == 'radios') {
+        $val = _export_deal_get_radios($header_data, $val);
         if (empty($val)) $val = '无';
       }
     }
@@ -134,6 +137,24 @@ function _export_deal_value($field, $val, $keys, $header_data) {
     default :
       return $val;
   }
+}
+
+function _export_deal_get_radios($header_data, $val) {
+  $r = array();
+  if (!$val) return $r;
+  
+  $header_data = array_flip($header_data);
+  
+  if (is_array($val)) {
+    foreach($val as $k => $v) {
+      $r[] = $header_data[$v];
+    }
+  }
+  else {
+    $r[] = $el[$val];
+  }
+  
+  return $r;
 }
 
 function _export_deal_get_checkbox($header_data, $val) {
