@@ -124,7 +124,7 @@ function _export_deal_value($field, $val, $keys = NULL) {
   
   switch ($field) {
     case '性别':
-      return $val == 1 ?  '男' : '女';
+      return $val == 0 ?  '男' : '女';
     case '姓名缩写':
         return strtoupper($val);
     default :
