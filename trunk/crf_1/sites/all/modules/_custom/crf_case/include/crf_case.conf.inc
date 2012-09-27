@@ -102,7 +102,7 @@ $crf_el_name['dyxx'] = array(
       1 => array("name" => "1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为")
   ),
   6 => array(
-      1 => array("name" => "1.1难治性贫血（RA）", "value" => 1), 
+      1 => array("name" => "1.1难治性贫血（RA）"), 
       2 => array("name" => "1.2难治性血细胞减少伴多系发育异常（RCMD）"),
       3 => array("name" => "1.3 RARS"), 
       4 => array("name" => "1.4 RAEB-1"), 
@@ -119,7 +119,7 @@ $crf_el_name['dyxx'] = array(
   13 => array(1 => array("name" => "染色体检查结果")),
   14 => array(1 => array("name" => "基因检测日期")),
   15 => array(1 => array("name" => "基因检测结果")),
-  16 => array(1 => array("name" => "输血治疗史", "value" => 1)),
+  16 => array(1 => array("name" => "输血治疗史")),
   17 => array(1 => array("name" => "输血治疗的开始日期")),
   18 => array(1 => array("name" => "既往RBC输注总量")),
   19 => array(1 => array("name" => "血铁五项取样日期"), 2 => array("name" => "血铁五项取样日期")),
