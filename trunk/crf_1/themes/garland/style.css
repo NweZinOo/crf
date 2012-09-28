@@ -1359,3 +1359,12 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
 .form-item input.error, .form-item textarea.error {
   border: 1px solid #C52020;
 }
+
+#crf-case-form .container-inline-date .form-text {
+  background: url("images/date.gif") no-repeat scroll left top #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-size: 13px;
+  padding: 3px 3px 3px 24px;
+  width: 150px;
+}
