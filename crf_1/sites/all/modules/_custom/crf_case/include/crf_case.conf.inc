@@ -70,6 +70,25 @@ $crf_el['zlcl'] = array(
   13 => array(1 => type_checkboxs(array('其它')),2 => type_textfield()),
 );
 
+$crf_el['dhsf'] = array(
+  '#name'  => '电话随访',
+  1 => array(1 => type_textfield(), 2 => type_date_popup()),
+  2 => array(1 => type_date_popup()),
+  3 => array(1 => type_textfield()),
+  4 => array(1 => type_textfield('', 8), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('否')), 4 => type_textfield(), 5 => type_checkboxs(array('是')), 6 => type_checkboxs(array('否')), 7 => type_textfield(), 8 => type_checkboxs(array('是')), 9 => type_checkboxs(array('否')), 10 => type_textfield()),
+  5 => array(1 => type_textfield('', 8), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('否')), 4 => type_textfield(), 5 => type_checkboxs(array('是')), 6 => type_checkboxs(array('否')), 7 => type_textfield(), 8 => type_checkboxs(array('是')), 9 => type_checkboxs(array('否')), 10 => type_textfield()),
+  6 => array(1 => type_textfield('', 8), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('否')), 4 => type_textfield(), 5 => type_checkboxs(array('是')), 6 => type_checkboxs(array('否')), 7 => type_textfield(), 8 => type_checkboxs(array('是')), 9 => type_checkboxs(array('否')), 10 => type_textfield()),
+  7 => array(1 => type_textfield('', 8), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('否')), 4 => type_textfield(), 5 => type_checkboxs(array('是')), 6 => type_checkboxs(array('否')), 7 => type_textfield(), 8 => type_checkboxs(array('是')), 9 => type_checkboxs(array('否')), 10 => type_textfield()),
+  8 => array(1 => type_checkboxs(array('无,有则填写：'))),
+  9 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield()),
+  10 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield()),
+  11 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield()),
+  12 => array(1 => type_date_popup()),
+  13 => array(1 => type_textfield('', 120)),
+  14 => array(1 => type_textfield()),
+  15 => array(1 => type_checkboxs(array('无,是则填写：')),2 => type_textfield(),3 => type_date_popup()),
+);
+
 for ($i=1; $i<=5; $i++) {
   $crf_el["sf_{$i}"] = array(
     '#name' => "第{$i}次随访",
@@ -159,7 +178,22 @@ $crf_el_name['dyxx'] = array(
   36 => array(1 => array("name" => "填表医生签名"), 2 => array("name" => "填表日期")),
 );
 
-
+$crf_el_name['zlcl'] = array(
+  '#name'  => '整体治疗策略',
+  1 => array(1 => array('name'=>'支持治疗：')),
+  2 => array(1 => array('name'=>'输血'), 2 => array('name'=>'造血生长因子（EPO/darbopoietin±G-CSF）'), 3 => array('name'=>'抗生素'), 4 => array('name'=>'去铁治疗'), 5 => array('name'=>'促血小板生长')),
+  3 => array(1 => array('name'=>'治疗药物：')),
+  4 => array(1 => array('name'=>'去甲基化药物：'), 2 => array('name'=>'阿扎胞苷'), 3 => array('name'=>'地西他滨'), 4 => array('name'=>'去甲基化药物其它')),
+  5 => array(1 => array('name'=>'化疗')),
+  6 => array(1 => array('name'=>'免疫调节治疗：'), 2 => array('name'=>'来那度胺'), 3 => array('name'=>'沙利度胺'), 4 => array('name'=>'免疫调节治疗其它')),
+  7 => array(1 => array('name'=>'免疫抑制治疗：'), 2 => array('name'=>'ATG±环孢菌素'), 3 => array('name'=>'免疫抑制治疗其它')),
+  8 => array(1 => array('name'=>'HSCT')),
+  9 => array(1 => array('name'=>'治疗药物其它')),
+  10 => array(1 => array('name'=>'免疫抑制治疗：')),
+  11 => array(1 => array('name'=>'ATG+CSA'), 2 => array(array('免疫抑制治疗其它')), 3 => array()),
+  12 => array(1 => array('name'=>'HSCT')),
+  13 => array(1 => array('name'=>'AA其它')),
+);
 
 for ($i=1; $i<=5; $i++) {
   $crf_el_name["sf_{$i}"] = array(

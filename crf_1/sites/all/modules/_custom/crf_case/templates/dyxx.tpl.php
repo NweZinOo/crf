@@ -206,25 +206,6 @@
   </tr>
   <tr>
     <td><?php print drupal_render($form[$key_pre ."_34_1"]);?><br/><?php print drupal_render($form[$key_pre ."_34_2"]);?>
-      <pre>
-  整体治疗策略：
-  MDS———
-  1.支持治疗：
-  –输血；
-  –造血生长因子（EPO/darbopoietin ± G-CSF）；
-  –抗生素；
-  –去铁治疗；
-  –促血小板生长；
-  2.治疗药物：
-  –去甲基化药物：Azacitidine、Decitabine ；
-  –化疗；
-  –免疫调节治疗：Lenalidomide (5q-)；
-  –免疫抑制治疗：ATG ± cyclosporin ；
-  3.HSCT：
-  AA———
-  1.IST：ATG+CsA；
-  2.HSCT；
-      </pre>
     </td>
   </tr>
 </table>

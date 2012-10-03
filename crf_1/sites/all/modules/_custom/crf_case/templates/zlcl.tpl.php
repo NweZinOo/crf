@@ -60,3 +60,6 @@
     </td>
   </tr>
 </table>
+<?php
+  print drupal_render($form);
+?>
