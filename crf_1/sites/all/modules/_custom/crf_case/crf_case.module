@@ -373,7 +373,11 @@ function crf_case_theme() {
     'crf_case_form_dyxx' => array(
       'arguments' => array('form' => NULL, 'class' => 'dyxx', 'table' => 'dyxx', 'table_name' => '调研数据录入', 'hospital_name_arr' => $hospital_name_arr),
       'template' => 'templates/dyxx',
-    ),      
+    ),   
+    'crf_case_form_zlcl' => array(
+      'arguments' => array('form' => NULL, 'class' => 'zlcl', 'table' => 'zlcl', 'table_name' => '整体治疗策略', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/zlcl',
+    ),  
     'crf_case_form_sf_1' => array(
       'arguments' => array('form' => NULL, 'class' => 'sf-1', 'table' => 'sf_1', 'table_name' => '第一次随访', 'hospital_name_arr' => $hospital_name_arr),
       'template' => 'templates/sf',

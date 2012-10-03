@@ -178,13 +178,24 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3"><b>MRI：</b> <br/>
-      肝脏：检测日期：<?php print drupal_render($form[$key_pre ."_28_1"]);?><br/>
-      <?php print drupal_render($form[$key_pre ."_29_1"]);?><br/>
-      T2*<?php print drupal_render($form[$key_pre ."_30_1"]);?>ms；LIC<?php print drupal_render($form[$key_pre ."_30_2"]);?><br/>
-      心脏：检测日期：<?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
-      T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>ms
-      其它：<?php print drupal_render($form[$key_pre ."_33_1"]);?>
+    <td colspan="3"><b>MRI检查：</b> <br/>
+      <?php print drupal_render($form[$key_pre ."_28_1"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测日期：<?php print drupal_render($form[$key_pre ."_28_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测结果：<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_29_1"]);?>MS；LIC：<?php print drupal_render($form[$key_pre ."_29_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;2.其它：<?php print drupal_render($form[$key_pre ."_29_3"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_1"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_30_3"]);?><?php print drupal_render($form[$key_pre ."_30_4"]);?><?php print drupal_render($form[$key_pre ."_30_5"]);?><br/>
+      <?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测日期：<?php print drupal_render($form[$key_pre ."_31_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测结果：<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;1.检测值：<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>MS；其它：<?php print drupal_render($form[$key_pre ."_32_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;2.其它：<?php print drupal_render($form[$key_pre ."_32_3"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_1"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_33_3"]);?><?php print drupal_render($form[$key_pre ."_33_4"]);?><?php print drupal_render($form[$key_pre ."_33_5"]);?><br/>
     </td>
   </tr>
 </table>
@@ -194,7 +205,7 @@
     </td>
   </tr>
   <tr>
-    <td><?php print drupal_render($form[$key_pre ."_34_1"]);?><br/>
+    <td><?php print drupal_render($form[$key_pre ."_34_1"]);?><br/><?php print drupal_render($form[$key_pre ."_34_2"]);?>
       <pre>
   整体治疗策略：
   MDS———

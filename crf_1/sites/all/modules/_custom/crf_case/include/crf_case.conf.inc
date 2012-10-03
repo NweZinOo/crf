@@ -41,16 +41,33 @@ $crf_el['dyxx'] = array(
   25 => array(1 => type_date_popup()),
   26 => array(1 => type_textfield(),2 => type_textfield()),
   27 => array(1 => type_textfield(),2 => type_textfield()),
-  28 => array(1 => type_date_popup()),
-  29 => array(1 => type_radios(array('轻度','中度','重度'))),
-  30 => array(1 => type_textfield(),2 => type_textfield()),
-  31 => array(1 => type_date_popup()),
-  32 => array(1 => type_textfield()),
-  33 => array(1 => type_textfield()),
-  34 => array(1 => type_radios(array('不进行祛铁治疗','进行祛铁治疗,请继续填写访视记录(每3个月随访一次)'))),
+  28 => array(1 => type_checkboxs(array('肝脏')),2 => type_date_popup()),
+  29 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield()),
+  30 => array(1 => type_checkboxs(array('否')), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('轻度')), 4 => type_checkboxs(array('中度')), 5 => type_checkboxs(array('重度'))),
+  31 => array(1 => type_checkboxs(array('心脏')),2 => type_date_popup()),
+  32 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield()),
+  33 => array(1 => type_checkboxs(array('否')), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('轻度')), 4 => type_checkboxs(array('中度')), 5 => type_checkboxs(array('重度'))),
+  34 => array(1 => type_checkboxs(array('不进行袪铁治疗')), 2 => type_checkboxs(array('进行袪铁治疗，请继续填写访视记录（每3个月随访一次）'))),
   35 => array(1 => type_radios(array('是','否'))),
   36 => array(1 => type_textfield(),2 => type_date_popup()),
 //  33 => array(1 => type_textfield($user->profile_hospital_no)),
+);
+
+$crf_el['zlcl'] = array(
+  '#name'  => '整体治疗策略',
+  1 => array(1 => type_checkboxs(array('支持治疗：'))),
+  2 => array(1 => type_checkboxs(array('输血')), 2 => type_checkboxs(array('造血生长因子（EPO/darbopoietin±G-CSF）')), 3 => type_checkboxs(array('抗生素')), 4 => type_checkboxs(array('去铁治疗')), 5 => type_checkboxs(array('促血小板生长'))),
+  3 => array(1 => type_checkboxs(array('治疗药物：'))),
+  4 => array(1 => type_checkboxs(array('去甲基化药物：')), 2 => type_checkboxs(array('阿扎胞苷')), 3 => type_checkboxs(array('地西他滨')), 4 => type_checkboxs(array('其它')), 5 => type_textfield()),
+  5 => array(1 => type_checkboxs(array('化疗'))),
+  6 => array(1 => type_checkboxs(array('免疫调节治疗：')), 2 => type_checkboxs(array('来那度胺')), 3 => type_checkboxs(array('沙利度胺')), 4 => type_checkboxs(array('其它')), 5 => type_textfield()),
+  7 => array(1 => type_checkboxs(array('免疫抑制治疗：')), 2 => type_checkboxs(array('ATG±环孢菌素')), 3 => type_checkboxs(array('其它')), 4 => type_textfield()),
+  8 => array(1 => type_checkboxs(array('HSCT'))),
+  9 => array(1 => type_checkboxs(array('其它')),2 => type_textfield()),
+  10 => array(1 => type_checkboxs(array('免疫抑制治疗：'))),
+  11 => array(1 => type_checkboxs(array('ATG+CSA')), 2 => type_checkboxs(array('其它')), 3 => type_textfield()),
+  12 => array(1 => type_checkboxs(array('HSCT'))),
+  13 => array(1 => type_checkboxs(array('其它')),2 => type_textfield()),
 );
 
 for ($i=1; $i<=5; $i++) {
@@ -131,16 +148,18 @@ $crf_el_name['dyxx'] = array(
   25 => array(1 => array("name" => "血生化取样日期")),
   26 => array(1 => array("name" => "谷草转氨酶(SGOT)"), 2 => array("name" => "谷丙转氨酶(SGPT)")),
   27 => array(1 => array("name" => "空腹血糖(FBS)"), 2 => array("name" => "餐后两小时血糖")),
-  28 => array(1 => array("name" => "MRI肝脏检测日期")),
-  29 => array(1 => array("name"=>"MRI肝脏","value"=>array('轻度'=>0,'中度'=>1,'重度'=>2))),
-  30 => array(1 => array("name" => "T2"), 2 => array("name" => "LIC")),
-  31 => array(1 => array("name" => "MRI心脏检测日期")),
-  32 => array(1 => array("name" => "T2")),
-  33 => array(1 => array("name" => "LIC")),
-  34 => array(1 => array("name"=>"祛铁治疗","value"=>array('不进行祛铁治疗'=>0,'进行祛铁治疗'=>1))),
+  28 => array(1 => array("name" => "MRI肝脏"), 2 => array("name" => "肝脏检测日期")),
+  29 => array(1 => array("name"=>"T2*"), 2 => array("name"=>"LIC"), 3 => array("name"=>"其它")),
+  30 => array(1 => array("name" => "否"),2 => array("name" => "是"),3 => array("name" => "轻度"),4 => array("name" => "中度"),5 => array("name" => "重度")),
+  31 => array(1 => array("name" => "MRI心脏"), 2 => array("name" => "心脏检测日期")),
+  32 => array(1 => array("name"=>"T2*"), 2 => array("name"=>"LIC"), 3 => array("name"=>"其它")),
+  33 => array(1 => array("name" => "否"),2 => array("name" => "是"),3 => array("name" => "轻度"),4 => array("name" => "中度"),5 => array("name" => "重度")),
+  34 => array(1 => array("name" => "不进行袪铁治疗)"), 2 => array("name" => "进行袪铁治疗，请继续填写访视记录（每3个月随访一次）")),
   35 => array(1 => array("name" => "是否接受统一随访", "value" => array("是" => 0, "否" => 1))),
   36 => array(1 => array("name" => "填表医生签名"), 2 => array("name" => "填表日期")),
 );
+
+
 
 for ($i=1; $i<=5; $i++) {
   $crf_el_name["sf_{$i}"] = array(
