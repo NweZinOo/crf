@@ -212,7 +212,7 @@ $crf_el['zq2_2'] = array(
 );
 
 $crf_el['zq2_3'] = array(
-  '#name' => '第一周期研究治疗是否发生减量/或延迟用药？',
+  '#name' => '第二周期化疗前主要实验室检查结果',
   1 => array(1 => type_checkboxs(array('未做'))),
   2 => array(1 => type_textfield(), 2 => type_radios(array('x10<sup>3</sup>/mm<sup>3</sup>','x10<sup>9</sup>/L')), 3 => type_radios(), 4 => type_date_popup()),  
   3 => array(1 => type_textfield(), 2 => type_radios(array('x10<sup>3</sup>/mm<sup>3</sup>','x10<sup>9</sup>/L')), 3 => type_radios(), 4 => type_date_popup()),  
