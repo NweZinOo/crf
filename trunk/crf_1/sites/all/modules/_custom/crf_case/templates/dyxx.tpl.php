@@ -190,8 +190,7 @@
       <?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测日期：<?php print drupal_render($form[$key_pre ."_31_2"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测结果：<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;1.检测值：<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>MS；其它：<?php print drupal_render($form[$key_pre ."_32_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>MS；其它：<?php print drupal_render($form[$key_pre ."_32_2"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;2.其它：<?php print drupal_render($form[$key_pre ."_32_3"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_1"]);?><br/>
