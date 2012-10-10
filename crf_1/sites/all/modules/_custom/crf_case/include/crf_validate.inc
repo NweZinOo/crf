@@ -89,11 +89,107 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_18_1', '输血治疗史未做无需填写既往RBC输注总量!');
     }
   }
+  
+//  print_r($values);
+  if ($values['e_dyxx_5_1'][1] == 1) {
+    if ($values['e_dyxx_6_1'][1] == 0 && $values['e_dyxx_6_2'][1] == 0 && $values['e_dyxx_6_3'][1] == 0 && $values['e_dyxx_6_4'][1] == 0 && $values['e_dyxx_6_5'][1] == 0 && $values['e_dyxx_6_6'][1] == 0 && $values['e_dyxx_6_7'][1] == 0) {
+      form_set_error('e_dyxx_6_1', '当诊断为骨髓增生异常综合征，其WHO(2008)分型必须要选择至少一项!');
+    }
+  }
+  if ($values['e_dyxx_16_1'][1] == 0) {
+    if (empty($values['e_dyxx_17_1'])) {
+      form_set_error('e_dyxx_17_1', '输血治疗的开始日期必须填写!');
+    }
+    if (empty($values['e_dyxx_18_1'])) {
+      form_set_error('e_dyxx_18_1', '既往RBC输注总量为必须填写!');
+    }
+  }
+  
+  if (empty($values['e_dyxx_20_1'])) {
+    form_set_error('e_dyxx_20_1', '血铁五项中的血清铁蛋白(SF) 为必填写项!');
+  }
+  
+  if ($values['e_dyxx_34_1'][1] == 0 || $values['e_dyxx_34_2'][1] == 0) {
+    form_set_error('e_dyxx_34_1', '治疗决定必须填写!');
+  }
+}
+
+function crf_case_validate_zlcl($form, &$form_state){
+  $values = $form_state['values'];
+  if ($values['e_zlcl_1_1'][1] == 1) {
+    if ($values['e_zlcl_2_1'][1] == 0 && $values['e_zlcl_2_2'][1] == 0 && $values['e_zlcl_2_3'][1] == 0 && $values['e_zlcl_2_4'][1] == 0 && $values['e_zlcl_2_5'][1] == 0) {
+      form_set_error('e_zlcl_2_1', '支持治疗的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_3_1'][1] == 1) {
+    if ($values['e_zlcl_4_1'][1] == 0 && $values['e_zlcl_5_1'][1] == 0 && $values['e_zlcl_6_1'][1] == 0 && $values['e_zlcl_7_1'][1] == 0 && $values['e_zlcl_8_1'][1] == 0 && $values['e_zlcl_9_1'][1] == 0) {
+      form_set_error('e_zlcl_4_1', '治疗药物的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_10_1'][1] == 1) {
+    if ($values['e_zlcl_11_1'][1] == 0 && $values['e_zlcl_12_1'][1] == 0 && $values['e_zlcl_13_1'][1] == 0) {
+      form_set_error('e_zlcl_11_1', '免疫抑制治疗的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_4_1'][1] == 1) {
+    if ($values['e_zlcl_4_2'][1] == 0 && $values['e_zlcl_4_3'][1] == 0 && $values['e_zlcl_4_4'][1] == 0) {
+      form_set_error('e_zlcl_4_2', '去甲基化药物的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_6_1'][1] == 1) {
+    if ($values['e_zlcl_6_2'][1] == 0 && $values['e_zlcl_6_3'][1] == 0 && $values['e_zlcl_6_4'][1] == 0) {
+      form_set_error('e_zlcl_6_2', '免疫调节治疗的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_7_1'][1] == 1) {
+    if ($values['e_zlcl_7_2'][1] == 0 && $values['e_zlcl_7_3'][1] == 0) {
+      form_set_error('e_zlcl_7_2', '免疫抑制治疗的子项必须填写一项!');
+    }
+  }
+  if ($values['e_zlcl_4_4'][1] == 1 && empty($values['e_zlcl_4_5'])) {
+    form_set_error('e_zlcl_4_5', '选择其它须注明理由!');
+  }  
+  if ($values['e_zlcl_6_4'][1] == 1 && empty($values['e_zlcl_6_5'])) {
+    form_set_error('e_zlcl_6_5', '选择其它须注明理由!');
+  }  
+  if ($values['e_zlcl_7_3'][1] == 1 && empty($values['e_zlcl_7_4'])) {
+    form_set_error('e_zlcl_7_4', '选择其它须注明理由!');
+  }  
+  if ($values['e_zlcl_9_1'][1] == 1 && empty($values['e_zlcl_9_2'])) {
+    form_set_error('e_zlcl_9_2', '选择其它须注明理由!');
+  }  
+  if ($values['e_zlcl_11_2'][1] == 1 && empty($values['e_zlcl_11_3'])) {
+    form_set_error('e_zlcl_11_3', '选择其它须注明理由!');
+  }  
+  if ($values['e_zlcl_13_1'][1] == 1 && empty($values['e_zlcl_13_2'])) {
+    form_set_error('e_zlcl_13_2', '选择其它须注明理由!');
+  }  
+}
+
+function crf_case_validate_dhsf($form, &$form_state){
+  $values = $form_state['values'];
+  if(empty($values['e_dhsf_1_1'])) {
+    form_set_error('e_dhsf_1_1', '诊断必须填写!');
+  }
+  if(empty($values['e_dhsf_1_2'])) {
+    form_set_error('e_dhsf_1_2', '电话随访时间必须填写!');
+  }
 }
 
 function crf_case_validate_sf_1($form, &$form_state){
-  _check_zq_date($form_state, 'sf_1', 'e_sf_2_1_1', '第一次随访', 'e_sf_1_13_3', 'e_sf_1_13_4');
-  _check_zq_date_1(&$form_state, 1);
+  $values = $form_state['values'];
+  if(empty($values['e_sf_1_1_1'])) {
+    form_set_error('e_sf_1_1_1', '随访日期必须填写!');
+  }
+  if(empty($values['e_sf_1_2_1'])) {
+    form_set_error('e_sf_1_2_1', '祛铁治疗记录的药物名称必须填写!');
+  }
+  if(empty($values['e_sf_1_3_1'])) {
+    form_set_error('e_sf_1_3_1', '祛铁治疗记录的第一个月剂量必须填写!');
+  }
+  if(empty($values['e_sf_1_4_1'])) {
+    form_set_error('e_sf_1_4_1', '祛铁治疗记录的第一个月治疗时间必须填写!');
+  }
 }
 function crf_case_validate_sf_2($form, &$form_state){
   _check_zq_date($form_state, 'sf_1', 'e_sf_2_1_1', '第一次随访', 'e_sf_1_13_3', 'e_sf_1_13_4');
