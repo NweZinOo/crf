@@ -5,6 +5,7 @@
 //  print_r($_SESSION);
 ?>
 <?php //print_r($hospital_name_arr);?>
+<?php //print_r($user);?>
 <table border="3">
   <tr>
     <td>&quot;中国慢性输血患者铁过载现状调研&quot;数据收集表</td>
