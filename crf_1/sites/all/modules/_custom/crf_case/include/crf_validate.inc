@@ -40,12 +40,6 @@ function crf_case_validate_dyxx($form, &$form_state){
   else if (11 != mb_strlen($values['e_dyxx_2_2']) || !is_numeric($values['e_dyxx_2_2'])){
     form_set_error('e_dyxx_2_2', '受试者手机号必须为11位数字!');
   }
-  if (empty($values['e_dyxx_3_1'])) {
-    form_set_error('e_dyxx_3_1', '患者身份证号码不能为空!');
-  }
-  else if (18 != mb_strlen($values['e_dyxx_3_1'])){
-    form_set_error('e_dyxx_3_1', '受试者身份证号必须为18位!');
-  }
   if (empty($values['e_dyxx_3_2'])) {
     form_set_error('e_dyxx_3_2', '患者体重不能为空!');
   }
