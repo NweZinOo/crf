@@ -47,7 +47,7 @@ $crf_el['dyxx'] = array(
   31 => array(1 => type_checkboxs(array('心脏')),2 => type_date_popup()),
   32 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield()),
   33 => array(1 => type_checkboxs(array('否')), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('轻度')), 4 => type_checkboxs(array('中度')), 5 => type_checkboxs(array('重度'))),
-  34 => array(1 => type_checkboxs(array('不进行袪铁治疗')), 2 => type_checkboxs(array('进行袪铁治疗，请继续填写访视记录（每3个月随访一次）'))),
+  34 => array(1 => type_radios(array('不进行袪铁治疗', '进行袪铁治疗，请继续填写访视记录（每3个月随访一次）'))),
   35 => array(1 => type_radios(array('是','否'))),
   36 => array(1 => type_textfield(),2 => type_date_popup()),
 //  33 => array(1 => type_textfield($user->profile_hospital_no)),
@@ -172,7 +172,7 @@ $crf_el_name['dyxx'] = array(
   31 => array(1 => array("name" => "MRI心脏"), 2 => array("name" => "心脏检测日期")),
   32 => array(1 => array("name"=>"T2*"), 2 => array("name"=>"LIC"), 3 => array("name"=>"其它")),
   33 => array(1 => array("name" => "否"),2 => array("name" => "是"),3 => array("name" => "轻度"),4 => array("name" => "中度"),5 => array("name" => "重度")),
-  34 => array(1 => array("name" => "不进行袪铁治疗)"), 2 => array("name" => "进行袪铁治疗，请继续填写访视记录（每3个月随访一次）")),
+  34 => array(1 => array("name" => "治疗决定)", "value"=>array("不进行袪铁治疗"=>0, "进行袪铁治疗，请继续填写访视记录（每3个月随访一次）"=>1))),
   35 => array(1 => array("name" => "是否接受统一随访", "value" => array("是" => 0, "否" => 1))),
   36 => array(1 => array("name" => "填表医生签名"), 2 => array("name" => "填表日期")),
 );
