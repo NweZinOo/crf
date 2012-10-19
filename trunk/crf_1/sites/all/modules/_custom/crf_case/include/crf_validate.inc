@@ -123,6 +123,9 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_27_3', '血糖有异常须填写餐后两小时血糖!');
     }
   }
+  if ($values['e_dyxx_34_1'] == '') {
+    form_set_error('e_dyxx_34_1', '治疗决定需要选择一项!');
+  }
 }
 
 function crf_case_validate_zlcl($form, &$form_state){
