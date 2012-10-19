@@ -13,7 +13,7 @@ $genders[1] = "女";
 //print_r($user);
 $crf_el['dyxx'] = array(
   '#name'  => '调研数据录入',
-  1 => array(1 => type_textfield(), 2 => type_textfield('',10), 3 => type_textfield('',10), 4 => type_radios(array('男','女'))),
+  1 => array(1 => type_textfield(), 2 => type_textfield('',10), 3 => type_radios(array('男','女'))),
   2 => array(1 => type_textfield('',80), 2 => type_textfield()),
   3 => array(1 => type_textfield('',80), 2 => type_textfield()),
   4 => array(1 => type_date_popup()),
@@ -39,8 +39,8 @@ $crf_el['dyxx'] = array(
   23 => array(1 => type_date_popup()),
   24 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield(),4 => type_textfield(),5 => type_textfield()),
   25 => array(1 => type_date_popup()),
-  26 => array(1 => type_textfield(),2 => type_textfield()),
-  27 => array(1 => type_textfield(),2 => type_textfield()),
+  26 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield(),3 => type_textfield()),
+  27 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield(),3 => type_textfield()),
   28 => array(1 => type_checkboxs(array('肝脏')),2 => type_date_popup()),
   29 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield()),
   30 => array(1 => type_checkboxs(array('否')), 2 => type_checkboxs(array('是')), 3 => type_checkboxs(array('轻度')), 4 => type_checkboxs(array('中度')), 5 => type_checkboxs(array('重度'))),
@@ -117,9 +117,8 @@ $crf_el_name['dyxx'] = array(
   '#name'  => '调研数据录入',
   1 => array(
       1 => array("name" => "患者姓名"), 
-      2 => array("name" => "姓名缩写"),  
-      3 => array("name" => "年龄(岁)"), 
-      4 => array("name" => "性别", 
+      2 => array("name" => "年龄(岁)"), 
+      3 => array("name" => "性别", 
           "value" => array("男" => 0, "女" => 1)
       )
   ),
@@ -165,8 +164,8 @@ $crf_el_name['dyxx'] = array(
   23 => array(1 => array("name" => "血常规取样日期")),
   24 => array(1 => array("name" => "Hb"),2 => array("name" => "WBC"),3 => array("name" => "ANC"),4 => array("name" => "PLT"),5 => array("name" => "Ret")),
   25 => array(1 => array("name" => "血生化取样日期")),
-  26 => array(1 => array("name" => "谷草转氨酶(SGOT)"), 2 => array("name" => "谷丙转氨酶(SGPT)")),
-  27 => array(1 => array("name" => "空腹血糖(FBS)"), 2 => array("name" => "餐后两小时血糖")),
+  26 => array(1 => array("name" => "肝功能是否正常", "value" => array("正常" => 0, "异常" => 1)),2 => array("name" => "谷草转氨酶(SGOT)"), 3 => array("name" => "谷丙转氨酶(SGPT)")),
+  27 => array(1 => array("name" => "血糖是否正常", "value" => array("正常" => 0, "异常" => 1)),2 => array("name" => "空腹血糖(FBS)"), 3 => array("name" => "餐后两小时血糖")),
   28 => array(1 => array("name" => "MRI肝脏"), 2 => array("name" => "肝脏检测日期")),
   29 => array(1 => array("name"=>"T2*"), 2 => array("name"=>"LIC"), 3 => array("name"=>"其它")),
   30 => array(1 => array("name" => "否"),2 => array("name" => "是"),3 => array("name" => "轻度"),4 => array("name" => "中度"),5 => array("name" => "重度")),

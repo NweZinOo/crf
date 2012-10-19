@@ -28,27 +28,24 @@
   <tr>
     <td>患者姓名：<?php print drupal_render($form[$key_pre ."_1_1"]);?>
     </td>
-    <td>姓名缩写：<?php print drupal_render($form[$key_pre ."_1_2"]);?>*
+    <td>年龄(岁)：<?php print drupal_render($form[$key_pre ."_1_2"]);?>
     </td>
-    <td>年龄(岁)：<?php print drupal_render($form[$key_pre ."_1_3"]);?>
-    </td>
-    <td>性别：<?php print drupal_render($form[$key_pre ."_1_4"]);?>
+    <td>性别：<?php print drupal_render($form[$key_pre ."_1_3"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="3">家庭住址：<?php print drupal_render($form[$key_pre ."_2_1"]);?>
+    <td colspan="2">家庭住址：<?php print drupal_render($form[$key_pre ."_2_1"]);?>
     </td>
     <td>联系电话：<?php print drupal_render($form[$key_pre ."_2_2"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="3">身份证号码：<?php print drupal_render($form[$key_pre ."_3_1"]);?>
+    <td colspan="2">身份证号码：<?php print drupal_render($form[$key_pre ."_3_1"]);?>
     </td>
     <td>体重(kg)：<?php print drupal_render($form[$key_pre ."_3_2"]);?>
     </td>
   </tr>
 </table>
-*说明：“姓名缩写”由患者姓名拼音缩写需填满四格，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母。
 <table>
   <tr>
     <td>
@@ -171,11 +168,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3">谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_1"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L
+    <td>肝功能是否异常：<?php print drupal_render($form[$key_pre ."_26_1"]);?></td><td colspan="2">如有异常请填写：<br/>谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L
     </td>
   </tr>
   <tr>
-    <td colspan="3">空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_1"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L
+    <td>血糖是否异常：<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写：<br/>空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
     </td>
   </tr>
   <tr>

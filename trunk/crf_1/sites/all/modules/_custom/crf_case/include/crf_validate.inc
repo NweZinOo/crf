@@ -10,12 +10,6 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_1_1', '患者姓名必须为汉字!');
     }
   }
-  if (empty($values['e_dyxx_1_2'])) {
-    form_set_error('e_dyxx_1_2', '患者姓名缩写不能为空!');
-  }
-  else if (4 != mb_strlen($values['e_dyxx_1_2']) || !ctype_alpha($values['e_dyxx_1_2'])){
-    form_set_error('e_dyxx_1_2', '受试者姓名缩写请用四个字母表示，两字姓名分填两字前两个字母，三字姓名填前两字首字母与第三字前两个字母，四字姓名填每字首字母！');
-  }
   if (empty($values['e_dyxx_1_3'])) {
     form_set_error('e_dyxx_1_3', '患者年龄不能为空!');
   }
@@ -98,13 +92,36 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_18_1', '既往RBC输注总量为必须填写!');
     }
   }
-  
+  if (empty($values['e_dyxx_19_1'])) {
+    form_set_error('e_dyxx_19_1', '血铁五项中的血清铁蛋白(SF)的取样日期 为必填写项!');
+  }
   if (empty($values['e_dyxx_20_1'])) {
     form_set_error('e_dyxx_20_1', '血铁五项中的血清铁蛋白(SF) 为必填写项!');
   }
-  
-  if ($values['e_dyxx_34_1'][1] == 0 || $values['e_dyxx_34_2'][1] == 0) {
-    form_set_error('e_dyxx_34_1', '治疗决定必须填写!');
+  if (empty($values['e_dyxx_23_1'])) {
+    form_set_error('e_dyxx_23_1', '血常规取样日期 为必填写项!');
+  }
+  if (empty($values['e_dyxx_24_1'])) {
+    form_set_error('e_dyxx_24_1', '血常规中的HB 为必填写项!');
+  }
+  if (empty($values['e_dyxx_24_4'])) {
+    form_set_error('e_dyxx_24_4', '血常规中的PLT 为必填写项!');
+  }
+  if ($values['e_dyxx_26_1'] == 1) {
+    if (empty($values['e_dyxx_26_2'])) {
+      form_set_error('e_dyxx_26_2', '肝功能有异常须填写谷草转氨酶(SGOT)!');
+    }
+    if (empty($values['e_dyxx_26_3'])) {
+      form_set_error('e_dyxx_26_3', '肝功能有异常须填写谷丙转氨酶(SGPT)!');
+    }
+  }
+  if ($values['e_dyxx_27_1'] == 1) {
+    if (empty($values['e_dyxx_27_2'])) {
+      form_set_error('e_dyxx_27_2', '血糖有异常须填写空腹血糖(FBS)!');
+    }
+    if (empty($values['e_dyxx_27_3'])) {
+      form_set_error('e_dyxx_27_3', '血糖有异常须填写餐后两小时血糖!');
+    }
   }
 }
 
