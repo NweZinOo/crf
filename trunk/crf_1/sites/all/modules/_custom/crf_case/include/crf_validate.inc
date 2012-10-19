@@ -10,20 +10,20 @@ function crf_case_validate_dyxx($form, &$form_state){
       form_set_error('e_dyxx_1_1', '患者姓名必须为汉字!');
     }
   }
-  if (empty($values['e_dyxx_1_3'])) {
-    form_set_error('e_dyxx_1_3', '患者年龄不能为空!');
+  if (empty($values['e_dyxx_1_2'])) {
+    form_set_error('e_dyxx_1_2', '患者年龄不能为空!');
   }
   else {
-    if (!is_numeric($values['e_dyxx_1_3'])) {
-      form_set_error('e_dyxx_1_3', "患者年龄必须数字！");
+    if (!is_numeric($values['e_dyxx_1_2'])) {
+      form_set_error('e_dyxx_1_2', "患者年龄必须数字！");
     }
-    if ($values['e_dyxx_1_3'] <= 0 || $values['e_dyxx_1_3'] > 150) {
-      form_set_error('e_dyxx_1_3', "请输入正确的患者年龄！");
+    if ($values['e_dyxx_1_2'] <= 0 || $values['e_dyxx_1_2'] > 150) {
+      form_set_error('e_dyxx_1_2', "请输入正确的患者年龄！");
     }
     
   }
-  if ($values['e_dyxx_1_4'] == '') {
-    form_set_error('e_dyxx_1_4', '患者性别需要选择一项!');
+  if ($values['e_dyxx_1_3'] == '') {
+    form_set_error('e_dyxx_1_3', '患者性别需要选择一项!');
   }
   if (empty($values['e_dyxx_2_1'])) {
     form_set_error('e_dyxx_2_1', '患者家庭住址不能为空!');
