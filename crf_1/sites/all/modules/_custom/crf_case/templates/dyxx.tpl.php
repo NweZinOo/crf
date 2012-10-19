@@ -168,11 +168,11 @@
     </td>
   </tr>
   <tr>
-    <td>肝功能是否异常：<?php print drupal_render($form[$key_pre ."_26_1"]);?></td><td colspan="2">如有异常请填写：<br/>谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L
+    <td>肝功能：<?php print drupal_render($form[$key_pre ."_26_1"]);?></td><td colspan="2">如有异常请填写：<br/>谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L
     </td>
   </tr>
   <tr>
-    <td>血糖是否异常：<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写：<br/>空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
+    <td>血糖：<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写：<br/>空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
     </td>
   </tr>
   <tr>
