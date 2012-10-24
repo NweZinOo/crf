@@ -78,6 +78,9 @@ function crf_case_edit() {
 //  print_r($user);
   $c_data = crf_ds_load('dyxx', $p_arr['p_uid']);
   $c_data = json_to_array($c_data);
+  
+ 
+  
 //  print_r($c_data);
   if ($p_arr['p_uid'] != '') {
     $p_name = '【姓名：' . $c_data[1][1] . '】  【缩写：' . $c_data[1][2] . '】';
@@ -101,6 +104,9 @@ function crf_case_edit() {
   $knx = crf_ds_load('renkou_tjx', crf_common_session('p_uid'));
   $disabled = array();
   
+  if ($c_data[35][1] == '1') {
+    $disabled[] = 'zlcl';
+  }
   if ($knx) {
     $knx = json_to_array($knx);
 
@@ -124,6 +130,10 @@ function crf_case_edit() {
     
     $last     = $progress[count($progress)-1];
     $next     = crf_get_next_form_key($last);
+    
+    if (in_array($next, $disabled)) {
+      $next = crf_get_next_form_key($next);
+    }
     
   }
   else {
