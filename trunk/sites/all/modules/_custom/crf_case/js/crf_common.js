@@ -156,7 +156,7 @@ $(document).ready(function(){
    var days  = get_days(date1, date2) + 1;
    
    if (isNaN(days)) {
-     alert('日期不对，请检查！');
+     alert('给药日期不对，请检查！');
      return false;
    }
    if (days < 0) {
