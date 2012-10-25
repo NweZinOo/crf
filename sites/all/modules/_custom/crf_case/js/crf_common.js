@@ -201,7 +201,7 @@ $(document).ready(function(){
  });
  */
  if ($('.calculate input[type=radio]').size()) {
-   $('.calculate input[type=radio]').click(cal);
+   //$('.calculate input[type=radio]').click(cal);
    $('.total input[type=text]').focus(cal);
    $('form').submit(cal);
   }
