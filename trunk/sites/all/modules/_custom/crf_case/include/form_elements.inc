@@ -13,11 +13,14 @@ function get_form_elements_arr($no) {
   return $form_elements_arr[$no];
 }
 
-function type_textfield($default_value = NULL, $size = NULL) {
+function type_textfield($default_value = NULL, $size = NULL, $maxlength = NULL) {
   if (empty($size)) {
     $size = 20;
   }
-  return array('#type'=>'textfield', '#default_value' => $default_value, '#size' => $size);
+  if (empty($maxlength)) {
+    $maxlength = 128;
+  }
+  return array('#type'=>'textfield', '#default_value' => $default_value, '#size' => $size, '#maxlength' => $maxlength);
 }
 
 function type_item($default_value = NULL, $size = NULL) {

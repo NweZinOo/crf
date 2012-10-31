@@ -348,15 +348,15 @@ for($i=1; $i<=5; $i++) {
   $crf_el["pg{$i}_3"] = array(
   '#name' => '肿瘤评估',
     1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
-    2 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    3 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    4 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    5 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    6 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    7 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    8 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    9 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-    10 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
+    2 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    3 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    4 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    5 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    6 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    7 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    8 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    9 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+    10 => array(1 => type_select(array('','CT','MRI','PET-CT','X-Ray','B超','内镜','组织学和/或细胞学检查')), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
   );
 
   $crf_el["pg{$i}_4"] = array(
@@ -390,14 +390,14 @@ for ($i=1; $i<=9; $i++) {
   $crf_el["sf{$i}_3"] = array(
     '#name' => '肿瘤评估',
       1 => array(1 => type_checkboxs(array('未做，请跳过本表'))),
-      2 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      3 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      4 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      5 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      6 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      7 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      8 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
-      9 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',150), 4 => type_date_popup()),
+      2 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      3 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      4 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      5 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      6 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      7 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      8 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
+      9 => array(1 => type_select(array('',1,2,3,4,5,6,7)), 2 => type_textfield(), 3 => type_textfield('',45,200), 4 => type_date_popup()),
   );
 }
 
