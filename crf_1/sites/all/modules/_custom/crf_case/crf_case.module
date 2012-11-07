@@ -104,8 +104,10 @@ function crf_case_edit() {
   $knx = crf_ds_load('renkou_tjx', crf_common_session('p_uid'));
   $disabled = array();
   
+  //var_dump($c_data[35][1]);
+  
   if ($c_data[35][1] == '1') {
-    $disabled[] = 'zlcl';
+    $disabled[] = 'dhsf';
   }
   if ($knx) {
     $knx = json_to_array($knx);
