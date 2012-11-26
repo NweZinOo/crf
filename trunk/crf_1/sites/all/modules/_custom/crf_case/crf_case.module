@@ -419,6 +419,10 @@ function crf_case_theme() {
       'arguments' => array('form' => NULL, 'class' => 'sf-5', 'table' => 'sf_5', 'table_name' => '第五次随访', 'hospital_name_arr' => $hospital_name_arr),
       'template' => 'templates/sf',
     ),
+    'crf_case_form_bbsj' => array(
+      'arguments' => array('form' => NULL, 'class' => 'bbsj', 'table' => 'bbsj', 'table_name' => '标本送检', 'hospital_name_arr' => $hospital_name_arr),
+      'template' => 'templates/bbsj',
+    ),   
   );
 }
 
