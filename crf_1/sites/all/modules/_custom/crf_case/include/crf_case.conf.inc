@@ -13,9 +13,9 @@ $genders[1] = "女";
 //print_r($user);
 $crf_el['dyxx'] = array(
   '#name'  => '调研数据录入',
-  1 => array(1 => type_textfield(), 2 => type_textfield('',10), 3 => type_radios(array('男','女'))),
-  2 => array(1 => type_textfield('',80), 2 => type_textfield()),
-  3 => array(1 => type_textfield('',80), 2 => type_textfield()),
+  1 => array(1 => type_textfield(), 2 => type_textfield('',10), 3 => type_date_popup(), 4 => type_radios(array('男','女'))),
+  2 => array(1 => type_textfield('',50), 2 => type_textfield()),
+  3 => array(1 => type_textfield('',50), 2 => type_textfield()),
   4 => array(1 => type_date_popup()),
   5 => array(1 => type_checkboxs(array('1骨髓增生异常综合征(MDS)，（原发/  继发/  治疗相关）其WHO(2008)分型为'))),
 //  6 => array(1 => type_checkboxs(array('1.1难治性贫血（RA）','1.2难治性血细胞减少伴多系发育异常（RCMD）','1.3 RARS','1.4 RAEB-1','1.5 RAEB-2','1.6 MDS-U','1.7 5q-综合征'))),
@@ -50,7 +50,12 @@ $crf_el['dyxx'] = array(
   34 => array(1 => type_radios(array('不进行袪铁治疗', '进行袪铁治疗，请继续填写访视记录（每3个月随访一次）'))),
   35 => array(1 => type_radios(array('是','否'))),
   36 => array(1 => type_textfield(),2 => type_date_popup()),
-//  33 => array(1 => type_textfield($user->profile_hospital_no)),
+  37 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
+//  38 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
+  39 => array(1 => type_textfield('',100)),
+//  40 => array(1 => type_textfield('',100)),
+//  41 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
+  42 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield(), 5 => type_textfield(), 6 => type_textfield(), 7 => type_textfield(), 8 => type_textfield(), 9 => type_textfield(), 10 => type_textfield(), 11 => type_textfield(), 12 => type_textfield(), 13 => type_textfield(), 14 => type_textfield()),
 );
 
 $crf_el['zlcl'] = array(
@@ -112,6 +117,19 @@ for ($i=1; $i<=5; $i++) {
     18 => array(1 => type_textfield('',100)),
   );
 }
+
+$crf_el['bbsj'] = array(
+  '#name'  => '标本送检存留表',
+  1 => array(1 => type_textfield()),
+  2 => array(1 => type_textfield(),2 => type_textfield()),
+  3 => array(1 => type_textfield()),
+  4 => array(1 => type_textfield()),
+  5 => array(1 => type_textfield()),
+  6 => array(1 => type_textfield()),
+  7 => array(1 => type_textfield()),
+  8 => array(1 => type_textfield()),
+  9 => array(1 => type_textfield()),
+);
 
 $crf_el_name['dyxx'] = array(
   '#name'  => '调研数据录入',

@@ -30,19 +30,31 @@
     </td>
     <td>年龄(岁)：<?php print drupal_render($form[$key_pre ."_1_2"]);?>
     </td>
-    <td>性别：<?php print drupal_render($form[$key_pre ."_1_3"]);?>
+    <td>生日：<?php print drupal_render($form[$key_pre ."_1_3"]);?>
+    </td>
+    <td>性别：<?php print drupal_render($form[$key_pre ."_1_4"]);?>
     </td>
   </tr>
   <tr>
     <td colspan="2">家庭住址：<?php print drupal_render($form[$key_pre ."_2_1"]);?>
     </td>
-    <td>联系电话：<?php print drupal_render($form[$key_pre ."_2_2"]);?>
+    <td colspan="2">联系电话：<?php print drupal_render($form[$key_pre ."_2_2"]);?>
     </td>
   </tr>
   <tr>
     <td colspan="2">身份证号码：<?php print drupal_render($form[$key_pre ."_3_1"]);?>
     </td>
-    <td>体重(kg)：<?php print drupal_render($form[$key_pre ."_3_2"]);?>
+    <td colspan="2">体重(kg)：<?php print drupal_render($form[$key_pre ."_3_2"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td>就诊医院：<?php print drupal_render($form[$key_pre ."_37_1"]);?>
+    </td>
+    <td>就诊医生：<?php print drupal_render($form[$key_pre ."_37_2"]);?>
+    </td>
+    <td>就诊日期：<?php print drupal_render($form[$key_pre ."_37_3"]);?>
+    </td>
+    <td>IPSS积分：<?php print drupal_render($form[$key_pre ."_37_4"]);?>
     </td>
   </tr>
 </table>
@@ -55,15 +67,15 @@
 </table>
 <table class="<?php print $class?>" border="1">
   <tr class="title">
-    <td class="title" colspan="3"><h2>基础疾病诊断信息</h2>(可多选)
+    <td class="title" colspan="4"><h2>基础疾病诊断信息</h2>(可多选)
     </td>
   </tr>
   <tr>
-    <td>诊断日期：<?php print drupal_render($form[$key_pre ."_4_1"]);?>
+    <td colspan="4">诊断日期：<?php print drupal_render($form[$key_pre ."_4_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>诊断为：<br/>
+    <td colspan="4">诊断为：<br/>
       <?php print drupal_render($form[$key_pre ."_5_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_6_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_6_2"]);?><br/>
@@ -79,25 +91,84 @@
     </td>
   </tr>
   <tr>
-    <td>WPSS 评分：<?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?>
+    <td colspan="4">WPSS 评分：<?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?>
     </td>
   </tr>
   <tr>
-    <td>骨髓穿刺结果（铁染色+活检）<br/>
+    <td colspan="4">骨髓涂片（增生度/粒红比，原始细胞百分比（红系>50%请去红计算），病态造血累计几系，主要形态特征:<br/>
+      <?php print drupal_render($form[$key_pre ."_39_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">骨髓穿刺结果（铁染色+活检）<br/>
       日期：<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/>
       结果：<?php print drupal_render($form[$key_pre ."_11_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>染色体检查结果<br/>
+    <td colspan="4">染色体检查结果<br/>
       日期：<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
       结果:<?php print drupal_render($form[$key_pre ."_13_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>基因检测结果<br/>
+    <td colspan="4">基因检测结果<br/>
       日期：<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/>
       结果：<?php print drupal_render($form[$key_pre ."_15_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">染色体G带:<?php print drupal_render($form[$key_pre ."_42_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td>FISH结果:<?php print drupal_render($form[$key_pre ."_42_2"]);?>
+    </td>
+    <td>血清叶酸B12：<?php print drupal_render($form[$key_pre ."_42_3"]);?>
+    </td>
+    <td>铁蛋白（稀释定量）一定要具体数据：<?php print drupal_render($form[$key_pre ."_42_4"]);?>
+    </td>
+    <td>EPO（稀释定量）：<?php print drupal_render($form[$key_pre ."_42_5"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">肝功能（最好有乙肝两对半结果）:<?php print drupal_render($form[$key_pre ."_42_6"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">肾功能:<?php print drupal_render($form[$key_pre ."_42_7"]);?>
+    </td>
+  </tr>
+    <tr>
+    <td colspan="4">胸部X线:<?php print drupal_render($form[$key_pre ."_42_8"]);?>
+    </td>
+  </tr>
+    <tr>
+    <td colspan="4">心电图:<?php print drupal_render($form[$key_pre ."_42_9"]);?>
+    </td>
+  </tr>
+    <tr>
+    <td colspan="4">腹部B超:<?php print drupal_render($form[$key_pre ."_42_10"]);?>
+    </td>
+  </tr>
+    </tr>
+    <tr>
+    <td colspan="4">LPI:<?php print drupal_render($form[$key_pre ."_42_11"]);?>
+    </td>
+  </tr>
+    </tr>
+    <tr>
+    <td colspan="4">Hepocidine:<?php print drupal_render($form[$key_pre ."_42_12"]);?>
+    </td>
+  </tr>
+    </tr>
+    <tr>
+    <td colspan="4">既往去铁史:<?php print drupal_render($form[$key_pre ."_42_13"]);?>
+    </td>
+  </tr>
+    </tr>
+    <tr>
+    <td colspan="4">其他肿瘤史:<?php print drupal_render($form[$key_pre ."_42_14"]);?>
     </td>
   </tr>
 </table>
