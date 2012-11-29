@@ -4,7 +4,7 @@
   $genders[1] = "女";
   $c_data = crf_ds_load('dyxx', $_SESSION['crf']['p_uid']);
   $c_data = json_to_array($c_data);
-  print_r($c_data);
+//  print_r($c_data);
 ?>
 <?php //print_r($hospital_name_arr);?>
 <table border="3">
