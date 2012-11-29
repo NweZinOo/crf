@@ -106,9 +106,9 @@ function crf_case_edit() {
   
   //var_dump($c_data[35][1]);
   
-  if ($c_data[35][1] == '1') {
-    $disabled[] = 'dhsf';
-  }
+//  if ($c_data[35][1] == '1') {
+//    $disabled[] = 'dhsf';
+//  }
   if ($knx) {
     $knx = json_to_array($knx);
 
