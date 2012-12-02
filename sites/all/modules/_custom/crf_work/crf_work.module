@@ -153,6 +153,12 @@ function crf_work_add_form(&$form_state) {
     '#size' => 15,
     '#title' => '受试者出生日期',
   );
+  $form['p_id_card'] = array(
+    '#type' => 'textfield',
+    '#title' => '身份证号',
+    '#size' => 25,
+    '#default_value' => ''
+  );
   $form['case_history_no'] = array(
     '#type' => 'textfield',
     '#title' => '病历号',
@@ -183,7 +189,15 @@ function crf_work_add_form(&$form_state) {
     '#default_value' => '',
     '#size' => 15,
     '#maxlength' => 11, 
-    '#description' => '请填写你的手机号码，以便及时通知患者随访信息，更好管理患者。本系统保证不会将您的手机号码用于本研究以外的任何用途。'
+    '#description' => '请填写您的手机号码，以便及时通知患者随访信息，更好管理患者。本系统保证不会将此手机号码用于本研究以外的任何用途。'
+  );
+  $form['phone_1'] = array(
+    '#type' => 'textfield',
+    '#title' => '备用手机号码',
+    '#default_value' => '',
+    '#size' => 15,
+    '#maxlength' => 11, 
+    '#description' => '请填写另外的手机号码，以便及时通知患者随访信息，更好管理患者。本系统保证不会将此手机号码用于本研究以外的任何用途。'
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -208,6 +222,12 @@ function crf_work_add_form_validate($form, &$form_state) {
   }
   if (empty($form_state['values']['p_birthday'])) {
     form_set_error('p_birthday', '受试者出生日期不能为空!');
+  }
+  if (empty($form_state['values']['p_id_card'])) {
+    form_set_error('p_id_card', '受试者身份证号不能为空!');
+  }
+  else if (18 != mb_strlen($form_state['values']['p_id_card']) || !is_numeric($form_state['values']['p_id_card'])){
+    form_set_error('p_id_card', '受试者身份证号必须为18位数字!');
   }
   if (empty($form_state['values']['case_history_no'])) {
     form_set_error('case_history_no', '病历号不能为空!');
@@ -236,11 +256,15 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['phone'])) {
     form_set_error('phone', '手机号不能为空!');
   }
-  else if (11 != mb_strlen($form_state['values']['phone']) || !is_numeric($form_state['values']['phone'])){
+  else if (11 != mb_strlen($form_state['values']['phone_1']) || !is_numeric($form_state['values']['phone_1'])){
     form_set_error('phone', '手机号必须为11位数字!');
   }  
-  
-  
+  if (empty($form_state['values']['phone_1'])) {
+    form_set_error('phone_1', '备用手机号不能为空!');
+  }
+  else if (11 != mb_strlen($form_state['values']['phone_1']) || !is_numeric($form_state['values']['phone_1'])){
+    form_set_error('phone_1', '备用手机号必须为11位数字!');
+  } 
 }
 
 function crf_work_add_form_submit($form, &$form_state) {

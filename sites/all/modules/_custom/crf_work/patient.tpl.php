@@ -18,7 +18,9 @@
   <div>
     <label>受试者出生日期：</label> <span><?php echo $row['p_birthday'] ?></span>
   </div>
-
+  <div>
+    <label>受试者身份证号：</label> <span><?php echo $row['p_id_card'] ?></span>
+  </div>
   <div>
     <label>受试者是否获得知情同意书：</label> <span><?php echo $approved_arr[$row['approved']] ?></span>
   </div>
@@ -34,6 +36,9 @@
   </div>
   <div>
     <label>手机号：</label> <span><?php echo $row['phone'] ?></span>
+  </div>
+  <div>
+    <label>备用手机号：</label> <span><?php echo $row['phone_1'] ?></span>
   </div>
   <?php    
     }
