@@ -164,8 +164,14 @@ $(document).ready(function(){
      return false;
    }
    else if(days != 14) {
-     alert('您选择的时间间隔为' + days + '，给药持续时间间隔必须为14天，请检查！');
-     return false;
+     if(confirm('请注意，您选择的时间间隔为' + days + '，给药持续时间间隔应为14天，选择“确定”提交，选择“取消”则进行修改！')) {
+       return true;
+     }
+     else {
+       return false;
+     }
+//     alert('请注意，您选择的时间间隔为' + days + '，给药持续时间间隔应为14天！');
+//     return false;
    }
    else {
      var unit = 0

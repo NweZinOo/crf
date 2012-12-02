@@ -84,8 +84,13 @@ function crf_case($p_uid, $type) {
  */
 function crf_case_edit() {
   $p_arr = crf_common_session('p_arr');
-  
-  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【姓名缩写：' . $p_arr['p_name'] . ', ID: ' . $p_arr['p_uid'] . '】'));
+  $terms = taxonomy_get_tree(1);
+  foreach($terms as $k => $v) {
+    $term_arr[$v->tid] = $v->name;
+  }
+//  print_r($term_arr);
+//  print_r($p_arr['team']);
+  drupal_set_breadcrumb(array(l('首页', ''), l('随机列表', 'crf_list'), '病历录入 【'. $term_arr[$p_arr['team']] .',  姓名缩写：' . $p_arr['p_name'] . ',  ID: ' . $p_arr['p_uid'] . '】'));
   $no = arg(1);
   if (empty($no)) {
     $no = 'zhiqing_tys';
@@ -312,9 +317,14 @@ function crf_case_form(&$form_state, $arg = NULL) {
       '#value'=> $v
     );
     
+    $form['print'] = array(
+      '#type'  => 'markup',
+      '#value' => '<input type="button" value=" 打印 " onclick="window.print();" />',
+    );
+    
     $form['clear'] = array(
       '#type'  => 'markup',
-      '#value' => '<input type="button" value="清除此表" onclick="clear_this_form()" />',
+      '#value' => '<input type="button" value="清除此表" style="float:right" onclick="clear_this_form()" />',
     );
   }
   else {

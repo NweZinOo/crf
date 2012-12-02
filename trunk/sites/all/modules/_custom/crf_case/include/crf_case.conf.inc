@@ -49,7 +49,7 @@ $crf_el['weiai_ssyzdqk'] = array(
     2 => array(1 => type_date_popup()),
     3 => array(1 => type_select(array('x','0','1','2','3','4','4a','4b')), 2 => type_select(array('x','0','1','2','3','3a','3b','4')), 3 => type_select(array('x','0','1')), 4 => type_checkboxs(array('IIA', 'IIB', 'IIIA', 'IIIB', 'IIIC'))),
     4 => array(1 => type_checkboxs(array('腺癌','高分化','中分化','低分化','未知','印戒细胞癌','黏液腺癌','其它')),2 => type_textfield()),
-    5 => array(1 => type_checkboxs(array('胃窦','胃小弯','贲门','胃体','其它')),2 => type_textfield()),
+    5 => array(1 => type_checkboxs(array('食管胃结合部','胃上部','胃中部','胃下部','胃上，中部','胃中，下部','全胃','其它')),2 => type_textfield()),
     6 => array(1 => type_textfield('', 5),2 => type_textfield('', 5),3 => type_textfield('', 5),4 => type_textfield('', 5),5 => type_textfield('', 5),6 => type_textfield('', 5)),
     7 => array(1 => type_radios(array('－、＋、＋/－','＋＋','＋＋＋')), 2=>type_radios(array('阳性','阴性')), 3=>type_textfield(), 4=>type_radios(array('阳性','阴性'))),
 );
