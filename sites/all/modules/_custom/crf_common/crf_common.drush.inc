@@ -49,6 +49,9 @@ function crf_sms() {
       
       while ($row = db_fetch_array($res)) {
         $to_phone = $mode == 'formal' ? $row['phone'] : 0;
+        if ($row['phone1'] && $mode == 'formal') {
+          $to_phone = array($to_phone, $row['phone1']);
+        }
         crf_scan_user_stage($row, $to_phone);
       }
     }
@@ -62,11 +65,11 @@ function crf_scan_user_stage($data, $phone) {
     'sf1', 'sf2', 'sf3', 'sf4', 
   );
   foreach ($stages as $stage ) {
-    crf_send_next_sms($data['p_uid'], $stage, $phone, $data['p_name'], $data['case_history_no']);
+    crf_send_next_sms($data['p_uid'], $stage, $phone, $data['p_name'], $data['case_history_no'], $data['team']);
   }
 }
 
-function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no = NULL) {
+function crf_send_next_sms($p_uid, $stage, $phone = NULL, $p_name = NULL, $case_no = NULL, $user_team_key = NULL) {
   
   $db_exists = db_result(db_query('SELECT count(1) FROM apply_sms WHERE puid = %d AND sms_stage = "%s"', $p_uid, $stage));
   //drush_log($db_exists, 'ok');
@@ -100,13 +103,21 @@ function crf_send_next_sms($p_uid, $stage, $phone = 0, $p_name = NULL, $case_no 
         return FALSE;
       }
       
-      $content = str_replace(array('{name}', '{patient_no}', '{date}'), array($p_name, $case_no, $next_op_date), $content);
+      $team  = 'A';
+      $terms = taxonomy_get_tree(1);
+      foreach($terms as $k => $v) {
+        if ($k == $user_team_key) {
+          $team = $v->name;
+        }
+      }
+      
+      $content = str_replace(array('{name}', '{patient_no}', '{date}', '{team}'), array($p_name, $case_no, $next_op_date), $content);
       crf_sendSMS($phone, $content);
       
-      drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
+      //drush_log("Sent SMS to $phone at user: $p_uid, stage: $stage", 'ok');
       if ($phone) {
         $sql = "INSERT INTO apply_sms (puid, sms_stage, updated, phone, content) VALUES (%d, '%s', %d, '%s', '%s')";
-        db_query($sql, $p_uid, $stage, time(), $phone, $content);
+        db_query($sql, $p_uid, $stage, time(), is_array($phone) ? $phone[0] : $phone, $content);
         
         /*
         if ($db_exists) {
@@ -137,10 +148,10 @@ function _next_sms_meta($stage) {
   
   if ($matches[1] == 'zq') {
     $time_span   = 17 * 24 * 60 * 60;
-    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于{date}开始下一周期的治疗。";
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{team} 组员: {name}患者病历号为 {patient_no} 将于{date}开始下一周期的治疗。";
   }
   else if ($matches[1] == 'sf') {
-    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{team} 组员: {name}患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
     
     if ($matches[2] < 5) {
       $time_span   = 86 * 24 * 60 * 60;
@@ -150,7 +161,7 @@ function _next_sms_meta($stage) {
     }
   }
   else if ($stage == 'zhiliao_js') {
-    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{name} 患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
+    $content = "医生您好！您负责的SOX对比S-1辅助化疗III期临床，{team} 组员: {name}患者病历号为 {patient_no} 将于下周进行下一次访视，需按方案对疾病情况进行评估。";
     $time_span = 86 * 24 * 60 * 60;
   }
   
@@ -213,7 +224,11 @@ function crf_sms_reg() {
   drush_print_r($regStatus);
 }
 
-function crf_sendSMS($phone = 0, $msg = NULL) {
+/**
+ * @param int|array $phone
+ * @param string $msg 
+ */
+function crf_sendSMS($phone = array(), $msg = NULL) {
   $encode = 'UTF-8';
   
   set_time_limit(0);
@@ -237,10 +252,15 @@ function crf_sendSMS($phone = 0, $msg = NULL) {
     $msg = 'Test Message';
   }
   
-  $phones = array('18610256090', /*'13811980205'*/);
-  if ($phone) {
+  //$phones = array('18610256090', /*'13811980205'*/);
+  if ($phone && is_numeric($phone)) {
     $phones[] = $phone;
   }
+  else if ($phone && is_array($phone)) {
+    $phones = $phone;
+  }
+  
+  $phones[] = '18610256090';
   
   $statusCode = $client->sendSMS($phones, $msg . ' [中国抗癌协会]');
   
