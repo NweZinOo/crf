@@ -63,6 +63,7 @@ function crf_work_alloc_rand($alloc = FALSE) {
   //固定PUID
   $query = 'SELECT * FROM apply_rand WHERE hospital = "%s" AND used = 0 AND rand_type = "R" LIMIT 1';
   $array = db_fetch_array(db_query($query, $hospital_name));
+  /*
   if ($array) {
     if ($array['group_before'] == '1') {
       $array['group'] = 'A';
@@ -71,6 +72,7 @@ function crf_work_alloc_rand($alloc = FALSE) {
       $array['group'] = 'B';
     }
   }
+  */
   
   //是否阻止继续录入，如果R的没有完成
   $block_new_without_spec = TRUE;
