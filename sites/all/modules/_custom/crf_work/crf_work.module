@@ -230,8 +230,8 @@ function crf_work_add_form_validate($form, &$form_state) {
   if (empty($form_state['values']['p_id_card'])) {
     form_set_error('p_id_card', '受试者身份证号不能为空!');
   }
-  else if (18 != mb_strlen($form_state['values']['p_id_card']) || !is_numeric($form_state['values']['p_id_card'])){
-    form_set_error('p_id_card', '受试者身份证号必须为18位数字!');
+  else if (18 != mb_strlen($form_state['values']['p_id_card'])){
+    form_set_error('p_id_card', '受试者身份证号必须为18位!');
   }
   if (empty($form_state['values']['case_history_no'])) {
     form_set_error('case_history_no', '病历号不能为空!');
