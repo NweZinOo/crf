@@ -24,3 +24,5 @@ $hospital_name_arr['20'] = '清远人民医院';
 $hospital_name_arr['21'] = '粤北人民医院';
 $hospital_name_arr['22'] = '英德人民医院';
 $hospital_name_arr['23'] = '中山大学第五附属医院';
+$hospital_name_arr['24'] = '广州医学院第三附属医院';
+$hospital_name_arr['25'] = '中山市人民医院';
