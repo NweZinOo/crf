@@ -296,6 +296,8 @@ function crf_work_add_form_submit($form, &$form_state) {
   $obj->apply_time = date("Y-m-d H:i:s");
   $obj->editor = $form_state['values']['editor'];
   $obj->phone = $form_state['values']['phone'];
+  $obj->phone_1 = $form_state['values']['phone_1'];
+  $obj->p_id_card = $form_state['values']['p_id_card'];
   
   $table = 'apply';
   $r = crf_work_write_record($table, $obj);
@@ -314,7 +316,7 @@ function crf_work_add_form_submit($form, &$form_state) {
 
 function crf_work_write_record($table, $obj) {
 //  $query = 'INSERT INTO '. $table .' (hospital_no, sift, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor) VALUES("%s", "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s")';
-  $query = 'INSERT INTO '. $table .' (p_uid, hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone) VALUES(%d, "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s")';
+  $query = 'INSERT INTO '. $table .' (p_uid, hospital_no, p_name, p_birthday, case_history_no, approved, approved_time, team, apply_time, editor, phone, phone_1, p_id_card) VALUES(%d, "%s", "%s", "%s", "%s", %d, "%s", %d, "%s", "%s", "%s", "%s", "%s")';
   $arr = (array)$obj;
   $r = db_query($query, $arr);
   return $r;
