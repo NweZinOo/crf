@@ -96,7 +96,7 @@ function crf_work_alloc_rand($alloc = FALSE) {
     
     if (!$array) {
       //分配新BLOCK
-      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 164 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
+      $query = 'SELECT * FROM apply_rand WHERE used = 0 AND puid > 172 AND rand_type <> "R" AND rand_type <> "L" LIMIT 1';
       $array = db_fetch_array(db_query($query));
 
       /*
