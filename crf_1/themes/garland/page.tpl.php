@@ -22,7 +22,7 @@
       <div id="header">
        <div id="logo-floater">
           <h1>
-             <?php echo l('临床研究', '<front>'); ?>
+             <?php echo l('调查研究', '<front>'); ?>
           </h1>
           <div id="slagon-floater">
             <span>
