@@ -35,8 +35,8 @@ $crf_el['dyxx'] = array(
   19 => array(1 => type_date_popup(),2 => type_date_popup()),
   20 => array(1 => type_textfield(),2 => type_textfield()),
   21 => array(1 => type_textfield(),2 => type_textfield()),
-  22 => array(1 => type_textfield(),2 => type_textfield()),
-  23 => array(1 => type_date_popup()),
+  22 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield(),4 => type_textfield(),5 => type_textfield()),
+  23 => array(1 => type_date_popup(),2 => type_radios(array('有','无'))),
   24 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield(),4 => type_textfield(),5 => type_textfield()),
   25 => array(1 => type_date_popup()),
   26 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield(),3 => type_textfield()),
@@ -55,7 +55,17 @@ $crf_el['dyxx'] = array(
   39 => array(1 => type_textfield('',100)),
 //  40 => array(1 => type_textfield('',100)),
 //  41 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
-  42 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield(), 5 => type_textfield(), 6 => type_textfield(), 7 => type_textfield(), 8 => type_textfield(), 9 => type_textfield(), 10 => type_textfield(), 11 => type_textfield(), 12 => type_textfield(), 13 => type_textfield(), 14 => type_textfield()),
+  42 => array(1 => type_textfield(), 2 => type_textfield(), 5 => type_textfield(), 13 => type_textfield(), 14 => type_textfield(), 15 => type_checkboxs(array('有')), 16 => type_radios(array('得斯芬','恩瑞格','其他去铁剂')), 17 => type_date_popup(), 18 => type_checkboxs(array('无')), 19 => type_checkboxs(array('有')), 20 => type_textfield(), 21 => type_checkboxs(array('无'))),
+  43 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield('',80)),    
+  44 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
+  45 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
+  46 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
+  
+  47 => array(1 => type_radios(array('正常','异常（请详述）')), 2 => type_textfield('',80)), 
+  48 => array(1 => type_radios(array('正常','异常（请详述）')), 2 => type_textfield('',80)), 
+  49 => array(1 => type_radios(array('正常','异常（请详述）')), 2 => type_textfield('',80)), 
+  50 => array(1 => type_radios(array('正常','异常（请详述）')), 2 => type_textfield('',80)), 
+  51 => array(1 => type_radios(array('正常','异常（请详述）')), 2 => type_textfield('',80)), 
 );
 
 $crf_el['zlcl'] = array(
