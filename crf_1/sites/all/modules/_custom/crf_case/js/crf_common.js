@@ -32,7 +32,7 @@ $(document).ready(function() {
     }
   }
   
-  can.push('bbsj', 'dhsf');
+  can.push('dyxx', 'bbsj', 'dhsf');
   
   $('#sidebar-left .block-nice_menus li a').each(function(){
     var href = $(this).attr('href');
