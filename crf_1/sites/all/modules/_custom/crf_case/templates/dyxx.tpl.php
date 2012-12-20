@@ -20,48 +20,49 @@
     </td>
   </tr>
 </table>
+<b style="font-size: 15px">以下加黑字体是属于必须填写项目</b>
 <table class="<?php print $class?>" border="1">
   <tr class="title">
     <td class="title" colspan="4"><h2>一般资料</h2>
     </td>
   </tr>
   <tr>
-    <td><b>患者姓名</b>：<?php print drupal_render($form[$key_pre ."_1_1"]);?>
+    <td><b>患者姓名</b>:<?php print drupal_render($form[$key_pre ."_1_1"]);?>
     </td>
-    <td><b>年龄(岁)</b>：<?php print drupal_render($form[$key_pre ."_1_2"]);?>
+    <td><b>年龄(岁)</b>:<?php print drupal_render($form[$key_pre ."_1_2"]);?>
     </td>
-    <td><b>生日</b>：<?php print drupal_render($form[$key_pre ."_1_3"]);?>
+    <td><b>生日</b>:<?php print drupal_render($form[$key_pre ."_1_3"]);?>
     </td>
-    <td><b>性别</b>：<?php print drupal_render($form[$key_pre ."_1_4"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2"><b>家庭住址</b>：<?php print drupal_render($form[$key_pre ."_2_1"]);?>
-    </td>
-    <td colspan="2"><b>联系电话</b>：<?php print drupal_render($form[$key_pre ."_2_2"]);?>
+    <td><b>性别</b>:<?php print drupal_render($form[$key_pre ."_1_4"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="2"><b>身份证号码</b>：<?php print drupal_render($form[$key_pre ."_3_1"]);?>
+    <td colspan="2"><b>家庭住址</b>:<?php print drupal_render($form[$key_pre ."_2_1"]);?>
     </td>
-    <td colspan="2"><b>体重(kg)</b>：<?php print drupal_render($form[$key_pre ."_3_2"]);?>
+    <td colspan="2"><b>联系电话</b>:<?php print drupal_render($form[$key_pre ."_2_2"]);?>
     </td>
   </tr>
   <tr>
-    <td>就诊医院：<?php print drupal_render($form[$key_pre ."_37_1"]);?>
+    <td colspan="2">身份证号码:<?php print drupal_render($form[$key_pre ."_3_1"]);?>
     </td>
-    <td>就诊医生：<?php print drupal_render($form[$key_pre ."_37_2"]);?>
+    <td colspan="2"><b>体重(kg)</b>:<?php print drupal_render($form[$key_pre ."_3_2"]);?>
     </td>
-    <td>就诊日期：<?php print drupal_render($form[$key_pre ."_37_3"]);?>
+  </tr>
+  <tr>
+    <td>就诊医院:<?php print drupal_render($form[$key_pre ."_37_1"]);?>
     </td>
-    <td>IPSS积分：<?php print drupal_render($form[$key_pre ."_37_4"]);?>
+    <td>就诊医生:<?php print drupal_render($form[$key_pre ."_37_2"]);?>
+    </td>
+    <td>就诊日期:<?php print drupal_render($form[$key_pre ."_37_3"]);?>
+    </td>
+    <td>IPSS积分:<?php print drupal_render($form[$key_pre ."_37_4"]);?>
     </td>
   </tr>
 </table>
 <table>
   <tr>
     <td>
-      <b>是否接受统一随访</b>: <?php print drupal_render($form[$key_pre ."_35_1"]);?>
+      <b><font color="red">是否接受统一随访</font></b>: <?php print drupal_render($form[$key_pre ."_35_1"]);?>
     </td>
   </tr>
 </table>
@@ -71,11 +72,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2">诊断日期：<?php print drupal_render($form[$key_pre ."_4_1"]);?>
+    <td colspan="2">诊断日期:<?php print drupal_render($form[$key_pre ."_4_1"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="2">诊断为：<br/>
+    <td colspan="2">诊断为:<br/>
       <?php print drupal_render($form[$key_pre ."_5_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_6_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_6_2"]);?><br/>
@@ -91,7 +92,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2">WPSS 评分：<?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?>
+    <td colspan="2">WPSS 评分:<?php print drupal_render($form[$key_pre ."_9_1"]);?><?php print drupal_render($form[$key_pre ."_9_2"]);?>
     </td>
   </tr>
   <tr>
@@ -101,20 +102,20 @@
   </tr>
   <tr>
     <td colspan="2">骨髓穿刺结果（铁染色+活检）<br/>
-      日期：<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/>
-      结果：<?php print drupal_render($form[$key_pre ."_11_1"]);?>
+      日期:<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/>
+      结果:<?php print drupal_render($form[$key_pre ."_11_1"]);?>
     </td>
   </tr>
   <tr>
     <td colspan="2">染色体检查结果<br/>
-      日期：<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
+      日期:<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
       结果:<?php print drupal_render($form[$key_pre ."_13_1"]);?>
     </td>
   </tr>
   <tr>
     <td colspan="2">基因检测结果<br/>
-      日期：<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/>
-      结果：<?php print drupal_render($form[$key_pre ."_15_1"]);?>
+      日期:<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/>
+      结果:<?php print drupal_render($form[$key_pre ."_15_1"]);?>
     </td>
   </tr>
   <tr>
@@ -124,7 +125,7 @@
   <tr>
     <td>FISH结果:<?php print drupal_render($form[$key_pre ."_42_2"]);?>
     </td>
-    <td>EPO（稀释定量）：<?php print drupal_render($form[$key_pre ."_42_5"]);?>
+    <td>EPO（稀释定量）:<?php print drupal_render($form[$key_pre ."_42_5"]);?>
     </td>
   </tr>
     <tr>
@@ -139,12 +140,12 @@
 </table>
 <table class="<?php print $class?>" border="1">
   <tr class="title">
-    <td class="title" colspan="3"><h2>输血治疗史</h2><?php print drupal_render($form[$key_pre ."_16_1"]);?>, 有则需填写以下内容：
+    <td class="title" colspan="3"><h2>输血治疗史</h2><?php print drupal_render($form[$key_pre ."_16_1"]);?>, 有则需填写以下内容:
     </td>
   </tr>
   <tr>
-    <td>输血治疗的开始日期：<?php print drupal_render($form[$key_pre ."_17_1"]);?><br/>
-      既往RBC输注总量为：<?php print drupal_render($form[$key_pre ."_18_1"]);?>U(1U=200ml)
+    <td><b>输血治疗的开始日期:</b><?php print drupal_render($form[$key_pre ."_17_1"]);?><br/>
+      <b>既往RBC输注总量为:</b><?php print drupal_render($form[$key_pre ."_18_1"]);?>U(1U=200ml)
     </td>
   </tr>
 </table>
@@ -159,7 +160,7 @@
     </td>
   </tr>
   <tr>
-    <td>取样日期
+    <td><b>取样日期</b>
     </td>
     <td><?php print drupal_render($form[$key_pre ."_19_1"]);?>
     </td>
@@ -167,7 +168,7 @@
     </td>
   </tr>
   <tr>
-    <td>血清铁蛋白(SF)
+    <td><b>血清铁蛋白(SF)</b>
     </td>
     <td><?php print drupal_render($form[$key_pre ."_20_1"]);?>ug/L
     </td>
@@ -202,68 +203,70 @@
     <td colspan="3">Hepcidine:<?php print drupal_render($form[$key_pre ."_22_5"]);?>
     </td>
   </tr>
+  </table>
+  <table border="1">
   <tr>
-    <td colspan="3"><b>血常规</b>   取样日期:<?php print drupal_render($form[$key_pre ."_23_1"]);?>&nbsp;&nbsp;有无异常细胞<?php print drupal_render($form[$key_pre ."_23_2"]);?>
+    <td colspan="3"><b>血常规</b>   <b>取样日期</b>:<?php print drupal_render($form[$key_pre ."_23_1"]);?>&nbsp;&nbsp;有无异常细胞<?php print drupal_render($form[$key_pre ."_23_2"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="3">Hb：<?php print drupal_render($form[$key_pre ."_24_1"]);?>g/L； WBC：<?php print drupal_render($form[$key_pre ."_24_2"]);?>×10<sup>9</sup>/L； ANC：<?php print drupal_render($form[$key_pre ."_24_3"]);?>×10<sup>9</sup>/L；<br/>PLT：<?php print drupal_render($form[$key_pre ."_24_4"]);?>×10<sup>9</sup>/L；Ret%<?php print drupal_render($form[$key_pre ."_24_5"]);?>  
+    <td colspan="3"><b>Hb</b>:<?php print drupal_render($form[$key_pre ."_24_1"]);?>g/L； WBC:<?php print drupal_render($form[$key_pre ."_24_2"]);?>×10<sup>9</sup>/L； ANC:<?php print drupal_render($form[$key_pre ."_24_3"]);?>×10<sup>9</sup>/L；<br/><b>PLT</b>:<?php print drupal_render($form[$key_pre ."_24_4"]);?>×10<sup>9</sup>/L；Ret%<?php print drupal_render($form[$key_pre ."_24_5"]);?>  
     </td>
   </tr>
-  
+  </table>
+  <table border="1">
   <tr>
-    <td colspan="3"><b>血生化</b> 请填写有临床意义的异常结果 	取样日期：<?php print drupal_render($form[$key_pre ."_25_1"]);?>
-    </td>
-  </tr>
-  <tr>
-    <td>肝功能：<?php print drupal_render($form[$key_pre ."_26_1"]);?></td><td colspan="2">如有异常请填写：<br/>谷草转氨酶(SGOT)：<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT)：<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L
+    <td colspan="1"><b>血生化</b> 请填写有临床意义的异常结果 	取样日期:<?php print drupal_render($form[$key_pre ."_25_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>乙肝两对半：<?php print drupal_render($form[$key_pre ."_43_1"]);?></td><td colspan="2">如有异常请详述：<?php print drupal_render($form[$key_pre ."_43_2"]);?>
+    <td>肝功能:<?php print drupal_render($form[$key_pre ."_26_1"]);?>，如有异常请填写:谷草转氨酶(SGOT):<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT):<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L<br/>
+    乙肝两对半:<?php print drupal_render($form[$key_pre ."_43_1"]);?>,如有异常请详述:<?php print drupal_render($form[$key_pre ."_43_2"]);?>
     </td>
   </tr>
   <tr>
-    <td>肾功能：<?php print drupal_render($form[$key_pre ."_44_1"]);?></td><td colspan="2">如有异常请详述：<?php print drupal_render($form[$key_pre ."_44_2"]);?>
+    <td>肾功能:<?php print drupal_render($form[$key_pre ."_44_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_44_2"]);?><br/>
+    肌酐　:<?php print drupal_render($form[$key_pre ."_45_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_45_2"]);?>umol/L<br/>
+    尿素氮:<?php print drupal_render($form[$key_pre ."_46_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_46_2"]);?>mmol/L
+    </td>
+  </tr>
+</table>
+<table border="1">
+  <tr>
+    <td><b>血糖</b>:<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写:<br/>空腹血糖(FBS):<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖:<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
+    </td>
+  </tr>
+</table>
+<table border="1">
+  <tr class="title">
+    <td class="title" colspan="3"><h2>影像学检查结果</h2>
     </td>
   </tr>
   <tr>
-    <td>肌酐：<?php print drupal_render($form[$key_pre ."_45_1"]);?></td><td colspan="2">如有异常请详述：<?php print drupal_render($form[$key_pre ."_45_2"]);?>umol/L
-    </td>
-  </tr>
-  <tr>
-    <td>尿素氮：<?php print drupal_render($form[$key_pre ."_46_1"]);?></td><td colspan="2">如有异常请详述：<?php print drupal_render($form[$key_pre ."_46_2"]);?>mmol/L
-    </td>
-  </tr>
-  <tr>
-    <td><b>血糖</b>：<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写：<br/>空腹血糖(FBS)：<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖：<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><b>MRI检查：</b> <br/>
+    <td colspan="3"><b>MRI检查:</b> <br/>
       <?php print drupal_render($form[$key_pre ."_28_1"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;检测日期：<?php print drupal_render($form[$key_pre ."_28_2"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;检测结果：<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_29_1"]);?>MS；LIC：<?php print drupal_render($form[$key_pre ."_29_2"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;2.其它请详述：<?php print drupal_render($form[$key_pre ."_29_3"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测日期:<?php print drupal_render($form[$key_pre ."_28_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测结果:<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_29_1"]);?>MS；LIC:<?php print drupal_render($form[$key_pre ."_29_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;2.其它请详述:<?php print drupal_render($form[$key_pre ."_29_3"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_30_3"]);?><?php print drupal_render($form[$key_pre ."_30_4"]);?><?php print drupal_render($form[$key_pre ."_30_5"]);?><br/>
       <?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;检测日期：<?php print drupal_render($form[$key_pre ."_31_2"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;检测结果：<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>MS；其它请详述：<?php print drupal_render($form[$key_pre ."_32_2"]);?><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;2.其它请详述：<?php print drupal_render($form[$key_pre ."_32_3"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测日期:<?php print drupal_render($form[$key_pre ."_31_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;检测结果:<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;1.T2*<?php print drupal_render($form[$key_pre ."_32_1"]);?>MS；其它请详述:<?php print drupal_render($form[$key_pre ."_32_2"]);?><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;2.其它请详述:<?php print drupal_render($form[$key_pre ."_32_3"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_33_3"]);?><?php print drupal_render($form[$key_pre ."_33_4"]);?><?php print drupal_render($form[$key_pre ."_33_5"]);?><br/>
       
-      胸部X线：<?php print drupal_render($form[$key_pre ."_47_1"]);?><?php print drupal_render($form[$key_pre ."_47_2"]);?><br/>
-      心电图：<?php print drupal_render($form[$key_pre ."_48_1"]);?><?php print drupal_render($form[$key_pre ."_48_2"]);?><br/>
-      腹部B超：<br/>
-      &nbsp;&nbsp;肝脏大小：<?php print drupal_render($form[$key_pre ."_49_1"]);?><?php print drupal_render($form[$key_pre ."_49_2"]);?><br/>
-      &nbsp;&nbsp;脾：<?php print drupal_render($form[$key_pre ."_50_1"]);?><?php print drupal_render($form[$key_pre ."_50_2"]);?><br/>
-      &nbsp;&nbsp;门静脉宽度：<?php print drupal_render($form[$key_pre ."_51_1"]);?><?php print drupal_render($form[$key_pre ."_51_2"]);?><br/>
+      胸部X线:<?php print drupal_render($form[$key_pre ."_47_1"]);?><?php print drupal_render($form[$key_pre ."_47_2"]);?><br/>
+      心电图:<?php print drupal_render($form[$key_pre ."_48_1"]);?><?php print drupal_render($form[$key_pre ."_48_2"]);?><br/>
+      腹部B超:<br/>
+      &nbsp;&nbsp;肝脏大小:<?php print drupal_render($form[$key_pre ."_49_1"]);?><?php print drupal_render($form[$key_pre ."_49_2"]);?><br/>
+      &nbsp;&nbsp;脾:<?php print drupal_render($form[$key_pre ."_50_1"]);?><?php print drupal_render($form[$key_pre ."_50_2"]);?><br/>
+      &nbsp;&nbsp;门静脉宽度:<?php print drupal_render($form[$key_pre ."_51_1"]);?><?php print drupal_render($form[$key_pre ."_51_2"]);?><br/>
     </td>
   </tr>
 </table>
@@ -280,7 +283,7 @@
 <table>
   <tr>
     <td>
-      <b>填表医生签名</b>：<?php print drupal_render($form[$key_pre ."_36_1"]);?>       <b>填表日期</b>：<?php print drupal_render($form[$key_pre ."_36_2"]);?>
+      <b>填表医生签名</b>:<?php print drupal_render($form[$key_pre ."_36_1"]);?>       <b>填表日期</b>:<?php print drupal_render($form[$key_pre ."_36_2"]);?>
     </td>
   </tr>
 </table>

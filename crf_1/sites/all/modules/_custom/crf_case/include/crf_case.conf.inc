@@ -57,7 +57,7 @@ $crf_el['dyxx'] = array(
 //  41 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_textfield(), 4 => type_textfield()),
   42 => array(1 => type_textfield(), 2 => type_textfield(), 5 => type_textfield(), 13 => type_textfield(), 14 => type_textfield(), 15 => type_checkboxs(array('有')), 16 => type_radios(array('得斯芬','恩瑞格','其他去铁剂')), 17 => type_date_popup(), 18 => type_checkboxs(array('无')), 19 => type_checkboxs(array('有')), 20 => type_textfield(), 21 => type_checkboxs(array('无'))),
   43 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield('',80)),    
-  44 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
+  44 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield('',80)), 
   45 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
   46 => array(1 => type_radios(array('正常','异常')), 2 => type_textfield()), 
   
