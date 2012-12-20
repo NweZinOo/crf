@@ -62,11 +62,11 @@
     </td>
     <td>就诊医生：
     </td>
-    <td><?php print drupal_render($form[$key_pre ."_1_10"]);?>
+    <td><?php print drupal_render($form[$key_pre ."_1_9"]);?>
     </td>
     <td>就诊日期：
     </td>
-    <td><?php print substr($c_data[37][3], 0, 10)?>
+    <td><?php print drupal_render($form[$key_pre ."_1_10"]);?>
     </td>
   </tr>
   <tr>
