@@ -130,8 +130,10 @@ for ($i=1; $i<=5; $i++) {
 
 $crf_el['bbsj'] = array(
   '#name'  => '标本送检存留表',
-  1 => array(1 => type_textfield()),
-  2 => array(1 => type_textfield(),2 => type_textfield()),
+  1 => array(1 => type_textfield(), 2 => type_textfield(), 3 => type_date_popup(), 
+      4 => type_textfield(), 5 => type_radios(array('男','女')), 6 => type_textfield(), 7 => type_textfield(), 8 => type_textfield(), 9 => type_textfield(), 10 => type_date_popup()
+      ),
+  2 => array(1 => type_textfield(),2 => type_textfield(),3 => type_textfield()),
   3 => array(1 => type_textfield('',100)),
   4 => array(1 => type_textfield('',100)),
   5 => array(1 => type_textfield('',100)),
