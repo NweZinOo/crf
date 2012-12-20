@@ -30,39 +30,39 @@
   <tr>
     <td width="20%">姓名：
     </td>
-    <td><?php print $c_data[1][1]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_2"]);?>
     </td>
     <td>出生年月：
     </td>
-    <td><?php print substr($c_data[1][3], 0, 10)?>
+    <td><?php print drupal_render($form[$key_pre ."_1_3"]);?>
     </td>
     <td>联系电话：
     </td>
-    <td><?php print $c_data[2][2]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_4"]);?>
     </td>
   </tr>
   <tr>
     <td>性别：
     </td>
-    <td><?php print $genders[$c_data[1][4]]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_5"]);?>
     </td>
     <td>家庭住址：
     </td>
-    <td><?php print $c_data[2][1]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_6"]);?>
     </td>
     <td>身份证号码：
     </td>
-    <td><?php print $c_data[3][1]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_7"]);?>
     </td>
   </tr>
   <tr>
     <td>就诊医院：
     </td>
-    <td><?php print $c_data[37][1]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_8"]);?>
     </td>
-    <td>接诊医生：
+    <td>就诊医生：
     </td>
-    <td><?php print $c_data[37][2]?>
+    <td><?php print drupal_render($form[$key_pre ."_1_10"]);?>
     </td>
     <td>就诊日期：
     </td>
@@ -80,7 +80,7 @@
     </td>
     <td>IPSS积分：
     </td>
-    <td><?php print $c_data[37][4]?>
+    <td><?php print drupal_render($form[$key_pre ."_2_3"]);?>
     </td>
   </tr>
   <tr>
