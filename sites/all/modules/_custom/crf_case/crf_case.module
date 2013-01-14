@@ -41,6 +41,15 @@ function crf_case_menu()
     'type' => MENU_CALLBACK
   );
   
+  $items['admin/settings/crf_case_dict'] = array(
+    'title' => t('Crf Case Dict'),
+    'description' => t('Create dict of crf'),
+    'page callback' => 'crf_case_dict',
+    'file' => 'include/dict.inc',
+    'access callback' => 'user_access',
+    'access arguments' => array('administer better messages'),
+  );
+  
   return $items;  
 }
 
