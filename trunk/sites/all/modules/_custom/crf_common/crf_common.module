@@ -1,8 +1,11 @@
 <?php
+
 function crf_common_init() {
   global $user;
   $profile =  profile_load_profile($user);  
 }
+
+
 /**
 * Implementation of hook_menu
 */
@@ -15,8 +18,18 @@ function crf_common_menu()
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK
   );
+  $items['crf_export'] = array(
+    'title' => '随机列表',
+    'page callback' => 'crf_common_export',
+    //'access callback' => 'crf_work_checkperm',
+    'file' => 'crf_export.inc',
+    'access arguments' => array('crf view list'),
+    'type' => MENU_CALLBACK
+  );
+    
   return $items;  
 }
+
 
 /**
  * Menu callback; Generate a listing of promoted nodes.
