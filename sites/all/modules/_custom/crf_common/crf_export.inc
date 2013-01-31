@@ -25,11 +25,13 @@ function crf_common_export_do() {
   include_once drupal_get_path('module', 'crf_case') . '/include/crf_dict_source.php';
   //$crf_el_name['dyxx'];
   
-  $header = array(
-      'p_uid', 'hospital_no',	'sift', 'p_name',	'p_birthday',	
-      'case_history_no', 'approved', 'approved_time',	'team',	'apply_time',	'editor',	'phone');
+  foreach($data_basic as $k => $v) {
+    $header[] = $v[0];
+  }
   
-  $sql = 'SELECT * FROM apply';
+//  $header = array('p_uid', 'hospital_no', 'sift', 'p_name', 'p_birthday', 'case_history_no', 'approved', 'approved_time', 'team', 'editor', 'apply_time', 'phone');
+  
+  $sql = 'SELECT * FROM apply ORDER BY p_uid';
   $res = db_query($sql);
   while ($row = db_fetch_array($res)) {
     $data[$row['p_uid']] = $row;
@@ -37,9 +39,11 @@ function crf_common_export_do() {
   //var_dump($data);
   foreach ($data_crf as $ds_key => $ds_layout) {
     _export_set_header($ds_key, $ds_layout, $header);
+  }
+  foreach ($data_crf as $ds_key => $ds_layout) {
     _export_add_data($ds_key, $ds_layout, $header, $data);
   }
-  
+//  print_r($data);exit;
   //var_dump($header);
   //array_unshift($body, $header);
   $csv =  array_to_scv($data, $header);
@@ -48,20 +52,35 @@ function crf_common_export_do() {
   echo $csv;
 }
 
-function _export_add_data($ds_key, $ds_layout, &$header, &$data) {
+function _export_add_data($ds_key, $ds_layout, $header, &$data) {
   foreach ($data as $uid => &$row) {
-    
     $raw_data = json_to_array(crf_ds_load($ds_key, $uid));
-    _export_set_row_data($row, $raw_data, $ds_key, $header);
+    _export_set_row_data($row, $raw_data, $ds_key, $header, $uid);
   }
 }
 
-function _export_set_row_data(&$row, $raw_data, $ds_key, &$header) {
+function _export_set_row_data(&$row, $raw_data, $ds_key, &$header, $uid) {
+//  print_r($header);exit;
   foreach ($raw_data as $k => $v) {
     foreach ($v as $m => $n) {
       $el  = "e_{$ds_key}_{$k}_{$m}";
-      $pos = array_search($el, $header);
-      $row[$pos] = $n;
+//      $pos = array_search($el, $header);
+//      if ($pos == FALSE) {
+//        print $el;exit;
+//      }
+//      if ($uid == 9) {
+//        if ($el == 'e_weiai_ssyzdqk_7_2') {
+//          var_dump($el, $pos, $n);
+//          print_r($raw_data);
+//          exit;
+//        }
+//      }
+      if (is_array($n)) {
+        $row[$el] = _get_value($n);
+      }
+      else {
+        $row[$el] = $n; 
+      }
       //var_dump($el, $pos,  $n);
     }
   }
@@ -190,30 +209,56 @@ function array_to_scv(&$array, &$header_row = null, $col_sep = ",", $row_sep = "
 	//Header row.
 	if ($header_row)
 	{
-		foreach ($header_row as $key => $val)
-		{
-      $val = str_replace('dyxx-', '', $val);
-      $val = str_replace('sf', '随访', $val);
-			//Escaping quotes.
-			$key = str_replace($qut, "'", $val);
-			$output .= "$col_sep$qut$key$qut";
-		}
-		$output = substr($output, 1)."\n";
+          foreach ($header_row as $key => $val)
+          {
+            //Escaping quotes.
+            $key = str_replace($qut, "'", $val);
+            $output .= "$col_sep$qut$key$qut";
+          }
+          $output = substr($output, 1)."\n";
 	}
-  
+        
+        $header_shift = array_flip($header_row);
+//        print_r($header_shift);
+//        print_r($array);exit;
 	//Data rows.
-	foreach ($array as $key => $val)
+	foreach ($array as $uid => $val)
 	{
 		$tmp = '';
-		foreach ($val as $cell_key => $cell_val)
-		{
-      if (is_array($cell_val)) $cell_val = join(' ', $cell_val);
-			//Escaping quotes.
-			$cell_val = str_replace($qut, "'", $cell_val);
-			$tmp .= "$col_sep$qut$cell_val$qut";
-		}
-		$output .= substr($tmp, 1) . $row_sep;
-	}
+//		foreach ($val as $cell_key => $cell_val)
+//		{
+//                   if (isset($header_shift[$cell_key])) {
+//                     if (is_array($cell_val)) $cell_val = join(' ', $cell_val);
+//                     //Escaping quotes.
+//                     $cell_val = str_replace($qut, "'", $cell_val);
+//                     $cell_val = iconv('utf-8', 'gb2312', $cell_val);
+//                     $tmp .= "$col_sep$qut$cell_val$qut";
+//                   }
+//                 }
+          foreach ($header_shift as $cell_key => $v) {
+            if (!isset($val[$cell_key])) {
+              $cell_val = '';
+            }
+            else {
+              $cell_val = $val[$cell_key];
+            }
+            if (is_array($cell_val)) $cell_val = join(' ', $cell_val);
+            //Escaping quotes.
+            $cell_val = str_replace($qut, "'", $cell_val);
+            $cell_val = iconv('utf-8', 'gb2312', $cell_val);
+            $tmp .= "$col_sep$qut$cell_val$qut";
+          }
+          $output .= substr($tmp, 1) . $row_sep;
+        }
 	
 	return $output;
+}
+
+function _get_value($array) {
+  foreach($array as $k => $v) {
+    if ($v != 0) {
+      $tmp_arr[] = $v;
+    }
+  }
+  return implode('|', $tmp_arr);
 }
