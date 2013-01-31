@@ -21,6 +21,12 @@ $types[2] = '文本型';
 
 //第一部分：基本资料
 $data_basic[] = array(
+  'p_uid',
+  '受试者编号',
+  '2',
+  '数字流水号'
+);
+$data_basic[] = array(
   'hospital_no',
   '中心名称',
   '1',
@@ -181,7 +187,7 @@ $data_crf['paichu_bz'] = array(
 
 $data_crf['renkou_tjx'] = array(
   '#name' => '人口统计学',
-  1 => array(1 => array(
+  1 => array(2 => array(
     '性别', 
     '1',
     '1女;0男',
@@ -283,7 +289,7 @@ $data_crf['weiai_ssyzdqk'] = array(
       '分子生物学检测（肿瘤组织） VEGF 检测方法', 
       '0',
     ),
-    3 => array(
+    4 => array(
       '分子生物学检测（肿瘤组织） VEGF 检测结果', 
       '1',
       '0阳性;1阴性 '
@@ -1941,7 +1947,7 @@ $data_crf['xueye_zlbjwjcjghzb'] = array(
 );
 for($i=2;$i<=12;$i++) {
   for($j=1;$j<=6;$j++) {
-    $data_crf['xueye_zlbjwjcjghzb'][$i][$j];
+    $data_crf['xueye_zlbjwjcjghzb'][$i][$j] = $data_crf['xueye_zlbjwjcjghzb'][1][$j];
   }
 }
 
