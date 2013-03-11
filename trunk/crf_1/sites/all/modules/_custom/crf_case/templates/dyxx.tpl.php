@@ -27,13 +27,19 @@
     </td>
   </tr>
   <tr>
-    <td><b>患者姓名</b>:<?php print drupal_render($form[$key_pre ."_1_1"]);?>
+    <td colspan="2"><b>中心编号</b>:<?php print drupal_render($form[$key_pre ."_1_1"]);?>
     </td>
-    <td><b>年龄(岁)</b>:<?php print drupal_render($form[$key_pre ."_1_2"]);?>
+    <td colspan="2"><b>受试者编号</b>:<?php print drupal_render($form[$key_pre ."_1_2"]);?>
     </td>
-    <td><b>生日</b>:<?php print drupal_render($form[$key_pre ."_1_3"]);?>
+  </tr>
+  <tr>
+    <td><b>患者姓名</b>:<?php print drupal_render($form[$key_pre ."_1_3"]);?>
     </td>
-    <td><b>性别</b>:<?php print drupal_render($form[$key_pre ."_1_4"]);?>
+    <td><b>年龄(岁)</b>:<?php print drupal_render($form[$key_pre ."_1_4"]);?>
+    </td>
+    <td><b>生日</b>:<?php print drupal_render($form[$key_pre ."_1_5"]);?>
+    </td>
+    <td><b>性别</b>:<?php print drupal_render($form[$key_pre ."_1_6"]);?>
     </td>
   </tr>
   <tr>
@@ -98,6 +104,17 @@
   <tr>
     <td colspan="2">骨髓涂片（增生度/粒红比，原始细胞百分比（红系>50%请去红计算），病态造血累计几系，主要形态特征:<br/>
       <?php print drupal_render($form[$key_pre ."_39_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td width=20%>骨髓涂片及活检
+    </td>
+    <td>
+      粒红比（增生度）：<?php print drupal_render($form[$key_pre ."_39_2"]);?><br/>
+      原始细胞百分比（请标注红系比例）：<?php print drupal_render($form[$key_pre ."_39_3"]);?><br/>
+      病态造血累及几系，主要形态特征：<?php print drupal_render($form[$key_pre ."_39_4"]);?><br/>
+      造血细胞比例：<?php print drupal_render($form[$key_pre ."_39_5"]);?><br/>
+      骨髓纤维化：<?php print drupal_render($form[$key_pre ."_39_6"]);?><br/>
     </td>
   </tr>
   <tr>
@@ -168,7 +185,7 @@
     </td>
   </tr>
   <tr>
-    <td><b>血清铁蛋白(SF)</b>
+    <td><b>铁蛋白 注：稀释定量</b>
     </td>
     <td><?php print drupal_render($form[$key_pre ."_20_1"]);?>ug/L
     </td>
@@ -192,7 +209,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3">血清叶酸B12:<?php print drupal_render($form[$key_pre ."_22_3"]);?>
+    <td colspan="3">血清叶酸、VitB12:<?php print drupal_render($form[$key_pre ."_22_3"]);?>
     </td>
   </tr>
   <tr>
@@ -205,35 +222,85 @@
   </tr>
   </table>
   <table border="1">
+    <tr>
+      <td>心肌酶谱</td>
+      <td>LDH<?php print drupal_render($form[$key_pre ."_52_1"]);?>；CK<?php print drupal_render($form[$key_pre ."_52_2"]);?>；CK-MB<?php print drupal_render($form[$key_pre ."_52_3"]);?>；M-AST<?php print drupal_render($form[$key_pre ."_52_4"]);?>；</td>
+    </tr>
+    <tr>
+      <td>肌钙蛋白I</td>
+      <td><?php print drupal_render($form[$key_pre ."_52_5"]);?></td>
+    </tr>
+    <tr>
+      <td>C反应蛋白</td>
+      <td><?php print drupal_render($form[$key_pre ."_52_6"]);?>mg/L</td>
+    </tr>
+    <tr>
+      <td>BNP,pro-BNP
+      </td>
+      <td>BNP<?php print drupal_render($form[$key_pre ."_52_7"]);?>；
+        pro-BNP<?php print drupal_render($form[$key_pre ."_52_8"]);?>
+      </td>
+    </tr>
+  </table>
+  <table border="1">
   <tr>
     <td colspan="3"><b>血常规</b>   <b>取样日期</b>:<?php print drupal_render($form[$key_pre ."_23_1"]);?>&nbsp;&nbsp;有无异常细胞<?php print drupal_render($form[$key_pre ."_23_2"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="3"><b>Hb</b>:<?php print drupal_render($form[$key_pre ."_24_1"]);?>g/L； WBC:<?php print drupal_render($form[$key_pre ."_24_2"]);?>×10<sup>9</sup>/L； ANC:<?php print drupal_render($form[$key_pre ."_24_3"]);?>×10<sup>9</sup>/L；<br/><b>PLT</b>:<?php print drupal_render($form[$key_pre ."_24_4"]);?>×10<sup>9</sup>/L；Ret%<?php print drupal_render($form[$key_pre ."_24_5"]);?>  
+    <td colspan="3"><b>Hb</b>:<?php print drupal_render($form[$key_pre ."_24_1"]);?>g/L； WBC:<?php print drupal_render($form[$key_pre ."_24_2"]);?>×10<sup>9</sup>/L； N:<?php print drupal_render($form[$key_pre ."_24_3"]);?>%；<br/><b>PLT</b>:<?php print drupal_render($form[$key_pre ."_24_4"]);?>×10<sup>9</sup>/L；M<?php print drupal_render($form[$key_pre ."_24_5"]);?>%；其它：<?php print drupal_render($form[$key_pre ."_24_6"]);?>  
     </td>
   </tr>
   </table>
   <table border="1">
   <tr>
-    <td colspan="1"><b>血生化</b> 请填写有临床意义的异常结果 	取样日期:<?php print drupal_render($form[$key_pre ."_25_1"]);?>
+    <td colspan="3"><b>血生化</b> 请填写有临床意义的异常结果 	取样日期:<?php print drupal_render($form[$key_pre ."_25_1"]);?>
     </td>
   </tr>
   <tr>
-    <td>肝功能:<?php print drupal_render($form[$key_pre ."_26_1"]);?>，如有异常请填写:谷草转氨酶(SGOT):<?php print drupal_render($form[$key_pre ."_26_2"]);?>U/L；谷丙转氨酶(SGPT):<?php print drupal_render($form[$key_pre ."_26_3"]);?>U/L<br/>
-    乙肝两对半:<?php print drupal_render($form[$key_pre ."_43_1"]);?>,如有异常请详述:<?php print drupal_render($form[$key_pre ."_43_2"]);?>
+    <td colspan="1">肝功能:<?php print drupal_render($form[$key_pre ."_26_1"]);?>
+    </td>
+    <td colspan="2">总蛋白<?php print drupal_render($form[$key_pre ."_26_2"]);?>g/L；
+      白蛋白<?php print drupal_render($form[$key_pre ."_26_3"]);?>g/L；<br/>
+      白/球比例<?php print drupal_render($form[$key_pre ."_26_4"]);?>；
+      谷草转氨酶:<?php print drupal_render($form[$key_pre ."_26_5"]);?>U/L；<br/>
+      谷丙转氨酶:<?php print drupal_render($form[$key_pre ."_26_6"]);?>U/L；
+      碱性磷酸酶<?php print drupal_render($form[$key_pre ."_26_7"]);?>U/L；<br/>
+      γ-谷氨酰酶<?php print drupal_render($form[$key_pre ."_26_8"]);?>U/L；
+      胆碱酯酶<?php print drupal_render($form[$key_pre ."_26_9"]);?>U/L；<br/>
+      总胆红素<?php print drupal_render($form[$key_pre ."_26_10"]);?>μmol/L；
+      直接胆红素<?php print drupal_render($form[$key_pre ."_26_11"]);?>μmol/L
     </td>
   </tr>
   <tr>
-    <td>肾功能:<?php print drupal_render($form[$key_pre ."_44_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_44_2"]);?><br/>
-    肌酐　:<?php print drupal_render($form[$key_pre ."_45_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_45_2"]);?>umol/L<br/>
-    尿素氮:<?php print drupal_render($form[$key_pre ."_46_1"]);?>，如有异常请详述:<?php print drupal_render($form[$key_pre ."_46_2"]);?>mmol/L
+    <td>乙肝两对半:<?php print drupal_render($form[$key_pre ."_43_1"]);?>
     </td>
+    <td colspan="2">如有异常请详述:<?php print drupal_render($form[$key_pre ."_43_2"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="4">肾功能</td>
+  </tr>
+  <tr>    
+    <td>尿素:<?php print drupal_render($form[$key_pre ."_44_1"]);?></td>
+    <td colspan="2"><?php print drupal_render($form[$key_pre ."_44_2"]);?>mmol/L</td>
+  </tr>
+  <tr>
+    <td>肌酐:<?php print drupal_render($form[$key_pre ."_45_1"]);?></td>
+    <td colspan="2"><?php print drupal_render($form[$key_pre ."_45_2"]);?>umol/L</td>
+  </tr>
+  <tr>
+    <td>尿酸:<?php print drupal_render($form[$key_pre ."_46_1"]);?></td>
+    <td colspan="2"><?php print drupal_render($form[$key_pre ."_46_2"]);?>umol/L</td>
   </tr>
 </table>
 <table border="1">
   <tr>
-    <td><b>血糖</b>:<?php print drupal_render($form[$key_pre ."_27_1"]);?></td><td colspan="2">如有异常请填写:<br/>空腹血糖(FBS):<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L；餐后两小时血糖:<?php print drupal_render($form[$key_pre ."_27_3"]);?>mmol/L
+    <td><b>内分泌指标</b></td><td colspan="2">
+      空腹血糖(FBS):<?php print drupal_render($form[$key_pre ."_27_1"]);?>mmol/L；餐后两小时血糖:<?php print drupal_render($form[$key_pre ."_27_2"]);?>mmol/L<br/>
+      糖化血红蛋白:<?php print drupal_render($form[$key_pre ."_27_3"]);?>；糖化血清蛋白:<?php print drupal_render($form[$key_pre ."_27_4"]);?><br/>
+      胰岛素（0）:<?php print drupal_render($form[$key_pre ."_27_5"]);?>；胰岛素（120min）:<?php print drupal_render($form[$key_pre ."_27_6"]);?><br/>
+      C肽（0）:<?php print drupal_render($form[$key_pre ."_27_7"]);?>；C肽（120min）:<?php print drupal_render($form[$key_pre ."_27_8"]);?>
     </td>
   </tr>
 </table>
@@ -263,10 +330,21 @@
       
       胸部X线:<?php print drupal_render($form[$key_pre ."_47_1"]);?><?php print drupal_render($form[$key_pre ."_47_2"]);?><br/>
       心电图:<?php print drupal_render($form[$key_pre ."_48_1"]);?><?php print drupal_render($form[$key_pre ."_48_2"]);?><br/>
+      心脏超声（最好是连续3次心脏超声）:<br/>
+      &nbsp;&nbsp;M型EF(%):<?php print drupal_render($form[$key_pre ."_48_3"]);?><br/>
+      &nbsp;&nbsp;舒张期左室前后径:<?php print drupal_render($form[$key_pre ."_48_4"]);?><br/>
+      &nbsp;&nbsp;收缩期左室前后径:<?php print drupal_render($form[$key_pre ."_48_5"]);?><br/>
+      &nbsp;&nbsp;左房前后径:<?php print drupal_render($form[$key_pre ."_48_6"]);?><br/>
+      &nbsp;&nbsp;肺动脉内径:<?php print drupal_render($form[$key_pre ."_48_7"]);?><br/>
+      &nbsp;&nbsp;E/A值:<?php print drupal_render($form[$key_pre ."_48_8"]);?><br/>
+      &nbsp;&nbsp;结论:<?php print drupal_render($form[$key_pre ."_48_9"]);?><br/>
+
       腹部B超:<br/>
       &nbsp;&nbsp;肝脏大小:<?php print drupal_render($form[$key_pre ."_49_1"]);?><?php print drupal_render($form[$key_pre ."_49_2"]);?><br/>
       &nbsp;&nbsp;脾:<?php print drupal_render($form[$key_pre ."_50_1"]);?><?php print drupal_render($form[$key_pre ."_50_2"]);?><br/>
+      &nbsp;&nbsp;胰:<?php print drupal_render($form[$key_pre ."_50_3"]);?><?php print drupal_render($form[$key_pre ."_50_4"]);?><br/>
       &nbsp;&nbsp;门静脉宽度:<?php print drupal_render($form[$key_pre ."_51_1"]);?><?php print drupal_render($form[$key_pre ."_51_2"]);?><br/>
+      &nbsp;&nbsp;有无肝纤维化:<?php print drupal_render($form[$key_pre ."_51_3"]);?><br/>
     </td>
   </tr>
 </table>

@@ -84,15 +84,24 @@
     </td>
   </tr>
   <tr>
-    <td>血常规（有无异常细胞）
+    <td colspan="6"><b>血常规</b>   <b>取样日期</b>:<?php print drupal_render($form[$key_pre ."_2_4"]);?>&nbsp;&nbsp;有无异常细胞<?php print drupal_render($form[$key_pre ."_2_5"]);?>
     </td>
-    <td colspan="5"><?php print drupal_render($form[$key_pre ."_3_1"]);?>
+  </tr>
+  <tr>
+    <td colspan="6"><b>Hb</b>:<?php print drupal_render($form[$key_pre ."_2_6"]);?>g/L； WBC:<?php print drupal_render($form[$key_pre ."_2_7"]);?>×10<sup>9</sup>/L； N:<?php print drupal_render($form[$key_pre ."_2_8"]);?>%；<br/><b>PLT</b>:<?php print drupal_render($form[$key_pre ."_2_9"]);?>×10<sup>9</sup>/L；M<?php print drupal_render($form[$key_pre ."_2_10"]);?>%；其它：<?php print drupal_render($form[$key_pre ."_2_11"]);?>  
     </td>
   </tr>
   <tr>
     <td>骨髓涂片（增生度/粒红比，原始细胞百分比（红系>50%请去红计算），病态造血累计几系，主要形态特征
     </td>
     <td colspan="5"><?php print drupal_render($form[$key_pre ."_4_1"]);?>
+    </td>
+  </tr>
+  <tr>
+    <td>骨髓活检
+    </td>
+    <td colspan="5">造血细胞比例：<?php print drupal_render($form[$key_pre ."_4_2"]);?><br/>
+      骨髓纤维化：<?php print drupal_render($form[$key_pre ."_4_3"]);?>
     </td>
   </tr>
   <tr>

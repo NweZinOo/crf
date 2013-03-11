@@ -421,7 +421,6 @@ function _autologout_user_in_by_user_role($account = NULL) {
  *   string the named variabled value
  */
 function _autologout_local_settings($name = FALSE) {
-
   // Default settings.
   $defaults = array(
     'enabled' => FALSE,
@@ -430,8 +429,7 @@ function _autologout_local_settings($name = FALSE) {
     'use_watchdog' => 1,
     'block_title' => t('automatic logout in'),
     'logout_message' => t('You have been automatically logged out due to inactivity.'),
-  );
-
+  ); 
   if (!($settings = variable_get('autologout', FALSE))) {
     $settings = $defaults;
   }
