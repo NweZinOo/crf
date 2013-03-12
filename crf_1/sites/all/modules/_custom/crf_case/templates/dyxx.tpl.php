@@ -102,19 +102,14 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2">骨髓涂片（增生度/粒红比，原始细胞百分比（红系>50%请去红计算），病态造血累计几系，主要形态特征:<br/>
-      <?php print drupal_render($form[$key_pre ."_39_1"]);?>
-    </td>
-  </tr>
-  <tr>
     <td width=20%>骨髓涂片及活检
     </td>
     <td>
-      粒红比（增生度）：<?php print drupal_render($form[$key_pre ."_39_2"]);?><br/>
-      原始细胞百分比（请标注红系比例）：<?php print drupal_render($form[$key_pre ."_39_3"]);?><br/>
-      病态造血累及几系，主要形态特征：<?php print drupal_render($form[$key_pre ."_39_4"]);?><br/>
-      造血细胞比例：<?php print drupal_render($form[$key_pre ."_39_5"]);?><br/>
-      骨髓纤维化：<?php print drupal_render($form[$key_pre ."_39_6"]);?><br/>
+      粒红比（增生度）：<?php print drupal_render($form[$key_pre ."_39_1"]);?><br/>
+      原始细胞百分比（请标注红系比例）：<?php print drupal_render($form[$key_pre ."_39_2"]);?><br/>
+      病态造血累及几系，主要形态特征：<?php print drupal_render($form[$key_pre ."_39_3"]);?><br/>
+      造血细胞比例：<?php print drupal_render($form[$key_pre ."_39_4"]);?><br/>
+      骨髓纤维化：<?php print drupal_render($form[$key_pre ."_39_5"]);?><br/>
     </td>
   </tr>
   <tr>
@@ -310,7 +305,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3"><b>MRI检查:</b> <br/>
+    <td colspan="3"><b>MRI检查:</b>
+    </td>
+   </tr>
+   <tr> 
+    <td colspan="3">
       <?php print drupal_render($form[$key_pre ."_28_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测日期:<?php print drupal_render($form[$key_pre ."_28_2"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测结果:<br/>
@@ -319,6 +318,10 @@
       &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_30_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_30_3"]);?><?php print drupal_render($form[$key_pre ."_30_4"]);?><?php print drupal_render($form[$key_pre ."_30_5"]);?><br/>
+    </td>
+   </tr>
+   <tr> 
+    <td colspan="3">
       <?php print drupal_render($form[$key_pre ."_31_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测日期:<?php print drupal_render($form[$key_pre ."_31_2"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;检测结果:<br/>
@@ -327,9 +330,20 @@
       &nbsp;&nbsp;&nbsp;&nbsp;3.是否判定为铁过载？<br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_1"]);?><br/>
       &nbsp;&nbsp;&nbsp;&nbsp;<?php print drupal_render($form[$key_pre ."_33_2"]);?>，程度为<?php print drupal_render($form[$key_pre ."_33_3"]);?><?php print drupal_render($form[$key_pre ."_33_4"]);?><?php print drupal_render($form[$key_pre ."_33_5"]);?><br/>
-      
+    </td>
+   </tr>
+   <tr>
+    <td colspan="3">  
       胸部X线:<?php print drupal_render($form[$key_pre ."_47_1"]);?><?php print drupal_render($form[$key_pre ."_47_2"]);?><br/>
+    </td>
+   </tr>
+   <tr>
+    <td colspan="3">
       心电图:<?php print drupal_render($form[$key_pre ."_48_1"]);?><?php print drupal_render($form[$key_pre ."_48_2"]);?><br/>
+    </td>
+   </tr>
+   <tr>
+    <td colspan="3">
       心脏超声（最好是连续3次心脏超声）:<br/>
       &nbsp;&nbsp;M型EF(%):<?php print drupal_render($form[$key_pre ."_48_3"]);?><br/>
       &nbsp;&nbsp;舒张期左室前后径:<?php print drupal_render($form[$key_pre ."_48_4"]);?><br/>
@@ -338,7 +352,10 @@
       &nbsp;&nbsp;肺动脉内径:<?php print drupal_render($form[$key_pre ."_48_7"]);?><br/>
       &nbsp;&nbsp;E/A值:<?php print drupal_render($form[$key_pre ."_48_8"]);?><br/>
       &nbsp;&nbsp;结论:<?php print drupal_render($form[$key_pre ."_48_9"]);?><br/>
-
+    </td>
+   </tr>
+   <tr>
+    <td colspan="3">
       腹部B超:<br/>
       &nbsp;&nbsp;肝脏大小:<?php print drupal_render($form[$key_pre ."_49_1"]);?><?php print drupal_render($form[$key_pre ."_49_2"]);?><br/>
       &nbsp;&nbsp;脾:<?php print drupal_render($form[$key_pre ."_50_1"]);?><?php print drupal_render($form[$key_pre ."_50_2"]);?><br/>
