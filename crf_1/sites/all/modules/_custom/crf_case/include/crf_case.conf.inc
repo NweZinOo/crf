@@ -24,7 +24,7 @@ $crf_el['dyxx'] = array(
   8 => array(1 => type_checkboxs(array('4骨髓纤维化')), 2 => type_checkboxs(array('5其它')), 3 => type_textfield()),
   9 => array(1 => type_radios(array('极低危组','低危组','中危组','高危组','极高危组'))),
   10 => array(1 => type_date_popup()),
-  11 => array(1 => type_textfield('',100)),
+  // 11 => array(1 => type_textfield('',100)),
   12 => array(1 => type_date_popup()),
   13 => array(1 => type_textfield('',100)),
   14 => array(1 => type_date_popup()),

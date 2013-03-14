@@ -102,7 +102,7 @@
     </td>
   </tr>
   <tr>
-    <td width=20%>骨髓涂片及活检
+    <td width=20%>骨髓穿刺及活检<br/>日期:<?php print drupal_render($form[$key_pre ."_10_1"]);?><br/>
     </td>
     <td>
       粒红比（增生度）：<?php print drupal_render($form[$key_pre ."_39_1"]);?><br/>
@@ -113,31 +113,25 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2">骨髓穿刺结果（铁染色+活检）<br/>
-      日期:<?php print drupal_render($form[$key_pre ."_10_1"]);?>(选填项)<br/>
-      结果:<?php print drupal_render($form[$key_pre ."_11_1"]);?>
-    </td>
-  </tr>
-  <tr>
     <td colspan="2">染色体检查结果<br/>
       日期:<?php print drupal_render($form[$key_pre ."_12_1"]);?>(选填项)<br/>
-      结果:<?php print drupal_render($form[$key_pre ."_13_1"]);?>
+      结果:<?php print drupal_render($form[$key_pre ."_13_1"]);?><br/>
+      染色体G带:<?php print drupal_render($form[$key_pre ."_42_1"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="2">基因检测结果<br/>
+    <td colspan="2">
+      基因检测结果<br/>
       日期:<?php print drupal_render($form[$key_pre ."_14_1"]);?>(选填项)<br/>
       结果:<?php print drupal_render($form[$key_pre ."_15_1"]);?>
     </td>
   </tr>
   <tr>
-    <td colspan="2">染色体G带:<?php print drupal_render($form[$key_pre ."_42_1"]);?>
+    <td colspan="2">FISH结果:<?php print drupal_render($form[$key_pre ."_42_2"]);?>
     </td>
   </tr>
   <tr>
-    <td>FISH结果:<?php print drupal_render($form[$key_pre ."_42_2"]);?>
-    </td>
-    <td>EPO（稀释定量）:<?php print drupal_render($form[$key_pre ."_42_5"]);?>
+    <td colspan="2">EPO（稀释定量）:<?php print drupal_render($form[$key_pre ."_42_5"]);?>
     </td>
   </tr>
     <tr>
@@ -168,7 +162,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3"><b>血铁五项</b>（推荐连续测两次）
+    <td colspan="3"><b>血铁五项</b>（黄头管 5ml，分离胶促凝剂，推荐连续测两次）
     </td>
   </tr>
   <tr>
